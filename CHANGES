@@ -4,8 +4,9 @@ v1.3 - TBA, 2011 (alpha - March 08, 2011)
  * Maintenance fork
  * FEATURE: Custom nav menus
  * FEATURE: WordPress custom backgrounds, removed old method
+ * FEATURE: Threaded comments
 
-v1.2 - TBA, 2009 (RC5 - October 13, 2009)
+v1.2 RC5 - October 13, 2009
  * FEATURE: AdSense for Search functionality.
  * FEATURE: Check out all the performance changes. ;-)
  * CHANGE: Add AdSense ads via code instead of ad ids.
