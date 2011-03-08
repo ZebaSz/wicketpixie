@@ -1346,9 +1346,9 @@ body {
     margin-bottom: 28px;
 	background-color: #fff;
     border-radius: 10px;
-	border-top-right-radius: 0;
+	border-top-left-radius: 0;
     -moz-border-radius: 10px;
-	-moz-border-radius-topright: 0;
+	-moz-border-radius-topleft: 0;
 	border: 1px solid #E0E0E0;
 }
 
