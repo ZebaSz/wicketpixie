@@ -10,36 +10,6 @@
  */
 $theme_options = array (
 	array(  
-		"name" => "Background Color",
-		"description" => "The color that fills the screen around the content area.",
-		"id" => 'wicketpixie_theme_body_bg_color',
-		"std" => "#270b05",
-		"type" => "text"),
-		
-	array(  
-		"name" => "Background Image",
-		"description" => "Optional background image.",
-		"id" => 'wicketpixie_theme_body_bg_image',
-		"std" => "solidwood-dark.jpg",
-		"type" => "file"),
-		
-	array(  
-		"name" => "Background Image Repeat",
-		"description" => "Specify how you would like the background image positioned.",		
-		"id" => 'wicketpixie_theme_body_bg_repeat',
-		"std" => "repeat-x",
-		"type" => "select",
-		"options" => array("no-repeat", "repeat", "repeat-x", "repeat-y")),	
-		
-	array(  
-		"name" => "Background Image Position",
-		"description" => "Have the background scroll with the page, or stay in one place.",		
-		"id" => 'wicketpixie_theme_body_bg_position',
-		"std" => "fixed",
-		"type" => "select",
-		"options" => array("fixed", "scroll")),
-
-	array(  
 		"name" => "Body Font Family",
 		"description" => "The main font used through-out the content areas.",
 		"id" => 'wicketpixie_theme_body_font',
