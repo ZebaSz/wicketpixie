@@ -73,6 +73,16 @@ if ( function_exists('register_sidebar') ) {
 	));
 }
 
+// Nav menu (since 3.0)
+if ( function_exists('register_nav_menus') ) :
+	register_nav_menus(array('primary'=>__('Primary Menu'),));
+endif;
+
+// Custom Background (since 3.0)
+if ( function_exists('add_custom_background') ) :
+	add_custom_background();
+endif;
+
 /* Admin Pages */
 
 // The parent AdminPage class
