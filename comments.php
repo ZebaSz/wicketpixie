@@ -25,7 +25,7 @@
 	<h2><?php comments_number();?></h2>
 	<ul class="commentlist"><?php wp_list_comments();?></ul>
 <?php else :
-<?php if ($comments) : ?>
+if ($comments) : ?>
 
 	<h2><?php comments_number('No Comments', 'One Comment', '% Comments' );?></h2>
 
@@ -56,12 +56,12 @@
 
 	<?php endforeach; /* end for each comment */ ?>
 
- <?php else : // this is displayed if there are no comments so far ?>
+<?php else : // this is displayed if there are no comments so far ?>
 
 	<?php if ('open' == $post->comment_status) : ?>
 		<!-- If comments are open, but there are no comments. -->
 
-	 <?php else : // comments are closed ?>
+	<?php else : // comments are closed ?>
 		<!-- If comments are closed. -->
 		<p class="nocomments">Comments are closed.</p>
 
@@ -78,7 +78,8 @@
 	<div id="comment-form">
 		<?php comment_form(); ?>
 	</div>
-<?php if ('open' == $post->comment_status) : ?>
+<?php else:
+if ('open' == $post->comment_status) : ?>
 						
 	<!-- comment form -->
 	<div id="comment-form">
@@ -125,6 +126,8 @@
 	</div>
 	<!-- /comment form -->
 
-<?php endif; // If registration required and not logged in ?>
+	<?php endif; // If registration required and not logged in ?>
 
 <?php endif; // if you delete this the sky will fall on your head ?>
+
+<?php endif; ?>

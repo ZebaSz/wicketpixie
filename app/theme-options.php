@@ -1,13 +1,46 @@
 <?php
 /**
- * WicketPixie v1.2
+ * WicketPixie v1.3
  * (c) 2006-2009 Eddie Ringle,
  *               Chris J. Davis,
  *               Dave Bates
  * Provided by Chris Pirillo
  *
+ * (c) 2011 Sebastian Szperling
+ *
  * Licensed under the New BSD License.
  */
+$theme_background = array (
+	array(  
+		"name" => "Background Color",
+		"description" => "The color that fills the screen around the content area.",
+		"id" => 'wicketpixie_theme_body_bg_color',
+		"std" => "#270b05",
+		"type" => "text"),
+	
+	array(  
+		"name" => "Background Image",
+		"description" => "Optional background image.",
+		"id" => 'wicketpixie_theme_body_bg_image',
+		"std" => "solidwood-dark.jpg",
+		"type" => "file"),
+	
+	array(  
+		"name" => "Background Image Repeat",
+		"description" => "Specify how you would like the background image positioned.",		
+		"id" => 'wicketpixie_theme_body_bg_repeat',
+		"std" => "repeat-x",
+		"type" => "select",
+		"options" => array("no-repeat", "repeat", "repeat-x", "repeat-y")),	
+		
+	array(  
+		"name" => "Background Image Position",
+		"description" => "Have the background scroll with the page, or stay in one place.",		
+		"id" => 'wicketpixie_theme_body_bg_position',
+		"std" => "fixed",
+		"type" => "select",
+		"options" => array("fixed", "scroll")),
+);
 $theme_options = array (
 	array(  
 		"name" => "Body Font Family",
@@ -25,7 +58,7 @@ $theme_options = array (
 		"type" => "select",
 		"options" => array("Georgia, Times New Roman, Times, serif", "Times New Roman, Georgia, Times, serif", "Times, Times New Roman, Georgia, serif", "Lucida Grande, Arial, Verdana, sans-serif", "Helvetica, Arial, Verdana, sans-serif", "Arial, Verdana, sans-serif", "Verdana, Arial sans-serif")),
 
-    array(  
+	array(  
 		"name" => "Header Font Size",
 		"description" => "The font size of the header logo, in px.",
 		"id" => 'wicketpixie_theme_header_size',
@@ -74,12 +107,16 @@ $theme_options = array (
 		"std" => "#333",
 		"type" => "text"),
 	array(
-	    "name" => "Max Image Width in Posts",
-	    "description" => "Set the maximum width (in pixels) of images in post contents.",
-	    "id" => 'wicketpixie_theme_post_max_image_width',
-	    "std" => "340",
-	    "type" => "text")
+		"name" => "Max Image Width in Posts",
+		"description" => "Set the maximum width (in pixels) of images in post contents.",
+		"id" => 'wicketpixie_theme_post_max_image_width',
+		"std" => "340",
+		"type" => "text")
 );
+if (!current_theme_supports('custom-background')) :
+	$theme_options = array_merge ($theme_background, $theme_options);
+endif;
+
 
 class ThemeOptions extends AdminPage
 {
@@ -209,7 +246,7 @@ function wicketpixie_wp_head() { ?>
 	?>
 
 	<style type="text/css">
-		body { font-family: <?php echo $wicketpixie_theme_body_font; ?>; background: <?php echo $wicketpixie_theme_body_bg_color; ?> <?php if( get_option('wicketpixie_theme_no_image') != 'true' ) { ?>url("<?php bloginfo('template_directory'); ?>/images/backgrounds/<?php echo $wicketpixie_theme_body_bg_image; ?>") <?php echo $wicketpixie_theme_body_bg_position; ?> <?php echo $wicketpixie_theme_body_bg_repeat; ?> 50% 0<?php } ?>; }
+		body { font-family: <?php echo $wicketpixie_theme_body_font; ?>; <?php if (!current_theme_supports('custom-background')) { ?>background: <?php echo $wicketpixie_theme_body_bg_color; ?> <?php if( get_option('wicketpixie_theme_no_image') != 'true' ) { ?>url("<?php bloginfo('template_directory'); ?>/images/backgrounds/<?php echo $wicketpixie_theme_body_bg_image; ?>") <?php echo $wicketpixie_theme_body_bg_position; ?> <?php echo $wicketpixie_theme_body_bg_repeat; ?> 50% 0<?php } } ?>; }
 		#logo { font-family: <?php echo $wicketpixie_theme_headings_font; ?>; color: <?php echo $wicketpixie_theme_logo_color; ?>; }
 		#logo a:link, #logo a:visited, #logo a:active { color: <?php echo $wicketpixie_theme_logo_color; ?>; }
 		#logo a:hover { color: #fff; }

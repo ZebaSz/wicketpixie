@@ -1,18 +1,16 @@
 		</div>
 		<!-- /mid -->
-		
-		<div class="clearer"></div>
+
+		<!-- footer -->
+		<div id="footer">
+			<p id="footer-credits" class="left">&copy; 2008-2009 <?php bloginfo('name'); ?>, All Rights Reserved</p>		
+			<p id="footer-meta" class="right"><a href="http://code.idlesoft.net/projects/wicketpixie/issues">Bugs or Suggestions?</a> - Powered by <a href="http://chris.pirillo.com/wicketpixie/">WicketPixie</a> v<?php echo WIK_VERSION; ?> provided by <a href="http://chris.pirillo.com">Chris</a></p>		
+			<div class="clearer"></div>		
+		</div>
+		<!-- footer -->
 		
 	</div>
 	<!-- wrapper -->
-	
-	<!-- footer -->
-	<div id="footer">
-		<p id="footer-credits" class="left">&copy; 2008-2009 <?php bloginfo('name'); ?>, All Rights Reserved</p>		
-		<p id="footer-meta" class="right"><a href="http://code.idlesoft.net/projects/wicketpixie/issues">Bugs or Suggestions?</a> - Powered by <a href="http://chris.pirillo.com/wicketpixie/">WicketPixie</a> v<?php echo WIK_VERSION; ?> provided by <a href="http://chris.pirillo.com">Chris</a></p>		
-		<div class="clearer"></div>		
-	</div>
-	<!-- footer -->
 	
 	<!-- jQuery -->
 	<script type="text/javascript" src="<?php bloginfo('home'); ?>/wp-includes/js/jquery/jquery.js?ver=1.3.2"></script>

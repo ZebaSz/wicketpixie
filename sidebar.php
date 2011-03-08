@@ -56,5 +56,4 @@
 <!-- /sidebar6 -->
 
 </div>
-<div class="clearer"></div>
 <!-- google_ad_section_end -->

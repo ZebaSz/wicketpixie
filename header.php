@@ -173,8 +173,10 @@ $adsense = new AdsenseAdmin;
 			<div id="status">	
 				<div id="twitter-tools">
 					<?php echo get_avatar('1', $size = '36', $default = 'images/avatar.jpg'); ?>
-					<p><?php aktt_latest_tweet(); ?></p>
-					<div id="status-bottom">&nbsp;</div>
+					<div id="status-box">
+						<span id="status-arrow"></span>
+						<p><?php aktt_latest_tweet(); ?></p>
+					</div>
 				</div>
 			</div>
 			<!-- /status -->
@@ -182,15 +184,19 @@ $adsense = new AdsenseAdmin;
 			<!-- status -->
 			<div id="status">	
 				<?php echo get_avatar('1', $size = '36', $default = 'images/avatar.jpg'); ?>
-				<p><?php echo $status->display(); ?></p>
-				<div id="status-bottom">&nbsp;</div>
+				<div id="status-box">
+					<span id="status-arrow"></span>
+					<p><?php echo $status->display(); ?></p>
+				</div>
 			</div>
 			<!-- /status -->
 			<?php } else { ?>
 			<div id="status">
 			    <?php echo get_avatar('1', $size = '36', $default = 'images/avatar.jpg'); ?>
-			    <p id="description"><?php bloginfo('description'); ?></p>
-			    <div id="status-bottom">&nbsp;</div>
+				<div id="status-box">
+					<span id="status-arrow"></span>
+					<p id="description"><?php bloginfo('description'); ?></p>
+				</div>
 			</div>
 			<?php } ?>
 			<!-- google_ad_section_start(weight=ignore) -->
@@ -218,8 +224,10 @@ $adsense = new AdsenseAdmin;
 	<!-- /header -->
 	
 	<!-- nav -->
-	<div id="nav">
-		<ul>
+		<!-- wrapper -->
+	<div id="wrapper">
+		<div id="nav">
+			<ul>
 			<?php if (function_exists('wp_nav_menu')) :
 				wp_nav_menu(array('theme_location' => 'primary'));
 			else :
@@ -236,13 +244,10 @@ $adsense = new AdsenseAdmin;
 					wp_list_pages("depth=1&sort_column=menu_order&title_li=");
 				endif;
 			endif; ?>
-		</ul>
-	</div>
+			</ul>
+		</div>
 	<!-- /nav -->
-
     <!-- google_ad_section_end -->
-	<!-- wrapper -->
-	<div id="wrapper">
 		
 		<!-- mid -->
 		<div id="mid" class="content">
