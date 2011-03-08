@@ -21,7 +21,10 @@
 						
 <!-- comments -->
 <div id="comments">
-
+<?php if (function_exists('wp_list_comments')) : ?>
+	<h2><?php comments_number();?></h2>
+	<ul class="commentlist"><?php wp_list_comments();?></ul>
+<?php else :
 <?php if ($comments) : ?>
 
 	<h2><?php comments_number('No Comments', 'One Comment', '% Comments' );?></h2>
@@ -65,11 +68,16 @@
 	<?php endif; ?>
 	
 <?php endif; ?>
-						
+
+<?php endif; ?>
+
 </div>
 <!-- /comments -->
 
-
+<?php if (function_exists('comment_form')) : ?>
+	<div id="comment-form">
+		<?php comment_form(); ?>
+	</div>
 <?php if ('open' == $post->comment_status) : ?>
 						
 	<!-- comment form -->
