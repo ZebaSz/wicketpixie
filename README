@@ -1,11 +1,16 @@
-WicketPixie Social Media Premium WordPress Theme
+A fork of WicketPixie Social Media Premium WordPress Theme
 from Chris Pirillo at http://chris.pirillo.com/
+by ZebaSz at http://zeblog.com
+
+ABOUT THIS FORK
+
+WicketPixie 1.2 is outdated and no longer under development. 2.0, on the other hand, is a full re-write, which at the time of this fork (March 2011) lacks many features available in prior versions. The aim of this fork is to pave the way to WicketPixie 2.0 by providing backports. Also, I have some great ideas in mind to add to this WordPress theme. This is an unoficial fork, maintained by an user.
 
 THANK YOU FOR DOWNLOADING WICKETPIXIE
 
 This theme was designed for (and requires) WordPress 2.8+ and PHP5, however, we recommend that
-you use the latest versions available. As of WicketPixie 1.2, the latest
-WordPress is 2.8.4, and the latest PHP is 5.3.0.
+you use the latest versions available. As of this fork, the latest
+WordPress is 3.1, and the latest PHP is 5.3.5.
 
 http://chris.pirillo.com/wicketpixie/
 
@@ -30,8 +35,8 @@ LINKS
 
 http://chris.pirillo.com/wicketpixie/ - Main WicketPixie information page
 
-http://github.com/eddieringle/wicketpixie - WicketPixie on GitHub
+http://github.com/eddieringle/wicketpixie - Original WicketPixie on GitHub
 (Code repository)
 
-http://code.idlesoft.net/projects/wicketpixie - WicketPixie on IdleCode
-(Issue tracker, Wiki, Forums, etc.)
+http://github.com/ZebaSz/wicketpixie - Forked WicketPixie on GitHub
+(Code repository)
