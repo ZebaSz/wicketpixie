@@ -1344,12 +1344,16 @@ body {
 #sidebar1 {
 	width: 100%;
     margin-bottom: 28px;
-    background: url("../images/sidebar-box-bottom.gif") no-repeat 0 100%;
+	background-color: #fff;
+    border-radius: 10px;
+	border-top-right-radius: 0;
+    -moz-border-radius: 10px;
+	-moz-border-radius-topright: 0;
+	border: 1px solid #E0E0E0;
 }
 
 #sidebar1 .widget {
 	padding: 20px 20px 6px;
-	background: url("../images/sidebar-box-top.gif") no-repeat 0 0;
 }
 
 #sidebar1 .widget img {
