@@ -18,8 +18,9 @@ the latest WordPress is 3.1, and the latest PHP is 5.3.5.
 
 INSTALLING
 
-Before installing, remember, this is an APLHA, and might be broken. You might want to
-consider using the original WicketPixie (see link below) until this is stable enough (maybe beta).
+Before installing, remember, this is a beta, and might have bugs. If you're looking for
+something (nearly) 100% stable, you should check out v1.2-rc5, the last oficial release.
+That said, this beta should be very stable, since not much has been modified.
 
 Just place the wicketpixie folder in your /wp-content/themes/ directory and
 then activate the theme. Then make sure the httpd user has write access to
