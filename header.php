@@ -221,21 +221,22 @@ $adsense = new AdsenseAdmin;
 	<!-- nav -->
 	<div id="nav">
 		<ul>
-			<?php
-			if (!is_home()) { ?>
-			 <li><a href="<?php bloginfo('home'); ?>/">Home</a></li>
-            <?php
-            }
-			if (get_option('wicketpixie_adsense_search_enabled') == 'true') {
-			    $sp = get_page_by_title('Search');
-			    $id = $sp->ID;
-			    wp_list_pages("depth=1&sort_column=menu_order&exclude=${id}&title_li=");
-			    echo "<!-- Excluding $id -->";
-			    unset($sp,$id);
-			} else {
-			    wp_list_pages("depth=1&sort_column=menu_order&title_li=");
-            }
-            ?>
+			<?php if (function_exists('wp_nav_menu')) :
+				wp_nav_menu(array('theme_location' => 'primary'));
+			else :
+				if (!is_home()) : ?>
+					<li><a href="<?php bloginfo('home'); ?>/">Home</a></li>
+				<?php endif;
+				if (get_option('wicketpixie_adsense_search_enabled') == 'true') :
+					$sp = get_page_by_title('Search');
+					$id = $sp->ID;
+					wp_list_pages("depth=1&sort_column=menu_order&exclude=${id}&title_li=");
+					echo "<!-- Excluding $id -->";
+					unset($sp,$id);
+				else :
+					wp_list_pages("depth=1&sort_column=menu_order&title_li=");
+				endif;
+			endif; ?>
 		</ul>
 	</div>
 	<!-- /nav -->
