@@ -146,10 +146,6 @@ body {
 	font-size: 8pt;
 }
 
-#topbar-share {
-	background: url("../images/topbar-lg.gif") no-repeat 0 50%;
-}
-
 #topbar-admin {
 	background: url("../images/wicketsmall.png") no-repeat 0 50%;
 }
@@ -748,16 +744,17 @@ body {
 
 #content .post-comments {
 	float: left;
-	background: url("../images/post-comments-left.gif") no-repeat 0 0;
-	padding-right: 20px;
+	margin-right: 40px;
+	background-color: #ccc;
+	-moz-border-radius: 20px;
+	border-radius: 20px;
 }
 
 #content .post-comments ul {
 	float: left;
 	width: 100%;
 	margin: 0;
-	padding: 8px 0;
-	background: url("../images/post-comments-right.gif") no-repeat 100% 0;
+	padding: 2px 0;
 }
 
 #content .post-comments ul li {
@@ -768,7 +765,11 @@ body {
 }
 
 #content .post-comments li.post-comments-count {
-	margin: 0 10px 0 14px;
+	margin: 0 3px;
+	background-color: #f6f6f6;
+	padding: 6px 10px 1px;
+	-moz-border-radius: 20px;
+	border-radius: 20px;
 }
 
 #content .post-comments-count a:link, #content .post-comments-count a:active, #content .post-comments-count a:visited {
@@ -791,7 +792,7 @@ body {
 	display: block;
 	width: 16px;
 	height: 16px;
-	margin: 0 8px 0;
+	margin: 6px 8px 0 5px;
 	padding: 0;
 	overflow: hidden;
 }
@@ -801,10 +802,6 @@ body {
 	width: 100%;
 	height: 100%;
 	background: url("../images/post-comments-add.gif") no-repeat 0 0;
-}
-
-#content li.post-comments-add a {
-	text-decoration: none;
 }
 
 #content img {
