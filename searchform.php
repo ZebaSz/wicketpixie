@@ -16,6 +16,5 @@ $search_page = get_bloginfo('home') . '/search/'; ?>
 		<input type="submit" name="search" id="search-submit" class="search-submit" value="<?php _e('Search', 'wicketpixie') ?>" />
 	</div>
 </form>
-
 <script type="text/javascript" src="http://www.google.com/coop/cse/brand?form=search&amp;lang=en"></script>
 <?php endif; ?>

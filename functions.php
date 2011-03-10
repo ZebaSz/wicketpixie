@@ -21,59 +21,59 @@ define(SIMPLEPIEPATH,ABSPATH.'wp-includes/class-simplepie.php');
 * b = beta (testing, works but may have bugs)
 * rc = release candidate (stable testing, minor issues are left)
 */
-define('WIK_VERSION',"1.3-a");
+define('WIK_VERSION',"1.3-b");
 
 /* Debug settings */
 define(DEBUG,false);
-if (DEBUG == true) {
-    error_reporting(E_ALL);
-}
+if (DEBUG == true) :
+	error_reporting(E_ALL);
+endif;
 
 /* Dynamic (Widget-enabled) Sidebar */
-if ( function_exists('register_sidebar') ) {
-    register_sidebar(array('name'=>'sidebar_top',
-        'before_widget' => '<div id="%1$s" class="widget %2$s">',
-        'after_widget' => '</div>',
+if ( function_exists('register_sidebar') ) :
+	register_sidebar(array('name'=>'sidebar_top',
+		'before_widget' => '<div id="%1$s" class="widget %2$s">',
+		'after_widget' => '</div>',
 		'before_title' => '<h3>',
 		'after_title' => '</h3>',
-    ));
+	));
 	register_sidebar(array('name'=>'sidebar1',
 		'before_widget' => '<div id="%1$s" class="widget %2$s">',
 		'after_widget' => '</div>',
 		'before_title' => '<h3>',
 		'after_title' => '</h3>',
-	));	
-	register_sidebar(array('name'=>'sidebar2',		
+	));
+	register_sidebar(array('name'=>'sidebar2',
 		'before_widget' => '<div id="%1$s" class="widget %2$s">',
 		'after_widget' => '</div>',
 		'before_title' => '<h3>',
 		'after_title' => '</h3>',
 	));
-	register_sidebar(array('name'=>'sidebar3',		
+	register_sidebar(array('name'=>'sidebar3',
 		'before_widget' => '<div id="%1$s" class="widget %2$s">',
 		'after_widget' => '</div>',
 		'before_title' => '<h3>',
 		'after_title' => '</h3>',
 	));
-	register_sidebar(array('name'=>'sidebar4',		
+	register_sidebar(array('name'=>'sidebar4',
 		'before_widget' => '<div id="%1$s" class="widget %2$s">',
 		'after_widget' => '</div>',
 		'before_title' => '<h3>',
 		'after_title' => '</h3>',
 	));
-	register_sidebar(array('name'=>'sidebar5',		
+	register_sidebar(array('name'=>'sidebar5',
 		'before_widget' => '<div id="%1$s" class="widget %2$s">',
 		'after_widget' => '</div>',
 		'before_title' => '<h3>',
 		'after_title' => '</h3>',
 	));
-	register_sidebar(array('name'=>'sidebar6',		
+	register_sidebar(array('name'=>'sidebar6',
 		'before_widget' => '<div id="%1$s" class="widget %2$s">',
 		'after_widget' => '</div>',
 		'before_title' => '<h3>',
 		'after_title' => '</h3>',
 	));
-}
+endif;
 
 // Nav menu (since 3.0)
 if ( function_exists('register_nav_menus') ) :
@@ -160,41 +160,33 @@ add_action('in_admin_footer', 'wicketpixie_add_admin_footer');
 /* Status updates */
 require_once( TEMPLATEPATH .'/app/update.php');
 
-/* jQuery 
-function load_jQuery()
-{
-    wp_enqueue_script('jquery');
-}
-add_action('init','load_jQuery'); */
-
 /* Widgets */
 
-if(function_exists('register_widget')) {
-    // My Profiles
-    require_once(TEMPLATEPATH .'/widgets/my-profiles.php');
-    add_action('widgets_init','MyProfilesInit');
+if(function_exists('register_widget')) :
+	// My Profiles
+	require_once(TEMPLATEPATH .'/widgets/my-profiles.php');
+	add_action('widgets_init','MyProfilesInit');
 
-    // Social Badges
-    require_once(TEMPLATEPATH .'/widgets/social-badges.php');
-    add_action('widgets_init','SocialBadgesInit');
+	// Social Badges
+	require_once(TEMPLATEPATH .'/widgets/social-badges.php');
+	add_action('widgets_init','SocialBadgesInit');
 
-    // Ustream
-    require_once(TEMPLATEPATH .'/widgets/ustream-widget.php');
-    add_action('widgets_init','UstreamWidgetInit');
+	// Ustream
+	require_once(TEMPLATEPATH .'/widgets/ustream-widget.php');
+	add_action('widgets_init','UstreamWidgetInit');
 
-    // Social Me Feed Widgets
-    include_once(TEMPLATEPATH .'/widgets/sources.php');
-    foreach( SourceAdmin::collect() as $widget ) {
-        if(SourceAdmin::feed_check($widget->title) == 1) {
-            $source_title = $widget->title;
-            $t_title = str_replace(' ','',$source_title);
-	        $cleaned= strtolower( $source_title );
-	        $cleaned= preg_replace( '/\W/', ' ', $cleaned );
-	        $cleaned= str_replace( " ", "", $cleaned );
-            if(is_file(TEMPLATEPATH .'/widgets/'.$cleaned.'.php')) {
-                add_action('widgets_init',"${t_title}Init");
-            }
-	    }
-    }
-}
-?>
+	// Social Me Feed Widgets
+	include_once(TEMPLATEPATH .'/widgets/sources.php');
+	foreach( SourceAdmin::collect() as $widget ) :
+		if(SourceAdmin::feed_check($widget->title) == 1) :
+			$source_title = $widget->title;
+			$t_title = str_replace(' ','',$source_title);
+			$cleaned= strtolower( $source_title );
+			$cleaned= preg_replace( '/\W/', ' ', $cleaned );
+			$cleaned= str_replace( " ", "", $cleaned );
+			if(is_file(TEMPLATEPATH .'/widgets/'.$cleaned.'.php')) :
+				add_action('widgets_init',"${t_title}Init");
+			endif;
+		endif;
+	endforeach;
+endif; ?>
