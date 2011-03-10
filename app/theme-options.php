@@ -17,25 +17,22 @@ $theme_background = array (
 		"id" => 'wicketpixie_theme_body_bg_color',
 		"std" => "#270b05",
 		"type" => "text"),
-	
 	array(  
 		"name" => "Background Image",
 		"description" => "Optional background image.",
 		"id" => 'wicketpixie_theme_body_bg_image',
 		"std" => "solidwood-dark.jpg",
 		"type" => "file"),
-	
 	array(  
 		"name" => "Background Image Repeat",
-		"description" => "Specify how you would like the background image positioned.",		
+		"description" => "Specify how you would like the background image positioned.",
 		"id" => 'wicketpixie_theme_body_bg_repeat',
 		"std" => "repeat-x",
 		"type" => "select",
-		"options" => array("no-repeat", "repeat", "repeat-x", "repeat-y")),	
-		
+		"options" => array("no-repeat", "repeat", "repeat-x", "repeat-y")),
 	array(  
 		"name" => "Background Image Position",
-		"description" => "Have the background scroll with the page, or stay in one place.",		
+		"description" => "Have the background scroll with the page, or stay in one place.",
 		"id" => 'wicketpixie_theme_body_bg_position',
 		"std" => "fixed",
 		"type" => "select",
@@ -49,7 +46,6 @@ $theme_options = array (
 		"std" => "Lucida Grande, Arial, Verdana, sans-serif",
 		"type" => "select",
 		"options" => array("Lucida Grande, Arial, Verdana, sans-serif", "Helvetica, Arial, Verdana, sans-serif", "Arial, Verdana, sans-serif", "Verdana, Arial sans-serif", "Georgia, Times New Roman, Times, serif", "Times New Roman, Georgia, Times, serif", "Times, Times New Roman, Georgia, serif")),
-
 	array(  
 		"name" => "Headings Font Family",
 		"description" => "The font used for post titles, section headings and the logo.",
@@ -57,49 +53,42 @@ $theme_options = array (
 		"std" => "Georgia, Times New Roman, Times, serif",
 		"type" => "select",
 		"options" => array("Georgia, Times New Roman, Times, serif", "Times New Roman, Georgia, Times, serif", "Times, Times New Roman, Georgia, serif", "Lucida Grande, Arial, Verdana, sans-serif", "Helvetica, Arial, Verdana, sans-serif", "Arial, Verdana, sans-serif", "Verdana, Arial sans-serif")),
-
 	array(  
 		"name" => "Header Font Size",
 		"description" => "The font size of the header logo, in px.",
 		"id" => 'wicketpixie_theme_header_size',
 		"std" => "40",
 		"type" => "text"),
-
 	array(  
 		"name" => "Logo Text Color",
 		"description" => "The color of the logo text.",
 		"id" => 'wicketpixie_theme_logo_color',
 		"std" => "#fff0a5",
 		"type" => "text"),
-		
 	array(  
 		"name" => "Status/Description Text Color",
 		"description" => "The color of the status update or description text in the header.",
 		"id" => 'wicketpixie_theme_description_color',
 		"std" => "#9e6839",
 		"type" => "text"),
-		
 	array(  
 		"name" => "Titles/Content Headings Color",
 		"description" => "The color of post titles and headings in the content area.",
 		"id" => 'wicketpixie_theme_titles_color',
 		"std" => "#b64926",
-		"type" => "text"),	
-		
+		"type" => "text"),
 	array(  
 		"name" => "Sidebar Headings Color",
 		"description" => "The color of headings in the sidebar.",
 		"id" => 'wicketpixie_theme_sidebar_headings_color',
 		"std" => "#8e2800",
 		"type" => "text"),
-
 	array(  
 		"name" => "Content Links Color",
 		"description" => "The color of links in the content area (main column).",
 		"id" => 'wicketpixie_theme_content_links_color',
 		"std" => "#8e2800",
 		"type" => "text"),
-
 	array(  
 		"name" => "Sidebar Links Color",
 		"description" => "The color of links in the sidebar.",
@@ -116,137 +105,105 @@ $theme_options = array (
 if (!current_theme_supports('custom-background')) :
 	$theme_options = array_merge ($theme_background, $theme_options);
 endif;
-
-
-class ThemeOptions extends AdminPage
-{
-    function __construct()
-    {
-        parent::__construct('Theme Options','theme-options.php','wicketpixie-admin.php',array($GLOBALS['theme_options']));
-    }
-    
-    function after_form()
-    {
-        ?>
-        <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>?page=<?php echo $this->filename; ?>" style="padding-bottom:40px;">
-            <?php wp_nonce_field('wicketpixie-settings'); ?>
+class ThemeOptions extends AdminPage {
+	function __construct() {
+		parent::__construct('Theme Options','theme-options.php','wicketpixie-admin.php',array($GLOBALS['theme_options']));
+	}
+	function after_form() { ?>
+		<form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>?page=<?php echo $this->filename; ?>" style="padding-bottom:40px;">
+			<?php wp_nonce_field('wicketpixie-settings'); ?>
 			<input name="reset" type="submit" value="Reset Options" class="button-secondary" />
 			<input type="hidden" name="action" value="reset" />
 		</form>
-        <?php
-    }
-    
-    function request_check()
-    {
-        parent::request_check();
-        
-        if (isset($_POST['action']) && $_POST['action'] == 'reset') {
-		    check_admin_referer('wicketpixie-settings');
-           	foreach ($GLOBALS['theme_options'] as $value) {
-           	    if (get_option($this->$value['id'])) {
-                   	delete_option( $this->$value['id'] );
-                }
-		    }
-		    wp_redirect($_SERVER['PHP_SELF'] ."?page=".$this->filename."&reset=true");
-        }
-    }
-    
-    function save_hook()
-    {
-        if ( $_POST['completed'] == 'true' && $_FILES['wicketpixie_theme_body_bg_image']['tmp_name'] != '' ) {
+	<?php }
+	function request_check() {
+		parent::request_check();
+		if (isset($_POST['action']) && $_POST['action'] == 'reset') :
+			check_admin_referer('wicketpixie-settings');
+			foreach ($GLOBALS['theme_options'] as $value) :
+				if (get_option($this->$value['id'])) :
+					delete_option( $this->$value['id'] );
+				endif;
+			endforeach;
+			wp_redirect($_SERVER['PHP_SELF'] ."?page=".$this->filename."&reset=true");
+		endif;
+	}
+	function save_hook() {
+		if ( $_POST['completed'] == 'true' && $_FILES['wicketpixie_theme_body_bg_image']['tmp_name'] != '' ) :
 			$new_name= $_FILES['wicketpixie_theme_body_bg_image']['name'];
 			$new_home= TEMPLATEPATH . '/images/backgrounds/' . $new_name;
-			if( move_uploaded_file( $_FILES['wicketpixie_theme_body_bg_image']['tmp_name'], $new_home ) ) {
-                update_option('wicketpixie_theme_body_bg_image',$new_name);
-			} else {
-                error_log( 'No joy, no uploaded file' );
-			}
-		}
-		
-		if ( $_POST['saved_images'] != '' ) {
-            update_option('wicketpixie_theme_body_bg_image',$_POST['saved_images']);
-		}
-    }
-    
-    function extra_types_html($value,$checkdata)
-    {
-        if( $value['type'] == 'file' ) { ?>
-					<?php
-						$image_check= get_option('wicketpixie_theme_body_bg_image');
-						if( isset( $image_check ) && $image_check != '' ) {
-							$image_check= get_option('wicketpixie_theme_body_bg_image');
-						} else {
-							$image_check= 'false';
-						}
-					?>
-					<?php if( get_option($value['id'] ) ) { ?>
-					<input type="hidden" name="<?php echo $value['id']; ?>" value="<?php echo get_option($value['id'] ); ?>">				
-					<?php } ?>
-                    <?php
-                    $uploaded= opendir( TEMPLATEPATH .'/images/backgrounds/' );
-                    $images= array();
-                    while ( $file= readdir( $uploaded ) ) {
-                        $pattern = "/[\"‘]?([^\"’]?.*(png|jpg|gif))[\"’]?/i";
-                        if( preg_match($pattern, $file ) ) {
-                            $images[]= $file;
-                        }
-                    }
-                    ?>
-					<select name="saved_images" id="saved_images">
-						<option value="">Choose an image</option>
-						<?php foreach( $images as $image ) { ?>
-						<option value="<?php echo $image; ?>" <?php if(get_option('wicketpixie_theme_body_bg_image') == $image) { echo 'selected="selected"'; } ?>><?php echo $image; ?></option>
-						<?php } ?>
-					</select>	Current:
-					<?php 
-						if( $image_check== 'false' ) { 
-							echo 'None';
-						} elseif( $image_check != 'false' ) {
-						?>
-						<a href="<?php echo TEMPLATEPATH .'/images/backgrounds/'. get_option($value['id']); ?>" title="<?php echo get_option($value['id']); ?>"><?php echo get_option($value['id']); ?></a>
-						<?php
-						} else {
-							echo 'None'; 
-						} ?>
-					<p><input type="file" id="<?php echo $value['id']; ?>" name="<?php echo $value['id']; ?>">
-					<input type="hidden" name="MAX_FILE_SIZE" value="1500000">
-					<input type="hidden" name="completed" value="true"></p>
-					<p><input type="checkbox" value="<?php echo get_option('wicketpixie_theme_no_image'); ?>" name="wicketpixie_theme_no_image" <?php if(get_option('wicketpixie_theme_no_image') == 'true') { echo 'checked="checked"'; } else { echo ''; } ?>> No Background Image</p>
-	<?php
-		} else {
-		    parent::extra_types_html($value,$checkdata);
-		}
-    }
-    
-    function __destruct()
-    {
-        parent::__destruct();
-        unset($GLOBALS['theme_options']);
-    }
+			if( move_uploaded_file( $_FILES['wicketpixie_theme_body_bg_image']['tmp_name'], $new_home ) ) :
+				update_option('wicketpixie_theme_body_bg_image',$new_name);
+			else :
+				error_log( 'No joy, no uploaded file' );
+			endif;
+		endif;
+		if ( $_POST['saved_images'] != '' ) :
+			update_option('wicketpixie_theme_body_bg_image',$_POST['saved_images']);
+		endif;
+	}
+	function extra_types_html($value,$checkdata) {
+		if( $value['type'] == 'file' ) :
+			$image_check= get_option('wicketpixie_theme_body_bg_image');
+			if( isset( $image_check ) && $image_check != '' ) :
+				$image_check= get_option('wicketpixie_theme_body_bg_image');
+			else :
+				$image_check= 'false';
+			endif;
+			if( get_option($value['id'] ) ) : ?>
+				<input type="hidden" name="<?php echo $value['id']; ?>" value="<?php echo get_option($value['id'] ); ?>">
+			<?php endif;
+			$uploaded= opendir( TEMPLATEPATH .'/images/backgrounds/' );
+			$images= array();
+			while ( $file= readdir( $uploaded ) ) :
+				$pattern = "/[\"‘]?([^\"’]?.*(png|jpg|gif))[\"’]?/i";
+				if( preg_match($pattern, $file ) ) :
+					$images[]= $file;
+				endif;
+			endwhile; ?>
+			<select name="saved_images" id="saved_images">
+			<option value="">Choose an image</option>
+			<?php foreach( $images as $image ) : ?>
+				<option value="<?php echo $image; ?>" <?php if(get_option('wicketpixie_theme_body_bg_image') == $image) echo 'selected="selected"'; ?>><?php echo $image; ?></option>
+			<?php endforeach; ?>
+				</select> Current:
+			<?php if( $image_check== 'false' ) :
+				echo 'None';
+			elseif( $image_check != 'false' ) : ?>
+				<a href="<?php echo TEMPLATEPATH .'/images/backgrounds/'. get_option($value['id']); ?>" title="<?php echo get_option($value['id']); ?>"><?php echo get_option($value['id']); ?></a>
+			<?php else :
+				echo 'None'; 
+			endif;?>
+			<p><input type="file" id="<?php echo $value['id']; ?>" name="<?php echo $value['id']; ?>">
+				<input type="hidden" name="MAX_FILE_SIZE" value="1500000">
+				<input type="hidden" name="completed" value="true"></p>
+			<p><input type="checkbox" value="<?php echo get_option('wicketpixie_theme_no_image'); ?>" name="wicketpixie_theme_no_image" <?php if(get_option('wicketpixie_theme_no_image') == 'true') : echo 'checked="checked"'; else : echo ''; endif; ?>> No Background Image</p>
+	<?php else :
+		parent::extra_types_html($value,$checkdata);
+	endif;
+	}
+	function __destruct() {
+		parent::__destruct();
+		unset($GLOBALS['theme_options']);
+	}
 }
-
-function wicketpixie_wp_head() { ?>
-	<?php
+function wicketpixie_wp_head() {
 	global $theme_options;
-	foreach ( $theme_options as $value ) {
-	    if ( get_option($value['id']) === FALSE ) { 
+	foreach ( $theme_options as $value ) :
+		if ( get_option($value['id']) === FALSE ) :
 			$$value['id'] = $value['std']; 
-		} else { 
+		else :
 			$$value['id'] = get_option($value['id']); 
-		} 
-	}
-	
+		endif;
+	endforeach;
 	$image_check= get_option('wicketpixie_theme_body_bg_image');
-	if( isset( $image_check ) && $image_check != '' ) {
+	if( isset( $image_check ) && $image_check != '' ) :
 		$image_check= get_option('wicketpixie_theme_body_bg_image');
-	} else {
+	else :
 		$image_check= 'false';
-	}
-	
-	?>
-
+	endif; ?>
 	<style type="text/css">
-		body { font-family: <?php echo $wicketpixie_theme_body_font; ?>; <?php if (!current_theme_supports('custom-background')) { ?>background: <?php echo $wicketpixie_theme_body_bg_color; ?> <?php if( get_option('wicketpixie_theme_no_image') != 'true' ) { ?>url("<?php bloginfo('template_directory'); ?>/images/backgrounds/<?php echo $wicketpixie_theme_body_bg_image; ?>") <?php echo $wicketpixie_theme_body_bg_position; ?> <?php echo $wicketpixie_theme_body_bg_repeat; ?> 50% 0<?php } } ?>; }
+		body { font-family: <?php echo $wicketpixie_theme_body_font; ?>; <?php if (!current_theme_supports('custom-background')) : ?>background: <?php echo $wicketpixie_theme_body_bg_color; ?> <?php if( get_option('wicketpixie_theme_no_image') != 'true' ) : ?>url("<?php bloginfo('template_directory'); ?>/images/backgrounds/<?php echo $wicketpixie_theme_body_bg_image; ?>") <?php echo $wicketpixie_theme_body_bg_position; ?> <?php echo $wicketpixie_theme_body_bg_repeat; ?> 50% 0<?php endif; endif; ?>; }
 		#logo { font-family: <?php echo $wicketpixie_theme_headings_font; ?>; color: <?php echo $wicketpixie_theme_logo_color; ?>; }
 		#logo a:link, #logo a:visited, #logo a:active { color: <?php echo $wicketpixie_theme_logo_color; ?>; }
 		#logo a:hover { color: #fff; }
@@ -259,7 +216,7 @@ function wicketpixie_wp_head() { ?>
 		#content .comment h3 a:link, #content .comment h3 a:active, #content .comment h3 a:visited { color: <?php echo $wicketpixie_theme_content_links_color; ?>; }
 		#content .comment h3 a:hover { color: #000; border-bottom: 1px solid <?php echo $wicketpixie_theme_content_links_color; ?>; }
 		#content .comment h5 { font-family: <?php echo $wicketpixie_theme_body_font; ?>; }
-        #content img { max-width: <?php echo $wicketpixie_theme_post_max_image_width; ?>; }
+		#content img { max-width: <?php echo $wicketpixie_theme_post_max_image_width; ?>; }
 		#comment-form input, #comment-form textarea { font-family: <?php echo $wicketpixie_theme_body_font; ?>; }
 		#sidebar a:link, #sidebar a:visited, #sidebar a:active { color: <?php echo $wicketpixie_theme_sidebar_links_color; ?>; }
 		#sidebar a:hover { color: #000; }
@@ -267,25 +224,22 @@ function wicketpixie_wp_head() { ?>
 		#sidebar h5 { font-family: <?php echo $wicketpixie_theme_body_font; ?>; }
 	</style>
 <?php }
-
 function wicketpixie_admin_head() {
 	$path= get_bloginfo('template_directory');
 	echo '<script type="text/javascript" src="' . $path . '/js/colorpicker.js"></script>';
-	echo '<link rel="stylesheet" href="' . $path . '/css/admin.css" type="text/css" media="screen, projection" />';
-?>
-    <?php ?>
-    <script src="<?php echo get_bloginfo('template_directory'), '/contrib/iphone-style-checkboxes/iphone-style-checkboxes.js'; ?>" type="text/javascript" charset="utf-8"></script>
-    <link rel="stylesheet" href="<?php echo get_bloginfo('template_directory'), '/contrib/iphone-style-checkboxes/style.css'; ?>" type="text/css" media="screen" charset="utf-8"> <?php ?>
+	echo '<link rel="stylesheet" href="' . $path . '/css/admin.css" type="text/css" media="screen, projection" />'; ?>
+	<script src="<?php echo get_bloginfo('template_directory'), '/contrib/iphone-style-checkboxes/iphone-style-checkboxes.js'; ?>" type="text/javascript" charset="utf-8"></script>
+	<link rel="stylesheet" href="<?php echo get_bloginfo('template_directory'), '/contrib/iphone-style-checkboxes/style.css'; ?>" type="text/css" media="screen" charset="utf-8">
 	<script type="text/javascript">
 		jQuery(function($) {
-            $("#wicketpixie_theme_logo_color").attachColorPicker();
-            $("#wicketpixie_theme_body_bg_color").attachColorPicker();
-            $("#wicketpixie_theme_description_color").attachColorPicker();
-            $("#wicketpixie_theme_titles_color").attachColorPicker();
-            $("#wicketpixie_theme_sidebar_headings_color").attachColorPicker();
-            $("#wicketpixie_theme_content_links_color").attachColorPicker();
-            $("#wicketpixie_theme_sidebar_links_color").attachColorPicker();
-        });
+			$("#wicketpixie_theme_logo_color").attachColorPicker();
+			$("#wicketpixie_theme_body_bg_color").attachColorPicker();
+			$("#wicketpixie_theme_description_color").attachColorPicker();
+			$("#wicketpixie_theme_titles_color").attachColorPicker();
+			$("#wicketpixie_theme_sidebar_headings_color").attachColorPicker();
+			$("#wicketpixie_theme_content_links_color").attachColorPicker();
+			$("#wicketpixie_theme_sidebar_links_color").attachColorPicker();
+		});
 	</script>
 	<script>
 	jQuery(function($) {
@@ -294,20 +248,18 @@ function wicketpixie_admin_head() {
 			return false;
 		});
 		$(document).ready(function() {
-		    $('#admin-options :checkbox').iphoneStyle();
+			$('#admin-options :checkbox').iphoneStyle();
 		});
 	});
 	</script>
 	<style type="text/css">
-	#ColorPickerDiv 
-	{
-	    display: block;
-	    display: none;
-	    position: relative;
-	    border: 1px solid #777;
-	    background: #fff
+	#ColorPickerDiv {
+		display: block;
+		display: none;
+		position: relative;
+		border: 1px solid #777;
+		background: #fff
 	}
-
 	#ColorPickerDiv TD.color
 	{
 		cursor: pointer;
@@ -318,16 +270,14 @@ function wicketpixie_admin_head() {
 	{
 		cursor: pointer;
 	}
-
 	.ColorPickerDivSample
 	{
 		margin: 0 0 0 4px;
 		border: solid 1px #000;
-		padding: 0 10px;	
+		padding: 0 10px;
 		position: relative;
 		cursor: pointer;
 	}
-	
 	#explain
 	{
 		display:none;
@@ -335,6 +285,4 @@ function wicketpixie_admin_head() {
 		padding: 5px;
 	}
 	</style>
-<?php
-}
-?>
+<?php } ?>
