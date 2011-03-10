@@ -19,14 +19,12 @@ $wp_auth_credit= get_option('wicketpixie_show_post_author'); ?>
 				<div class="post">
 					<h2><a href="<?php the_permalink() ?>" rel="bookmark" title="<?php the_title_attribute(); ?>"><?php the_title(); ?></a></h2>
 					<div class="post-comments">
-						<div class="post-comments">
 						<ul>
 						<?php $addlink="#respond";
 						$countlink="#comments"; ?>
 							<li class="post-comments-count"><a href="<?php the_permalink(); echo $countlink; ?>" title="View all <?php comments_number('0', '1', '%'); ?> Comments"><?php comments_number('0', '1', '%'); ?></a></li>
-							<li class="post-comments-add"><a href="<?php the_permalink(); echo $addlink; ?>" title="Add a Comment"><span>&nbsp;</span>Add a Comment</a></li>
+							<li class="post-comments-add"><a href="<?php the_permalink(); echo $addlink; ?>" title="Add a Comment"><span>&nbsp;</span></a></li>
 						</ul>
-						</div>
 					</div>
 					<div class="post-author">
 						<?php if( $wp_auth_credit == 1 ) :
