@@ -27,8 +27,8 @@
 				endif;
 				endwhile; ?>
 				<div class="navigation">
-					<div class="left"><?php next_posts_link('<span>&nbsp;</span>Older Posts'); ?> </div>
-					<div class="right"><?php previous_posts_link('<span>&nbsp;</span>Newer Posts') ?></div>
+					<div class="left"><?php next_posts_link('<span>More</span>'); ?></div>
+					<div class="right"><?php previous_posts_link('<span>Newer</span>') ?></div>
 				</div>
 				<?php else : ?>
 				<!-- post -->

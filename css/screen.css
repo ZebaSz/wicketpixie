@@ -937,12 +937,6 @@ body {
 	float: right;
 }
 
-#content .navigation .left span, #content .navigation .right span {
-	position: absolute;
-	width: 100%;
-	height: 100%;
-}
-
 #content .navigation span  {
 	position: absolute;
 	height: 15px;

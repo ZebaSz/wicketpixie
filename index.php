@@ -47,8 +47,8 @@ $wp_auth_credit= get_option('wicketpixie_show_post_author'); ?>
 				<div id="paginator" style='text-align: center'><?php if (function_exists('wp_pagenavi')) { wp_pagenavi(); }?></div>
 				<?php else : ?>
 				<div class="navigation">
-					<div class="left"><?php next_posts_link('<span>&nbsp;</span>Older Posts'); ?> </div>
-					<div class="right"><?php previous_posts_link('<span>&nbsp;</span>Newer Posts') ?></div>
+					<div class="left"><?php next_posts_link('<span>More</span>'); ?></div>
+					<div class="right"><?php previous_posts_link('<span>Newer</span>') ?></div>
 				</div>
 				<?php endif; // Page Navigation
 				endif; ?>
