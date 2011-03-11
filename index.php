@@ -26,11 +26,11 @@ $wp_auth_credit= get_option('wicketpixie_show_post_author'); ?>
 					<div class="post-author">
 						<?php if( $wp_auth_credit == 'true' ) :
 						echo get_avatar( get_the_author_email(), $size = '36', $default = 'images/avatar.jpg' ); ?>
-						<p><strong><?php the_time('l, F jS, Y') ?></strong><br/>
-							by <?php the_author_posts_link(); ?><?php edit_post_link('Edit', ' - ', ''); ?></p>
+						<p><strong><?php the_time(get_option('date_format')); ?></strong><br/>
+							by <?php the_author_posts_link(); edit_post_link('Edit', ' - ', ''); ?></p>
 						<?php else : ?>
-						<p><strong><?php the_time('l, F jS, Y') ?></strong><br/>
-							at <?php the_time('g:ia') ?><?php edit_post_link('Edit', ' - ', ''); ?></p>
+						<p><strong><?php the_time(get_option('date_format')); ?></strong><br/>
+							at <?php the_time(); edit_post_link('Edit', ' - ', ''); ?></p>
 						<?php endif; ?>
 					</div>
 					<div class="clearer"></div>

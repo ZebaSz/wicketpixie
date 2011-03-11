@@ -10,7 +10,7 @@
 				<div class="post">
 					<h2 style="margin-bottom:0;"><a href="<?php the_permalink() ?>" rel="bookmark" title="Permanent Link to <?php the_title_attribute(); ?>"><?php the_title(); ?></a></h2>
 					<div class="post-author">
-						<p><strong><?php the_time('l, F jS, Y') ?></strong> at <?php the_time('g:ia') ?></p>
+						<p><strong><?php the_time(get_option('date_format')); ?></strong> at <?php the_time() ?></p>
 					</div>
 					<div class="clearer"></div>
 					<div class="KonaBody">
