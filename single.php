@@ -21,7 +21,7 @@ $wp_auth_credit= get_option('wicketpixie_show_post_author'); ?>
 							<?php $addlink="#respond";
 							$countlink="#comments"; ?>
 							<li class="post-comments-count"><a href="<?php the_permalink(); echo $countlink; ?>" title="View all <?php comments_number('0', '1', '%'); ?> Comments"><?php comments_number('0', '1', '%'); ?></a></li>
-							<li class="post-comments-add"><a href="<?php the_permalink(); echo $addlink; ?>" title="Add a Comment"><span>&nbsp;</span></a></li>
+							<li class="post-comments-add"><a href="<?php the_permalink(); echo $addlink; ?>" title="Add a Comment"><span>+</span></a></li>
 						</ul>
 					</div>
 					<div class="post-author">

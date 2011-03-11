@@ -19,6 +19,7 @@ body {
 	-moz-border-radius-topleft: 0;
 	border-top-left-radius: 0;
 	box-shadow: 0px 0px 6px 3px rgba(0, 0, 0, 0.3);
+	-moz-box-shadow: 0px 0px 6px 3px rgba(0, 0, 0, 0.3);
 }
 
 /* @group topbar */
@@ -35,9 +36,10 @@ body {
 	padding: 5px 0 5px;
 	background-color: #000;
 	z-index: 900;
-	background-image: -webkit-gradient(linear, left top, left bottom, from(#393939), to(#000));
-	background-image: -moz-linear-gradient(top, rgb(57, 57, 57), #000 );
+	background-image: -webkit-linear-gradient(top, rgb(57, 57, 57), #000);
+	background-image: -moz-linear-gradient(top, rgb(57, 57, 57), #000);
 	box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.3);
+	-moz-box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.3);
 }
 
 #topbar-inner {
@@ -162,19 +164,20 @@ body {
 	font-size: 1.1em;
 	color: #666;
 	background-color: #fff;
-	background-image: -webkit-gradient(linear, left top, left bottom, from(#bbb), to(#fff), color-stop(0.75, #fff));
-	background-image: -moz-linear-gradient(top, #bbb, #fff 0.75);
+	background-image: -webkit-linear-gradient(top, #bbb, #fff 15px);
+	background-image: -moz-linear-gradient(top, #bbb, #fff 15px);
 	border-width: 1px;
 }
 
 #search input.search-submit {
 	height: 21px;
-	-moz-border-radius:11px;border-radius: 11px;
+	-moz-border-radius:11px;
+	border-radius: 11px;
 	color: #fff;
-	background: #000;
-	border-color: #000;
-	background-image: -webkit-gradient(linear, left top, left bottom, from(#666), to(#222), color-stop(0.5, #222));
-	background-image: -moz-linear-gradient(top, #666, #222 0.5);
+	background-color: #222;
+	border: solid 1px #222;
+	background-image: -webkit-linear-gradient(top, #666, #222 10px);
+	background-image: -moz-linear-gradient(top, #666, #222 10px);
 	padding: 3px 12px;
 	font-weight: bold;
 	font-size: 9px;
@@ -262,18 +265,10 @@ body {
 	background-color: #000;
 	-moz-border-radius-topright: 10px;
 	border-top-right-radius: 10px;
-	background-image: -webkit-gradient(linear, left top, left bottom, from(#393939), to(#000), color-stop(0.66, #000));
+	background-image: -webkit-linear-gradient(top, rgb(57, 57, 57), #000 28px);
 	background-image: -moz-linear-gradient(top, rgb(57, 57, 57), #000 28px);
 }
-/*
-#nav .navLoader {
-	width: 940px;
-	height: 40px;
-	background: #000;
-	margin: 0 auto;
-	text-align: left;
-}
-*/
+
 #nav ul {
 	width: 940px;
 	margin: 0 auto;
@@ -296,8 +291,8 @@ body {
 #nav li a:hover, #nav li:hover > a {
 	color: #fff;
 	text-decoration: none;
-	background-color: #222;
-	background-image: -webkit-gradient(linear, left top, left bottom, from(#444), to(#111), color-stop(0.66, #111));
+	background-color: #111;
+	background-image: -webkit-linear-gradient(top, #444, #111 28px);
 	background-image: -moz-linear-gradient(top, #444, #111 28px);
 }
 
@@ -799,9 +794,19 @@ body {
 
 #content li.post-comments-add span {
 	position: absolute;
-	width: 100%;
-	height: 100%;
-	background: url("../images/post-comments-add.gif") no-repeat 0 0;
+	width: 14px;
+	height: 14px;
+	background-color: #222;
+	background-image: -moz-linear-gradient(top, #666, #222);
+	background-image: -webkit-linear-gradient(top, #666, #222);
+	border-radius: 9px;
+	-moz-border-radius: 9px;
+	text-align: center;
+	color: #dcdcdc;
+	font-size: 14px;
+	font-weight: bold;
+	line-height: 1.2em;
+	border: solid 1px #222;
 }
 
 #content img {
@@ -945,10 +950,10 @@ body {
 	-moz-border-radius: 16px;
 	border-radius: 16px;
 	color: #fff;
-	background: #000;
-	border-color: #000;
-	background-image: -webkit-gradient(linear, left top, left bottom, from(#666), to(#222), color-stop(0.5, #222));
-	background-image: -moz-linear-gradient(top, #666, #222 50%);
+	background-color: #222;
+	border: solid 1px #222;
+	background-image: -webkit-linear-gradient(top, #666, #222 7px);
+	background-image: -moz-linear-gradient(top, #666, #222 7px);
 	padding: 6px 0;
 	font-weight: bold;
 	font-size: 12px;
@@ -1139,10 +1144,10 @@ body {
 	width: auto;
 	-moz-border-radius: 16px;border-radius:16px;
 	color: #fff;
-	border-color: #000;
-	background-color: #000;
-	background-image: -webkit-gradient(linear, left top, left bottom, from(#666), to(#222), color-stop(0.5, #222));
-	background-image: -moz-linear-gradient(top, #666, #222);
+	border: solid 1px #222;
+	background-color: #222;
+	background-image: -webkit-linear-gradient(top, #666, #222 13px);
+	background-image: -moz-linear-gradient(top, #666, #222 13px);
 	font-weight: bold;
 	font-size: 10px;
 	text-transform: uppercase;
@@ -1340,11 +1345,11 @@ body {
 
 #sidebar1 {
 	width: 100%;
-    margin-bottom: 28px;
+	margin-bottom: 28px;
 	background-color: #fff;
-    border-radius: 10px;
+	border-radius: 10px;
 	border-top-left-radius: 0;
-    -moz-border-radius: 10px;
+	-moz-border-radius: 10px;
 	-moz-border-radius-topleft: 0;
 	border: 1px solid #E0E0E0;
 }
