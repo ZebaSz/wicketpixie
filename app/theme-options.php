@@ -102,8 +102,8 @@ $theme_options = array (
 		"std" => "340",
 		"type" => "text")
 );
-if (!current_theme_supports('custom-background')) :
-	$theme_options = array_merge ($theme_background, $theme_options);
+if (!function_exists('add_custom_background')) :
+	$theme_options = array_merge($theme_background, $theme_options);
 endif;
 class ThemeOptions extends AdminPage {
 	function __construct() {
@@ -203,7 +203,7 @@ function wicketpixie_wp_head() {
 		$image_check= 'false';
 	endif; ?>
 	<style type="text/css">
-		body { font-family: <?php echo $wicketpixie_theme_body_font; ?>; <?php if (!current_theme_supports('custom-background')) : ?>background: <?php echo $wicketpixie_theme_body_bg_color; ?> <?php if( get_option('wicketpixie_theme_no_image') != 'true' ) : ?>url("<?php bloginfo('template_directory'); ?>/images/backgrounds/<?php echo $wicketpixie_theme_body_bg_image; ?>") <?php echo $wicketpixie_theme_body_bg_position; ?> <?php echo $wicketpixie_theme_body_bg_repeat; ?> 50% 0<?php endif; endif; ?>; }
+		body { font-family: <?php echo $wicketpixie_theme_body_font; ?>; <?php if (!function_exists('add_custom_background')) : ?>background: <?php echo $wicketpixie_theme_body_bg_color; if( get_option('wicketpixie_theme_no_image') != 'true' ) : ?> url("<?php bloginfo('template_directory'); ?>/images/backgrounds/<?php echo $wicketpixie_theme_body_bg_image; ?>") <?php echo $wicketpixie_theme_body_bg_position; ?> <?php echo $wicketpixie_theme_body_bg_repeat; ?> 50% 0<?php endif; endif; ?>; }
 		#logo { font-family: <?php echo $wicketpixie_theme_headings_font; ?>; color: <?php echo $wicketpixie_theme_logo_color; ?>; }
 		#logo a:link, #logo a:visited, #logo a:active { color: <?php echo $wicketpixie_theme_logo_color; ?>; }
 		#logo a:hover { color: #fff; }
