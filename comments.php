@@ -86,11 +86,11 @@ if ('open' == $post->comment_status) : ?>
 						<textarea name="comment" id="comment-message" rows="10" cols="40" class="message" tabindex="4"></textarea>
 					</p>
 					<p>
-						<input type="image" src="<?php bloginfo('template_directory'); ?>/images/button-publish.jpg" name="submit" id="comment-button" alt="Publish My Comment" />
+						<input name="submit" type="submit" id="submit" value="<?php _e('Publish comment', 'wicketpixie') ?>" />
 						<?php comment_id_fields(); ?>	
 					</p>
 				</div>
-				<div class="clearer">&nbsp;</div>
+				<div class="clearer"></div>
 				<?php do_action('comment_form', $post->ID); ?>
 			</form>
 		</div>

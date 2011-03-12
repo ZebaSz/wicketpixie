@@ -1115,7 +1115,6 @@ body {
 #comment-form input, #comment-form textarea {
 	float: right;
 	width: 355px;
-	padding: 5px;
 	font-size: 12px;
 	color: #666;
 	background: #f6f6f6;
