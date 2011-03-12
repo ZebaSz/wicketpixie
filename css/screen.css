@@ -637,7 +637,6 @@ body {
 
 .content li {
 	margin-bottom: .5em;
-	font-size: 1.2em;
 	line-height: 1.7em;
 }
 
@@ -661,6 +660,10 @@ body {
 	margin: 0 20px 1.4em;
 	padding-bottom: 15px;
 	/* border-bottom: 1px solid #eee; */
+}
+
+.post li {
+	font-size: 1.2em;
 }
 
 .page {
@@ -757,6 +760,7 @@ body {
 	margin: 0;
 	padding: 0;
 	background: none;
+	font-size: 1.2em;
 }
 
 #content .post-comments li.post-comments-count {
@@ -991,10 +995,13 @@ body {
 	clear: left;
 }
 
-#comments .comment {
+#comments div.comment {
 	clear: both;
 	float: left;
 	width: 100%;
+}
+
+#comments .comment {
 	margin-bottom: 1.4em;
 	border-bottom: 1px solid #eee;
 }
@@ -1016,6 +1023,14 @@ body {
 	text-align: right;
 	overflow: hidden;
 	padding-top: 1px;;
+}
+
+#comments .vcard {
+	font-size: 1.2em;
+}
+
+#comments .reply {
+	margin-bottom: 1.2em;
 }
 
 #comments .comment .content {
@@ -1747,7 +1762,6 @@ table, td, tr, th {
 
 div.KonaBody {
      margin-top: 15px;
-     font-size: 9px;
 }
 
 .highlight {
