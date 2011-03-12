@@ -2,25 +2,30 @@ A fork of WicketPixie Social Media Premium WordPress Theme
 from Chris Pirillo at http://chris.pirillo.com/
 by ZebaSz at http://zeblog.com
 
+THANK YOU FOR DOWNLOADING WICKETPIXIE
+
 ABOUT THIS FORK
 
 WicketPixie 1.2 is outdated and no longer under development. 2.0, on the other hand,
-is a full re-write, which at the time of this fork (March 2011) lacks many features available
-in prior versions. The aim of this fork is to pave the way to WicketPixie 2.0 by providing backports.
-Also, I have some great ideas in mind to add to this WordPress theme.
-This is an unoficial fork, maintained by an user.
+is a full re-write, which at the time of this fork (March 2011) lacks many features
+available in prior versions. The aim of this fork is to pave the way to WicketPixie
+2.0 by providing backports. Also, I have some great ideas in mind to add to this
+WordPress theme. This is an unoficial fork, and his maintainer is not related
+in any way to the original project/developers of this theme.
 
-THANK YOU FOR DOWNLOADING WICKETPIXIE
+REQUIREMENTS
 
-This theme was designed for WordPress 3.0+ and PHP5. Requirements may be lower.
-However, we recommend that you use the latest versions available. As of WicketPixie 1.3,
+This theme was designed for WordPress 3.0+ and PHP5. It might work (to some extent)
+with previous WordPress versions, but hasn't been tested for any version beyond 2.8.
+We recommend that you use the latest versions available. At the time of writing,
 the latest WordPress is 3.1, and the latest PHP is 5.3.5.
 
 INSTALLING
 
-Before installing, remember, this is a beta, and might have bugs. If you're looking for
-something (nearly) 100% stable, you should check out v1.2-rc5, the last oficial release.
-That said, this beta should be very stable, since not much has been modified.
+Before installing, remember, this is a beta, and might have bugs. If you're looking
+for something (nearly) 100% stable, you should check out v1.2-rc5, the last oficial
+release. That said, this beta should be very stable, since it has been tested as
+much as posible, and most untested features were not modified at all.
 
 Just place the wicketpixie folder in your /wp-content/themes/ directory and
 then activate the theme. Then make sure the httpd user has write access to
