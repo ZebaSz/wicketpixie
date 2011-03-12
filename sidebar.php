@@ -6,9 +6,11 @@
 	</div>
 	<!-- /sidebar_top -->
 	<!-- sidebar1 -->
+	<?php if ( is_active_sidebar(2) ) : ?>
 	<div id="sidebar1">
 		<?php if ( !function_exists('dynamic_sidebar') || !dynamic_sidebar('sidebar1') ) : ?><?php endif; ?>
 	</div>
+	<?php endif; ?>
 	<!-- /sidebar1 -->
 	<!-- sidebar2 -->
 	<div id="sidebar2">
