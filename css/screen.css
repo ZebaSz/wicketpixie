@@ -1354,6 +1354,7 @@ body {
 #sidebar1 {
 	width: 100%;
 	margin-bottom: 28px;
+	padding-top: 20px;
 	background-color: #fff;
 	border-radius: 10px;
 	border-top-left-radius: 0;
@@ -1363,7 +1364,7 @@ body {
 }
 
 #sidebar1 .widget {
-	padding: 20px 20px 6px;
+	padding: 0 20px 20px;
 }
 
 #sidebar1 .widget img {
