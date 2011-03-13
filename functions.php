@@ -75,6 +75,9 @@ if ( function_exists('register_sidebar') ) :
 	));
 endif;
 
+// i18n support
+load_theme_textdomain('wicketpixie', TEMPLATEPATH.'/i18n');
+
 // Nav menu (since 3.0)
 if ( function_exists('register_nav_menus') ) :
 	register_nav_menus(array('primary'=>__('Primary Menu'),));
