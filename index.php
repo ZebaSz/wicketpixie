@@ -42,7 +42,7 @@ $wp_auth_credit= get_option('wicketpixie_show_post_author'); ?>
 				<?php endwhile; ?>
 				<!-- Page Navigation -->
 				<?php if (get_option('wicketpixie_plugin_pagenavi') == 'true') : ?>
-				<div id="paginator" style='text-align: center'><?php if (function_exists('wp_pagenavi')) { wp_pagenavi(); }?></div>
+				<div id="paginator" style='text-align: center'><?php if (function_exists('wp_pagenavi')) wp_pagenavi(); ?></div>
 				<?php else : ?>
 				<div class="navigation">
 					<div class="left"><?php next_posts_link('<span>'.__('More', 'wicketpixie').'</span>'); ?></div>
