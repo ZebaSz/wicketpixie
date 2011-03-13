@@ -3,12 +3,12 @@
 			<div id="content">
 				<?php if (have_posts()) :
 					$hit_count = $wp_query->found_posts; ?>
-					<p style="margin:0 20px 1.8em;"><?php printf(__('Your search for %s returned %d results.', 'wicketpixie_es'), '"<span class="hilite">'.get_search_query().'</span>"', $hit_count); ?></p>
+					<p style="margin:0 20px 1.8em;"><?php printf(__('Your search for %s returned %d results.', 'wicketpixie'), '"<span class="hilite">'.get_search_query().'</span>"', $hit_count); ?></p>
 				<?php $adsense_counter = 0;
 				while (have_posts()) : the_post(); ?>
 				<!-- post -->
 				<div class="post">
-					<h2 style="margin-bottom:0;"><a href="<?php the_permalink() ?>" rel="bookmark" title="<?php printf(__('Permalink to %s', 'wicketpixie_es'), the_title_attribute('echo=0')); ?>"><?php the_title(); ?></a></h2>
+					<h2 style="margin-bottom:0;"><a href="<?php the_permalink() ?>" rel="bookmark" title="<?php printf(__('Permalink to %s', 'wicketpixie'), the_title_attribute('echo=0')); ?>"><?php the_title(); ?></a></h2>
 					<div class="post-author">
 						<p><strong><?php the_time(get_option('date_format')); ?></strong> <?php _e('at', 'wicketpixie'); ?> <?php the_time() ?></p>
 					</div>
@@ -35,7 +35,7 @@
 				<div class="post">
 					<h1><?php _e('Search Results', 'wicketpixie') ?></h1>
 					<?php $hit_count = $wp_query->found_posts; ?>
-					<p><?php printf(__('Your search for %s returned no results.', 'wicketpixie_es'), '"<span class="hilite">'.get_search_query().'</span>"') ?></p>
+					<p><?php printf(__('Your search for %s returned no results.', 'wicketpixie'), '"<span class="hilite">'.get_search_query().'</span>"') ?></p>
 				</div>
 				<!-- /post -->
 				<?php endif; ?>
