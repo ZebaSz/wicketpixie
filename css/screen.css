@@ -662,7 +662,7 @@ body {
 	/* border-bottom: 1px solid #eee; */
 }
 
-.post li {
+.post li, .page li {
 	font-size: 1.2em;
 }
 
