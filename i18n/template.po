@@ -23,7 +23,7 @@ msgstr ""
 msgid "View all %d Comments"
 msgstr ""
 
-#: archive.php:24 index.php:21 single.php:22
+#: archive.php:24 home.php:22 index.php:21 single.php:22
 msgid "Add a Comment"
 msgstr ""
 
