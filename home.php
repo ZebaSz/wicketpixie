@@ -2,7 +2,7 @@
 $wp_auth_credit= get_option('wicketpixie_show_post_author'); ?>
 			<!-- content -->
 			<div id="content">
-			<!-- google_ad_section_start -->
+				<!-- google_ad_section_start -->
 				<?php query_posts('showposts=1');
 				if (have_posts()) :
 				while (have_posts()) : the_post(); ?>
@@ -15,23 +15,21 @@ $wp_auth_credit= get_option('wicketpixie_show_post_author'); ?>
 					<?php echo $glob; ?>
 					</div>
 					<?php endif; ?>
-					<h1><a href="<?php the_permalink() ?>" rel="bookmark" title="Permanent Link to <?php the_title_attribute(); ?>" style="text-decoration:none;"><?php the_title(); ?></a></h1>
+					<h1><a href="<?php the_permalink() ?>" rel="bookmark" title="<?php printf(__('Permanent Link to %d', 'wicketpixie'), the_title_attribute('echo = 0')); ?>" style="text-decoration:none;"><?php the_title(); ?></a></h1>
 					<div class="post-comments">
 						<ul>
-						<?php $addlink="#respond";
-						$countlink="#comments"; ?>
-							<li class="post-comments-count"><a href="<?php the_permalink(); echo $countlink; ?>" title="View all <?php comments_number('0', '1', '%'); ?> Comments"><?php comments_number('0', '1', '%'); ?></a></li>
-							<li class="post-comments-add"><a href="<?php the_permalink(); echo $addlink; ?>" title="Add a Comment"><span>+</span></a></li>
+							<li class="post-comments-count"><a href="<?php the_permalink(); ?>#comments" title="<?php printf(__('View all %d Comments', 'wicketpixie'), get_comments_number()); ?>"><?php comments_number('0', '1', '%'); ?></a></li>
+							<li class="post-comments-add"><a href="<?php the_permalink(); ?>#respond" title="Add a Comment"><span>+</span></a></li>
 						</ul>
 					</div>
 					<div class="post-author">
 						<?php if( $wp_auth_credit == 'true' ) :
 						echo get_avatar( get_the_author_email(), $size = '36', $default = 'images/avatar.jpg' ); ?>
 						<p><strong><?php the_date() ?></strong><br/>
-							by <?php the_author_posts_link(); ?></p>
+							<?php _e('by', 'wicketpixie'); ?> <?php the_author_posts_link(); ?></p>
 						<?php else : ?>
 						<p><strong><?php the_date() ?></strong><br/>
-							at <?php the_time() ?></p>
+							<?php _e('at', 'wicketpixie'); ?> <?php the_time() ?></p>
 						<?php endif; ?>
 					</div>
 					<div class="clearer"></div>
@@ -53,7 +51,7 @@ $wp_auth_credit= get_option('wicketpixie_show_post_author'); ?>
 					<?php $adsense->wp_adsense('blog_home_post_front'); ?>
 					</span>
 					<?php endif;
-					the_content('Continue reading &raquo;'); ?>
+					the_content(__('Continue reading', 'wicketpixie').'&raquo;'); ?>
 					</div>
 					<?php wp_after_home_post_code(); ?>
 				</div>
@@ -61,10 +59,10 @@ $wp_auth_credit= get_option('wicketpixie_show_post_author'); ?>
 				<!-- google_ad_section_end -->
 				<!-- post-meta -->
 				<div class="post-meta">
-					<?php if(get_option('wicketpixie_plugin_related-posts') == 'true' && function_exists(wp_related_posts)) :?>
+					<?php if(get_option('wicketpixie_plugin_related-posts') == 'true' && function_exists(wp_related_posts)) : ?>
 					<!-- related-posts -->
 					<div id="related-posts">
-						<h3>You might also be interested in...</h3>
+						<h3><?php _e('You might also be interested in...', 'wicketpixie'); ?></h3>
 						 <?php wp_related_posts(5); ?>
 					</div>
 					<!-- /related-posts -->
@@ -73,22 +71,23 @@ $wp_auth_credit= get_option('wicketpixie_show_post_author'); ?>
 					<div class="post-meta-right">
 						<!-- post-meta-tags -->
 						<div class="post-meta-tags">
-							<h6>Tags</h6>
+							<h6><?php _e('Tags', 'wicketpixie'); ?></h6>
 							<?php the_tags('<ul><li>','</li><li>','</li></ul>'); ?>
 						</div>
 						<!-- /post-meta-tags -->
 						<!-- post-meta-categories -->
 						<div class="post-meta-categories">
-							<h6>Categories</h6>
+							<h6><?php _e('Categories', 'wicketpixie'); ?></h6>
 							<?php the_category(); ?>
 						</div>
 						<!-- /post-meta-categories -->
 						<!-- post-bigbox -->
 						<div class="post-bigbox">
 						<?php if(is_enabled_adsense() == true) :
-							/* Enable Adsense on the WicketPixie Adsense admin page. */
 							$adsense->wp_adsense('blog_post_bottom');
-						endif; ?>
+						else: ?>
+							<!-- Enable Adsense on the WicketPixie Adsense admin page. -->
+						<?php endif; ?>
 						</div>
 						<!-- /post-bigbox -->
 					</div>
@@ -106,7 +105,7 @@ $wp_auth_credit= get_option('wicketpixie_show_post_author'); ?>
 				if(get_option('wicketpixie_home_video_enable') == 'true') : ?>
 				<div id="home-categories">
 					<?php if(get_option('wicketpixie_home_show_video_heading') == 'true') :
-						echo "<h2>My Videos</h2>";
+						echo "<h2>".__('My Videos', 'wicketpixie')."</h2>";
 					endif;
 					if(get_option('wicketpixie_home_video_code') != false && get_option('wicketpixie_home_video_code') != '') :
 								echo stripslashes(get_option('wicketpixie_home_video_code'));
@@ -139,7 +138,7 @@ $wp_auth_credit= get_option('wicketpixie_show_post_author'); ?>
 						$num = '5';
 					endif;
 					if(get_option('wicketpixie_home_show_photo_heading') == 'true') :
-						echo "<h2>Recent Photos</h2>";
+						echo "<h2>".__('Recent Photos', 'wicketpixie')."</h2>";
 					endif; ?>
 					<script type="text/javascript" src="http://www.flickr.com/badge_code_v2.gne?count=<?php echo $num; ?>&amp;display=latest&amp;size=s&amp;layout=h&amp;source=user&amp;user=<?php echo $flickrid; ?>"></script>
 				</div>
@@ -240,7 +239,7 @@ $wp_auth_credit= get_option('wicketpixie_show_post_author'); ?>
 				<!-- recent-posts -->
 				<div id="sidebar1">
 					<div class="widget">
-						<h3>What else is new?</h3>
+						<h3><?php _e('What else is new?', 'wicketpixie') ?></h3>
 						<?php query_posts('showposts=5&offset=1');
 						while (have_posts()) : the_post(); ?>
 						<!-- post -->
@@ -249,7 +248,7 @@ $wp_auth_credit= get_option('wicketpixie_show_post_author'); ?>
 						<!-- /post -->
 						<?php endwhile; ?>
 						<div style="padding-bottom:15px"></div>
-						<h3>Recent Comments</h3>
+						<h3><?php _e('Recent Comments', 'wicketpixie') ?></h3>
 						<ul class="recentcomments">
 							<?php if(!$comments = wp_cache_get('recent_comments','widget')) :
 								$comments = $wpdb->get_results("SELECT * FROM $wpdb->comments WHERE comment_approved = '1' ORDER BY comment_date_gmt DESC LIMIT 5");
@@ -260,14 +259,14 @@ $wp_auth_credit= get_option('wicketpixie_show_post_author'); ?>
 							endforeach; endif; ?>
 						</ul>
 						<div style="padding-bottom:15px"></div>
-						<h3>Random Posts From the Archive</h3>
+						<h3><?php _e('Random Posts From the Archive', 'wicketpixie') ?></h3>
 						<?php query_posts('showposts=5&random=true');
 						while (have_posts()) : the_post(); ?>
 						<h5><a href="<?php the_permalink() ?>" rel="bookmark" title="Continue reading <?php the_title(); ?>"><?php the_title(); ?></a></h5>
 						<p style="font-size:1em"><?php the_time('l, F jS') ?> | <?php comments_popup_link('No Comments', '1 Comment', '% Comments'); ?></p>
 						<?php endwhile; ?>
 						<div style="padding-bottom:15px"></div>
-						<h3>Popular Tags</h3>
+						<h3><?php _e('Popular Tags', 'wicketpixie') ?></h3>
 						<span style="line-height:1.3em;">
 						<?php wp_tag_cloud('orderby=count&order=DESC&unit=px&smallest=10&largest=16&format=flat'); ?>
 						</span>

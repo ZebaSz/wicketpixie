@@ -76,7 +76,7 @@ $adsense = new AdsenseAdmin; ?>
 	<div id="loadingFrame">
 		<div id="loading">
 			<img src="<?php echo get_template_directory_uri(); ?>/images/loading.gif" alt="Loading"/><br />
-			<b>Loading....</b>
+			<b><?php _e('Loading....', 'wicketpixie') ?></b>
 		</div>
 	</div>
 	<?php endif;
@@ -87,7 +87,7 @@ $adsense = new AdsenseAdmin; ?>
 		<!-- topbar-inner -->
 		<div id="topbar-inner">
 			<ul>
-				<li id="topbar-subscribe"><a href="#">Subscribe</a></li>
+				<li id="topbar-subscribe"><a href="#"><?php _e('Subscribe', 'wicketpixie') ?></a></li>
 				<?php if (is_user_logged_in()) : ?>
 				<li id="topbar-admin"><a href="<?php bloginfo('wpurl'); ?>/wp-admin" rel="nofollow">Admin</a></li>
 				<?php endif; ?>
@@ -100,7 +100,7 @@ $adsense = new AdsenseAdmin; ?>
 	<!-- subscribe -->
 	<div id="subscribe">
 		<ul>
-			<li><a href="<?php echo $blogfeed; ?>" title="Subscribe to my feed" class="feed" rel="nofollow">RSS Feed</a></li>
+			<li><a href="<?php echo $blogfeed; ?>" title="<?php _e('Subscribe to my feed', 'wicketpixie') ?>" class="feed" rel="nofollow">RSS Feed</a></li>
 			<li><a href="http://www.bloglines.com/sub/<?php echo $blogfeed; ?>" class="feed" rel="nofollow">Bloglines</a></li>
 			<li><a href="http://fusion.google.com/add?feedurl=<?php echo $blogfeed; ?>" class="feed" rel="nofollow">Google Reader</a></li>
 			<li><a href="http://feeds.my.aol.com/add.jsp?url=<?php echo $blogfeed; ?>" class="feed" rel="nofollow">My AOL</a></li>

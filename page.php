@@ -7,7 +7,7 @@
 				<!-- page -->
 				<div class="page">
 					<h1><?php the_title(); ?></h1>
-					<?php the_content('Continue reading &raquo;'); ?>
+					<?php the_content(__('Continue reading', 'wicketpixie').'&raquo;'); ?>
 				</div>
 				<!-- /page -->
 				<?php endwhile;
