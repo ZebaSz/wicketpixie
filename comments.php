@@ -56,8 +56,7 @@ if ('open' == $post->comment_status) : ?>
 	<!-- comment form -->
 	<div id="respond">
 		<div id="comment-form">
-			<h2><?php comment_form_title(); ?></h2>
-			<p><?php cancel_comment_reply_link(__('Cancel reply', 'wicketpixie')) ?></p>
+			<h2><?php comment_form_title(); ?> <small><?php cancel_comment_reply_link(__('Cancel reply', 'wicketpixie')) ?></small></h2>
 			<?php if ( get_option('comment_registration') && !$user_ID ) : ?>
 			<p>You must be <a href="<?php echo get_option('siteurl'); ?>/wp-login.php?redirect_to=<?php the_permalink(); ?>">logged in</a> to post a comment.</p>
 			<?php else : ?>
