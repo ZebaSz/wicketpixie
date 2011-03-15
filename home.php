@@ -51,7 +51,7 @@ $wp_auth_credit= get_option('wicketpixie_show_post_author'); ?>
 					<?php $adsense->wp_adsense('blog_home_post_front'); ?>
 					</span>
 					<?php endif;
-					the_content(printf(__('Continue reading %d', 'wicketpixie'), '&raquo;')); ?>
+					the_content(__('Continue reading %d', 'wicketpixie').'&raquo;'); ?>
 					</div>
 					<?php wp_after_home_post_code(); ?>
 				</div>
@@ -243,7 +243,7 @@ $wp_auth_credit= get_option('wicketpixie_show_post_author'); ?>
 						<?php query_posts('showposts=5&offset=1');
 						while (have_posts()) : the_post(); ?>
 						<!-- post -->
-							<h5><a href="<?php the_permalink() ?>" rel="bookmark" title="<?php printf(__('Continue reading %d', 'wicketpixie'), the_title()); ?>"><?php the_title(); ?></a></h5>
+							<h5><a href="<?php the_permalink() ?>" rel="bookmark" title="<?php _e('Continue reading', 'wicketpixie').the_title()); ?>"><?php the_title(); ?></a></h5>
 							<p style="font-size:1em"><?php the_time(get_option('date_format')) ?> | <?php comments_popup_link(); ?></p>
 						<!-- /post -->
 						<?php endwhile; ?>
@@ -262,7 +262,7 @@ $wp_auth_credit= get_option('wicketpixie_show_post_author'); ?>
 						<h3><?php _e('Random Posts From the Archive', 'wicketpixie') ?></h3>
 						<?php query_posts('showposts=5&random=true');
 						while (have_posts()) : the_post(); ?>
-						<h5><a href="<?php the_permalink() ?>" rel="bookmark" title="Continue reading <?php the_title(); ?>"><?php the_title(); ?></a></h5>
+						<h5><a href="<?php the_permalink() ?>" rel="bookmark" title="<?php _e('Continue reading', 'wicketpixie').the_title()); ?>"><?php the_title(); ?></a></h5>
 						<p style="font-size:1em"><?php the_time(get_option('date_format')) ?> | <?php comments_popup_link(); ?></p>
 						<?php endwhile; ?>
 						<div style="padding-bottom:15px"></div>

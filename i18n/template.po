@@ -90,7 +90,7 @@ msgid "Permanent Link to %d"
 msgstr ""
 
 #: home.php:54 home.php:246 index.php:36 page.php:10
-msgid "Continue reading %d"
+msgid "Continue reading"
 msgstr ""
 
 #: home.php:65 single.php:69
