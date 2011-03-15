@@ -86,11 +86,11 @@ msgstr ""
 
 #: home.php:18 index.php:17 single.php:18
 #, php-format
-msgid "Permanent Link to %d"
+msgid "Permanent Link to %s"
 msgstr ""
 
-#: home.php:54 home.php:246 index.php:36 page.php:10
-msgid "Continue reading"
+#: home.php:54 home.php:246 home.php:265 index.php:36 page.php:10
+msgid "Continue reading %s"
 msgstr ""
 
 #: home.php:65 single.php:69

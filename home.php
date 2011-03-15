@@ -15,7 +15,7 @@ $wp_auth_credit= get_option('wicketpixie_show_post_author'); ?>
 					<?php echo $glob; ?>
 					</div>
 					<?php endif; ?>
-					<h1><a href="<?php the_permalink() ?>" rel="bookmark" title="<?php printf(__('Permanent Link to %d', 'wicketpixie'), the_title_attribute('echo = 0')); ?>" style="text-decoration:none;"><?php the_title(); ?></a></h1>
+					<h1><a href="<?php the_permalink() ?>" rel="bookmark" title="<?php printf(esc_attr__('Permanent Link to %s', 'wicketpixie'), the_title_attribute('echo=0')); ?>" style="text-decoration:none;"><?php the_title(); ?></a></h1>
 					<div class="post-comments">
 						<ul>
 							<li class="post-comments-count"><a href="<?php the_permalink(); ?>#comments" title="<?php printf(__('View all %d Comments', 'wicketpixie'), get_comments_number()); ?>"><?php comments_number('0', '1', '%'); ?></a></li>
@@ -243,7 +243,7 @@ $wp_auth_credit= get_option('wicketpixie_show_post_author'); ?>
 						<?php query_posts('showposts=5&offset=1');
 						while (have_posts()) : the_post(); ?>
 						<!-- post -->
-							<h5><a href="<?php the_permalink() ?>" rel="bookmark" title="<?php _e('Continue reading', 'wicketpixie').the_title(); ?>"><?php the_title(); ?></a></h5>
+							<h5><a href="<?php the_permalink() ?>" rel="bookmark" title="<?php printf(esc_attr__('Continue reading %s', 'wicketpixie'), the_title_attribute('echo=0')); ?>"><?php the_title(); ?></a></h5>
 							<p style="font-size:1em"><?php the_time(get_option('date_format')) ?> | <?php comments_popup_link(); ?></p>
 						<!-- /post -->
 						<?php endwhile; ?>
@@ -262,7 +262,7 @@ $wp_auth_credit= get_option('wicketpixie_show_post_author'); ?>
 						<h3><?php _e('Random Posts From the Archive', 'wicketpixie') ?></h3>
 						<?php query_posts('showposts=5&random=true');
 						while (have_posts()) : the_post(); ?>
-						<h5><a href="<?php the_permalink() ?>" rel="bookmark" title="<?php _e('Continue reading', 'wicketpixie').the_title(); ?>"><?php the_title(); ?></a></h5>
+						<h5><a href="<?php the_permalink() ?>" rel="bookmark" title="<?php printf(esc_attr__('Continue reading %s', 'wicketpixie'), the_title_attribute('echo=0')); ?>"><?php the_title(); ?></a></h5>
 						<p style="font-size:1em"><?php the_time(get_option('date_format')) ?> | <?php comments_popup_link(); ?></p>
 						<?php endwhile; ?>
 						<div style="padding-bottom:15px"></div>

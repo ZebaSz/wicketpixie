@@ -15,7 +15,7 @@ $wp_auth_credit= get_option('wicketpixie_show_post_author'); ?>
 					<?php echo $glob; ?>
 					</div>
 					<?php endif; ?>
-					<h1><a href="<?php the_permalink() ?>" rel="bookmark" title="<?php printf(__('Permanent Link to %d', 'wicketpixie'), the_title_attribute('echo = 0')); ?>" style="text-decoration:none;"><?php the_title(); ?></a></h1>
+					<h1><a href="<?php the_permalink() ?>" rel="bookmark" title="<?php printf(__('Permanent Link to %s', 'wicketpixie'), the_title_attribute('echo=0')); ?>" style="text-decoration:none;"><?php the_title(); ?></a></h1>
 					<div class="post-comments">
 						<ul>
 							<li class="post-comments-count"><a href="<?php the_permalink(); ?>#comments" title="<?php printf(__('View all %d Comments', 'wicketpixie'), get_comments_number()); ?>"><?php comments_number('0', '1', '%'); ?></a></li>

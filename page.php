@@ -7,7 +7,7 @@
 				<!-- page -->
 				<div class="page">
 					<h1><?php the_title(); ?></h1>
-					<?php the_content(__('Continue reading %d', 'wicketpixie'), '&raquo;'); ?>
+					<?php the_content(sprintf(esc_attr__('Continue reading %s', 'wicketpixie'), '&raquo;')); ?>
 				</div>
 				<!-- /page -->
 				<?php endwhile;
