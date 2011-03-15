@@ -22,10 +22,11 @@ the latest WordPress is 3.1, and the latest PHP is 5.3.5.
 
 INSTALLING
 
-Before installing, remember, this is a beta, and might have bugs. If you're looking
-for something (nearly) 100% stable, you should check out v1.2-rc5, the last oficial
-release. That said, this beta should be very stable, since it has been tested as
-much as posible, and most untested features were not modified at all.
+This is a Realease Candidate, which means it underwent heavy testing, and it's mostly
+stable. However, you might still find bugs. If you find any, please report them at
+the code repository (see links below).
+The last oficial release, v1.2-rc5, might be more stable. However, it's no longer
+maintained, and lacks many new features added to this version.
 
 Just place the wicketpixie folder in your /wp-content/themes/ directory and
 then activate the theme. Then make sure the httpd user has write access to
@@ -44,10 +45,15 @@ Please see CHANGES for the WicketPixie changelog.
 
 LINKS
 
-http://chris.pirillo.com/wicketpixie/ - Main WicketPixie information page
-
-http://github.com/eddieringle/wicketpixie - Original WicketPixie on GitHub
-(Code repository)
+http://zeblog.com.ar/wicketpixie/ - WicketPixie fork information page
+(in spanish)
 
 http://github.com/ZebaSz/wicketpixie - Forked WicketPixie on GitHub
+(Code repository)
+
+---
+
+http://chris.pirillo.com/wicketpixie/ - Original WicketPixie information page
+
+http://github.com/eddieringle/wicketpixie - Original WicketPixie on GitHub
 (Code repository)
