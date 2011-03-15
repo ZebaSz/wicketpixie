@@ -16,8 +16,8 @@ in any way to the original project/developers of this theme.
 REQUIREMENTS
 
 This theme was designed for WordPress 3.0+ and PHP5. It might work (to some extent)
-with previous WordPress versions, but hasn't been tested for any version beyond 2.8.
-We recommend that you use the latest versions available. At the time of writing,
+with previous WordPress versions, but requires at least 2.8. However, we recommend
+that you use the latest versions available. At the time of writing,
 the latest WordPress is 3.1, and the latest PHP is 5.3.5.
 
 INSTALLING
