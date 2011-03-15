@@ -244,7 +244,7 @@ $wp_auth_credit= get_option('wicketpixie_show_post_author'); ?>
 						while (have_posts()) : the_post(); ?>
 						<!-- post -->
 							<h5><a href="<?php the_permalink() ?>" rel="bookmark" title="Continue reading <?php the_title(); ?>"><?php the_title(); ?></a></h5>
-							<p style="font-size:1em"><?php the_time('l, F jS') ?> | <?php comments_popup_link('No Comments', '1 Comment', '% Comments'); ?></p>
+							<p style="font-size:1em"><?php the_time(get_option('date_format')) ?> | <?php comments_popup_link(); ?></p>
 						<!-- /post -->
 						<?php endwhile; ?>
 						<div style="padding-bottom:15px"></div>
@@ -263,7 +263,7 @@ $wp_auth_credit= get_option('wicketpixie_show_post_author'); ?>
 						<?php query_posts('showposts=5&random=true');
 						while (have_posts()) : the_post(); ?>
 						<h5><a href="<?php the_permalink() ?>" rel="bookmark" title="Continue reading <?php the_title(); ?>"><?php the_title(); ?></a></h5>
-						<p style="font-size:1em"><?php the_time('l, F jS') ?> | <?php comments_popup_link('No Comments', '1 Comment', '% Comments'); ?></p>
+						<p style="font-size:1em"><?php the_time(get_option('date_format')) ?> | <?php comments_popup_link(); ?></p>
 						<?php endwhile; ?>
 						<div style="padding-bottom:15px"></div>
 						<h3><?php _e('Popular Tags', 'wicketpixie') ?></h3>
