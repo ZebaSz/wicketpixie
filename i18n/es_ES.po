@@ -91,7 +91,7 @@ msgstr "Enlace Permanente a %d"
 
 #: home.php:54 home.php:246 index.php:36 page.php:10
 msgid "Continue reading"
-msgstr "Continúa leyendo %d"
+msgstr "Continúa leyendo"
 
 #: home.php:65 single.php:69
 msgid "You might also be interested in..."
