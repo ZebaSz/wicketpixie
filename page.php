@@ -7,7 +7,7 @@
 				<!-- page -->
 				<div class="page">
 					<h1><?php the_title(); ?></h1>
-					<?php the_content(__('Continue reading', 'wicketpixie').'&raquo;'); ?>
+					<?php the_content(prinf(__('Continue reading %d', 'wicketpixie'), '&raquo;')); ?>
 				</div>
 				<!-- /page -->
 				<?php endwhile;

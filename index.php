@@ -33,7 +33,7 @@ $wp_auth_credit= get_option('wicketpixie_show_post_author'); ?>
 					</div>
 					<div class="clearer"></div>
 					<div class="KonaBody">
-					<?php the_content(__('Continue reading', 'wicketpixie').'&raquo;'); ?>
+					<?php the_content(printf(__('Continue reading %d', 'wicketpixie'), '&raquo;')); ?>
 					</div>
 					<?php wp_after_posts_code(); ?>
 				</div>
