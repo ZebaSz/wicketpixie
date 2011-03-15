@@ -156,7 +156,7 @@ add_action('wp_head', 'wicketpixie_wp_head');
 
 /* Version number in admin footer */
 function wicketpixie_add_admin_footer() {
-	echo "Thank you for using WicketPixie v".WIK_VERSION.", a free premium WordPress theme from <a href='http://chris.pirillo.com/'>Chris Pirillo</a>.<br/>";
+	echo "Thank you for using WicketPixie v".WIK_VERSION.", a free premium WordPress theme maintained by <a href='http://zeblog.com.ar/'>Sebastián Szperling</a>.<br/>";
 }
 add_action('in_admin_footer', 'wicketpixie_add_admin_footer');
 
