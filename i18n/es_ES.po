@@ -20,7 +20,7 @@ msgstr ""
 
 #: 404.php:9
 msgid "We Can't Find the Droid You're Looking For"
-msgstr "No Podemos Encontrar el Droide que Estabas Buscando"
+msgstr "No Podemos Encontrar el Droide que Estás Buscando"
 
 #: 404.php:10
 #, php-format
