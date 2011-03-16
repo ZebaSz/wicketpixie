@@ -53,12 +53,12 @@ get_header(); ?>
 				<div class="navigation">
 					<?php if( $last[0] != $page ) : ?>
 					<div class="left">
-						<a href="<?php echo '?page=' . ( $page +1 ); ?>" title="More"><span>&nbsp;</span>More</a>
+						<a href="<?php echo '?page=' . ( $page +1 ); ?>" title="<?php _e('More', 'wicketpixie') ?>"><span><?php _e('More', 'wicketpixie') ?></span></a>
 					</div>
 					<?php endif;
 					if( $page != 1 ) : ?>
 						<div class="right">
-							<a href="<?php echo '?page=' . ( $page -1 ); ?>" title="Newer"><span>&nbsp;</span>Newer</a>
+							<a href="<?php echo '?page=' . ( $page -1 ); ?>" title="<?php _e('Newer', 'wicketpixie') ?>"><span><?php _e('Newer', 'wicketpixie') ?></span></a>
 						</div>
 					<?php endif; ?>
 				</div>

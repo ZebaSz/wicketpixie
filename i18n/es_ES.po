@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: WicketPixie\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-03-13 00:03-0300\n"
-"PO-Revision-Date: 2011-03-13 00:15-0300\n"
+"PO-Revision-Date: 2011-03-16 00:30-0300\n"
 "Last-Translator: ZebaSz <zebaszp@gmail.com>\n"
 "Language-Team: ZebaSz <zebaszp@gmail.com>\n"
 "Language: Spanish \n"
@@ -40,11 +40,11 @@ msgstr "Editar"
 msgid "at"
 msgstr "a las"
 
-#: archive.php:52 index.php:48 search.php:30
+#: activity.php:56 archive.php:52 index.php:48 search.php:30
 msgid "More"
 msgstr "Más"
 
-#: archive.php:53 index.php:49 search.php:31
+#: activity.php:61 archive.php:53 index.php:49 search.php:31
 msgid "Newer"
 msgstr "Nuevos"
 
@@ -89,7 +89,7 @@ msgstr "Suscribete a mi fuente"
 msgid "Permanent Link to %s"
 msgstr "Enlace Permanente a %s"
 
-#: home.php:54 home.php:246 home.php:265 index.php:36 page.php:10
+#: faves.php:18 home.php:54 home.php:246 home.php:265 index.php:36 page.php:10
 msgid "Continue reading %s"
 msgstr "Continúa leyendo %s"
 

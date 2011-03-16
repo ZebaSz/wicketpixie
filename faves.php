@@ -15,7 +15,7 @@ endif; ?>
 				<!-- page -->
 				<div class="page">
 					<h1><?php the_title(); ?></h1>
-					<?php the_content('Continue reading &raquo;'); ?>
+					<?php the_content(sprintf(esc_attr__('Continue reading %s', 'wicketpixie'), '&raquo;')); ?>
 					<!-- faves -->
 					<div id="faves">
 						<!-- faves-feed -->
