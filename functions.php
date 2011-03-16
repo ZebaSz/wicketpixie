@@ -21,7 +21,7 @@ define(SIMPLEPIEPATH,ABSPATH.'wp-includes/class-simplepie.php');
 * b = beta (testing, works but may have bugs)
 * rc = release candidate (stable testing, minor issues are left)
 */
-define('WIK_VERSION',"1.3-b2");
+define('WIK_VERSION',"1.3-rc");
 
 /* Debug settings */
 define(DEBUG,false);
