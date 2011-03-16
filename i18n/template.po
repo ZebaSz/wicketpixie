@@ -37,8 +37,9 @@ msgid "Edit"
 msgstr ""
 
 #: archive.php:34 home.php:32 index.php:31 search.php:13 single.php:32
-msgid "at"
+msgid "at %s"
 msgstr ""
+
 
 #: activity.php:56 archive.php:52 index.php:48 search.php:30
 msgid "More"
