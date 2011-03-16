@@ -31,15 +31,14 @@ msgstr ""
 msgid "by"
 msgstr ""
 
-#: archive.php:31 archive.php:34 index.php:28 index.php:31 single.php:29
-#: single.php:32
+#: archive.php:31 archive.php:34 index.php:28 index.php:31 single.php:29 single.php:32
 msgid "Edit"
 msgstr ""
 
 #: archive.php:34 home.php:32 index.php:31 search.php:13 single.php:32
+#, php-format
 msgid "at %s"
 msgstr ""
-
 
 #: activity.php:56 archive.php:52 index.php:48 search.php:30
 msgid "More"
@@ -91,6 +90,7 @@ msgid "Permanent Link to %s"
 msgstr ""
 
 #: faves.php:18 home.php:54 home.php:246 home.php:265 index.php:36 page.php:10
+#, php-format
 msgid "Continue reading %s"
 msgstr ""
 

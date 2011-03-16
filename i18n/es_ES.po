@@ -31,12 +31,12 @@ msgstr "Agregar un Comentario"
 msgid "by"
 msgstr "por"
 
-#: archive.php:31 archive.php:34 index.php:28 index.php:31 single.php:29
-#: single.php:32
+#: archive.php:31 archive.php:34 index.php:28 index.php:31 single.php:29 single.php:32
 msgid "Edit"
 msgstr "Editar"
 
 #: archive.php:34 home.php:32 index.php:31 search.php:13 single.php:32
+#, php-format
 msgid "at %s"
 msgstr "a las %s"
 
@@ -90,6 +90,7 @@ msgid "Permanent Link to %s"
 msgstr "Enlace Permanente a %s"
 
 #: faves.php:18 home.php:54 home.php:246 home.php:265 index.php:36 page.php:10
+#, php-format
 msgid "Continue reading %s"
 msgstr "Continúa leyendo %s"
 
