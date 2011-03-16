@@ -6,8 +6,8 @@
 					<?php if (get_option($optpre.'plug_aagoog404') == 'true' && function_exists("aa_google_404")) :
 					aa_google_404();
 					else : ?>
-					<h1>We Can't Find the Droid You're Looking For</h1>
-					<p>The page may have been removed or renamed. Be sure to check your spelling.  If all else fails, you can <a href="javascript:history.back()">go back to the page you came from</a>, return to the <a href="<?php echo get_option('home'); ?>/">homepage</a>, or try searching.</p>
+					<h1><?php _e("We Can't Find the Droid You're Looking For", 'wicketpixie') ?></h1>
+					<p><?php printf(__("The page may have been removed or renamed. Be sure to check your spelling. If all else fails, you can %s, return to the %s, or try searching.", 'wicketpixie'), '<a href="javascript:history.back()">'.__('go back to the page you came from', 'wicketpixie').'</a>', '<a href="'.get_option('home').'/">'.__('homepage', 'wicketpixie').'</a>') ?></p>
 					<?php endif;?>
 				</div>
 				<!-- /page -->
