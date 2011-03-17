@@ -7,7 +7,7 @@ version of WicketPixie newer than 1.0.1.
 
 Upgrading to WicketPixie 1.2+:
 
-As of WicketPixie 1.2, major code changes will break the widgets for your
+As of WicketPixie 1.2, major code changes will break the widgets for your 
 Social Mes (or Sources). To fix them, make sure to chmod 777 the widgets
 directory and the file 'widgets/sources.php', then click on 'Regenerate Widgets'
 in the WicketPixie Social Me Manager.
@@ -19,3 +19,9 @@ prefixed by whatever you have set as your WordPress database prefix. You can use
 software such as phpMyAdmin to help you do this.
 More information available in the following blog post:
 http://eddieringle.com/upgrading-to-wicketpixie-1-2-and-onwards/
+
+Upgrading to this WicketPixie fork:
+
+Althought some big changes might be made sooner or later, odds are all your settings
+from 1.2 will work just fine for the time being. In the future, make sure to check
+the changelog for major changes that might indicate need extra upgrading steps.
