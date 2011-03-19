@@ -1,5 +1,5 @@
 html {
-    overflow-y: scroll;
+	overflow-y: scroll;
 }
 body {
 	font-size: 62.5%;
@@ -97,13 +97,13 @@ body {
 #subscribe {
 	position: fixed;
 	margin: -1px 0 0 -469px;
-     z-index: 999;
- }
+	z-index: 999;
+}
 
 #share {
 	position: fixed;
 	margin: -1px 0 0 -383px;
-     z-index: 999;
+	z-index: 999;
 }
 
 #subscribe ul {
@@ -261,7 +261,7 @@ body {
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  */
 
 #nav {
-    clear: both;
+	clear: both;
 	float: left;
 	width: 100%;
 	text-align: center;
@@ -477,7 +477,7 @@ body {
 }
 
 #home-photos {
-    width: 100%;
+	width: 100%;
 	text-align: center;
 	margin-left: auto;
 	margin-right: auto;
@@ -493,8 +493,8 @@ body {
 }
 
 #content #home-photos h2 {
-    text-align: left;
-    margin-left: 20px;
+	text-align: left;
+	margin-left: 20px;
 }
 
 #home-photos img:hover {
@@ -692,7 +692,7 @@ body {
 }
 
 #content .friend-comment a {
-     color: purple;    
+	color: purple;
 }
 
 #content .post-author p {
@@ -811,7 +811,7 @@ body {
 	display: block;
 	/* border: 5px solid #ddd; */
 	max-width: 340px;
-     height: auto;
+	height: auto;
 }
 
 #content img[align $='left'], #content .alignleft {
@@ -1085,7 +1085,7 @@ body {
 #content .comment h5 a:hover {
 	color: #333;
 	text-decoration: underline;
-     border-bottom: 0;
+	border-bottom: 0;
 }
 
 #comment-form {
@@ -1387,7 +1387,7 @@ body {
 }
 
 #sidebar4, #sidebar5, #sidebar6 {
-     padding-top: 5px;
+	padding-top: 5px;
 }
 
 #sidebar4 {
@@ -1413,9 +1413,9 @@ body {
 }
 
 div.adspot_head {
-     color: #990000; 
-     font-family: Georgia, Times New Roman, Times, serif; 
-     font-weight: bold;
+	color: #990000;
+	font-family: Georgia, Times New Roman, Times, serif;
+	font-weight: bold;
 	padding-bottom: 5px;
 	margin-top: 0;
 	margin-bottom: 10px;
@@ -1426,19 +1426,19 @@ div.adspot_head {
 }
 
 span.adspot_head {
-     padding-top: 5px;    
+	padding-top: 5px;
 }
 
 span.adspot_adhead {
-     font-weight: bold;
-     color: #000;
+	font-weight: bold;
+	color: #000;
 }
 .adspot_link {
-     text-align: center;
+	text-align: center;
 }
 
 a.adspot_adurl {
-     color: #000;
+	color: #000;
 }
 
 #sidebar .widget h3 img {
@@ -1660,7 +1660,7 @@ a.adspot_adurl {
 
 /* AdSense for Search */
 #cse-search-results {
-    margin: 15px 20px;
+	margin: 15px 20px;
 }
 
 .clearer {
@@ -1732,7 +1732,7 @@ table, td, tr, th {
 	clear: both;
 	background-color: transparent;
 	background-image: none;
-} 
+}
 
 .footerblocks h1 a:link, .footerblocks h1 a:visited, .footerblocks h1 a:active {
 	text-decoration: none;
@@ -1740,8 +1740,8 @@ table, td, tr, th {
 }
 
 .footerblocks h1 a:hover {
-     text-decoration: none;
-     border-bottom: 1px solid #0000ff;
+	text-decoration: none;
+	border-bottom: 1px solid #0000ff;
 }
 
 #footerblocks h2 {
@@ -1749,54 +1749,54 @@ table, td, tr, th {
 }
 
 #footerblocks h1 img.avatar {
-     vertical-align: top; 
-     float: right; 
-     padding: 0;
+	vertical-align: top;
+	float: right;
+	padding: 0;
 }
 
 .footerblocks .meta {
-     color: #666666;
-     font-size:0.6em;
-     line-height:1.5em;
+	color: #666666;
+	font-size:0.6em;
+	line-height:1.5em;
 }
 
 div.KonaBody {
-     margin-top: 15px;
+	margin-top: 15px;
 }
 
 .highlight {
-    padding: 10px;
-    background-color: #ffffe0;
-    border: 1px solid #ccc;
-    margin-bottom: 15px;
-    font-weight: bold;
+	padding: 10px;
+	background-color: #ffffe0;
+	border: 1px solid #ccc;
+	margin-bottom: 15px;
+	font-weight: bold;
 }
 
 /* Skiddily Doo */
 .TweetWrapper, #TweetWrapper {
-    clear: left;
-    padding: 5px 0 60px 20px;
+	clear: left;
+	padding: 5px 0 60px 20px;
 }
 
 .TweetBody {
-    clear: left;
+	clear: left;
 }
 
 .TweetAvatar, #TweetAvatar, #profile_image_url {
-    border: 0px;
-    float: left;
-    padding: 4px 15px 25px 0;
-    width: 40px;
-    height: 40px;
+	border: 0px;
+	float: left;
+	padding: 4px 15px 25px 0;
+	width: 40px;
+	height: 40px;
 }
 
 .TweetStatus, .TweetStatus_text, #TweetStatus_text {
-    font-size: 8pt;
-    line-height: 12pt;
+	font-size: 8pt;
+	line-height: 12pt;
 }
 
 .TweetDate, .TweetPermadate, .TweetPermalink, .msgstatus {
-    float: left;
+	float: left;
 }
 
 #paginator {
