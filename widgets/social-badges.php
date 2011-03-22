@@ -13,6 +13,7 @@ class SocialBadgesWidget extends WP_Widget {
 		$podcastfeed = get_option('wicketpixie_podcast_feed_url');
 		$twitter = get_option('wicketpixie_twitter_id');
 		$youtube = get_option('wicketpixie_youtube_id');
+		$facebook = get_option('wicketpixie_facebook_id');
 		$wcount = 0;
 		$witem = array();
 		if($blogfeed != false && $blogfeed != "") :
@@ -29,6 +30,10 @@ class SocialBadgesWidget extends WP_Widget {
 		endif;
 		if($youtube != false && $youtube != "") :
 			$witem[$wcount] = "<a href='http://youtube.com/$youtube'><img src='".get_template_directory_uri()."/images/button-youtube.png' style='float:left;padding:10px 10px 20px 14px;border:0px;' height='60' width='60' alt='YouTube'/></a>\n";
+			$wcount++;
+		endif;
+		if($facebook != false && $facebook != "") :
+			$witem[$wcount] = "<a href='http://facebook.com/$facebook'><img src='".get_template_directory_uri()."/images/button-facebook.png' style='float:left;padding:10px 10px 20px 14px;border:0px;' height='60' width='60' alt='Facebook'/></a>\n";
 			$wcount++;
 		endif;
 		$wwidget = ($wcount * 0.25) * 340;
