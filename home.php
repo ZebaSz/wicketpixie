@@ -151,33 +151,8 @@ $wp_auth_credit= get_option('wicketpixie_show_post_author'); ?>
 			<div id="sidebar">
 				<?php if(get_option('wicketpixie_home_social_buttons_enable') == 'true') : ?>
 					<!-- social-buttons -->
-					<?php $blogfeed = get_option('wicketpixie_blog_feed_url');
-					$podcastfeed = get_option('wicketpixie_podcast_feed_url');
-					$twitter = get_option('wicketpixie_twitter_id');
-					$youtube = get_option('wicketpixie_youtube_id');
-					$wcount = 0;
-					$witem = array();
-					if($blogfeed != false && $blogfeed != "") :
-						$witem[$wcount] = "<a href='$blogfeed'><img src='".get_template_directory_uri()."/images/button-feed.png' style='float:left;padding:10px 10px 20px 14px;border:0px;' height='60' width='60' alt='Subscribe'/></a>\n";
-						$wcount++;
-					endif;
-					if($podcastfeed != false && $podcastfeed != "") :
-						$witem[$wcount] = "<a href='$podcastfeed'><img src='".get_template_directory_uri()."/images/button-podcast-feed.png' style='float:left;padding:10px 10px 20px 14px;border:0px;' height='60' width='60' alt='Podcast'/></a>\n";
-						$wcount++;
-					endif;
-					if($twitter != false && $twitter != "") :
-						$witem[$wcount] = "<a href='http://twitter.com/$twitter'><img src='".get_template_directory_uri()."/images/button-twitter.png' style='float:left;padding:10px 10px 20px 14px;border:0px;' height='60' width='60' alt='Twitter'/></a>\n";
-						$wcount++;
-					endif;
-					if($youtube != false && $youtube != "") :
-						$witem[$wcount] = "<a href='http://youtube.com/$youtube'><img src='".get_template_directory_uri()."/images/button-youtube.png' style='float:left;padding:10px 10px 20px 14px;border:0px;' height='60' width='60' alt='YouTube'/></a>\n";
-						$wcount++;
-					endif;
-					$wwidget = ($wcount * 0.25) * 340;
-					echo "<div style='margin:0px auto 0px auto;width:",$wwidget,"px'>";
-					foreach($witem as $item) echo $item; ?>
-					</div>
-					<div style="clear:both"></div>
+					<?php require_once(TEMPLATEPATH .'/widgets/social-badges.php');
+					SocialBadgesWidget::widget(array(),''); ?>
 					<!-- /social-buttons -->
 				<?php endif; ?>
 				<!-- width = 340, height = 240 -->
