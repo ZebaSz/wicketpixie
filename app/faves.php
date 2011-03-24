@@ -1,6 +1,6 @@
 <?php
 /**
- * WicketPixie v1.3
+ * WicketPixie v1.3.1
  * (c) 2006-2009 Eddie Ringle,
  *               Chris J. Davis,
  *               Dave Bates

@@ -1,6 +1,6 @@
 <?php
 /**
- * WicketPixie v1.3
+ * WicketPixie v1.3.1
  * (c) 2006-2009 Eddie Ringle,
  *               Chris J. Davis,
  *               Dave Bates
@@ -21,7 +21,7 @@ define(SIMPLEPIEPATH,ABSPATH.'wp-includes/class-simplepie.php');
 * b = beta (testing, works but may have bugs)
 * rc = release candidate (stable testing, minor issues are left)
 */
-define('WIK_VERSION',"1.3");
+define('WIK_VERSION',"1.3.1");
 
 /* Debug settings */
 define(DEBUG,false);

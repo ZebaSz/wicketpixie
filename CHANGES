@@ -1,12 +1,22 @@
 WICKETPIXIE CHANGELOG
 
+v1.3.1 - March 24, 2011
+ * FIXED: i18n issues in the Activity Stream
+ * FIXED: Activity Stream times now adjust to WordPress settings (instead of GMT)
+ * ADDED: Facebook Social Badge (icon stolen from Chris Pirillo, sorry)
+ * ADDED: Opera beta gradients (now 100% CSS compatible with Opera)
+
 v1.3 - March 17, 2011
  * Maintenance fork
  * FEATURE: Custom nav menus
  * FEATURE: WordPress custom backgrounds
  * FEATURE: Threaded comments
  * FEATURE: Support for i18n (with template and Spanish translation)
- * PERFORMANCE: changed all images with CSS3 (Webkit and Gecko compatible)
+ * PERFORMANCE: changed all images with CSS3 (100% Webkit and Gecko compatible)
+
+------------------
+
+Legacy WicketPixie
 
 v1.2 RC5 - October 13, 2009
  * FEATURE: AdSense for Search functionality.

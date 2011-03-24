@@ -1,6 +1,6 @@
 A fork of WicketPixie Social Media Premium WordPress Theme
 from Chris Pirillo at http://chris.pirillo.com/
-by ZebaSz at http://zeblog.com
+by ZebaSz at http://zeblog.com/
 
 THANK YOU FOR DOWNLOADING WICKETPIXIE
 
@@ -10,8 +10,10 @@ WicketPixie 1.2 is outdated and no longer under development. 2.0, on the other h
 is a full re-write, which at the time of this fork (March 2011) lacks many features
 available in prior versions. The aim of this fork is to pave the way to WicketPixie
 2.0 by providing backports. Also, I have some great ideas in mind to add to this
-WordPress theme. This is an unoficial fork, and his maintainer is not related
-in any way to the original project/developers of this theme.
+WordPress theme.
+This is an unoficial fork, and I'm not related in any way to the original
+project/developers of this theme. However, some changes (such as i18n support) might
+be pushed upstream for 2.0, according to Eddie Ringle (the current maintainer).
 
 REQUIREMENTS
 
