@@ -72,35 +72,22 @@
 				<p style="font-size:1em"><?php the_time(get_option('date_format')) ?> | <?php comments_popup_link(); ?></p>
 			<!-- /post -->
 			<?php endwhile; ?>
-			<div style="padding-bottom:15px"></div>
-			<h3><?php _e('Recent Comments', 'wicketpixie') ?></h3>
-			<ul class="recentcomments">
-				<?php if(!$comments = wp_cache_get('recent_comments','widget')) :
-					$comments = $wpdb->get_results("SELECT * FROM $wpdb->comments WHERE comment_approved = '1' ORDER BY comment_date_gmt DESC LIMIT 5");
-					wp_cache_add('recent_comments',$comments,'widget');
-				endif;
-				if($comments) : foreach((array)$comments as $comment) :
-					echo '<li class="recentcomments">',sprintf(_x('%1$s on %2$s','widgets'),get_comment_author_link(),'<a href="'.esc_url(get_comment_link($comment->comment_ID)).'">'.get_the_title($comment->comment_post_ID).'</a>'),'</li>';
-				endforeach; endif; ?>
-			</ul>
-			<div style="padding-bottom:15px"></div>
+		</div>
+		<?php the_widget('WP_Widget_Recent_Comments', '', 'before_title=<h3>&after_title=</h3>'); ?>
+		<div class="widget">
 			<h3><?php _e('Random Posts From the Archive', 'wicketpixie') ?></h3>
 			<?php query_posts('showposts=5&random=true');
 			while (have_posts()) : the_post(); ?>
 			<h5><a href="<?php the_permalink() ?>" rel="bookmark" title="<?php printf(esc_attr__('Continue reading %s', 'wicketpixie'), the_title_attribute('echo=0')); ?>"><?php the_title(); ?></a></h5>
 			<p style="font-size:1em"><?php the_time(get_option('date_format')) ?> | <?php comments_popup_link(); ?></p>
 			<?php endwhile; ?>
-			<div style="padding-bottom:15px"></div>
-			<h3><?php _e('Popular Tags', 'wicketpixie') ?></h3>
-			<span style="line-height:1.3em;">
-			<?php wp_tag_cloud('orderby=count&order=DESC&unit=px&smallest=10&largest=16&format=flat'); ?>
-			</span>
-			<div style="padding-bottom:15px"></div>
+		</div>
+		<?php the_widget( 'WP_Widget_Tag_Cloud', 'title='.__('Popular Tags', 'wicketpixie'), 'before_title=<h3>&after_title=</h3>'); ?>
+		<div class="widget">
 			<!-- Custom Sidebar Code -->
 			<?php require_once(TEMPLATEPATH .'/app/customcode.php');
 			fetchcustomcode('homesidebar.php'); ?>
 			<!-- /Custom Sidebar Code -->
-			<div style="padding-bottom:15px"></div>
 		</div>
 	</div>
 	<!-- /recent-posts -->
