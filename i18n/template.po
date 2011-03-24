@@ -18,6 +18,29 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
+#: 404.php:9
+msgid "We Can't Find the Droid You're Looking For"
+msgstr ""
+
+#: 404.php:10
+#, php-format
+msgid ""
+"The page may have been removed or renamed. Be sure to check your spelling. "
+"If all else fails, you can %s, return to the %s, or try searching."
+msgstr ""
+
+#: 404.php:10
+msgid "go back to the page you came from"
+msgstr ""
+
+#: 404.php:10
+msgid "homepage"
+msgstr ""
+
+#: activity.php:33
+msgid "F jS"
+msgstr ""
+
 #: archive.php:23 home.php:21 index.php:20 single.php:21
 #, php-format
 msgid "View all %d Comments"
