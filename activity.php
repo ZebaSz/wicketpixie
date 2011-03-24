@@ -30,14 +30,14 @@ get_header(); ?>
 							<?php $day= '';
 							foreach( (array)$results[$page - 1] as $stream ) :
 							$source_data= SourceAdmin::source( $stream->name );
-							$this_day= date("F jS", $stream->date );
+							$this_day= date_i18n(__('F jS', 'wicketpixie'), $stream->date );
 							if ( $day != $this_day ) : ?>
 							<tr>
 								<th colspan="3"><?php echo $this_day; ?></th>
 							</tr>
 							<?php endif; ?>
 							<tr>
-								<td class="activity-time"><?php echo date( 'g:i:a', $stream->date ); ?></td>
+								<td class="activity-time"><?php echo date( get_option('time_format'), $stream->date ); ?></td>
 								<td class="activity-content"><div><a href="<?php echo $stream->link; ?>" rel="nofollow"><?php echo $stream->content; ?></a></div></td>
 								<td class="activity-source"><a href="<?php echo $source_data->profile_url; ?>" rel="nofollow"><img src="<?php echo $source_data->favicon; ?>" alt="<?php echo $stream->name; ?>" /></a></td>
 							</tr>

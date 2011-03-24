@@ -60,7 +60,7 @@ class SourceUpdate {
 			if( $istwitter == 1 ) :
 				$return[1]['title'] = preg_replace('/(@)([A-Za-z0-9_-]+)/', '<a href="http://twitter.com/\2">\0</a>', $return[1]['title']);
 			endif;
-			return substr($return[1]['title'], 0, 1000) . ' &mdash; <a href="' . $return[2]['link'] . '" title="">' . date( 'g:ia', $return[3]['date'] ) . '</a>';
+			return substr($return[1]['title'], 0, 1000) . ' &mdash; <a href="' . $return[2]['link'] . '" title="">' . date( get_option('time_format'), $return[3]['date'] ) . '</a>';
 		else :
 			return "Thanks for exploring my world! Can you believe this avatar is talking to you?";
 		endif;
