@@ -613,7 +613,6 @@ body {
 
 .content p {
 	margin-bottom: 1.4em;
-	font-size: 1.2em;
 	line-height: 1.7em;
 	color: #000;
 }
@@ -667,18 +666,20 @@ body {
 	/* border-bottom: 1px solid #eee; */
 }
 
-.post li, .page li {
+.page {
+	margin: 0 20px 1.4em;
 	font-size: 1.2em;
 }
 
-.page {
-	margin: 0 20px 1.4em;
+.page h1 {
+	font-size: 1.6em;
 }
 
 .post-author {
 	float: left;
 	width: 70%;
 	margin-bottom: 1.4em;
+	font-size: 1.2em;
 }
 
 #content .friend-comment p {
@@ -1093,6 +1094,7 @@ body {
 }
 
 #comment-form p {
+	font-size: 1.2em;
 	float: left;
 	width: 100%;
 	margin-bottom: 10px;
@@ -1348,7 +1350,6 @@ body {
 	float: right;
 	width: 340px;
 	padding: 20px 19px 0;
-	color: #333;
 	background-color: #F6F6F6;
 	-moz-border-radius-bottomright: 10px;
 	border-bottom-right-radius: 10px;
@@ -1356,6 +1357,10 @@ body {
 	border-top-right-radius: 10px;
 	border-left: 1px solid #E0E0E0;
 	border-bottom: 1px solid #E0E0E0;
+	margin-bottom: 1.4em;
+	color: #666;
+	font-size: 1.2em;
+	line-height: 1.3em;
 }
 
 #sidebar_top, #sidebar1, #sidebar2, #sidebar3, #sidebar4, #sidebar5, #sidebar6 {
@@ -1419,7 +1424,7 @@ body {
 
 #sidebar h3 {
 	margin-top: 0;
-	font-size: 1.3em;
+	font-size: 1.08em;
 	text-transform: uppercase;
 }
 
@@ -1464,20 +1469,13 @@ a.adspot_adurl {
 	margin-bottom: 0;
 	padding-bottom: 0;
 	color: #000;
-	font-size: 1.2em;
+	font-size: 1em;
 	font-weight: bold;
 	line-height: 1.3em;
 	border-bottom: none;
 }
 
-#sidebar p, #sidebar li {
-	margin-bottom: 1.4em;
-	color: #666;
-	font-size: 1.2em;
-	line-height: 1.3em;
-}
-
-#sidebar ul {
+#sidebar #recentcomments {
 	margin-left: 0;
 }
 
@@ -1773,6 +1771,7 @@ table, td, tr, th {
 
 div.KonaBody {
 	margin-top: 15px;
+	font-size: 1.2em;
 }
 
 .highlight {

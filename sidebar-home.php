@@ -69,7 +69,7 @@
 			while (have_posts()) : the_post(); ?>
 			<!-- post -->
 				<h5><a href="<?php the_permalink() ?>" rel="bookmark" title="<?php printf(esc_attr__('Continue reading %s', 'wicketpixie'), the_title_attribute('echo=0')); ?>"><?php the_title(); ?></a></h5>
-				<p style="font-size:1em"><?php the_time(get_option('date_format')) ?> | <?php comments_popup_link(); ?></p>
+				<p style="font-size:0.8em;color:#666;"><?php the_time(get_option('date_format')) ?> | <?php comments_popup_link(); ?></p>
 			<!-- /post -->
 			<?php endwhile; ?>
 		</div>
@@ -79,7 +79,7 @@
 			<?php query_posts('showposts=5&random=true');
 			while (have_posts()) : the_post(); ?>
 			<h5><a href="<?php the_permalink() ?>" rel="bookmark" title="<?php printf(esc_attr__('Continue reading %s', 'wicketpixie'), the_title_attribute('echo=0')); ?>"><?php the_title(); ?></a></h5>
-			<p style="font-size:1em"><?php the_time(get_option('date_format')) ?> | <?php comments_popup_link(); ?></p>
+			<p style="font-size:0.8em;color:#666;"><?php the_time(get_option('date_format')) ?> | <?php comments_popup_link(); ?></p>
 			<?php endwhile; ?>
 		</div>
 		<?php the_widget( 'WP_Widget_Tag_Cloud', 'title='.__('Popular Tags', 'wicketpixie'), 'before_title=<h3>&after_title=</h3>'); ?>
