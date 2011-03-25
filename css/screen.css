@@ -1171,51 +1171,62 @@ body {
 /* ACTIVITY
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  */
 
-#activity table {
-	width: 100%;
+#activity {
 	margin-bottom: 20px;
 	font-size: 1.2em;
 	line-height: 1.4em;
 }
 
-#activity table th {
-	padding: 20px 5px 10px;
+#activity h3 {
+	margin: 0px;
+	padding: 20px 0 10px;
+	line-height: 24px;
 	text-align: center;
-	font-size: 1.6em;
+	font-size: 15.5px;
 	color: #333;
+	clear: both;
+	border: 0px;
+	font-weight: normal;
 }
 
-#activity table td {
+#activity div {
 	text-align: left;
 	vertical-align: top;
-	border-bottom: 1px solid #fff;
+	float: left;
+	font-size: 10.5px;
 }
 
-#activity table td.activity-time {
-	width: 60px;
-	padding: 8px;
-	font-size: .95em;
-	color: #999;
-	text-align: right;
+#activity div.activity-entry {
+	border-bottom: 1px solid #fff;
+	line-height: 16px;
+}
+
+#activity div.activity-data {
 	background: #eee;
 }
 
-#activity table td.activity-content div {
-	width: 400px;
-	overflow: hidden;
+#activity div.activity-time {
+	width: 60px;
+	padding: 8px;
+	color: #999;
+	text-align: right;
 }
 
-#activity table td.activity-source {
+#activity div.activity-content {
+	width: 400px;
+}
+
+#activity div.activity-source {
 	width: 16px;
 	padding: 8px 0 8px 8px;
 }
 
-#activity table td.activity-source img {
+#activity div.activity-source img {
 	width: 16px;
 	height: 16px;
 }
 
-#activity table td.activity-content a:link, #activity table td.activity-content a:visited, #activity table td.activity-content a:active {
+#activity div.activity-content a:link, #activity div.activity-content a:visited, #activity div.activity-content a:active {
 	display: block;
 	padding: 8px;
 	color: #666;
@@ -1223,7 +1234,7 @@ body {
 	background: #f6f6f6;
 }
 
-#activity table td.activity-content a:hover {
+#activity div.activity-content a:hover {
 	color: #000;
 	background: #eee;
 	text-decoration: underline;
