@@ -15,6 +15,8 @@ This is an unoficial fork, and I'm not related in any way to the original
 project/developers of this theme. However, some changes (such as i18n support) might
 be pushed upstream for 2.0, according to Eddie Ringle (the current maintainer).
 
+If any bugs were to be found, please report them in the fork's code repositoty below.
+
 REQUIREMENTS
 
 This theme was designed for WordPress 3.0+ and PHP5. It might work (to some extent)
@@ -23,12 +25,6 @@ that you use the latest versions available. At the time of writing,
 the latest WordPress is 3.1, and the latest PHP is 5.3.5.
 
 INSTALLING
-
-This is a Realease Candidate, which means it underwent heavy testing, and it's mostly
-stable. However, you might still find bugs. If you find any, please report them at
-the code repository (see links below).
-The last oficial release, v1.2-rc5, might be more stable. However, it's no longer
-maintained, and lacks many new features added to this version.
 
 Just place the wicketpixie folder in your /wp-content/themes/ directory and
 then activate the theme. Then make sure the httpd user has write access to

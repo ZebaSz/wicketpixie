@@ -20,8 +20,10 @@ software such as phpMyAdmin to help you do this.
 More information available in the following blog post:
 http://eddieringle.com/upgrading-to-wicketpixie-1-2-and-onwards/
 
-Upgrading to this WicketPixie fork:
+Upgrading to WicketPixie 1.3+:
 
-Althought some big changes might be made sooner or later, odds are all your settings
-from 1.2 will work just fine for the time being. In the future, make sure to check
-the changelog for major changes that might indicate need extra upgrading steps.
+The only feature I know will break is the custom background (in WP 3.0+), since
+we now use the built-in function. Just re-upload the image (or enter the colour hex)
+via the WordPress background settings page.
+The rest should work just as it did before. If you find any problem, make sure to file
+a bug in the link provided in the README.

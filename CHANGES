@@ -1,10 +1,19 @@
 WICKETPIXIE CHANGELOG
 
+v1.3.2 - March 26, 2011
+ * UPDATED: Documentation
+ * ADDED: Old comments style with modern comments function
+ * CHANGE: Home sidebar in its own template
+ * CHANGE: Home sidebar uses as many built-in WordPress widgets as posible
+ * CHANGE: Tables in Activity Stream replaced with divs
+ * FIXED: Some text layout bugs (such as growing nested li)
+ * REMOVED: Old comments chunk for WordPress pre-2.7 (2.8 required, anyways)
+
 v1.3.1 - March 24, 2011
  * FIXED: i18n issues in the Activity Stream
  * FIXED: Activity Stream times now adjust to WordPress settings (instead of GMT)
  * ADDED: Facebook Social Badge (icon stolen from Chris Pirillo, sorry)
- * ADDED: Opera beta gradients (now 100% CSS compatible with Opera)
+ * ADDED: Opera beta gradients (CSS now 100% compatible with Opera)
 
 v1.3 - March 17, 2011
  * Maintenance fork
