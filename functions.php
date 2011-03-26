@@ -17,11 +17,12 @@ define(SIMPLEPIEPATH,ABSPATH.'wp-includes/class-simplepie.php');
 
 // No spaces in this constant please (use hyphens)
 /*
+* pre = pre-alpha (unstable, but not many changes made)
 * a = alpha (unstable, most likely broken)
 * b = beta (testing, works but may have bugs)
 * rc = release candidate (stable testing, minor issues are left)
 */
-define('WIK_VERSION',"1.3.2");
+define('WIK_VERSION',"1.4-pre");
 
 /* Debug settings */
 define(DEBUG,false);

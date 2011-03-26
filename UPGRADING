@@ -7,7 +7,7 @@ version of WicketPixie newer than 1.0.1.
 
 Upgrading to WicketPixie 1.2+:
 
-As of WicketPixie 1.2, major code changes will break the widgets for your 
+As of WicketPixie 1.2, major code changes will break the widgets for your
 Social Mes (or Sources). To fix them, make sure to chmod 777 the widgets
 directory and the file 'widgets/sources.php', then click on 'Regenerate Widgets'
 in the WicketPixie Social Me Manager.
@@ -22,8 +22,15 @@ http://eddieringle.com/upgrading-to-wicketpixie-1-2-and-onwards/
 
 Upgrading to WicketPixie 1.3+:
 
-The only feature I know will break is the custom background (in WP 3.0+), since
-we now use the built-in function. Just re-upload the image (or enter the colour hex)
-via the WordPress background settings page.
-The rest should work just as it did before. If you find any problem, make sure to file
-a bug in the link provided in the README.
+In WP 3.0+, we now use the built-in function, so the old background won't work. Just
+re-upload the image (or enter the colour hex) via the WordPress background settings
+page. The rest should work just as it did before.
+
+Upgrading to WicketPixie 1.4+:
+
+Some WiPi plugins were removed to reduce bloat.  All plugins removed can be installed
+via the Plugin Manager, which also auto-updates them. However, their configurations as
+WiPi plugins will be lost. Please write them down before upgrading, then install and
+configure said plugins separately.
+To integrate AskApache 404 properly, follow that plugin's instructions using the new
+custom 404 code option (instead of editing 404.php).
