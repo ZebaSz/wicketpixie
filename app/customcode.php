@@ -70,6 +70,7 @@ function fetchcustomcode($file,$raw = false) {
 		endif;
 	else :
 		echo "<!-- No custom code found, add code on the WicketPixie Custom Code admin page. -->";
+		if ($file==="404.php") return false;
 	endif;
 }
 class CustomCodeAdmin extends AdminPage {
@@ -102,6 +103,9 @@ class CustomCodeAdmin extends AdminPage {
 					case 'afterposts':
 						writeto($_POST['code'],"afterposts.php");
 						break;
+					case '404':
+						writeto($_POST['code'],"404.php");
+						break;
 					default:
 						break;
 					endswitch;
@@ -120,6 +124,9 @@ class CustomCodeAdmin extends AdminPage {
 						break;
 					case 'afterposts':
 						unlink(CUSTOMPATH .'/afterposts.php');
+						break;
+					case '404':
+						unlink(CUSTOMPATH .'/404.php');
 						break;
 					default:
 						break;
@@ -224,6 +231,28 @@ class CustomCodeAdmin extends AdminPage {
 							<input type="hidden" name="file" value="afterposts" />
 						</p>
 					</form>
+					<h3>404</h3>
+					<p>Enter HTML markup, PHP code, or JavaScript that you would like to appear in a 404 page.</p>
+					<form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>?page=customcode.php&amp;add=true" class="form-table">
+					<?php wp_nonce_field('wicketpixie-settings'); ?>
+						<h4>Edit 404 code</h4>
+						<p><textarea name="code" id="code" style="border: 1px solid #999999;" cols="80" rows="25" /><?php echo fetchcustomcode("404.php",true); ?></textarea></p>
+						<p class="submit">
+							<input name="save" type="submit" value="Save 404 code" /> 
+							<input type="hidden" name="action" value="add" />
+							<input type="hidden" name="file" value="404" />
+						</p>
+					</form>
+					<form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>?page=customcode.php&amp;clear=true" class="form-table">
+					<?php wp_nonce_field('wicketpixie-settings'); ?>
+						<h4>Clear 404 code</h4>
+						<p>WARNING: This will delete all custom code you have entered to appear in 404 pages, if you want to continue, click 'Clear 404 code'</p>
+						<p class="submit">
+							<input name="clear" type="submit" value="Clear 404 code" />
+							<input type="hidden" name="action" value="clear" />
+							<input type="hidden" name="file" value="404" />
+						</p>
+					</form>
 				</div>
 			<?php include_once('advert.php');
 	}
@@ -251,4 +280,8 @@ function wp_after_home_post_code() {
 **/
 function wp_after_posts_code() {
 	return fetchcustomcode("afterposts.php");
+}
+
+function wp_custom_404_code() {
+	return fetchcustomcode("404.php");
 } ?>

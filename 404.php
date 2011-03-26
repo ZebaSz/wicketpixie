@@ -3,8 +3,10 @@
 			<div id="content">
 				<!-- page -->
 				<div class="page">
+					<?php if (wp_custom_404_code() === false): ?>
 					<h1><?php _e("We Can't Find the Droid You're Looking For", 'wicketpixie') ?></h1>
 					<p><?php printf(__("The page may have been removed or renamed. Be sure to check your spelling. If all else fails, you can %s, return to the %s, or try searching.", 'wicketpixie'), '<a href="javascript:history.back()">'.__('go back to the page you came from', 'wicketpixie').'</a>', '<a href="'.get_option('home').'/">'.__('homepage', 'wicketpixie').'</a>') ?></p>
+					<?php endif; ?>
 				</div>
 				<!-- /page -->
 			</div>
