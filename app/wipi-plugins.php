@@ -12,22 +12,15 @@
  */
 require_once(TEMPLATEPATH .'/functions.php');
 $DEBUG = DEBUG;
+$del_plugins = <<<HTML
+<p>Some WiPi plugins were removed. This is because updating them is tiresome (whilst WordPress can update automatically most of them), and the same functionality can be obtained without integration (they can be installed separately). The following plugins were removed:
+<ul>
+<li>All In One SEO Pack</li>
+<li>AskApache Google 404 (you can use <a href="admin.php?page=customcode.php">custom 404 code</a> to regain integration)</li>
+<li>StatPress Reloaded</li>
+HTML;
 $plugins = array(
 	'name' => '',
-	array(
-		"name" => "All In One SEO Pack",
-		"description" => "It's filled with SEO goodies.",
-		"id" => 'wicketpixie_plugin_all_in_one_seo_pack',
-		'path' => TEMPLATEPATH .'/plugins/all-in-one-seo-pack/all_in_one_seo_pack.php',
-		"std" => 'false',
-		"type" => 'checkbox'),
-	array(
-		"name" => "AskApache Google 404",
-		"description" => "Displays unbeatable information to site visitors arriving at a non-existant page (from a bad link). Major SEO with Google AJAX, Google 404 Helper, Related Posts, Recent Posts, etc..",
-		"id" => 'wicketpixie_plugin_aagoog404',
-		'path' => TEMPLATEPATH .'/plugins/askapache-google-404/askapache-google-404.php',
-		"std" => 'false',
-		"type" => "checkbox"),
 	array(
 		"name" => "Automatically Hyperlink URLs",
 		"description" => "Automatically hyperlinks URLs in post contents.",
@@ -75,13 +68,6 @@ $plugins = array(
 		"description" => "Adds a more advanced paging navigation to your WordPress blog.",
 		"id" => 'wicketpixie_plugin_pagenavi',
 		'path' => TEMPLATEPATH .'/plugins/wp-pagenavi/wp-pagenavi.php',
-		"std" => 'false',
-		"type" => 'checkbox'),
-	array(
-		"name" => "StatPress Reloaded",
-		"description" => "A really nifty stats plugin.",
-		"id" => 'wicketpixie_plugin_statpress-reloaded',
-		'path' => TEMPLATEPATH .'/plugins/statpress-reloaded/statpress.php',
 		"std" => 'false',
 		"type" => 'checkbox'),
 	array(
