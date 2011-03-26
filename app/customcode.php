@@ -166,7 +166,7 @@ class CustomCodeAdmin extends AdminPage {
 						</p>
 					</form>
 					<h3>Custom Footer</h3>
-					<p>Enter HTML markup, PHP code, or JavaScript that you would like to appear just before the &lt;/bodygt; tag of your site.</p>
+					<p>Enter HTML markup, PHP code, or JavaScript that you would like to appear just before the &lt;/body&gt; tag of your site.</p>
 					<form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>?page=customcode.php&amp;add=true" class="form-table">
 					<?php wp_nonce_field('wicketpixie-settings'); ?>
 						<h4>Edit Custom Footer file</h4>
