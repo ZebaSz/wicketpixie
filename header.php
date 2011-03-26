@@ -176,11 +176,11 @@ $adsense = new AdsenseAdmin; ?>
 	<div id="wrapper">
 		<!-- nav -->
 		<div id="nav">
-			<ul>
 			<?php if (function_exists('wp_nav_menu')) :
-				wp_nav_menu(array('theme_location' => 'primary'));
-			else :
-				if (!is_home()) : ?>
+				wp_nav_menu(array('theme_location' => 'primary', 'container' => false));
+			else : ?>
+			<ul class="menu">
+				<?php if (!is_home()) : ?>
 					<li><a href="<?php bloginfo('home'); ?>/">Home</a></li>
 				<?php endif;
 				if (get_option('wicketpixie_adsense_search_enabled') == 'true') :
