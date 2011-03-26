@@ -12,7 +12,7 @@
  */
 require_once(TEMPLATEPATH .'/functions.php');
 $DEBUG = DEBUG;
-$del_plugins = <<<HTML
+$plugins_desc = <<<HTML
 <p>Some WiPi plugins were removed. This is because updating them is tiresome (whilst WordPress can update automatically most of them), and the same functionality can be obtained without integration (they can be installed separately). The following plugins were removed:
 <ul>
 <li>All In One SEO Pack</li>
@@ -21,6 +21,7 @@ $del_plugins = <<<HTML
 HTML;
 $plugins = array(
 	'name' => '',
+	'desc' => $plugins_desc,
 	array(
 		"name" => "Automatically Hyperlink URLs",
 		"description" => "Automatically hyperlinks URLs in post contents.",
