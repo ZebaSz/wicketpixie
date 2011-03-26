@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WicketPixie\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-03-24 02:00-0300\n"
+"POT-Creation-Date: 2011-03-25 23:00-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -69,6 +69,10 @@ msgstr ""
 
 #: activity.php:61 archive.php:53 index.php:49 search.php:31
 msgid "Newer"
+msgstr ""
+
+#: comments.php:18
+msgid "Comments are closed"
 msgstr ""
 
 #: comments.php:60

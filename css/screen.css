@@ -991,42 +991,44 @@ body {
 	clear: left;
 }
 
-#comments div.comment {
+#comments .comment-body {
 	clear: both;
-	float: left;
-	width: 100%;
+	border-bottom: 1px solid #eee;
+	margin-bottom: 1.4em;
 }
 
 #comments .comment {
 	margin-bottom: 1.4em;
+	padding-left: 0;
+	background: none;
+}
+
+#comments .comment .parent {
 	border-bottom: 1px solid #eee;
 }
 
-#content #comments h2 {
-	padding-bottom: 5px;
-	border-bottom: 1px solid #eee;
-}
+#comments .children {
+	margin-left: 20px;
+} 
 
-#content #comments h2, #content #comment-form h2 {
-	margin-top: 1.4em;
-	color: #333;
-	font-size: 2.0em;
-}
-
-#comments .comment .meta {
+#comments .comment-meta {
 	float: left;
-	width: 120px;
-	text-align: right;
-	overflow: hidden;
-	padding-top: 1px;;
+	width: 110px;
+	font-size: 1.1em;
 }
 
-#comments .vcard {
-	font-size: 1.2em;
+#comments cite.fn {
+	font-size: 1.4em;
+	font-weight: bold;
+}
+
+#comments .says {
+	display: none;
 }
 
 #comments .reply {
 	margin-bottom: 1.2em;
+	clear: both;
 }
 
 #comments .comment .content {
@@ -1034,7 +1036,7 @@ body {
 	width: 365px;
 }
 
-#content .comment img.avatar {
+#comments .comment img.avatar {
 	float: right;
 	display: block;
 	width: 48px;
@@ -1046,47 +1048,36 @@ body {
 	border: 0;
 }
 
-#content .comment p {
-	margin-bottom: 1.2em;
+#comments .comment p {
 	font-size: 1.2em;
 	overflow: hidden;
+	margin: -20px 65px 1.2em 125px;
 }
 
-#content .comment h3, #content .comment h5 {
-	border-bottom: 0;
-}
-
-#content .comment h3 {
-	margin: -3px 0 5px;
-	font-size: 1.4em;
-	color: #666;
-}
-
-#content .comment h3 a:link, #content .comment h3 a:active, #content .comment h3 a:visited {
-	text-decoration: none;
-	border-bottom: 1px solid #ddd;
-}
-
-#content .comment h3 a:hover {
-	
-}
-
-#content .comment h5 {
-	margin-bottom: 10px;
-	font-size: 1.1em;
-	font-weight: normal;
-	line-height: 1.3em;
-}
-
-#content .comment h5 a:link, #content .comment h5 a:active, #content .comment h5 a:visited {
+#comments .comment-meta a:link, #content .comment-meta a:active, #content .comment-meta a:visited {
 	color: #666;
 	text-decoration: none;
 }
 
-#content .comment h5 a:hover {
+#comments .comment-meta a:hover {
 	color: #333;
 	text-decoration: underline;
 	border-bottom: 0;
+}
+
+#comments h2 {
+	border-bottom: 1px solid #EEEEEE;
+	padding-bottom: 5px;
+}
+
+#comments h2, #content #comment-form h2 {
+	color: #333333;
+	font-size: 2em;
+	margin-top: 1.4em;
+}
+
+#comments h3.nocomments {
+	border: none;
 }
 
 #comment-form {

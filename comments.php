@@ -12,39 +12,11 @@ $oddcomment = 'alt'; ?>
 <!-- You can start editing here. -->
 <!-- comments -->
 <div id="comments">
-<?php if (function_exists('wp_list_comments')) : ?>
 	<h2><?php comments_number();?></h2>
 	<ul class="commentlist"><?php wp_list_comments();?></ul>
-<?php else :
-if ($comments) : ?>
-	<h2><?php comments_number('No Comments', 'One Comment', '% Comments' );?></h2>
-	<?php foreach ($comments as $comment) : ?>
-	<!-- comment -->
-	<div class="comment" id="comment-<?php comment_ID() ?>">
-		<!-- comment meta -->
-		<div class="meta">
-			<h3 style="padding:5px 0 0 0;" title="Visit this author's website"><?php comment_author_link() ?></h3>
-			<h5><a href="#comment-<?php comment_ID() ?>" title="Permanent Link to this comment"><strong><?php comment_time('F jS, Y') ?></strong><br/> at <?php comment_time('g:ia') ?></a></h5>
-		</div>
-		<!-- /comment meta -->
-		<!-- comment content -->
-		<div class="content">
-			<?php echo get_avatar( get_comment_author_email(), $size = '36', $default = 'images/avatar.jpg' );
-			if ($comment->comment_approved == '0') : ?>
-			<p><em>Your comment is awaiting moderation.</em></p>
-			<?php endif;
-			comment_text() ?>
-		</div>
-		<!-- /comment content -->
-	</div>
-	<!-- /comment -->
-	<?php endforeach; // end for each comment ?>
-<?php else : // this is displayed if there are no comments so far
-	if ('open' != $post->comment_status) : //comments are closed ?>
-		<p class="nocomments">Comments are closed.</p>
-	<?php endif; // If comments are closed
-endif; // If there are no comments
-endif; // check for wp_list_comments ?>
+	<?php if ('open' != $post->comment_status) : //comments are closed ?>
+	<h3 class="nocomments"><?php _e('Comments are closed', 'wicketpixie'); ?></h3>
+	<?php endif; // If comments are closed ?>
 </div>
 <!-- /comments -->
 <?php if (function_exists('comment_form')) : ?>

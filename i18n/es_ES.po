@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WicketPixie\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-03-24 02:00-0300\n"
-"PO-Revision-Date: 2011-03-24 02:30-0300\n"
+"POT-Creation-Date: 2011-03-25 23:00-0300\n"
+"PO-Revision-Date: 2011-03-25 23:00-0300\n"
 "Last-Translator: ZebaSz <zebaszp@gmail.com>\n"
 "Language-Team: ZebaSz <zebaszp@gmail.com>\n"
 "Language: Spanish \n"
@@ -73,6 +73,10 @@ msgstr "Más"
 #: activity.php:61 archive.php:53 index.php:49 search.php:31
 msgid "Newer"
 msgstr "Nuevos"
+
+#: comments.php:18
+msgid "Comments are closed"
+msgstr "Los Comentarios están Cerrados"
 
 #: comments.php:60
 msgid "Cancel reply"
