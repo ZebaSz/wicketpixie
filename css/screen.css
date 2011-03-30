@@ -653,6 +653,8 @@ body {
 }
 #content img.wp-smiley {
 	border: 0;
+	display: inline;
+	vertical-align: middle;
 }
 #content .post-meta {
 	padding-top: 30px;
