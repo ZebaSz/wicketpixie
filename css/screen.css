@@ -577,21 +577,14 @@ body {
 	background-color: #ccc;
 	-moz-border-radius: 20px;
 	border-radius: 20px;
-}
-#content .post-comments ul {
-	float: left;
-	width: 100%;
-	margin: 0;
 	padding: 2px 0;
-}
-#content .post-comments ul li {
-	float: left;
-	margin: 0;
-	padding: 0;
-	background: none;
 	font-size: 1.2em;
 }
-#content .post-comments li.post-comments-count {
+#content .post-comments div {
+	float: left;
+	line-height: 1.7em;
+}
+#content .post-comments-count {
 	margin: 0 3px;
 	background-color: #f6f6f6;
 	padding: 6px 10px 1px;
@@ -611,7 +604,7 @@ body {
 #content .post-comments-count a:hover {
 	color: #333;
 }
-#content .post-comments li.post-comments-add {
+#content .post-comments-add {
 	position: relative;
 	display: block;
 	width: 16px;
@@ -620,7 +613,7 @@ body {
 	padding: 0;
 	overflow: hidden;
 }
-#content li.post-comments-add span {
+#content .post-comments-add span {
 	position: absolute;
 	width: 14px;
 	height: 14px;
