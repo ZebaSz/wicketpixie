@@ -640,16 +640,17 @@ body {
 #content img {
 	display: block;
 	/* border: 5px solid #ddd; */
-	max-width: 340px;
+	max-width: 450px;
 	height: auto;
 }
 #content img[align $='left'], #content .alignleft {
 	float: left;
-	margin: 0 14px 10px 0;
 }
 #content img[align $='right'], #content .alignright {
 	float: right;
-	margin: 0 0 10px 14px;
+}
+#content img[align $='center'], #content .aligncenter {
+	margin: 0 auto;
 }
 #content img.wp-smiley {
 	border: 0;
