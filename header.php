@@ -25,7 +25,6 @@ $adsense = new AdsenseAdmin; ?>
 	<link rel="stylesheet" href="<?php bloginfo('template_directory'); ?>/css/screen.css?<?php echo $time; ?>" type="text/css" media="screen, projection" />
 	<link rel="stylesheet" href="<?php bloginfo('template_directory'); ?>/css/print.css?<?php echo $time; ?>" type="text/css" media="print" />
 	<!--[if lte IE 8]><link rel="stylesheet" href="<?php bloginfo('template_directory'); ?>/css/ie.css?<?php echo $time; ?>" type="text/css" media="screen, projection" /><![endif]-->
-	<!--[if lte IE 7]><link rel="stylesheet" href="<?php bloginfo('template_directory'); ?>/css/ie7.css?<?php echo $time; ?>" type="text/css" media="screen, projection" /><![endif]-->
 	<!--[if lte IE 6]><link rel="stylesheet" href="<?php bloginfo('template_directory'); ?>/css/ie6.css?<?php echo $time; ?>" type="text/css" media="screen, projection" /><![endif]-->
 	<link rel="alternate" type="application/rss+xml" title="<?php bloginfo('name'); ?> RSS Feed" href="<?php echo $blogfeed; ?>" />
 	<link rel="pingback" href="<?php bloginfo('pingback_url'); ?>" />
