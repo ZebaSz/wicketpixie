@@ -70,7 +70,7 @@ $adsense = new AdsenseAdmin; ?>
 </head>
 <body>
 	<?php if(get_option('wicketpixie_enable_ajax_loader') == 'true') : ?>
-	<!-- AJAX DIV Loader, enable it in WicketPixie Settings -->
+	<!-- AJAX DIV Loader -->
 	<div id="loadingFrame">
 		<div id="loading">
 			<img src="<?php echo get_template_directory_uri(); ?>/images/loading.gif" alt="Loading"/><br />
@@ -80,6 +80,7 @@ $adsense = new AdsenseAdmin; ?>
 	<?php endif;
 	flush(); ?>
 <!-- google_ad_section_start(weight=ignore) -->
+	<?php if (!function_exists('is_admin_bar_showing') || !is_admin_bar_showing()) : ?>
 	<!-- topbar -->
 	<div id="topbar">
 		<!-- topbar-inner -->
@@ -111,6 +112,7 @@ $adsense = new AdsenseAdmin; ?>
 		</ul>
 	</div>
 	<!-- /subscribe -->
+	<?php endif; ?>
 	<!-- header -->
 	<div id="header">
 		<!-- header-inner -->
