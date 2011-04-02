@@ -216,7 +216,7 @@ function wicketpixie_wp_head() {
 		#content .comment h3 a:link, #content .comment h3 a:active, #content .comment h3 a:visited { color: <?php echo $wicketpixie_theme_content_links_color; ?>; }
 		#content .comment h3 a:hover { color: #000; border-bottom: 1px solid <?php echo $wicketpixie_theme_content_links_color; ?>; }
 		#content .comment h5 { font-family: <?php echo $wicketpixie_theme_body_font; ?>; }
-		#content img { max-width: <?php echo $wicketpixie_theme_post_max_image_width; ?>; }
+		#content img { max-width: <?php echo $wicketpixie_theme_post_max_image_width; ?>px; }
 		#comment-form input, #comment-form textarea { font-family: <?php echo $wicketpixie_theme_body_font; ?>; }
 		#sidebar a:link, #sidebar a:visited, #sidebar a:active { color: <?php echo $wicketpixie_theme_sidebar_links_color; ?>; }
 		#sidebar a:hover { color: #000; }

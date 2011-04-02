@@ -632,8 +632,6 @@ body {
 }
 #content img {
 	display: block;
-	/* border: 5px solid #ddd; */
-	max-width: 450px;
 	height: auto;
 }
 #content img[align $='left'], #content .alignleft {
