@@ -28,6 +28,13 @@ page. The rest should work just as it did before.
 
 Upgrading to WicketPixie 1.4+:
 
+In this version, some BIG changes were made which WILL break some of your configuration.
+Please read this carefully. If you're in doubt, just make sure to write down all of your
+data, then proceed.
+All custom code options were condensed in one page, and now use simpler, unified
+functions. Home Custom code had a different way to store data, so you will lose it
+with this upgrade. Write it down, then add it back in the custom code admin page. It
+was renamed as "After-Home-Meta".
 Some WiPi plugins were removed to reduce bloat.  All plugins removed can be installed
 via the Plugin Manager, which also auto-updates them. However, their configurations as
 WiPi plugins will be lost. Please write them down before upgrading, then install and
