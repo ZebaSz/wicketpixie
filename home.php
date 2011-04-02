@@ -51,7 +51,7 @@ $wp_auth_credit= get_option('wicketpixie_show_post_author'); ?>
 					<?php endif;
 					the_content(__('Continue reading %d', 'wicketpixie').'&raquo;'); ?>
 					</div>
-					<?php wp_after_home_post_code(); ?>
+					<?php wp_customcode("afterhomepost"); ?>
 				</div>
 				<!-- /post -->
 				<!-- google_ad_section_end -->
@@ -94,9 +94,7 @@ $wp_auth_credit= get_option('wicketpixie_show_post_author'); ?>
 				</div>
 				<!-- /post-meta -->
 				<!-- Custom Code Area -->
-				<?php if(get_option('wicketpixie_home_custom_code') != false && get_option('wicketpixie_home_custom_code') != '') :
-					echo stripslashes(get_option('wicketpixie_home_custom_code'));
-				endif; ?>
+				<?php wp_customcode("afterhomemeta"); ?>
 				<!-- /Custom Code Area -->
 				<?php endwhile;
 				endif;

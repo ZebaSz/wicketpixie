@@ -20,29 +20,15 @@ define("CUSTOMPATH",TEMPLATEPATH ."/app/custom");
 /**
 * This function checks if the directory set to CUSTOMPATH exists
 * or the files within it.
-* Arguments:
-* $q: The mode; If 1, then we check for the directory;
-* If 2, we check for the file
-* $file: A certain file to look for. (not needed if $q == 1)
+* $file: A certain file to look for.
 **/
-function checkfs($q,$file = NULL) {
+function checkfs($file) {
 	clearstatcache();
-	if($q == 1) :
-		$isdir = file_exists(CUSTOMPATH);
-		if($isdir != true) :
-			mkdir(CUSTOMPATH,0777);
-			return false;
-		else :
-			return true;
-		endif;
-	elseif($q == 2) :
-		$isfile = file_exists(CUSTOMPATH ."/$file");
-		if($isfile != true) :
-			touch(CUSTOMPATH ."/$file");
-			return false;
-		else :
-			return true;
-		endif;
+	if(!file_exists(CUSTOMPATH)) :
+		mkdir(CUSTOMPATH,0777);
+	endif;
+	if(!file_exists(CUSTOMPATH ."/$file")) :
+		touch(CUSTOMPATH ."/$file");
 	endif;
 }
 /**
@@ -53,8 +39,7 @@ function checkfs($q,$file = NULL) {
 **/
 function writeto($code,$file,$magick = false) {
 	// Check and make sure everything is created and writable
-	checkfs(1);
-	checkfs(2,$file);
+	checkfs($file);
 	// Write the submitted code to the file
 	file_put_contents(CUSTOMPATH ."/$file",($magick)?$code:stripslashes($code));
 }
@@ -70,7 +55,7 @@ function fetchcustomcode($file,$raw = false) {
 		endif;
 	else :
 		echo "<!-- No custom code found, add code on the WicketPixie Custom Code admin page. -->";
-		if ($file==="404.php") return false;
+		return false;
 	endif;
 }
 class CustomCodeAdmin extends AdminPage {
@@ -90,47 +75,11 @@ class CustomCodeAdmin extends AdminPage {
 		if ( $_GET['page'] == basename(__FILE__) ) :
 			if (isset($_POST['action']) && $_POST['action'] == 'add') :
 				if (isset($_POST['file'])) :
-					switch ($_POST['file']) :
-					case 'header':
-						writeto($_POST['code'],"header.php");
-						break;
-					case 'footer':
-						writeto($_POST['code'],"footer.php");
-						break;
-					case 'afterhomepost':
-						writeto($_POST['code'],"afterhomepost.php");
-						break;
-					case 'afterposts':
-						writeto($_POST['code'],"afterposts.php");
-						break;
-					case '404':
-						writeto($_POST['code'],"404.php");
-						break;
-					default:
-						break;
-					endswitch;
+					writeto($_POST['code'],$_POST['file'].".php");
 				endif;
 			elseif (isset($_POST['action']) && $_POST['action'] == 'clear') :
 				if (isset($_POST['file'])) :
-					switch ($_POST['file']) :
-					case 'header':
-						unlink(CUSTOMPATH .'/header.php');
-						break;
-					case 'footer':
-						unlink(CUSTOMPATH .'/footer.php');
-						break;
-					case 'afterhomepost':
-						unlink(CUSTOMPATH .'/afterhomepost.php');
-						break;
-					case 'afterposts':
-						unlink(CUSTOMPATH .'/afterposts.php');
-						break;
-					case '404':
-						unlink(CUSTOMPATH .'/404.php');
-						break;
-					default:
-						break;
-					endswitch;
+					unlink(CUSTOMPATH."/".$_POST['file'].".php");
 				endif;
 			endif;
 		endif;
@@ -144,7 +93,7 @@ class CustomCodeAdmin extends AdminPage {
 					<h2><?php _e('Custom Code'); ?></h2>
 					<p>Click any title to enter special code (HTML, PHP, JavaScript) which will be included in the site template. If you want to delete any code, use the "Clear" buttons.</p>
 					<h3><a href="javascript:;" onmousedown="toggleDiv('edit_custom_header');">Custom Header</a></h3>
-					<p>Enter HTML markup, PHP code, or JavaScript that you would like to appear between the &lt;head&gt; and &lt;/head&gt; tags of your site.</p>
+					<p>Enter HTML markup, PHP code, or JavaScript that you would like to appear the &lt;head&gt; and &lt;/head&gt; tags of your site.</p>
 					<div id="edit_custom_header" style="display: none;">
 						<form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>?page=customcode.php&amp;add=true" class="form-table">
 						<?php wp_nonce_field('wicketpixie-settings'); ?>
@@ -239,6 +188,54 @@ class CustomCodeAdmin extends AdminPage {
 							</p>
 						</form>
 					</div>
+					<h3><a href="javascript:;" onmousedown="toggleDiv('edit_after_home_meta');">After-Home-Meta</a></h3>
+					<p>Enter HTML markup, PHP code, or JavaScript that you would like to appear after the post meta data but before the Flickr Widget, Embedded Video, etc.</p>
+					<div id="edit_after_home_meta" style="display: none;">
+						<form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>?page=customcode.php&amp;add=true" class="form-table">
+						<?php wp_nonce_field('wicketpixie-settings'); ?>
+							<h4>Edit After-Home-Meta code</h4>
+							<p><textarea name="code" id="code" style="border: 1px solid #999999;" cols="80" rows="25" /><?php echo fetchcustomcode("afterhomemeta.php",true); ?></textarea></p>
+							<p class="submit">
+								<input name="save" type="submit" value="Save After-Home-Meta code" /> 
+								<input type="hidden" name="action" value="add" />
+								<input type="hidden" name="file" value="afterhomemeta" />
+							</p>
+						</form>
+						<form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>?page=customcode.php&amp;clear=true" class="form-table">
+						<?php wp_nonce_field('wicketpixie-settings'); ?>
+							<h4>Clear After-Home-Met code</h4>
+							<p>WARNING: This will delete all custom code you have entered to appear after the post meta data on the homepage, if you want to continue, click 'Clear After-Home-Meta code'</p>
+							<p class="submit">
+								<input name="clear" type="submit" value="Clear After-Home-Meta code" />
+								<input type="hidden" name="action" value="clear" />
+								<input type="hidden" name="file" value="afterhomemeta" />
+							</p>
+						</form>
+					</div>
+					<h3><a href="javascript:;" onmousedown="toggleDiv('custom_home_sidebar');">Custom Sidebar Code</a></h3>
+					<p>Enter HTML markup, PHP code, or JavaScript that you would like to appear after the Tag Cloud section of the homepage sidebar.</p>
+					<div id="custom_home_sidebar" style="display: none;">
+						<form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>?page=<?php echo $this->filename; ?>" class="form-table">
+						<?php wp_nonce_field('wicketpixie-settings'); ?>
+							<h4>Edit Custom Home Sidebar code</h4>
+							<p><textarea name="code" id="code" style="border: 1px solid #999999;" cols="80" rows="25" /><?php echo fetchcustomcode("homesidebar.php",true); ?></textarea></p>
+							<p class="submit">
+								<input name="save" type="submit" value="Save Custom Home Sidebar code" /> 
+								<input type="hidden" name="action" value="add" />
+								<input type="hidden" name="file" value="homesidebar" />
+							</p>
+						</form>
+						<form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>?page=<?php echo $this->filename; ?>" class="form-table">
+						<?php wp_nonce_field('wicketpixie-settings'); ?>
+							<h4>Clear Custom Home Sidebar code</h4>
+							<p>WARNING: This will delete all custom code you have entered to appear after the Tag Cloud section of the homepage sidebar, if you want to continue, click 'Clear Custom Home Sidebar code'</p>
+							<p class="submit">
+								<input name="clear" type="submit" value="Clear Custom Home Sidebar code" />
+								<input type="hidden" name="action" value="clear" />
+								<input type="hidden" name="file" value="homesidebar" />
+							</p>
+						</form>
+					</div>
 					<h3><a href="javascript:;" onmousedown="toggleDiv('edit_custom_404');">Custom 404 page</a></h3>
 					<p>Enter HTML markup, PHP code, or JavaScript that you would like to appear in a 404 page (this will replace the default message).</p>
 					<div id="edit_custom_404" style="display: none;">
@@ -276,31 +273,7 @@ class CustomCodeAdmin extends AdminPage {
 			</script>
 	<?php }
 }
-/**
-* This is called in header.php and displays the custom header code.
-**/
-function wp_customheader() {
-	return fetchcustomcode("header.php");
-}
-/**
-* This is called in footer.php and displays the custom footer code.
-**/
-function wp_customfooter() {
-	return fetchcustomcode("footer.php");
-}
-/**
-* This is called in home.php (and maybe index.php) and displays after-home-post code.
-**/
-function wp_after_home_post_code() {
-	return fetchcustomcode("afterhomepost.php");
-}
-/**
-* This is called in single.php and displays after-posts code.
-**/
-function wp_after_posts_code() {
-	return fetchcustomcode("afterposts.php");
-}
-
-function wp_custom_404_code() {
-	return fetchcustomcode("404.php");
+/* This is called in every template that allows custom code. */
+function wp_customcode($file) {
+	return fetchcustomcode("$file.php");
 } ?>

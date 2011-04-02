@@ -48,7 +48,7 @@ $adsense = new AdsenseAdmin; ?>
 	endif;
 	wp_head();
 	echo "\n";
-	wp_customheader();
+	wp_customcode("header");
 	echo "\n";
 	$blogurl = get_bloginfo('url');
 	$currurl = $blogurl.$_SERVER['REQUEST_URI'];

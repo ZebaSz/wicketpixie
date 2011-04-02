@@ -40,7 +40,7 @@
 	</script>
 <?php wp_footer(); ?>
 <?php echo "\n"; ?>
-<?php wp_customfooter(); ?>
+<?php wp_customcode("footer"); ?>
 <?php echo "\n"; ?>
 </body>
 </html>

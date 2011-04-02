@@ -85,8 +85,7 @@
 		<?php the_widget( 'WP_Widget_Tag_Cloud', 'title='.__('Popular Tags', 'wicketpixie'), 'before_title=<h3>&after_title=</h3>'); ?>
 		<div class="widget">
 			<!-- Custom Sidebar Code -->
-			<?php require_once(TEMPLATEPATH .'/app/customcode.php');
-			fetchcustomcode('homesidebar.php'); ?>
+			<?php wp_customcode("homesidebar"); ?>
 			<!-- /Custom Sidebar Code -->
 		</div>
 	</div>

@@ -56,6 +56,7 @@ $wp_auth_credit= get_option('wicketpixie_show_post_author'); ?>
 					<?php endif;
 					the_content(); ?>
 					</div>
+					<?php wp_customcode("afterposts"); ?>
 				</div>
 				<!-- /post -->
 				<!-- google_ad_section_end -->
