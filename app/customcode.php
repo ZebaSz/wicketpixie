@@ -92,6 +92,30 @@ class CustomCodeAdmin extends AdminPage {
 				<div id="admin-options">
 					<h2><?php _e('Custom Code'); ?></h2>
 					<p>Click any title to enter special code (HTML, PHP, JavaScript) which will be included in the site template. If you want to delete any code, use the "Clear" buttons.</p>
+					<h3><a href="javascript:;" onmousedown="toggleDiv('edit_global_announcement');">Global Announcement</a></h3>
+					<p>Enter HTML markup, PHP code, or JavaScript that you would like to appear on the home page and all your posts as a global announcement.</p>
+					<div id="edit_global_announcement" style="display: none;">
+						<form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>?page=customcode.php&amp;add=true" class="form-table">
+						<?php wp_nonce_field('wicketpixie-settings'); ?>
+							<h4>Edit Global Announcement file</h4>
+							<p><textarea name="code" id="code" style="border: 1px solid #999999;" cols="80" rows="25" /><?php echo fetchcustomcode("global_announcement.php",true); ?></textarea></p>
+							<p class="submit">
+								<input name="save" type="submit" value="Save Global Announcement" /> 
+								<input type="hidden" name="action" value="add" />
+								<input type="hidden" name="file" value="global_announcement" />
+							</p>
+						</form>
+						<form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>?page=customcode.php&amp;clear=true" class="form-table">
+						<?php wp_nonce_field('wicketpixie-settings'); ?>
+							<h4>Clear Global Announcement</h4>
+							<p>WARNING: This will delete all custom code you have entered for your header, if you want to continue, click 'Clear Global Announcement'</p>
+							<p class="submit">
+								<input name="clear" type="submit" value="Clear Global Announcement" />
+								<input type="hidden" name="action" value="clear" />
+								<input type="hidden" name="file" value="global_announcement" />
+							</p>
+						</form>
+					</div>
 					<h3><a href="javascript:;" onmousedown="toggleDiv('edit_custom_header');">Custom Header</a></h3>
 					<p>Enter HTML markup, PHP code, or JavaScript that you would like to appear the &lt;head&gt; and &lt;/head&gt; tags of your site.</p>
 					<div id="edit_custom_header" style="display: none;">
@@ -274,6 +298,6 @@ class CustomCodeAdmin extends AdminPage {
 	<?php }
 }
 /* This is called in every template that allows custom code. */
-function wp_customcode($file) {
-	return fetchcustomcode("$file.php");
+function wp_customcode($file, $raw=false) {
+	return fetchcustomcode("$file.php", $raw);
 } ?>

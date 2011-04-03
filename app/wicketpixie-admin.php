@@ -89,37 +89,6 @@ class WiPiAdmin extends AdminPage {
 		$this->page_name = 'WicketPixie';
 		$this->page_description = 'WicketPixie requires some configuration before it works properly.';
 	}
-	function request_check() {
-		parent::request_check();
-		if (isset($_POST['action']) && $_POST['action'] == 'save-custom-code') :
-			if(isset($_POST['file']) && $_POST['file'] == 'global_announcement') :
-				require_once(TEMPLATEPATH .'/app/customcode.php');
-				writeto($_POST['code'],"global_announcement.php");
-			endif;
-		endif;
-	}
-	function after_form() { ?>
-		<h3>Global Announcement</h3>
-		<?php require_once(TEMPLATEPATH .'/app/customcode.php');
-		if(function_exists('fetchcustomcode')) :
-			$glob = fetchcustomcode('global_announcement.php',true);
-			if($glob == fetchcustomcode('idontexist.no')) :
-				$glob = "";
-			endif;
-		else :
-			$glob = "";
-		endif; ?>
-		<p>The text you enter here will appear on the home page and all your posts as a global announcement. HTML is allowed.</p>
-		<form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>?page=<?php echo $this->filename; ?>" class="form-table">
-		<?php wp_nonce_field('wicketpixie-settings'); ?>
-			<p><textarea name="code" id="code" style="border: 1px solid #999999;" cols="80" rows="15" /><?php echo $glob; ?></textarea></p>
-			<p class="submit">
-				<input name="save" type="submit" value="Save Global Announcement" /> 
-				<input type="hidden" name="action" value="save-custom-code" />
-				<input type="hidden" name="file" value="global_announcement" />
-			</p>
-		</form>
-	<?php }
 	function __destruct() {
 		unset($GLOBALS['site_settings'],$GLOBALS['socnet_settings'],$GLOBALS['misc_settings']);
 		parent::__destruct();

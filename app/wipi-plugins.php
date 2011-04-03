@@ -103,28 +103,4 @@ class WiPiPlugins extends AdminPage {
 		unset($GLOBALS['plugins']);
 		parent::__destruct();
 	}
-	function save() {
-		global $plugins;
-		//Special considerations for the Google 404
-		$aa404 = false;
-		foreach ( $plugins as $value ) :
-			if (isset($value['id']) && isset($_POST[$value['id']]) && !empty($_POST[$value['id']])) :
-				 if (strpos($_POST[$value['id']], "aagoog404") !== false) $aa404 = true;
-			endif;
-		endforeach;
-		if ($aa404) :
-			if (!class_exists('AskApacheGoogle404')) :
-				require_once(TEMPLATEPATH . "/plugins/askapache-google-404/askapache-google-404.php");
-			endif;
-			$tmp = new AskApacheGoogle404();
-			$tmp->activate();
-		else :
-			if (!class_exists('AskApacheGoogle404')) :
-				require_once(TEMPLATEPATH . "/plugins/askapache-google-404/askapache-google-404.php");
-			endif;
-			$tmp = new AskApacheGoogle404();
-			$tmp->deactivate();
-		endif;
-		parent::save();
-	}
 }

@@ -54,8 +54,8 @@ msgid "Add a Comment"
 msgstr "Agregar un Comentario"
 
 #: archive.php:31 home.php:29 index.php:28 single.php:29
-msgid "by"
-msgstr "por"
+msgid "by %s"
+msgstr "por %s"
 
 #: archive.php:31 archive.php:34 index.php:28 index.php:31 single.php:29 single.php:32
 msgid "Edit"

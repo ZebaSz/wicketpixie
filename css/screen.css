@@ -541,6 +541,21 @@ body {
 	color: #999;
 	line-height: 1.3em;
 }
+#content .post-author img {
+	float: right;
+	display: block;
+	width: 36px;
+	height: 36px;
+	margin-left: 10px;
+	padding: 3px;
+	overflow: hidden;
+	border: 0;
+	background-color: rgba(0, 0, 0, 0.15);
+	border-radius: 6px;
+	border-top-left-radius: 0;
+	-moz-border-radius: 6px;
+	-moz-border-radius-topleft: 0;
+}
 #content .post-meta .post-author p {
 	color: #666;
 }
