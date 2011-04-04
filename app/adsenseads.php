@@ -242,11 +242,11 @@ class AdsenseAdmin extends AdminPage
 	function adsenseMenu() {
 		$adsense = new AdsenseAdmin;
 		if ( isset( $_REQUEST['add'] ) ) : ?>
-		<div id="message" class="updated fade"><p><strong><?php echo __('Ad code added.'); ?></strong></p></div>
+		<div id="message" class="updated fade"><p><strong>Ad code added.</strong></p></div>
 		<?php endif; ?>
 			<div class="wrap">
 				<div id="admin-options">
-					<h2><?php _e('AdSense Settings'); ?></h2>
+					<h2>AdSense Settings</h2>
 					<p>Here you can add in your AdSense information and ad code so it can be displayed
 					on your blog. Need more help? <a href="#explain" title="Click for more info" id="explaintext">It's only a click away</a>.</p>
 					<div id="explain">

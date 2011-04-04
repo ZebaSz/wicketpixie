@@ -84,13 +84,13 @@ class CustomCodeAdmin extends AdminPage {
 			endif;
 		endif;
 		if ( isset( $_REQUEST['add'] ) ) : ?>
-		<div id="message" class="updated fade"><p><strong><?php echo __('Custom Code saved.'); ?></strong></p></div>
+		<div id="message" class="updated fade"><p><strong>Custom Code saved.</strong></p></div>
 		<?php elseif(isset($_REQUEST['clear'])) : ?>
-		<div id="message" class="updated fade"><p><strong><?php echo __('Custom Code cleared.'); ?></strong></p></div>
+		<div id="message" class="updated fade"><p><strong>Custom Code cleared.</strong></p></div>
 		<?php endif; ?>
 			<div class="wrap">
 				<div id="admin-options">
-					<h2><?php _e('Custom Code'); ?></h2>
+					<h2>Custom Code</h2>
 					<p>Click any title to enter special code (HTML, PHP, JavaScript) which will be included in the site template. If you want to delete any code, use the "Clear" buttons.</p>
 					<h3><a href="javascript:;" onmousedown="toggleDiv('edit_global_announcement');">Global Announcement</a></h3>
 					<p>Enter HTML markup, PHP code, or JavaScript that you would like to appear on the home page and all your posts as a global announcement.</p>

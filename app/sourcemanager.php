@@ -429,8 +429,8 @@ class SourceAdmin extends AdminPage {
 		*/
 		class ${t_title}FeedWidget extends WP_Widget {
 			function ${t_title}FeedWidget() {
-				\$widget_ops = array('classname' => 'widget_${cleaned}_feed','description' => __('Lists feed items from the ${title} feed added in the Social Me Manager.'));
-				\$this->WP_Widget('${cleaned}feed',__('${title} Feed'),\$widget_ops,null);
+				\$widget_ops = array('classname' => 'widget_${cleaned}_feed','description' => Lists feed items from the ${title} feed added in the Social Me Manager.');
+				\$this->WP_Widget('${cleaned}feed','${title} Feed'),\$widget_ops,null);
 			}
 			function widget(\$args,\$instance) {
 				extract(\$args);
@@ -494,34 +494,34 @@ class SourceAdmin extends AdminPage {
 			switch ($_POST['action']) :
 			case 'add':
 				SourceAdmin::add($_REQUEST); ?>
-				<div id="message" class="updated fade"><p><strong><?php echo __('Social Me Account saved.'); ?></strong></p></div>
+				<div id="message" class="updated fade"><p><strong>Social Me Account saved.</strong></p></div>
 				<?php break;
 			case 'gather':
 				SourceAdmin::gather($_REQUEST['id']);
 				break;
 			case 'edit':
 				SourceAdmin::edit($_REQUEST); ?>
-				<div id="message" class="updated fade"><p><strong><?php echo __('Social Me Account modified.'); ?></strong></p></div>
+				<div id="message" class="updated fade"><p><strong>Social Me Account modified.</strong></p></div>
 				<?php break;
 			case 'delete':
 				SourceAdmin::burninate($_REQUEST['id']); ?>
-				<div id="message" class="updated fade"><p><strong><?php echo __('Social Me Account removed.'); ?></strong></p></div>
+				<div id="message" class="updated fade"><p><strong>Social Me Account removed.</strong></p></div>
 				<?php break;
 			case 'regen_widgets':
 				SourceAdmin::create_widget(); ?>
-				<div id="message" class="updated fade"><p><strong><?php echo __('Social Me Widgets regenerated.'); ?></strong></p></div>
+				<div id="message" class="updated fade"><p><strong>Social Me Widgets regenerated.</strong></p></div>
 				<?php break;
 			case 'hulk_smash':
 				SourceAdmin::hulk_smash(); ?>
-				<div id="message" class="updated fade"><p><strong><?php echo __('Social Me database cleared.'); ?></strong></p></div>
+				<div id="message" class="updated fade"><p><strong>Social Me database cleared.</strong></p></div>
 				<?php break;
 			case 'install':
 				SourceAdmin::install(); ?>
-				<div id="message" class="updated fade"><p><strong><?php echo __('Social Me Manager installed.'); ?></strong></p></div>
+				<div id="message" class="updated fade"><p><strong>Social Me Manager installed.</strong></p></div>
 				<?php break;
 			case 'flush':
 				SourceAdmin::flush_streams($_REQUEST['flush_name']); ?>
-				<div id="message" class="updated fade"><p><strong><?php echo __('Social Me Account flushed.'); ?></strong></p></div>
+				<div id="message" class="updated fade"><p><strong>Social Me Account flushed.</strong></p></div>
 				<?php break;
 			default:
 				break;
@@ -529,7 +529,7 @@ class SourceAdmin extends AdminPage {
 		endif; ?>
 			<div class="wrap">
 				<div id="admin-options">
-					<h2><?php _e('Manage My "Social Me" Page'); ?></h2>
+					<h2>Manage My "Social Me" Page</h2>
 					<p>If you'd like to let your visitors know where else they may find you throughout the Web,
 					you can do it easily through your "Social Me" page. This is an exclusive feature of the WicketPixie theme for WordPress.
 					If you have accounts on other blogs, social networks, forums, Web sites, etc, add them here. For example,

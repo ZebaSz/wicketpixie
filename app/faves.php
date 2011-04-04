@@ -172,11 +172,11 @@ class FavesAdmin extends AdminPage {
 			endif;
 		endif;
 		if ( isset( $_REQUEST['add'] ) ) : ?>
-		<div id="message" class="updated fade"><p><strong><?php echo __('Fave saved.'); ?></strong></p></div>
+		<div id="message" class="updated fade"><p><strong>Fave saved.</strong></p></div>
 		<?php endif; ?>
 			<div class="wrap">
 				<div id="admin-options">
-					<h2><?php _e('Manage My Faves'); ?></h2>
+					<h2>Manage My Faves</h2>
 					<?php if( FavesAdmin::check() == true && FavesAdmin::count() != '' ) : ?>
 					<table class="form-table" style="margin-bottom:30px;">
 						<tr>

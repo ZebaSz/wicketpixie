@@ -4,8 +4,8 @@
  */
 class MyProfilesWidget extends WP_Widget {
 	function MyProfilesWidget() {
-		$widget_ops = array('classname' => 'widget_my_profiles','description' => __('Lists all the profiles added to the WicketPixie Social Me Manager'));
-		$this->WP_Widget('myprofiles',__('My Profiles'),$widget_ops,null);
+		$widget_ops = array('classname' => 'widget_my_profiles','description' => 'Lists all the profiles added to the WicketPixie Social Me Manager');
+		$this->WP_Widget('myprofiles','My Profiles',$widget_ops,null);
 	}
 	function widget($args,$instance) {
 		extract($args);

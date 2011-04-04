@@ -4,8 +4,8 @@
  */
 class SocialBadgesWidget extends WP_Widget {
 	function SocialBadgesWidget() {
-		$widget_ops = array('classname' => 'widget_social_badges','description' => __('Displays badges with links to four different social sites as defined in WicketPixie Admin.'));
-		$this->WP_Widget('socialbadges',__('Social Badges'),$widget_ops,null);
+		$widget_ops = array('classname' => 'widget_social_badges','description' => 'Displays badges with links to four different social sites as defined in WicketPixie Admin.');
+		$this->WP_Widget('socialbadges','Social Badges',$widget_ops,null);
 	}
 	function widget($args,$instance) {
 		extract($args);

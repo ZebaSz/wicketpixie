@@ -170,11 +170,11 @@ class NotifyAdmin extends AdminPage {
 		$notify= new NotifyAdmin;
 		$wp_notify = get_option('wicketpixie_notifications_enable');
 		if ( isset( $_REQUEST['add'] ) ) : ?>
-		<div id="message" class="updated fade"><p><strong><?php echo __('Service added.'); ?></strong></p></div>
+		<div id="message" class="updated fade"><p><strong>Service added.</strong></p></div>
 		<?php endif; ?>
 			<div class="wrap">
 				<div id="admin-options">
-					<h2><?php _e('Notification Settings'); ?></h2>
+					<h2>Notification Settings</h2>
 					<?php if($wp_notify != 'true') : ?>
 					<p><strong>WicketPixie Notifications are currently disabled, please go to the WicketPixie Options page to enable them.</strong><br /></p>
 					<?php endif; ?>
