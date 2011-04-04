@@ -5,62 +5,14 @@
 		SocialBadgesWidget::widget(array(),''); ?>
 		<!-- /social-buttons -->
 	<?php endif; ?>
-	<!-- width = 340, height = 240 -->
+	<!-- ustream -->
 	<?php if (get_option('wicketpixie_home_ustream_enable') == 'true') : ?>
 	<div id="home-youtube">
-		<?php echo "<h3>".get_option('wicketpixie_home_ustream_heading')."</h3>";
-		$key = "uzhqbxc7pqzqyvqze84swcer";
-		$ustream_channel = get_option('wicketpixie_ustream_channel');
-		if ($ustream_channel != false && $ustream_channel != "") :
-			$chan = $ustream_channel;
-		else :
-			$trip = true;
-			$ustream_height = get_option('wicketpixie_home_ustream_height');
-			if ($ustream_height != false && $ustream_height != "") :
-				$height = $ustream_height;
-			else :
-				$trip = true;
-			endif;
-			$ustream_width = get_option('wicketpixie_home_ustream_width');
-			if ($ustream_width != false && $ustream_width != "") :
-				$width = $ustream_width;
-			else :
-				$trip = true;
-			endif;
-			if (get_option($optpre.'home_ustream_autoplay') == 'true') :
-					$autoplay = true;
-			else :
-				$autoplay = false;
-			endif;
-			if ($trip == true) :
-				$out = "<!-- Please go back to the Home Editor and set the settings for this widget. -->";
-			else :
-				$url = "http://api.ustream.tv/php/channel/$chan/getInfo?key=$key";
-				$cl = curl_init($url);
-				curl_setopt($cl,CURLOPT_HEADER,false);
-				curl_setopt($cl,CURLOPT_RETURNTRANSFER,true);
-				$resp = curl_exec($cl);
-				curl_close($cl);
-				$resultsArray = unserialize($resp);
-				$out = $resultsArray['results'];
-			endif;
-			echo '<!--[if !IE]> -->
-	<object type="application/x-shockwave-flash" data="http://www.ustream.tv/flash/live/',$out['id'],'" width="',$width,'" height="',$height,'">
-<!-- <![endif]-->
-<!--[if IE]>
-	<object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,0,0" width="',$width,'" height="',$height,'">
-	<param name="movie" value="http://www.ustream.tv/flash/live/',$out['id'],'" />
-<!--><!-- http://Validifier.com -->
-	<param name="allowFullScreen" "value="true"/>
-	<param value="always" name="allowScriptAccess" />
-	<param value="transparent" name="wmode" />
-	<param value="viewcount=true&amp;autoplay=',$autoplay,'" name="flashvars" />
-	</object>
-<!-- <![endif]-->';
-		endif; ?>
+		<?php require_once(TEMPLATEPATH.'/widgets/ustream-widget.php');
+		UstreamWidget::widget(array('before_title'=>'<h3>','after_title'=>'</h3>'),array('title'=>get_option('wicketpixie_home_ustream_heading'),'channel'=>get_option('wicketpixie_ustream_channel'),'autoplay'=>get_option($optpre.'home_ustream_autoplay')), get_option('wicketpixie_home_ustream_height'), get_option('wicketpixie_home_ustream_width')); ?>
 	</div>
 	<?php endif; ?>
-	<!-- /youtube -->
+	<!-- /ustream -->
 	<!-- recent-posts -->
 	<div id="sidebar1">
 		<div class="widget">

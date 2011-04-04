@@ -4,10 +4,10 @@
  */
 class UstreamWidget extends WP_Widget {
 	function UstreamWidget() {
-		$widget_ops = array('classname' => 'widget_ustream','description' => __('Displays Ustream.tv object.'));
-		$this->WP_Widget('ustream',__('Ustream'),$widget_ops,null);
+		$widget_ops = array('classname' => 'widget_ustream','description' => 'Displays Ustream.tv object.');
+		$this->WP_Widget('ustream','Ustream',$widget_ops,null);
 	}
-	function widget($args,$instance) {
+	function widget($args,$instance,$height="240",$width="300") {
 		extract($args);
 		$title = apply_filters('widget_title',empty($instance['title']) ? false : $instance['title']);
 		$channel = empty($instance['channel']) ? get_option('wicketpixie_ustream_channel') : $instance['channel'];
@@ -17,7 +17,7 @@ class UstreamWidget extends WP_Widget {
 		$key = "uzhqbxc7pqzqyvqze84swcer";
 		$trip = ($channel == '') ? true : false;
 		if ($trip == true) :
-			$out = "<!-- Please go back to the Widget Page and set the settings for this widget. -->";
+			echo "<!-- Please go back to the Widget Page and set the settings for this widget. -->";
 		else :
 			$url = "http://api.ustream.tv/php/channel/$channel/getInfo?key=$key";
 			$cl = curl_init($url);
@@ -27,23 +27,19 @@ class UstreamWidget extends WP_Widget {
 			curl_close($cl);
 			$resultsArray = unserialize($resp);
 			$out = $resultsArray['results'];
-		endif;
-		if($trip == false) :
 			echo '<!--[if !IE]> -->
-  <object type="application/x-shockwave-flash" data="http://www.ustream.tv/flash/live/',$out['id'],'" width="300" height="240">
+	<object type="application/x-shockwave-flash" data="http://www.ustream.tv/flash/live/',$out['id'],'" width="',$width,'" height="',$height,'">
 <!-- <![endif]-->
 <!--[if IE]>
-  <object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,0,0" width="300" height="240">
+	<object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,0,0" width="',$width,'" height="',$height,'">
 	<param name="movie" value="http://www.ustream.tv/flash/live/',$out['id'],'" />
-<!--><!-- http://Validifier.com -->
+<!-->
 	<param name="allowFullScreen" "value="true"/>
 	<param value="always" name="allowScriptAccess" />
 	<param value="transparent" name="wmode" />
 	<param value="viewcount=true&amp;autoplay=',$autoplay,'" name="flashvars" />
-  </object>
+	</object>
 <!-- <![endif]-->';
-		else :
-			echo $out;
 		endif;
 		echo $after_widget;
 	}
@@ -67,12 +63,12 @@ class UstreamWidget extends WP_Widget {
 		$channel = htmlspecialchars($instance['channel']);
 		$autoplay = $instance['autoplay'];
 		echo '<p style="text-align:left">
-		<label for="',$this->get_field_name('title'),'">',__('Title:'),'<input style="width:150px" name="',$this->get_field_name('title'),'" id="',$this->get_field_id('title'),'" type="text" value="',$title,'" /></label><br />
-		<label for="',$this->get_field_name('channel'),'">',__('Channel:'),'<input style="width:150px" name="',$this->get_field_name('channel'),'" id="',$this->get_field_id('channel'),'" type="text" value="',$channel,'" /></label>
+		<label for="',$this->get_field_name('title'),'">Title:<input style="width:150px" name="',$this->get_field_name('title'),'" id="',$this->get_field_id('title'),'" type="text" value="',$title,'" /></label><br />
+		<label for="',$this->get_field_name('channel'),'">Channel:<input style="width:150px" name="',$this->get_field_name('channel'),'" id="',$this->get_field_id('channel'),'" type="text" value="',$channel,'" /></label>
 		</p>';
 		?>
 		<input class="checkbox" type="checkbox" <?php checked($instance['autoplay'],true); ?> id="<?php echo $this->get_field_id('autoplay'); ?>" name="<?php echo $this->get_field_name('autoplay'); ?>" />
-		<label for="<?php echo $this->get_field_id('autoplay'); ?>"><?php _e('Autoplay on Page Load'); ?></label>
+		<label for="<?php echo $this->get_field_id('autoplay'); ?>">Autoplay on Page Load</label>
 		</p>
 		<?php
 	}
