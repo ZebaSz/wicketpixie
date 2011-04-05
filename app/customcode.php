@@ -72,198 +72,41 @@ class CustomCodeAdmin extends AdminPage {
 				<div id="admin-options">
 					<h2>Custom Code</h2>
 					<p>Click any title to enter special code (HTML, PHP, JavaScript) which will be included in the site template. If you want to delete any code, use the "Clear" buttons.</p>
-					<h3><a href="javascript:;" onmousedown="toggleDiv('edit_global_announcement');">Global Announcement</a></h3>
-					<p>Enter HTML markup, PHP code, or JavaScript that you would like to appear on the home page and all your posts as a global announcement.</p>
-					<div id="edit_global_announcement" style="display: none;">
+					<?php $custom_codes = array(
+						array('title' => 'Global Announcement','file' => 'global_announcement', 'desc' => 'on the home page and all your posts as a global announcement'),
+						array('title' => 'Custom Header','file' => 'header', 'desc' => 'between the &lt;head&gt; and &lt;/head&gt; tags of your site'),
+						array('title' => 'Custom Footer','file' => 'footer', 'desc' => 'just before the &lt;/body&gt; tag of your site'),
+						array('title' => 'After-Home-Post','file'  => 'afterhomepost', 'desc' => 'between the post content and post meta-data on your homepage'),
+						array('title' => 'After-Posts','file' => 'afterposts', 'desc' => 'between the post content and post meta-data on individual posts'),
+						array('title' => 'After-Home-Meta','file' => 'afterhomemeta', 'desc' => 'after the post meta data but before the Flickr Widget, Embedded Video, etc'),
+						array('title' => 'Custom Home Sidebar code','file' => 'homesidebar', 'desc' => 'after the Tag Cloud section of the homepage sidebar'),
+						array('title' => 'Custom 404 code','file' => '404', 'desc' => 'in a 404 page (this will replace the default message)'));
+					foreach ($custom_codes as $custom_code): ?>
+					<h3><a href="javascript:;" onmousedown="toggleDiv('edit_<?php echo $custom_code['file']; ?>');"><?php echo $custom_code['title']; ?></a></h3>
+					<p>Enter HTML markup, PHP code, or JavaScript that you would like to appear <?php echo $custom_code['desc']; ?>.</p>
+					<div id="edit_<?php echo $custom_code['file']; ?>" style="display: none;">
 						<form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>?page=customcode.php&amp;add=true" class="form-table">
 						<?php wp_nonce_field('wicketpixie-settings'); ?>
-							<h4>Edit Global Announcement file</h4>
-							<p><textarea name="code" id="code" style="border: 1px solid #999999;" cols="80" rows="25" /><?php echo wp_customcode("global_announcement",true); ?></textarea></p>
+							<h4>Edit <?php echo $custom_code['title']; ?></h4>
+							<p><textarea name="code" id="code" style="border: 1px solid #999999;" cols="80" rows="25" /><?php echo wp_customcode($custom_code['file'],true); ?></textarea></p>
 							<p class="submit">
-								<input name="save" type="submit" value="Save Global Announcement" /> 
+								<input name="save" type="submit" value="Save <?php echo $custom_code['title']; ?>" /> 
 								<input type="hidden" name="action" value="add" />
-								<input type="hidden" name="file" value="global_announcement" />
+								<input type="hidden" name="file" value="<?php echo $custom_code['file']; ?>" />
 							</p>
 						</form>
 						<form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>?page=customcode.php&amp;clear=true" class="form-table">
 						<?php wp_nonce_field('wicketpixie-settings'); ?>
-							<h4>Clear Global Announcement</h4>
-							<p>WARNING: This will delete all custom code you have entered for your header, if you want to continue, click 'Clear Global Announcement'</p>
+							<h4>Clear <?php echo $custom_code['title']; ?></h4>
+							<p>WARNING: This will delete all custom code you have entered, if you want to continue, click 'Clear <?php echo $custom_code['title']; ?>'</p>
 							<p class="submit">
-								<input name="clear" type="submit" value="Clear Global Announcement" />
+								<input name="clear" type="submit" value="Clear <?php echo $custom_code['title']; ?>" />
 								<input type="hidden" name="action" value="clear" />
-								<input type="hidden" name="file" value="global_announcement" />
+								<input type="hidden" name="file" value="<?php echo $custom_code['file']; ?>" />
 							</p>
 						</form>
 					</div>
-					<h3><a href="javascript:;" onmousedown="toggleDiv('edit_custom_header');">Custom Header</a></h3>
-					<p>Enter HTML markup, PHP code, or JavaScript that you would like to appear the &lt;head&gt; and &lt;/head&gt; tags of your site.</p>
-					<div id="edit_custom_header" style="display: none;">
-						<form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>?page=customcode.php&amp;add=true" class="form-table">
-						<?php wp_nonce_field('wicketpixie-settings'); ?>
-							<h4>Edit Custom Header file</h4>
-							<p><textarea name="code" id="code" style="border: 1px solid #999999;" cols="80" rows="25" /><?php echo wp_customcode("header",true); ?></textarea></p>
-							<p class="submit">
-								<input name="save" type="submit" value="Save Custom Header" /> 
-								<input type="hidden" name="action" value="add" />
-								<input type="hidden" name="file" value="header" />
-							</p>
-						</form>
-						<form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>?page=customcode.php&amp;clear=true" class="form-table">
-						<?php wp_nonce_field('wicketpixie-settings'); ?>
-							<h4>Clear custom header</h4>
-							<p>WARNING: This will delete all custom code you have entered for your header, if you want to continue, click 'Clear Custom Header'</p>
-							<p class="submit">
-								<input name="clear" type="submit" value="Clear Custom Header" />
-								<input type="hidden" name="action" value="clear" />
-								<input type="hidden" name="file" value="header" />
-							</p>
-						</form>
-					</div>
-					<h3><a href="javascript:;" onmousedown="toggleDiv('edit_custom_footer');">Custom Footer</a></h3>
-					<p>Enter HTML markup, PHP code, or JavaScript that you would like to appear just before the &lt;/body&gt; tag of your site.</p>
-					<div id="edit_custom_footer" style="display: none;">
-						<form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>?page=customcode.php&amp;add=true" class="form-table">
-						<?php wp_nonce_field('wicketpixie-settings'); ?>
-							<h4>Edit Custom Footer file</h4>
-							<p><textarea name="code" id="code" style="border: 1px solid #999999;" cols="80" rows="25" /><?php echo wp_customcode("footer",true); ?></textarea></p>
-							<p class="submit">
-								<input name="save" type="submit" value="Save Custom Footer" /> 
-								<input type="hidden" name="action" value="add" />
-								<input type="hidden" name="file" value="footer" />
-							</p>
-						</form>
-						<form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>?page=customcode.php&amp;clear=true" class="form-table">
-						<?php wp_nonce_field('wicketpixie-settings'); ?>
-							<h4>Clear custom footer</h4>
-							<p>WARNING: This will delete all custom code you have entered for your footer, if you want to continue, click 'Clear Custom Footer'</p>
-							<p class="submit">
-								<input name="clear" type="submit" value="Clear Custom Footer" />
-								<input type="hidden" name="action" value="clear" />
-								<input type="hidden" name="file" value="footer" />
-							</p>
-						</form>
-					</div>
-					<h3><a href="javascript:;" onmousedown="toggleDiv('edit_after_home');">After-Home-Post</a></h3>
-					<p>Enter HTML markup, PHP code, or JavaScript that you would like to appear between the post content and post meta-data on your homepage.</p>
-					<div id="edit_after_home" style="display: none;">
-						<form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>?page=customcode.php&amp;add=true" class="form-table">
-						<?php wp_nonce_field('wicketpixie-settings'); ?>
-							<h4>Edit After-Home-Post code</h4>
-							<p><textarea name="code" id="code" style="border: 1px solid #999999;" cols="80" rows="25" /><?php echo wp_customcode("afterhomepost",true); ?></textarea></p>
-							<p class="submit">
-								<input name="save" type="submit" value="Save After-Home-Post code" /> 
-								<input type="hidden" name="action" value="add" />
-								<input type="hidden" name="file" value="afterhomepost" />
-							</p>
-						</form>
-						<form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>?page=customcode.php&amp;clear=true" class="form-table">
-						<?php wp_nonce_field('wicketpixie-settings'); ?>
-							<h4>Clear After-Home-Post code</h4>
-							<p>WARNING: This will delete all custom code you have entered to appear after posts on the homepage, if you want to continue, click 'Clear After-Home-Post code'</p>
-							<p class="submit">
-								<input name="clear" type="submit" value="Clear After-Home-Post code" />
-								<input type="hidden" name="action" value="clear" />
-								<input type="hidden" name="file" value="afterhomepost" />
-							</p>
-						</form>
-					</div>
-					<h3><a href="javascript:;" onmousedown="toggleDiv('edit_after_posts');">After-Posts</a></h3>
-					<p>Enter HTML markup, PHP code, or JavaScript that you would like to appear between the post content and post meta-data on individual posts.</p>
-					<div id="edit_after_posts" style="display: none;">
-						<form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>?page=customcode.php&amp;add=true" class="form-table">
-						<?php wp_nonce_field('wicketpixie-settings'); ?>
-							<h4>Edit After-Posts code</h4>
-							<p><textarea name="code" id="code" style="border: 1px solid #999999;" cols="80" rows="25" /><?php echo wp_customcode("afterposts",true); ?></textarea></p>
-							<p class="submit">
-								<input name="save" type="submit" value="Save After-Posts code" /> 
-								<input type="hidden" name="action" value="add" />
-								<input type="hidden" name="file" value="afterposts" />
-							</p>
-						</form>
-						<form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>?page=customcode.php&amp;clear=true" class="form-table">
-						<?php wp_nonce_field('wicketpixie-settings'); ?>
-							<h4>Clear After-Posts code</h4>
-							<p>WARNING: This will delete all custom code you have entered to appear after individual posts, if you want to continue, click 'Clear After-Posts code'</p>
-							<p class="submit">
-								<input name="clear" type="submit" value="Clear After-Posts code" />
-								<input type="hidden" name="action" value="clear" />
-								<input type="hidden" name="file" value="afterposts" />
-							</p>
-						</form>
-					</div>
-					<h3><a href="javascript:;" onmousedown="toggleDiv('edit_after_home_meta');">After-Home-Meta</a></h3>
-					<p>Enter HTML markup, PHP code, or JavaScript that you would like to appear after the post meta data but before the Flickr Widget, Embedded Video, etc.</p>
-					<div id="edit_after_home_meta" style="display: none;">
-						<form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>?page=customcode.php&amp;add=true" class="form-table">
-						<?php wp_nonce_field('wicketpixie-settings'); ?>
-							<h4>Edit After-Home-Meta code</h4>
-							<p><textarea name="code" id="code" style="border: 1px solid #999999;" cols="80" rows="25" /><?php echo wp_customcode("afterhomemeta",true); ?></textarea></p>
-							<p class="submit">
-								<input name="save" type="submit" value="Save After-Home-Meta code" /> 
-								<input type="hidden" name="action" value="add" />
-								<input type="hidden" name="file" value="afterhomemeta" />
-							</p>
-						</form>
-						<form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>?page=customcode.php&amp;clear=true" class="form-table">
-						<?php wp_nonce_field('wicketpixie-settings'); ?>
-							<h4>Clear After-Home-Meta code</h4>
-							<p>WARNING: This will delete all custom code you have entered to appear after the post meta data on the homepage, if you want to continue, click 'Clear After-Home-Meta code'</p>
-							<p class="submit">
-								<input name="clear" type="submit" value="Clear After-Home-Meta code" />
-								<input type="hidden" name="action" value="clear" />
-								<input type="hidden" name="file" value="afterhomemeta" />
-							</p>
-						</form>
-					</div>
-					<h3><a href="javascript:;" onmousedown="toggleDiv('custom_home_sidebar');">Custom Sidebar Code</a></h3>
-					<p>Enter HTML markup, PHP code, or JavaScript that you would like to appear after the Tag Cloud section of the homepage sidebar.</p>
-					<div id="custom_home_sidebar" style="display: none;">
-						<form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>?page=<?php echo $this->filename; ?>" class="form-table">
-						<?php wp_nonce_field('wicketpixie-settings'); ?>
-							<h4>Edit Custom Home Sidebar code</h4>
-							<p><textarea name="code" id="code" style="border: 1px solid #999999;" cols="80" rows="25" /><?php echo wp_customcode("homesidebar",true); ?></textarea></p>
-							<p class="submit">
-								<input name="save" type="submit" value="Save Custom Home Sidebar code" /> 
-								<input type="hidden" name="action" value="add" />
-								<input type="hidden" name="file" value="homesidebar" />
-							</p>
-						</form>
-						<form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>?page=<?php echo $this->filename; ?>" class="form-table">
-						<?php wp_nonce_field('wicketpixie-settings'); ?>
-							<h4>Clear Custom Home Sidebar code</h4>
-							<p>WARNING: This will delete all custom code you have entered to appear after the Tag Cloud section of the homepage sidebar, if you want to continue, click 'Clear Custom Home Sidebar code'</p>
-							<p class="submit">
-								<input name="clear" type="submit" value="Clear Custom Home Sidebar code" />
-								<input type="hidden" name="action" value="clear" />
-								<input type="hidden" name="file" value="homesidebar" />
-							</p>
-						</form>
-					</div>
-					<h3><a href="javascript:;" onmousedown="toggleDiv('edit_custom_404');">Custom 404 page</a></h3>
-					<p>Enter HTML markup, PHP code, or JavaScript that you would like to appear in a 404 page (this will replace the default message).</p>
-					<div id="edit_custom_404" style="display: none;">
-						<form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>?page=customcode.php&amp;add=true" class="form-table">
-						<?php wp_nonce_field('wicketpixie-settings'); ?>
-							<h4>Edit 404 code</h4>
-							<p><textarea name="code" id="code" style="border: 1px solid #999999;" cols="80" rows="25" /><?php echo wp_customcode("404",true); ?></textarea></p>
-							<p class="submit">
-								<input name="save" type="submit" value="Save 404 code" /> 
-								<input type="hidden" name="action" value="add" />
-								<input type="hidden" name="file" value="404" />
-							</p>
-						</form>
-						<form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>?page=customcode.php&amp;clear=true" class="form-table">
-						<?php wp_nonce_field('wicketpixie-settings'); ?>
-							<h4>Clear 404 code</h4>
-							<p>WARNING: This will delete all custom code you have entered to appear in 404 pages, if you want to continue, click 'Clear 404 code'</p>
-							<p class="submit">
-								<input name="clear" type="submit" value="Clear 404 code" />
-								<input type="hidden" name="action" value="clear" />
-								<input type="hidden" name="file" value="404" />
-							</p>
-						</form>
-					</div>
+				<?php endforeach; ?>
 				</div>
 			<?php include_once('advert.php'); ?>
 			<script language="javascript">function toggleDiv(divid){if(document.getElementById(divid).style.display == 'none'){document.getElementById(divid).style.display = 'block';}else{document.getElementById(divid).style.display = 'none';}}</script>
