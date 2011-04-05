@@ -4,6 +4,7 @@ v1.4 - TBA (alpha - April 2, 2011)
  * FEATURE: Custom 404 code
  * CHANGE: Lots! Please read UPGRADING file!
  * CHANGE: Condensed ALL custom code options in one admin page
+ * CHANGE: Dropped support for WordPress pre-3.0
  * PERFORMANCE: Smaller, simpler code, occupies less space, potentially faster
  * FIXED: Some bugs along the way
  * PLUGIN: Some WiPi plugins were removed (more info in UPGRADING file)
