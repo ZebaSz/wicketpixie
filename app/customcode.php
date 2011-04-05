@@ -18,40 +18,15 @@
 **/
 define("CUSTOMPATH",TEMPLATEPATH ."/app/custom");
 /**
-* This function checks if the directory set to CUSTOMPATH exists
-* or the files within it.
-* $file: A certain file to look for.
+* This is called in the admin page and every template that allows custom code.
+* It returns the custom code if any. If not, returns an HTML comment.
 **/
-function checkfs($file) {
-	clearstatcache();
-	if(!file_exists(CUSTOMPATH)) :
-		mkdir(CUSTOMPATH,0777);
-	endif;
-	if(!file_exists(CUSTOMPATH ."/$file")) :
-		touch(CUSTOMPATH ."/$file");
-	endif;
-}
-/**
-* Writes the submitted code to the custom code file.
-* Arguments:
-* $code: The code to be submitted
-* $magick: Whether or not we should strip slashes
-**/
-function writeto($code,$file,$magick = false) {
-	// Check and make sure everything is created and writable
-	checkfs($file);
-	// Write the submitted code to the file
-	file_put_contents(CUSTOMPATH ."/$file",($magick)?$code:stripslashes($code));
-}
-/**
-* This returns the custom code if any. If not, returns an HTML comment.
-**/
-function fetchcustomcode($file,$raw = false) {
-	if(file_exists(CUSTOMPATH) && file_exists(CUSTOMPATH ."/$file")) :
+function wp_customcode($file,$raw = false) {
+	if(file_exists(CUSTOMPATH) && file_exists(CUSTOMPATH ."/$file.php")) :
 		if(!$raw) :
-			include(CUSTOMPATH ."/$file");
+			include(CUSTOMPATH ."/$file.php");
 		else :
-			return file_get_contents(CUSTOMPATH ."/$file");
+			return file_get_contents(CUSTOMPATH ."/$file.php");
 		endif;
 	else :
 		echo "<!-- No custom code found, add code on the WicketPixie Custom Code admin page. -->";
@@ -75,7 +50,12 @@ class CustomCodeAdmin extends AdminPage {
 		if ( $_GET['page'] == basename(__FILE__) ) :
 			if (isset($_POST['action']) && $_POST['action'] == 'add') :
 				if (isset($_POST['file'])) :
-					writeto($_POST['code'],$_POST['file'].".php");
+					// Check and make sure everything is created and writable
+					clearstatcache();
+					if(!file_exists(CUSTOMPATH)) mkdir(CUSTOMPATH,0777);
+					if(!file_exists(CUSTOMPATH ."/".$_POST['file'].".php")) touch(CUSTOMPATH ."/".$_POST['file'].".php");
+					// Write the submitted code to the file
+					file_put_contents(CUSTOMPATH ."/".$_POST['file'].".php",stripslashes($_POST['code']));
 				endif;
 			elseif (isset($_POST['action']) && $_POST['action'] == 'clear') :
 				if (isset($_POST['file'])) :
@@ -98,7 +78,7 @@ class CustomCodeAdmin extends AdminPage {
 						<form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>?page=customcode.php&amp;add=true" class="form-table">
 						<?php wp_nonce_field('wicketpixie-settings'); ?>
 							<h4>Edit Global Announcement file</h4>
-							<p><textarea name="code" id="code" style="border: 1px solid #999999;" cols="80" rows="25" /><?php echo fetchcustomcode("global_announcement.php",true); ?></textarea></p>
+							<p><textarea name="code" id="code" style="border: 1px solid #999999;" cols="80" rows="25" /><?php echo wp_customcode("global_announcement",true); ?></textarea></p>
 							<p class="submit">
 								<input name="save" type="submit" value="Save Global Announcement" /> 
 								<input type="hidden" name="action" value="add" />
@@ -122,7 +102,7 @@ class CustomCodeAdmin extends AdminPage {
 						<form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>?page=customcode.php&amp;add=true" class="form-table">
 						<?php wp_nonce_field('wicketpixie-settings'); ?>
 							<h4>Edit Custom Header file</h4>
-							<p><textarea name="code" id="code" style="border: 1px solid #999999;" cols="80" rows="25" /><?php echo fetchcustomcode("header.php",true); ?></textarea></p>
+							<p><textarea name="code" id="code" style="border: 1px solid #999999;" cols="80" rows="25" /><?php echo wp_customcode("header",true); ?></textarea></p>
 							<p class="submit">
 								<input name="save" type="submit" value="Save Custom Header" /> 
 								<input type="hidden" name="action" value="add" />
@@ -146,7 +126,7 @@ class CustomCodeAdmin extends AdminPage {
 						<form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>?page=customcode.php&amp;add=true" class="form-table">
 						<?php wp_nonce_field('wicketpixie-settings'); ?>
 							<h4>Edit Custom Footer file</h4>
-							<p><textarea name="code" id="code" style="border: 1px solid #999999;" cols="80" rows="25" /><?php echo fetchcustomcode("footer.php",true); ?></textarea></p>
+							<p><textarea name="code" id="code" style="border: 1px solid #999999;" cols="80" rows="25" /><?php echo wp_customcode("footer",true); ?></textarea></p>
 							<p class="submit">
 								<input name="save" type="submit" value="Save Custom Footer" /> 
 								<input type="hidden" name="action" value="add" />
@@ -170,7 +150,7 @@ class CustomCodeAdmin extends AdminPage {
 						<form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>?page=customcode.php&amp;add=true" class="form-table">
 						<?php wp_nonce_field('wicketpixie-settings'); ?>
 							<h4>Edit After-Home-Post code</h4>
-							<p><textarea name="code" id="code" style="border: 1px solid #999999;" cols="80" rows="25" /><?php echo fetchcustomcode("afterhomepost.php",true); ?></textarea></p>
+							<p><textarea name="code" id="code" style="border: 1px solid #999999;" cols="80" rows="25" /><?php echo wp_customcode("afterhomepost",true); ?></textarea></p>
 							<p class="submit">
 								<input name="save" type="submit" value="Save After-Home-Post code" /> 
 								<input type="hidden" name="action" value="add" />
@@ -194,7 +174,7 @@ class CustomCodeAdmin extends AdminPage {
 						<form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>?page=customcode.php&amp;add=true" class="form-table">
 						<?php wp_nonce_field('wicketpixie-settings'); ?>
 							<h4>Edit After-Posts code</h4>
-							<p><textarea name="code" id="code" style="border: 1px solid #999999;" cols="80" rows="25" /><?php echo fetchcustomcode("afterposts.php",true); ?></textarea></p>
+							<p><textarea name="code" id="code" style="border: 1px solid #999999;" cols="80" rows="25" /><?php echo wp_customcode("afterposts",true); ?></textarea></p>
 							<p class="submit">
 								<input name="save" type="submit" value="Save After-Posts code" /> 
 								<input type="hidden" name="action" value="add" />
@@ -218,7 +198,7 @@ class CustomCodeAdmin extends AdminPage {
 						<form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>?page=customcode.php&amp;add=true" class="form-table">
 						<?php wp_nonce_field('wicketpixie-settings'); ?>
 							<h4>Edit After-Home-Meta code</h4>
-							<p><textarea name="code" id="code" style="border: 1px solid #999999;" cols="80" rows="25" /><?php echo fetchcustomcode("afterhomemeta.php",true); ?></textarea></p>
+							<p><textarea name="code" id="code" style="border: 1px solid #999999;" cols="80" rows="25" /><?php echo wp_customcode("afterhomemeta",true); ?></textarea></p>
 							<p class="submit">
 								<input name="save" type="submit" value="Save After-Home-Meta code" /> 
 								<input type="hidden" name="action" value="add" />
@@ -227,7 +207,7 @@ class CustomCodeAdmin extends AdminPage {
 						</form>
 						<form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>?page=customcode.php&amp;clear=true" class="form-table">
 						<?php wp_nonce_field('wicketpixie-settings'); ?>
-							<h4>Clear After-Home-Met code</h4>
+							<h4>Clear After-Home-Meta code</h4>
 							<p>WARNING: This will delete all custom code you have entered to appear after the post meta data on the homepage, if you want to continue, click 'Clear After-Home-Meta code'</p>
 							<p class="submit">
 								<input name="clear" type="submit" value="Clear After-Home-Meta code" />
@@ -242,7 +222,7 @@ class CustomCodeAdmin extends AdminPage {
 						<form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>?page=<?php echo $this->filename; ?>" class="form-table">
 						<?php wp_nonce_field('wicketpixie-settings'); ?>
 							<h4>Edit Custom Home Sidebar code</h4>
-							<p><textarea name="code" id="code" style="border: 1px solid #999999;" cols="80" rows="25" /><?php echo fetchcustomcode("homesidebar.php",true); ?></textarea></p>
+							<p><textarea name="code" id="code" style="border: 1px solid #999999;" cols="80" rows="25" /><?php echo wp_customcode("homesidebar",true); ?></textarea></p>
 							<p class="submit">
 								<input name="save" type="submit" value="Save Custom Home Sidebar code" /> 
 								<input type="hidden" name="action" value="add" />
@@ -266,7 +246,7 @@ class CustomCodeAdmin extends AdminPage {
 						<form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>?page=customcode.php&amp;add=true" class="form-table">
 						<?php wp_nonce_field('wicketpixie-settings'); ?>
 							<h4>Edit 404 code</h4>
-							<p><textarea name="code" id="code" style="border: 1px solid #999999;" cols="80" rows="25" /><?php echo fetchcustomcode("404.php",true); ?></textarea></p>
+							<p><textarea name="code" id="code" style="border: 1px solid #999999;" cols="80" rows="25" /><?php echo wp_customcode("404",true); ?></textarea></p>
 							<p class="submit">
 								<input name="save" type="submit" value="Save 404 code" /> 
 								<input type="hidden" name="action" value="add" />
@@ -286,18 +266,6 @@ class CustomCodeAdmin extends AdminPage {
 					</div>
 				</div>
 			<?php include_once('advert.php'); ?>
-			<script language="javascript">
-				function toggleDiv(divid){
-					if(document.getElementById(divid).style.display == 'none'){
-						document.getElementById(divid).style.display = 'block';
-					}else{
-						document.getElementById(divid).style.display = 'none';
-					}
-				}
-			</script>
+			<script language="javascript">function toggleDiv(divid){if(document.getElementById(divid).style.display == 'none'){document.getElementById(divid).style.display = 'block';}else{document.getElementById(divid).style.display = 'none';}}</script>
 	<?php }
-}
-/* This is called in every template that allows custom code. */
-function wp_customcode($file, $raw=false) {
-	return fetchcustomcode("$file.php", $raw);
 } ?>
