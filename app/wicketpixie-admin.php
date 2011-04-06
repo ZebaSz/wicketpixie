@@ -33,7 +33,7 @@ $site_settings = array(
 $socnet_desc = <<<HTML
 <p id="flickrid_tip">You can obtain your Flickr ID by using <a href="http://idgettr.com">idGettr</a>.</p>
 <p id="ustreamchannel_tip">Your Ustream Channel is the name of the Ustream channel you'd like to stream from. For example, the channel 'Chris Pirillo Live' (url of which is http://ustream.tv/channel/chris-pirillo-live) would be entered as 'chris-pirillo-live'. (Like you'd see it in the Ustream URL.)</p>
-<p id="facebook_tip">If you want to add a Facebook Page instead of your user, be sure to enter the URL as see it on your browser (something like 'pages/<i>your page</i>/<i>your page id</i> ', without 'facebook.com')</p>
+<p id="facebook_tip">If you do not have a vanity URL, you can still use the button by adding the URL as you see it in the browser (something like 'pages/<i>your page</i>/<i>your page id</i> ', without 'facebook.com')</p>
 HTML;
 $socnet_settings = array(
 	'name' => 'SEO & Social Networking',
