@@ -60,6 +60,7 @@ class SourceUpdate {
 			if( $istwitter == 1 ) :
 				$return[1]['title'] = preg_replace('/(@)([A-Za-z0-9_-]+)/', '<a href="http://twitter.com/\2">\0</a>', $return[1]['title']);
 			endif;
+			// We want dates in local time, as specified by user
 			$time_offset = get_option('gmt_offset') * 3600;
 			$local_time = $return[3]['date'] + $time_offset;
 			return substr($return[1]['title'], 0, 1000) . ' &mdash; <a href="' . $return[2]['link'] . '" title="">' . date( get_option('time_format'), $local_time ) . '</a>';
