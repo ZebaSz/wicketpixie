@@ -44,7 +44,6 @@ class SourceUpdate {
 		$feed->handle_content_type();
 		if($feed->data) :
 			foreach($feed->get_items() as $entry) :
-				$name = $stream->title;
 				$update[]['name'] = (string)$name;
 				$update[]['title']= $entry->get_title();
 				$update[]['link']= $entry->get_permalink();
