@@ -50,18 +50,18 @@ class SourceUpdate {
 			endforeach;
 			$return = array_slice($update,0,5);
 			// This auto-hyperlinks URLs
-			$return[1]['title'] = preg_replace('((?:\S)+://\S+[[:alnum:]]/?)', '<a href="\0">\0</a>', $return[1]['title']);
+			$return[0]['title'] = preg_replace('((?:\S)+://\S+[[:alnum:]]/?)', '<a href="\0">\0</a>', $return[0]['title']);
 			/**
 			* If Twitter is the source, then we hyperlink any '@username's
 			* to that user's Twitter address.
 			**/
 			if( $istwitter == 1 ) :
-				$return[1]['title'] = preg_replace('/(@)([A-Za-z0-9_-]+)/', '<a href="http://twitter.com/\2">\0</a>', $return[1]['title']);
+				$return[0]['title'] = preg_replace('/(@)([A-Za-z0-9_-]+)/', '<a href="http://twitter.com/\2">\0</a>', $return[0]['title']);
 			endif;
 			// We want dates in local time, as specified by user
 			$time_offset = get_option('gmt_offset') * 3600;
-			$local_time = $return[3]['date'] + $time_offset;
-			return substr($return[1]['title'], 0, 1000) . ' &mdash; <a href="' . $return[2]['link'] . '" title="">' . date( get_option('time_format'), $local_time ) . '</a>';
+			$local_time = $return[2]['date'] + $time_offset;
+			return substr($return[0]['title'], 0, 1000) . ' &mdash; <a href="' . $return[1]['link'] . '" title="">' . date( get_option('time_format'), $local_time ) . '</a>';
 		else :
 			return "Thanks for exploring my world! Can you believe this avatar is talking to you?";
 		endif;
