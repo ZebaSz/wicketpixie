@@ -833,8 +833,7 @@ body {
 }
 #comments .comment p {
 	font-size: 1.2em;
-	overflow: hidden;
-	margin: -20px 65px 20px 125px;
+	margin: -20px auto 20px 125px;
 }
 #comments .comment-meta a:link, #content .comment-meta a:active, #content .comment-meta a:visited {
 	color: #666;
