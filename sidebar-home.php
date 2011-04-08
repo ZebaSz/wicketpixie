@@ -25,7 +25,7 @@
 			<!-- /post -->
 			<?php endwhile; ?>
 		</div>
-		<?php the_widget('WP_Widget_Recent_Comments', '', 'before_title=<h3>&after_title=</h3>'); ?>
+		<?php the_widget('WP_Widget_Recent_Comments', 'number=5', 'before_title=<h3>&after_title=</h3>'); ?>
 		<div class="widget">
 			<h3><?php _e('Random Posts From the Archive', 'wicketpixie') ?></h3>
 			<?php query_posts('showposts=5&random=true');

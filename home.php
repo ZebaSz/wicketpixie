@@ -56,7 +56,7 @@ $wp_auth_credit= get_option('wicketpixie_show_post_author'); ?>
 				<!-- google_ad_section_end -->
 				<!-- post-meta -->
 				<div class="post-meta">
-					<?php if(get_option('wicketpixie_plugin_related-posts') == 'true' && function_exists(wp_related_posts)) : ?>
+					<?php if(get_option('wicketpixie_plugin_related-posts') == 'true' && function_exists('wp_related_posts')) : ?>
 					<!-- related-posts -->
 					<div id="related-posts">
 						<h3><?php _e('You might also be interested in...', 'wicketpixie'); ?></h3>
