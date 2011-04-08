@@ -91,7 +91,7 @@ $adsense = new AdsenseAdmin; ?>
 				<li id="topbar-admin"><a href="<?php bloginfo('wpurl'); ?>/wp-admin" rel="nofollow">Admin</a></li>
 				<?php endif; ?>
 			</ul>
-			<?php include (TEMPLATEPATH . '/searchform.php'); ?>
+			<?php get_search_form(); ?>
 		</div>
 		<!-- /topbar-inner -->
 	</div>
