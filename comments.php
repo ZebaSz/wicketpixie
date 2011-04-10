@@ -6,7 +6,7 @@ if (post_password_required()) return; ?>
 <!-- comments -->
 <div id="comments">
 	<h2><?php comments_number();?></h2>
-	<ul class="commentlist"><?php wp_list_comments();?></ul>
+	<ul class="commentlist"><?php wp_list_comments(array('callback' => 'wicketpixie_comment'));?></ul>
 	<?php if ('open' != $post->comment_status) : //comments are closed ?>
 	<h3 class="nocomments"><?php _e('Comments are closed', 'wicketpixie'); ?></h3>
 	<?php endif; // If comments are closed ?>
