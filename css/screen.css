@@ -782,15 +782,15 @@ body {
 	margin: 0 20px;
 	clear: left;
 }
-#comments .comment-body {
-	clear: both;
-	border-bottom: 1px solid #eee;
-	margin-bottom: 1.4em;
-}
 #comments .comment {
 	margin-bottom: 1.4em;
 	padding-left: 0;
 	background: none;
+}
+#comments .comment-body {
+	clear: both;
+	border-bottom: 1px solid #eee;
+	margin-bottom: 1.4em;
 }
 #comments .comment .parent {
 	border-bottom: 1px solid #eee;
@@ -802,6 +802,7 @@ body {
 	float: left;
 	width: 110px;
 	font-size: 1.1em;
+	text-align: right;
 }
 #comments cite.fn {
 	font-size: 1.4em;
@@ -813,10 +814,6 @@ body {
 #comments .reply {
 	margin-bottom: 1.2em;
 	clear: both;
-}
-#comments .comment .content {
-	float: right;
-	width: 365px;
 }
 #comments .comment img.avatar {
 	float: right;
@@ -831,7 +828,7 @@ body {
 }
 #comments .comment p {
 	font-size: 1.2em;
-	margin: -20px auto 30px 125px;
+	margin: 0 0 10px 125px;
 }
 #comments .comment-meta a:link, #content .comment-meta a:active, #content .comment-meta a:visited {
 	color: #666;
