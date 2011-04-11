@@ -14,7 +14,7 @@ if (post_password_required()) return; ?>
 		<div class="right"><?php next_comments_link(sprintf("<span>%s</span>",__('Newer', 'wicketpixie'))); ?></div>
 	</div>
 	<?php endif; // If there are comment pages to navigate through ?>
-	<?php if ('open' != $post->comment_status) : //comments are closed ?>
+	<?php if (!comments_open()) : ?>
 	<h3 class="nocomments"><?php _e('Comments are closed', 'wicketpixie'); ?></h3>
 	<?php endif; // If comments are closed ?>
 </div>
