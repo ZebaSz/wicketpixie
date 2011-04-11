@@ -86,7 +86,25 @@ $adsense = new AdsenseAdmin; ?>
 		<!-- topbar-inner -->
 		<div id="topbar-inner">
 			<ul>
-				<li id="topbar-subscribe"><a href="#"><?php _e('Subscribe', 'wicketpixie') ?></a></li>
+				<!-- subscribe -->
+				<li id="topbar-subscribe">
+					<a href="#"><?php _e('Subscribe', 'wicketpixie') ?></a>
+					<div id="subscribe">
+						<ul>
+							<li><a href="<?php echo $blogfeed; ?>" title="<?php _e('Subscribe to my feed', 'wicketpixie') ?>" class="feed" rel="nofollow">RSS Feed</a></li>
+							<li><a href="http://www.bloglines.com/sub/<?php echo $blogfeed; ?>" class="feed" rel="nofollow">Bloglines</a></li>
+							<li><a href="http://fusion.google.com/add?feedurl=<?php echo $blogfeed; ?>" class="feed" rel="nofollow">Google Reader</a></li>
+							<li><a href="http://feeds.my.aol.com/add.jsp?url=<?php echo $blogfeed; ?>" class="feed" rel="nofollow">My AOL</a></li>
+							<li><a href="http://my.msn.com/addtomymsn.armx?id=rss&amp;ut=<?php echo $blogfeed; ?>&amp;ru=<?php echo get_settings('home'); ?>" class="feed" rel="nofollow">My MSN</a></li>
+							<li><a href="http://add.my.yahoo.com/rss?url=<?php echo $blogfeed; ?>" class="feed" rel="nofollow">My Yahoo!</a></li>
+							<li><a href="http://www.newsgator.com/ngs/subscriber/subext.aspx?url=<?php echo $blogfeed; ?>" class="feed" rel="nofollow">NewsGator</a></li>
+							<li><a href="http://www.pageflakes.com/subscribe.aspx?url=<?php echo $blogfeed; ?>" class="feed" rel="nofollow">Pageflakes</a></li>
+							<li><a href="http://technorati.com/faves?add=<?php echo get_settings('home'); ?>" class="feed" rel="nofollow">Technorati</a></li>
+							<li><a href="http://www.live.com/?add=<?php echo $blogfeed; ?>" class="feed" rel="nofollow">Windows Live</a></li>
+						</ul>
+					</div>
+				</li>
+				<!-- /subscribe -->
 				<?php if (is_user_logged_in()) : ?>
 				<li id="topbar-admin"><a href="<?php bloginfo('wpurl'); ?>/wp-admin" rel="nofollow">Admin</a></li>
 				<?php endif; ?>
@@ -96,22 +114,6 @@ $adsense = new AdsenseAdmin; ?>
 		<!-- /topbar-inner -->
 	</div>
 	<!-- /topbar -->
-	<!-- subscribe -->
-	<div id="subscribe">
-		<ul>
-			<li><a href="<?php echo $blogfeed; ?>" title="<?php _e('Subscribe to my feed', 'wicketpixie') ?>" class="feed" rel="nofollow">RSS Feed</a></li>
-			<li><a href="http://www.bloglines.com/sub/<?php echo $blogfeed; ?>" class="feed" rel="nofollow">Bloglines</a></li>
-			<li><a href="http://fusion.google.com/add?feedurl=<?php echo $blogfeed; ?>" class="feed" rel="nofollow">Google Reader</a></li>
-			<li><a href="http://feeds.my.aol.com/add.jsp?url=<?php echo $blogfeed; ?>" class="feed" rel="nofollow">My AOL</a></li>
-			<li><a href="http://my.msn.com/addtomymsn.armx?id=rss&amp;ut=<?php echo $blogfeed; ?>&amp;ru=<?php echo get_settings('home'); ?>" class="feed" rel="nofollow">My MSN</a></li>
-			<li><a href="http://add.my.yahoo.com/rss?url=<?php echo $blogfeed; ?>" class="feed" rel="nofollow">My Yahoo!</a></li>
-			<li><a href="http://www.newsgator.com/ngs/subscriber/subext.aspx?url=<?php echo $blogfeed; ?>" class="feed" rel="nofollow">NewsGator</a></li>
-			<li><a href="http://www.pageflakes.com/subscribe.aspx?url=<?php echo $blogfeed; ?>" class="feed" rel="nofollow">Pageflakes</a></li>
-			<li><a href="http://technorati.com/faves?add=<?php echo get_settings('home'); ?>" class="feed" rel="nofollow">Technorati</a></li>
-			<li><a href="http://www.live.com/?add=<?php echo $blogfeed; ?>" class="feed" rel="nofollow">Windows Live</a></li>
-		</ul>
-	</div>
-	<!-- /subscribe -->
 	<?php endif; ?>
 	<!-- header -->
 	<div id="header">

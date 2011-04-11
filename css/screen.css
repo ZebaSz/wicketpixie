@@ -53,6 +53,7 @@ body {
 	font-size: 1.1em;
 	line-height: 16px;
 	text-transform: uppercase;
+	position: relative;
 }
 #topbar ul li a:link, #topbar ul li a:visited, #topbar ul li a:active {
 	display: block;
@@ -70,37 +71,30 @@ body {
 #subscribe {
 	display: none;
 	position: fixed;
-	top: 31px;
-	left: 50%;
 	width: 220px;
 	padding: 10px 19px;
-	font: 1.2em Arial, Helvetica, Geneva, sans-serif;
+	font: 0.95em Arial, Helvetica, Geneva, sans-serif;
 	text-align: left;
 	background-color: #000000;
-	margin-left: -469px;
 	z-index: 999;
+	margin: 2px 0 0 -9px;
 	box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.3);
 	-moz-box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.3);
 }
-#subscribe ul {
-	
-}
-#subscribe li {
+#subscribe ul li {
 	float: left;
 	width: 46%;
 	height: 20px;
 	margin: 0 2% 10px 0;
-	font-size: .95em;
+	text-transform: none;
 }
-#subscribe a:link, #subscribe a:active, #subscribe a:visited {
+#subscribe ul li a:link, #subscribe ul li a:active, #subscribe ul li a:visited {
 	color: #fff;
 	text-decoration: none;
-}
-#subscribe li a.feed {
 	padding: 1px 0 1px 19px;
 	background: url("../images/icon-feed.gif") no-repeat 0 50%;
 }
-#subscribe a:hover, #share a:hover {
+#subscribe ul li a:hover {
 	color: #fff;
 	text-decoration: underline;
 }

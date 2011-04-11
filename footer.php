@@ -14,30 +14,7 @@
 	<script type="text/javascript" src="<?php echo get_template_directory_uri();?>/js/wp-global.js"></script>
 	<script type="text/javascript" src="<?php bloginfo('template_directory'); ?>/js/suckerfish-ie.js"></script>
 	<script type="text/javascript" src="<?php bloginfo('template_directory'); ?>/js/suckerfish-keyboard.js"></script>
-	<script type="text/javascript">
-		jQuery(document).ready(function($) {
-			$('#subscribe').hide();
-			$("#topbar-subscribe a").toggle(
-				function () { $("#subscribe").animate({ height: "show", duration: 700, easing:"easeInQuad"}); 
-				return false; 
-			},
-				function () { $("#subscribe").animate({ height: "hide", duration: 700, easing:"easeOutQuad"}); 
-				return false; 
-			});
-		});
-	</script>
-	<script type="text/javascript">
-		jQuery(document).ready(function($) {
-			$('#share').hide();
-			$("#topbar-share a").toggle(
-				function () { $("#share").animate({ height: "show", duration: 700, easing:"easeInQuad"}); 
-				return false; 
-			},
-				function () { $("#share").animate({ height: "hide", duration: 700, easing:"easeOutQuad"}); 
-				return false; 
-			});
-		});
-	</script>
+	<script type="text/javascript">jQuery(document).ready(function($) {$('#subscribe').hide();$("#topbar-subscribe a").toggle(	function () { $("#subscribe").animate({ height: "show", duration: 700, easing:"easeInQuad"});return false;},function (){ $("#subscribe").animate({ height: "hide", duration: 700, easing:"easeOutQuad"});return false;});});</script>
 <?php wp_footer(); ?>
 <?php echo "\n"; ?>
 <?php wp_customcode("footer"); ?>
