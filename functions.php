@@ -101,8 +101,8 @@ function wicketpixie_comment($comment, $args, $depth) {
 				edit_comment_link(__('Edit', 'wicketpixie'), '<br />'); ?>
 			</div>
 			<?php echo get_avatar($comment, 48); ?>
-			<?php if ( $comment->comment_approved == '0' ) : ?>
-			<em class="comment-awaiting-moderation"><?php _e( 'Your comment is awaiting moderation.', 'wicketpixie' ); ?></em>
+			<?php if ($comment->comment_approved == '0') : ?>
+			<p><em class="comment-awaiting-moderation"><?php _e( 'Your comment is awaiting moderation.', 'wicketpixie' ); ?></em></p>
 			<br />
 			<?php endif; ?>
 			<?php comment_text(); ?>
@@ -111,63 +111,53 @@ function wicketpixie_comment($comment, $args, $depth) {
 <?php }
 
 /* Admin Pages */
-
 // The parent AdminPage class
 require_once(TEMPLATEPATH .'/app/admin-page.php');
-
 // WicketPixie Admin page
 require_once( TEMPLATEPATH .'/app/wicketpixie-admin.php');
 $a = new WiPiAdmin();
 add_action('admin_menu',array($a,'add_page_to_menu'));
 unset($a);
-
 // WiPi Plugins page
 require_once( TEMPLATEPATH .'/app/wipi-plugins.php');
 $a = new WiPiPlugins();
 add_action('admin_menu',array($a,'add_page_to_menu'));
 add_plugins();
 unset($a);
-
 // Adsense Settings page
 require_once( TEMPLATEPATH .'/app/adsenseads.php');
 $a = new AdsenseAdmin();
 add_action('admin_menu',array($a,'add_page_to_menu'));
 unset($a);
 register_activation_hook('/app/adsenseads.php',array('AdsenseAdmin','install'));
-
 // Custom Code page
 require_once( TEMPLATEPATH .'/app/customcode.php');
 $a = new CustomCodeAdmin();
 add_action('admin_menu',array($a,'add_page_to_menu'));
 unset($a);
-
 // Faves Manager
 require_once( TEMPLATEPATH .'/app/faves.php');
 $a = new FavesAdmin();
 add_action('admin_menu',array($a,'add_page_to_menu'));
 unset($a);
 register_activation_hook('/app/faves.php',array('FavesAdmin','install'));
-
 // Home Editor
 require_once( TEMPLATEPATH .'/app/homeeditor.php');
 $a = new HomeAdmin();
 add_action('admin_menu',array($a,'add_page_to_menu'));
 unset($a);
-
 // WicketPixie Notifications page
 require_once( TEMPLATEPATH .'/app/notify.php');
 $a = new NotifyAdmin();
 add_action('admin_menu',array($a,'add_page_to_menu'));
 unset($a);
 register_activation_hook('/app/notify.php',array('NotifyAdmin','install'));
-
 // Social Me Manager
 require_once( TEMPLATEPATH .'/app/sourcemanager.php' );
 $a = new SourceAdmin();
 add_action('admin_menu',array($a,'add_page_to_menu'));
 unset($a);
 register_activation_hook('/app/sourcemanager.php', array( 'SourceAdmin', 'install' ) );
-
 // Theme Options
 require_once(TEMPLATEPATH .'/app/theme-options.php');
 $a = new ThemeOptions();
@@ -186,20 +176,16 @@ add_action('in_admin_footer', 'wicketpixie_add_admin_footer');
 require_once( TEMPLATEPATH .'/app/update.php');
 
 /* Widgets */
-
 if(function_exists('register_widget')) :
 	// My Profiles
 	require_once(TEMPLATEPATH .'/widgets/my-profiles.php');
 	add_action('widgets_init','MyProfilesInit');
-
 	// Social Badges
 	require_once(TEMPLATEPATH .'/widgets/social-badges.php');
 	add_action('widgets_init','SocialBadgesInit');
-
 	// Ustream
 	require_once(TEMPLATEPATH .'/widgets/ustream-widget.php');
 	add_action('widgets_init','UstreamWidgetInit');
-
 	// Social Me Feed Widgets
 	include_once(TEMPLATEPATH .'/widgets/sources.php');
 	foreach( SourceAdmin::collect() as $widget ) :
