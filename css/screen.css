@@ -275,6 +275,7 @@ body {
 }
 #nav li {
 	float: left;
+	position: relative;
 }
 #nav li a:link, #nav li a:visited, #nav li a:active {
 	display: block;
@@ -303,8 +304,8 @@ body {
 	z-index: 900;
 }
 #nav ul ul ul {
-	position: absolute;
-	margin: -29px 0 0 175px;
+	left: 100%;
+	top: 0;
 }
 #nav ul li:hover > ul {
 	display: block;
