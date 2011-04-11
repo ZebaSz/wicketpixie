@@ -6,8 +6,9 @@ if (post_password_required()) return; ?>
 <!-- comments -->
 <div id="comments">
 	<h2><?php comments_number();?></h2>
-	<ul class="commentlist"><?php wp_list_comments(array('callback' => 'wicketpixie_comment'));?></ul>
+	<ul class="commentlist"><?php wp_list_comments('callback=wicketpixie_comment');?></ul>
 	<?php if (get_option('page_comments') && get_comment_pages_count() > 1) : ?>
+	<div class="clearer" ></div>
 	<div class="cpage navigation">
 		<div class="left"><?php previous_comments_link(sprintf("<span>%s</span>",__('More', 'wicketpixie'))); ?></div>
 		<div class="right"><?php next_comments_link(sprintf("<span>%s</span>",__('Newer', 'wicketpixie'))); ?></div>
@@ -17,6 +18,7 @@ if (post_password_required()) return; ?>
 	<h3 class="nocomments"><?php _e('Comments are closed', 'wicketpixie'); ?></h3>
 	<?php endif; // If comments are closed ?>
 </div>
+<div class="clearer" ></div>
 <!-- /comments -->
 <div id="comment-form">
 	<?php comment_form(); ?>

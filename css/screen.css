@@ -780,7 +780,9 @@ body {
 /* COMMENTS */
 #comments {
 	margin: 0 20px;
-	clear: left;
+}
+#comments .commentlist {
+	margin: 0;
 }
 #comments .comment {
 	margin-bottom: 1.4em;
@@ -800,35 +802,32 @@ body {
 }
 #comments .comment-meta {
 	float: left;
-	width: 110px;
+	width: 120px;
 	font-size: 1.1em;
 	text-align: right;
+	margin-bottom: 1.4em;
 }
-#comments cite.fn {
-	font-size: 1.4em;
-	font-weight: bold;
-}
-#comments .says {
-	display: none;
-}
-#comments .reply {
-	margin-bottom: 1.2em;
-	clear: both;
-}
-#comments .comment img.avatar {
+#comments .comment .avatar {
 	float: right;
-	display: block;
-	width: 48px;
-	height: 48px;
 	margin: 0 0 10px 10px;
-	padding: 3px;
-	background: #ccc;
-	overflow: hidden;
-	border: 0;
+	border: solid 3px #ccc;
+}
+#content .comment h3 {
+	border-bottom: 0;
+	margin: 0;
+	font-size: 1.4em;
+	color: #666;
+}
+#content .comment h3 a:link, #content .comment h3 a:active, #content .comment h3 a:visited {
+	text-decoration: none;
+	border-bottom: 1px solid #ddd;
+}
+#content .comment h3 a:hover {
+
 }
 #comments .comment p {
 	font-size: 1.2em;
-	margin: 0 0 10px 125px;
+	margin: 0 0 10px 135px;
 }
 #comments .comment-meta a:link, #content .comment-meta a:active, #content .comment-meta a:visited {
 	color: #666;
@@ -850,6 +849,9 @@ body {
 }
 #comments h3.nocomments {
 	border: none;
+}
+#comments .cpage {
+	margin: 0;
 }
 
 #comment-form {
