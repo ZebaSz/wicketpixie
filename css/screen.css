@@ -31,7 +31,7 @@ body {
 	width: 100%;
 	padding: 5px 0 5px;
 	background-color: #000;
-	z-index: 900;
+	z-index: 999;
 	background-image: -o-linear-gradient(top, rgb(57, 57, 57), #000);
 	background-image: -webkit-linear-gradient(top, rgb(57, 57, 57), #000);
 	background-image: -moz-linear-gradient(top, rgb(57, 57, 57), #000);
@@ -79,6 +79,8 @@ body {
 	background-color: #000000;
 	margin-left: -469px;
 	z-index: 999;
+	box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.3);
+	-moz-box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.3);
 }
 #subscribe ul {
 	
@@ -268,9 +270,11 @@ body {
 	background-image: -webkit-linear-gradient(top, #393939, #000 28px);
 	background-image: -moz-linear-gradient(top, #393939, #000 28px);
 }
+#nav > ul {
+	margin-top: -1px;
+}
 #nav li {
 	float: left;
-	margin-top: -1px;
 }
 #nav li a:link, #nav li a:visited, #nav li a:active {
 	display: block;
@@ -281,7 +285,7 @@ body {
 	text-transform: uppercase;
 	border-top: 1px solid #555;
 }
-#nav li a:hover, #nav li:hover > a, #nav li ul li a:hover {
+#nav li a:hover, #nav li:hover > a {
 	color: #fff;
 	text-decoration: none;
 	background-color: #111;
@@ -290,15 +294,19 @@ body {
 	background-image: -moz-linear-gradient(top, #4c4c4c, #111 28px);
 	border-top: 1px solid #777;
 }
-#nav ul li ul {
+#nav ul ul {
 	position: absolute;
 	display: none;
 	height: auto;
 	width: 175px;
 	background-color: rgba(0, 0, 0, 0.9);
-	z-index: 999;
+	z-index: 900;
 }
-#nav ul li:hover ul, #nav ul li.sfhover ul {
+#nav ul ul ul {
+	position: absolute;
+	margin: -29px 0 0 175px;
+}
+#nav ul li:hover > ul {
 	display: block;
 }
 #nav li ul li a:link, #nav li ul li a:visited, #nav li ul li a:active {
