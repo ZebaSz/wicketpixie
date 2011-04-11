@@ -1,6 +1,6 @@
 WICKETPIXIE CHANGELOG
 
-v1.4 - TBA (alpha - April 2, 2011)
+v1.4 - TBA (alpha - April 11, 2011)
  * FEATURE: Custom 404 code
  * CHANGE: Lots! Please read UPGRADING file!
  * CHANGE: Condensed ALL custom code options in one admin page
@@ -8,6 +8,7 @@ v1.4 - TBA (alpha - April 2, 2011)
  * PERFORMANCE: Smaller, simpler code, occupies less space, potentially faster
  * FIXED: Some bugs along the way
  * PLUGIN: Some WiPi plugins were removed (more info in UPGRADING file)
+ * ADDED: Nice comment layout, paged comments
  * REMOVED: Images used for layout prior to the fork
 
 v1.3.2 - March 26, 2011
