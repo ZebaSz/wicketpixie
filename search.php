@@ -27,8 +27,8 @@
 				endif;
 				endwhile; ?>
 				<div class="navigation">
-					<div class="left"><?php next_posts_link('<span>'.__('More', 'wicketpixie').'</span>'); ?></div>
-					<div class="right"><?php previous_posts_link('<span>'.__('Newer', 'wicketpixie').'</span>') ?></div>
+					<div class="left"><?php next_posts_link(sprintf('<span>%s</span>', __('More', 'wicketpixie'))) ?></div>
+					<div class="right"><?php previous_posts_link(sprintf('<span>%s</span>', __('Newer', 'wicketpixie'))) ?></div>
 				</div>
 				<?php else : ?>
 				<!-- post -->
