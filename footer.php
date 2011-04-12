@@ -11,8 +11,7 @@
 	<!-- wrapper -->
 	<!-- jQuery -->
 	<script type="text/javascript" src="<?php bloginfo('home'); ?>/wp-includes/js/jquery/jquery.js?ver=1.3.2"></script>
-	<script type="text/javascript" src="<?php echo get_template_directory_uri();?>/js/wp-global.js"></script>
-	<script type="text/javascript">jQuery(document).ready(function($){$('#subscribe').hide();$("#topbar-subscribe a").toggle(function(){ $("#subscribe").animate({ height: "show", duration: 700, easing:"easeInQuad"});return false;},function(){$("#subscribe").animate({ height: "hide", duration: 700, easing:"easeOutQuad"});return false;});});</script>
+	<script type="text/javascript" src="<?php echo get_template_directory_uri();?>/js/wp-global-min.js"></script>
 <?php wp_footer(); ?>
 <?php echo "\n"; ?>
 <?php wp_customcode("footer"); ?>
