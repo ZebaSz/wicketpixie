@@ -79,12 +79,12 @@ endif;
 load_theme_textdomain('wicketpixie', TEMPLATEPATH.'/i18n');
 
 // Nav menu
-if ( function_exists('register_nav_menus') ) :
-	register_nav_menus(array('primary'=>__('Primary Menu'),));
+if (function_exists('register_nav_menus')) :
+	register_nav_menus(array('primary' => 'Primary Menu'));
 endif;
 
 // Custom Background
-if ( function_exists('add_custom_background') ) :
+if (function_exists('add_custom_background')) :
 	add_custom_background();
 endif;
 
@@ -97,14 +97,13 @@ function wicketpixie_comment($comment, $args, $depth) {
 				<h3><?php comment_author_link(); ?></h3>
 				<a href="<?php echo esc_url(get_comment_link($comment->comment_ID)); ?>">
 				<strong><?php comment_date(); ?></strong><br /><?php printf(__('at %s', 'wicketpixie'), get_comment_time()); ?></a>
-				<?php comment_reply_link(array_merge($args, array('depth' => $depth, 'max_depth' => $args['max_depth'])));
-				edit_comment_link(__('Edit', 'wicketpixie'), '<br />'); ?>
 			</div>
 			<?php echo get_avatar($comment, 48); ?>
 			<?php if ($comment->comment_approved == '0') : ?>
 			<p class="comment-awaiting-moderation"><em><?php _e( 'Your comment is awaiting moderation.', 'wicketpixie' ); ?></em></p>
 			<?php endif; ?>
 			<?php comment_text(); ?>
+			<p><?php comment_reply_link(array_merge($args, array('depth' => $depth, 'max_depth' => $args['max_depth']))); edit_comment_link(__('Edit', 'wicketpixie'), ' - '); ?></p>
 			<div class="clearer" ></div>
 		</div>
 <?php }
