@@ -178,24 +178,7 @@ $adsense = new AdsenseAdmin; ?>
 	<div id="wrapper">
 		<!-- nav -->
 		<div id="nav">
-			<?php if (function_exists('wp_nav_menu')) :
-				wp_nav_menu(array('theme_location' => 'primary', 'container' => false));
-			else : ?>
-			<ul class="menu">
-				<?php if (!is_home()) : ?>
-					<li><a href="<?php bloginfo('home'); ?>/">Home</a></li>
-				<?php endif;
-				if (get_option('wicketpixie_adsense_search_enabled') == 'true') :
-					$sp = get_page_by_title('Search');
-					$id = $sp->ID;
-					wp_list_pages("depth=1&sort_column=menu_order&exclude=${id}&title_li=");
-					echo "<!-- Excluding $id -->";
-					unset($sp,$id);
-				else :
-					wp_list_pages("depth=1&sort_column=menu_order&title_li=");
-				endif;
-			endif; ?>
-			</ul>
+			<?php wp_nav_menu("container=false"); ?>
 		</div>
 		<!-- /nav -->
 		<!-- google_ad_section_end -->
