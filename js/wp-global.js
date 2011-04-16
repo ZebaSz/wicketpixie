@@ -3,10 +3,10 @@ jQuery(document).ready(function ($) {
 	setTimeout("hideLoading()", 500);
 	$('#subscribe').hide();
 	$("#topbar-subscribe a").toggle(
-		function() { $("#subscribe").animate({ height: "show", duration: 700, easing:"easeInQuad"});
+		function() { $("#subscribe").slideDown();
 		return false;
 	},
-		function() { $("#subscribe").animate({ height: "hide", duration: 700, easing:"easeOutQuad"});
+		function() { $("#subscribe").slideUp();
 		return false;
 	});
 });
