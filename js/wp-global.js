@@ -1,16 +1,1 @@
-jQuery(document).ready(function ($) {
-	//Add all your global onReady Functions here
-	setTimeout("hideLoading()", 500);
-	$('#subscribe').hide();
-	$("#topbar-subscribe a").toggle(
-		function() { $("#subscribe").slideDown();
-		return false;
-	},
-		function() { $("#subscribe").slideUp();
-		return false;
-	});
-});
-
-function hideLoading() {
-	jQuery("#loadingFrame").css('display', 'none');
-}
+jQuery(document).ready(function(a){setTimeout("hideLoading()",500);a("#subscribe").hide();a("#topbar-subscribe a").toggle(function(){a("#subscribe").slideDown();return!1},function(){a("#subscribe").slideUp();return!1})});function hideLoading(){jQuery("#loadingFrame").css("display","none")};

@@ -21,15 +21,15 @@ $adsense = new AdsenseAdmin; ?>
 		wp_title('',true,''); ?> &raquo; <?php bloginfo('name'); ?>
 	<?php endif; ?></title>
 	<?php $time = time(); ?>
-	<link rel="stylesheet" href="<?php bloginfo('template_directory'); ?>/css/reset-min.css?<?php echo $time; ?>" type="text/css" media="screen, projection" />
-	<link rel="stylesheet" href="<?php bloginfo('template_directory'); ?>/css/screen-min.css?<?php echo $time; ?>" type="text/css" media="screen, projection" />
-	<link rel="stylesheet" href="<?php bloginfo('template_directory'); ?>/css/print-min.css?<?php echo $time; ?>" type="text/css" media="print" />
-	<!--[if lte IE 8]><link rel="stylesheet" href="<?php bloginfo('template_directory'); ?>/css/ie-min.css?<?php echo $time; ?>" type="text/css" media="screen, projection" /><![endif]-->
+	<link rel="stylesheet" href="<?php bloginfo('template_directory'); ?>/css/reset.css?<?php echo $time; ?>" type="text/css" media="screen, projection" />
+	<link rel="stylesheet" href="<?php bloginfo('template_directory'); ?>/css/screen.css?<?php echo $time; ?>" type="text/css" media="screen, projection" />
+	<link rel="stylesheet" href="<?php bloginfo('template_directory'); ?>/css/print.css?<?php echo $time; ?>" type="text/css" media="print" />
+	<!--[if lte IE 8]><link rel="stylesheet" href="<?php bloginfo('template_directory'); ?>/css/ie.css?<?php echo $time; ?>" type="text/css" media="screen, projection" /><![endif]-->
 	<link rel="alternate" type="application/rss+xml" title="<?php bloginfo('name'); ?> RSS Feed" href="<?php echo $blogfeed; ?>" />
 	<link rel="pingback" href="<?php bloginfo('pingback_url'); ?>" />
 	<link rel="shortcut icon" type="image/ico" href="<?php bloginfo('home'); ?>/favicon.ico" />
 	<?php if(get_option('wicketpixie_enable_ajax_loader') == 'true') : ?>
-	<link rel="stylesheet" href="<?php bloginfo('template_directory'); ?>/css/loader-min.css?<?php echo time(); ?>" type="text/css" media="all" />
+	<link rel="stylesheet" href="<?php bloginfo('template_directory'); ?>/css/loader.css?<?php echo time(); ?>" type="text/css" media="all" />
 	<?php endif;
 	ob_flush();
 	flush(); ?>
@@ -109,7 +109,7 @@ $adsense = new AdsenseAdmin; ?>
 				<li id="topbar-admin"><a href="<?php bloginfo('wpurl'); ?>/wp-admin" rel="nofollow">Admin</a></li>
 				<?php endif; ?>
 			</ul>
-			<?php get_search_form(); ?>
+<?php get_search_form(); ?>
 		</div>
 		<!-- /topbar-inner -->
 	</div>

@@ -131,7 +131,7 @@ function wicketpixie_wp_head() {
 <?php }
 function wicketpixie_admin_head() {
 	$path= get_bloginfo('template_directory');
-	echo '<script type="text/javascript" src="' . $path . '/js/colorpicker-min.js"></script>';
+	echo '<script type="text/javascript" src="' . $path . '/js/colorpicker.js"></script>';
 	echo '<link rel="stylesheet" href="' . $path . '/css/admin.css" type="text/css" media="screen, projection" />'; ?>
 	<script src="<?php echo get_bloginfo('template_directory'), '/contrib/iphone-style-checkboxes/iphone-style-checkboxes.js'; ?>" type="text/javascript" charset="utf-8"></script>
 	<link rel="stylesheet" href="<?php echo get_bloginfo('template_directory'), '/contrib/iphone-style-checkboxes/style.css'; ?>" type="text/css" media="screen" charset="utf-8">

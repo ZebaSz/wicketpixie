@@ -1,0 +1,11 @@
+#loadingFrame {
+	display: block;
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	background: #FFF;
+	z-index: 9999;
+}
+#loading img {
+	margin: 300px auto 0;
+}

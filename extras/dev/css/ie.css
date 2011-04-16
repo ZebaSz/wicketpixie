@@ -1,0 +1,72 @@
+#content .post-comments li.post-comments-add {
+	height: 18px;
+}
+
+#content li.post-comments-add span, #content .navigation .left span, #content .navigation .right span {
+	cursor: pointer;
+}
+
+#content .navigation .left, #content .navigation .right {
+	height: 36px;
+}
+
+#topbar {
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#393939', endColorstr='#000000');
+	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr='#393939', endColorstr='#000000')";
+}
+
+#search #s {
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#bbbbbb', endColorstr='#ffffff');
+	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr='#bbbbbb', endColorstr='#ffffff')";
+}
+
+#search input.search-submit {
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#666666', endColorstr='#222222');
+	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr='#666666', endColorstr='#222222')";
+}
+
+#nav {
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#393939', endColorstr='#000000');
+	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr='#393939', endColorstr='#000000')";
+}
+
+#nav li a:hover, #nav li:hover > a {
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#444444', endColorstr='#111111');
+	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr='#444444', endColorstr='#111111')";
+}
+
+#nav ul li ul {
+	background:none;
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#E5000000',endColorstr='#E5000000');
+	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr='#E5000000',endColorstr='#E5000000')";
+	zoom: 1;
+}
+
+#status .avatar {
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#3F000000',endColorstr='#3F000000');
+	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr='#3F000000',endColorstr='#3F000000')";
+}
+
+#status p {
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#3F000000',endColorstr='#3F000000');
+	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr='#3F000000',endColorstr='#3F000000')";
+}
+
+#status-box span {
+	border-color: transparent;
+}
+
+#content li.post-comments-add span {
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#666666',endColorstr='#222222');
+	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr='#666666',endColorstr='#222222')";
+}
+
+#content .navigation span {
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#666666',endColorstr='#222222');
+	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr='#666666',endColorstr='#222222')";
+}
+
+#comment-form #submit {
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#666666',endColorstr='#222222');
+	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr='#666666',endColorstr='#222222')";
+}
