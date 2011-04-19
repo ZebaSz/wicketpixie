@@ -35,6 +35,7 @@ body {
 	background-image: -o-linear-gradient(top, #393939, #000);
 	background-image: -webkit-linear-gradient(top, #393939, #000);
 	background-image: -moz-linear-gradient(top, #393939, #000);
+	background-image: -ms-linear-gradient(top,#393939,#000);
 	box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.3);
 	-moz-box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.3);
 }
@@ -124,6 +125,7 @@ body {
 	background-image: -o-linear-gradient(top, #bbb, #fff 15px);
 	background-image: -webkit-linear-gradient(top, #bbb, #fff 15px);
 	background-image: -moz-linear-gradient(top, #bbb, #fff 15px);
+	background-image: -ms-linear-gradient(top,#bbb,#fff 15px);
 	border-width: 1px;
 }
 #search input.search-submit {
@@ -136,6 +138,7 @@ body {
 	background-image: -o-linear-gradient(top, #666, #222 10px);
 	background-image: -webkit-linear-gradient(top, #666, #222 10px);
 	background-image: -moz-linear-gradient(top, #666, #222 10px);
+	background-image: -ms-linear-gradient(top,#666,#222 10px);
 	padding: 3px 12px;
 	font-weight: bold;
 	font-size: 9px;
@@ -263,8 +266,9 @@ body {
 	background-image: -o-linear-gradient(top, #393939, #000 28px);
 	background-image: -webkit-linear-gradient(top, #393939, #000 28px);
 	background-image: -moz-linear-gradient(top, #393939, #000 28px);
+	background-image: -ms-linear-gradient(top, #393939, #000 28px);
 }
-#nav > ul {
+#nav .menu {
 	margin-top: -1px;
 }
 #nav li {
@@ -287,6 +291,7 @@ body {
 	background-image: -o-linear-gradient(top, #4c4c4c, #111 28px);
 	background-image: -webkit-linear-gradient(top, #4c4c4c, #111 28px);
 	background-image: -moz-linear-gradient(top, #4c4c4c, #111 28px);
+	background-image: -ms-linear-gradient(top, #4c4c4c, #111 28px);
 	border-top: 1px solid #777;
 }
 #nav ul ul {
@@ -626,6 +631,7 @@ body {
 	background-image: -o-linear-gradient(top, #666, #222);
 	background-image: -webkit-linear-gradient(top, #666, #222);
 	background-image: -moz-linear-gradient(top, #666, #222);
+	background-image: -ms-linear-gradient(top, #666, #222);
 	border-radius: 8px;
 	-moz-border-radius: 8px;
 	text-align: center;
@@ -753,6 +759,7 @@ body {
 	background-image: -o-linear-gradient(top, #666, #222 7px);
 	background-image: -webkit-linear-gradient(top, #666, #222 7px);
 	background-image: -moz-linear-gradient(top, #666, #222 7px);
+	background-image: -ms-linear-gradient(top, #666, #222 7px);
 	padding: 6px 0;
 	font-weight: bold;
 	font-size: 12px;
@@ -915,6 +922,7 @@ body {
 	background-image: -o-linear-gradient(top, #666, #222 13px);
 	background-image: -webkit-linear-gradient(top, #666, #222 13px);
 	background-image: -moz-linear-gradient(top, #666, #222 13px);
+	background-image: -ms-linear-gradient(top, #666, #222 13px);
 	font-weight: bold;
 	font-size: 10px;
 	text-transform: uppercase;
