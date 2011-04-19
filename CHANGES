@@ -9,6 +9,7 @@ v1.4 - TBA (beta - April 18, 2011)
  * FIXED: Some bugs along the way
  * PLUGIN: Some WiPi plugins were removed (more info in UPGRADING file)
  * ADDED: Nice comment layout, paged comments
+ * ADDED: IE 10 Platform Preview gradients (CSS now 100% compatible with IE 10!)
  * REMOVED: Images used for layout prior to the fork
 
 v1.3.2 - March 26, 2011
