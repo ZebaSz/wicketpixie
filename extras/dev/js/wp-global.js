@@ -1,16 +1,11 @@
 jQuery(document).ready(function ($) {
 	//Add all your global onReady Functions here
 	setTimeout("hideLoading()", 500);
-	$('#subscribe').hide();
-	$("#topbar-subscribe a").toggle(
-		function() { $("#subscribe").slideDown();
-		return false;
-	},
-		function() { $("#subscribe").slideUp();
-		return false;
-	});
+	$("#topbar-subscribe a").click(
+		function() { $("#subscribe").slideToggle(); }
+	);
 });
 
 function hideLoading() {
-	jQuery("#loadingFrame").css('display', 'none');
+	jQuery("#loadingFrame").hide();
 }
