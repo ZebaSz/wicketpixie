@@ -18,6 +18,7 @@ $plugins_desc = <<<HTML
 <li>All In One SEO Pack</li>
 <li>AskApache Google 404 (you can use <a href="admin.php?page=customcode.php">custom 404 code</a> to regain integration)</li>
 <li>StatPress Reloaded</li>
+</ul>
 HTML;
 $plugins = array(
 	'name' => '',
