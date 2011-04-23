@@ -32,9 +32,8 @@ $adsense = new AdsenseAdmin; ?>
 	<link rel="stylesheet" href="<?php bloginfo('template_directory'); ?>/css/loader.css?<?php echo time(); ?>" type="text/css" media="all" />
 	<?php endif;
 	ob_flush();
-	flush(); ?>
-	<style type="text/css">.recentcomments a {display: inline !important;padding: 0 !important;margin: 0 !important;}</style>
-	<?php include_once (TEMPLATEPATH . '/plugins/random-posts.php');
+	flush();
+	include_once (TEMPLATEPATH . '/plugins/random-posts.php');
 	include_once (TEMPLATEPATH . '/plugins/search-excerpt.php');
 	clearstatcache();
 	if(!is_dir(ABSPATH.'wp-content/uploads/activity')) :
