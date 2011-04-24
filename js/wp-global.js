@@ -1,1 +1,1 @@
-jQuery(document).ready(function(a){setTimeout("hideLoading()",500);a("#topbar-subscribe a").click(function(){a("#subscribe").slideToggle()})});function hideLoading(){jQuery("#loadingFrame").hide()};
+jQuery(document).ready(function(a){setTimeout("hideLoading()",500);a("#topbar-subscribe a").click(function(){a("#subscribe").slideToggle();return!1})});function hideLoading(){jQuery("#loadingFrame").hide()};
