@@ -32,7 +32,7 @@ $wp_auth_credit= get_option('wicketpixie_show_post_author'); ?>
 					<div class="KonaBody">
 					<?php the_content(__('Continue reading', 'wicketpixie').'&raquo;'); ?>
 					</div>
-					<?php wp_after_posts_code(); ?>
+					<?php wp_customcode("afterposts"); ?>
 				</div>
 				<!-- /post -->
 				<!-- google_ad_section_end -->
