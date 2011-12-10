@@ -1,6 +1,6 @@
 jQuery(document).ready(function ($) {
 	//Add all your global onReady Functions here
-	setTimeout("hideLoading()", 500);
+	$("#loadingFrame").delay(500).hide();
 	$("#topbar-subscribe a").click(
 		function() {
 			$("#subscribe").slideToggle();
@@ -8,7 +8,3 @@ jQuery(document).ready(function ($) {
 		}
 	);
 });
-
-function hideLoading() {
-	jQuery("#loadingFrame").hide();
-}

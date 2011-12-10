@@ -21,15 +21,13 @@ $adsense = new AdsenseAdmin; ?>
 		wp_title('',true,''); ?> &raquo; <?php bloginfo('name'); ?>
 	<?php endif; ?></title>
 	<?php $time = time(); ?>
-	<link rel="stylesheet" href="<?php bloginfo('template_directory'); ?>/css/reset.css?<?php echo $time; ?>" type="text/css" media="screen, projection" />
-	<link rel="stylesheet" href="<?php bloginfo('template_directory'); ?>/css/screen.css?<?php echo $time; ?>" type="text/css" media="screen, projection" />
+	<link rel="stylesheet" href="<?php bloginfo('template_directory'); ?>/style.css" type="text/css" media="screen, projection" />
 	<link rel="stylesheet" href="<?php bloginfo('template_directory'); ?>/css/print.css?<?php echo $time; ?>" type="text/css" media="print" />
 	<!--[if lte IE 8]><link rel="stylesheet" href="<?php bloginfo('template_directory'); ?>/css/ie.css?<?php echo $time; ?>" type="text/css" media="screen, projection" /><![endif]-->
 	<link rel="alternate" type="application/rss+xml" title="<?php bloginfo('name'); ?> RSS Feed" href="<?php echo $blogfeed; ?>" />
 	<link rel="pingback" href="<?php bloginfo('pingback_url'); ?>" />
 	<link rel="shortcut icon" type="image/ico" href="<?php bloginfo('home'); ?>/favicon.ico" />
 	<?php if(get_option('wicketpixie_enable_ajax_loader') == 'true') : ?>
-	<link rel="stylesheet" href="<?php bloginfo('template_directory'); ?>/css/loader.css?<?php echo time(); ?>" type="text/css" media="all" />
 	<?php endif;
 	ob_flush();
 	flush();
@@ -68,15 +66,7 @@ $adsense = new AdsenseAdmin; ?>
 	<meta name="description" content="<?php echo $metadesc; ?>" />
 </head>
 <body>
-	<?php if(get_option('wicketpixie_enable_ajax_loader') == 'true') : ?>
-	<!-- AJAX DIV Loader -->
-	<div id="loadingFrame">
-		<div id="loading">
-			<img src="<?php echo get_template_directory_uri(); ?>/images/loading.gif" alt="Loading"/><br />
-			<b><?php _e('Loading....', 'wicketpixie') ?></b>
-		</div>
-	</div>
-	<?php endif;
+	<?php if(get_option('wicketpixie_enable_ajax_loader') == 'true') include_once('loader.php');
 	flush(); ?>
 <!-- google_ad_section_start(weight=ignore) -->
 	<?php if (!function_exists('is_admin_bar_showing') || !is_admin_bar_showing()) : ?>

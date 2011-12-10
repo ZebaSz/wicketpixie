@@ -31,43 +31,15 @@ endif;
 
 /* Dynamic (Widget-enabled) Sidebar */
 if ( function_exists('register_sidebar') ) :
-	register_sidebar(array('name'=>'sidebar_top',
+	register_sidebar(array(
+		'name'=>__('Sidebar top'),
+		'id'=>'sidebar_top',
 		'before_widget' => '<div id="%1$s" class="widget %2$s">',
 		'after_widget' => '</div>',
 		'before_title' => '<h3>',
 		'after_title' => '</h3>',
 	));
-	register_sidebar(array('name'=>'sidebar1',
-		'before_widget' => '<div id="%1$s" class="widget %2$s">',
-		'after_widget' => '</div>',
-		'before_title' => '<h3>',
-		'after_title' => '</h3>',
-	));
-	register_sidebar(array('name'=>'sidebar2',
-		'before_widget' => '<div id="%1$s" class="widget %2$s">',
-		'after_widget' => '</div>',
-		'before_title' => '<h3>',
-		'after_title' => '</h3>',
-	));
-	register_sidebar(array('name'=>'sidebar3',
-		'before_widget' => '<div id="%1$s" class="widget %2$s">',
-		'after_widget' => '</div>',
-		'before_title' => '<h3>',
-		'after_title' => '</h3>',
-	));
-	register_sidebar(array('name'=>'sidebar4',
-		'before_widget' => '<div id="%1$s" class="widget %2$s">',
-		'after_widget' => '</div>',
-		'before_title' => '<h3>',
-		'after_title' => '</h3>',
-	));
-	register_sidebar(array('name'=>'sidebar5',
-		'before_widget' => '<div id="%1$s" class="widget %2$s">',
-		'after_widget' => '</div>',
-		'before_title' => '<h3>',
-		'after_title' => '</h3>',
-	));
-	register_sidebar(array('name'=>'sidebar6',
+	register_sidebars(6, array(
 		'before_widget' => '<div id="%1$s" class="widget %2$s">',
 		'after_widget' => '</div>',
 		'before_title' => '<h3>',
