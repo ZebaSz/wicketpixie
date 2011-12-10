@@ -1,1 +1,9 @@
-jQuery(document).ready(function(a){a("#loadingFrame").delay(500).hide();a("#topbar-subscribe a").click(function(){a("#subscribe").slideToggle();return!1})});
+jQuery(document).ready(function ($) {
+	$("#loading").delay(500).hide();
+	$("#topbar-subscribe a").click(
+		function() {
+			$("#subscribe").slideToggle();
+			return false;
+		}
+	);
+});

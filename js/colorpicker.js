@@ -1,26 +1,357 @@
 /* jQuery ColorPicker
    Written by Virgil Reboton(vreboton@gmail.com)
-
+   
    ColorPicker function structures and attahcment is base on
    jQuery UI Date Picker v3.3beta
    by Marc Grabanski (m@marcgrabanski.com) and Keith Wood (kbwood@virginbroadband.com.au).
-
+   
    ColorPicker render data is base on
    http://www.mattkruse.com/javascript/colorpicker/
    by Matt Kruse
+
 */
-(function(b){function f(){this._nextId=0;this._inst=[];this._curInst=null;this._colorpickerShowing=!1;this._colorPickerDiv=b('<div id="colorPickerDiv"></div>')}function g(){this._id=b.colorPicker._register(this);this._input=null;this._colorPickerDiv=b.colorPicker._colorPickerDiv;this._sampleSpan=null}b.extend(f.prototype,{markerClassName:"hasColorPicker",_register:function(a){var b=this._nextId++;this._inst[b]=a;return b},_getInst:function(a){return this._inst[a]||a},_doKeyDown:function(a){b.colorPicker._getInst(this._colId);
-if(b.colorPicker._colorpickerShowing)switch(a.keyCode){case 9:b.colorPicker.hideColorPicker();break;case 27:b.colorPicker.hideColorPicker()}else a.keyCode==40&&b.colorPicker.showFor(this)},_resetSample:function(){var a=b.colorPicker._getInst(this._colId);a._sampleSpan.css("background-color",a._input.value);alert(a._input.value)},_hasClass:function(a,b){var c=a.attr("class");return c&&c.indexOf(b)>-1},showFor:function(a){a=a.jquery?a[0]:typeof a=="string"?b(a)[0]:a;a=a.nodeName&&a.nodeName.toLowerCase()==
-"input"?a:this;if(b.colorPicker._lastInput!=a&&!b.colorPicker._colorpickerShowing){var d=b.colorPicker._getInst(a._colId);b.colorPicker.hideColorPicker();b.colorPicker._lastInput=a;if(!b.colorPicker._pos)b.colorPicker._pos=b.colorPicker._findPos(a),b.colorPicker._pos[1]+=a.offsetHeight;var c=!1;b(a).parents().each(function(){c|=b(this).css("position")=="fixed"});c&&b.browser.opera&&(b.colorPicker._pos[0]-=document.documentElement.scrollLeft,b.colorPicker._pos[1]-=document.documentElement.scrollTop);
-d._colorPickerDiv.css("position",b.blockUI?"static":c?"fixed":"absolute").css("left",b.colorPicker._pos[0]+"px").css("top",b.colorPicker._pos[1]+1+"px");b.colorPicker._pos=null;b.colorPicker._showColorPicker(d);return this}},_findPos:function(a){for(;a&&(a.type=="hidden"||a.nodeType!=1);)a=a.nextSibling;var b=curtop=0;if(a&&a.offsetParent){b=a.offsetLeft;for(curtop=a.offsetTop;a=a.offsetParent;){var c=b;b+=a.offsetLeft;b<0&&(b=c);curtop+=a.offsetTop}}return[b,curtop]},_checkExternalClick:function(a){b.colorPicker._curInst&&
-(a=b(a.target),a.parents("#colorPickerDiv").length==0&&b.colorPicker._colorpickerShowing&&!b.blockUI&&a.text()!=b.colorPicker._curInst._colorPickerDiv.text()&&b.colorPicker.hideColorPicker())},hideColorPicker:function(){var a=this._curInst;if(a){if(this._colorpickerShowing)this._colorpickerShowing=!1,this._lastInput=null,this._colorPickerDiv.css("position","absolute").css("left","0px").css("top","-1000px"),b.blockUI&&(b.unblockUI(),b("body").append(this._colorPickerDiv)),this._curInst=null;a._input[0].value!=
-b.css(a._sampleSpan,"background-color")&&a._sampleSpan.css("background-color",a._input[0].value)}},_connectColorPicker:function(a,d){var c=b(a);if(!this._hasClass(c,this.markerClassName))b(c).attr("autocomplete","OFF"),d._input=b(c),d._sampleSpan=b('<span class="ColorPickerDivSample" style="background-color:'+d._input[0].value+";height:"+d._input[0].offsetHeight+';">&nbsp;</span>'),c.after(d._sampleSpan),d._sampleSpan.click(function(){c.focus()}),c.focus(this.showFor),c.addClass(this.markerClassName).keydown(this._doKeyDown),
-c[0]._colId=d._id},_showColorPicker:function(a){a=this._getInst(a);this._updateColorPicker(a);a._colorPickerDiv.css("width",a._startTime!=null?"10em":"6em");a._colorPickerDiv.show("fast");a._input[0].type!="hidden"&&a._input[0].focus();this._curInst=a;this._colorpickerShowing=!0},_updateColorPicker:function(a){a._colorPickerDiv.empty().append(a._generateColorPicker());a._input&&a._input[0].type!="hidden"&&(a._input[0].focus(),b("td.color",a._timePickerDiv).unbind().mouseover(function(){a._sampleSpan.css("background-color",
-b.css(this,"background-color"))}).click(function(){a._setValue(this)}))}});b.extend(g.prototype,{_get:function(a){return this._settings[a]!=null?this._settings[a]:b.colorPicker._defaults[a]},_getValue:function(){if(this._input&&this._input[0].type!="hidden"&&this._input[0].value!="")return this._input[0].value;return null},_setValue:function(a){if(this._input&&this._input[0].type!="hidden")this._input[0].value=b.attr(a,"title"),b(this._input[0]).change();b.colorPicker.hideColorPicker()},_generateColorPicker:function(){for(var a=
-["#000000","#000033","#000066","#000099","#0000CC","#0000FF","#330000","#330033","#330066","#330099","#3300CC","#3300FF","#660000","#660033","#660066","#660099","#6600CC","#6600FF","#990000","#990033","#990066","#990099","#9900CC","#9900FF","#CC0000","#CC0033","#CC0066","#CC0099","#CC00CC","#CC00FF","#FF0000","#FF0033","#FF0066","#FF0099","#FF00CC","#FF00FF","#003300","#003333","#003366","#003399","#0033CC","#0033FF","#333300","#333333","#333366","#333399","#3333CC","#3333FF","#663300","#663333",
-"#663366","#663399","#6633CC","#6633FF","#993300","#993333","#993366","#993399","#9933CC","#9933FF","#CC3300","#CC3333","#CC3366","#CC3399","#CC33CC","#CC33FF","#FF3300","#FF3333","#FF3366","#FF3399","#FF33CC","#FF33FF","#006600","#006633","#006666","#006699","#0066CC","#0066FF","#336600","#336633","#336666","#336699","#3366CC","#3366FF","#666600","#666633","#666666","#666699","#6666CC","#6666FF","#996600","#996633","#996666","#996699","#9966CC","#9966FF","#CC6600","#CC6633","#CC6666","#CC6699","#CC66CC",
-"#CC66FF","#FF6600","#FF6633","#FF6666","#FF6699","#FF66CC","#FF66FF","#009900","#009933","#009966","#009999","#0099CC","#0099FF","#339900","#339933","#339966","#339999","#3399CC","#3399FF","#669900","#669933","#669966","#669999","#6699CC","#6699FF","#999900","#999933","#999966","#999999","#9999CC","#9999FF","#CC9900","#CC9933","#CC9966","#CC9999","#CC99CC","#CC99FF","#FF9900","#FF9933","#FF9966","#FF9999","#FF99CC","#FF99FF","#00CC00","#00CC33","#00CC66","#00CC99","#00CCCC","#00CCFF","#33CC00","#33CC33",
-"#33CC66","#33CC99","#33CCCC","#33CCFF","#66CC00","#66CC33","#66CC66","#66CC99","#66CCCC","#66CCFF","#99CC00","#99CC33","#99CC66","#99CC99","#99CCCC","#99CCFF","#CCCC00","#CCCC33","#CCCC66","#CCCC99","#CCCCCC","#CCCCFF","#FFCC00","#FFCC33","#FFCC66","#FFCC99","#FFCCCC","#FFCCFF","#00FF00","#00FF33","#00FF66","#00FF99","#00FFCC","#00FFFF","#33FF00","#33FF33","#33FF66","#33FF99","#33FFCC","#33FFFF","#66FF00","#66FF33","#66FF66","#66FF99","#66FFCC","#66FFFF","#99FF00","#99FF33","#99FF66","#99FF99","#99FFCC",
-"#99FFFF","#CCFF00","#CCFF33","#CCFF66","#CCFF99","#CCFFCC","#CCFFFF","#FFFF00","#FFFF33","#FFFF66","#FFFF99","#FFFFCC","#EEEEEE","#111111","#222222","#333333","#444444","#555555","#666666","#777777","#888888","#999999","#A5A5A5","#AAAAAA","#BBBBBB","#C3C3C3","#CCCCCC","#D2D2D2","#DDDDDD","#E1E1E1","#FFFFFF"],b=a.length,c="<table border='1px' cellspacing='0' cellpadding='0'>",e=0;e<b;e++)if(e%18==0&&(c+="<tr>"),c+='<td class="color" title="'+a[e]+'" style="background-color:'+a[e]+'"><label>&nbsp;&nbsp;&nbsp;</label></td>',
-e+1>=b||(e+1)%18==0)c+="</tr>";c+='<tr><td title="" style="background-color:#999" class="color" colspan="18" align="center"><label>No Color</label></td></tr>';c+="</table>";return c}});b.fn.attachColorPicker=function(){return this.each(function(){if(this.nodeName.toLowerCase()=="input"){var a=new g;b.colorPicker._connectColorPicker(this,a)}})};b.fn.getValue=function(){var a=this.length>0?b.colorPicker._getInst(this[0]._colId):null;return a?a._getValue():null};b.fn.setValue=function(a){var d=this.length>
-0?b.colorPicker._getInst(this[0]._colId):null;d&&d._setValue(a)};b(document).ready(function(){b.colorPicker=new f;b(document.body).append(b.colorPicker._colorPickerDiv).mousedown(b.colorPicker._checkExternalClick)})})(jQuery);
+   
+(function($) { // hide the namespace
+
+function colorPicker()
+{
+	this._nextId = 0; // Next ID for a time picker instance
+	this._inst = []; // List of instances indexed by ID
+	this._curInst = null; // The current instance in use
+	this._colorpickerShowing = false;
+	this._colorPickerDiv = $('<div id="colorPickerDiv"></div>');
+}
+$.extend(colorPicker.prototype, {
+	/* Class name added to elements to indicate already configured with a time picker. */
+	markerClassName: 'hasColorPicker',
+
+	/* Register a new time picker instance - with custom settings. */
+	_register: function(inst) {
+		var id = this._nextId++;
+		this._inst[id] = inst;
+		return id;
+	},
+
+	/* Retrieve a particular time picker instance based on its ID. */
+	_getInst: function(id) {
+		return this._inst[id] || id;
+	},
+	
+	/* Handle keystrokes. */
+	_doKeyDown: function(e) {
+        var inst = $.colorPicker._getInst(this._colId);
+		if ($.colorPicker._colorpickerShowing) {
+			switch (e.keyCode) {
+				case 9: 
+				    // hide on tab out
+				    $.colorPicker.hideColorPicker();
+                    break; 
+
+				case 27: 
+				    // hide on escape
+				    $.colorPicker.hideColorPicker();
+					break;
+            }
+		}
+		else if (e.keyCode == 40) { // display the time picker on down arrow key
+			$.colorPicker.showFor(this);
+		}
+	},
+
+/* Handle keystrokes. */
+	_resetSample: function(e) {
+        var inst = $.colorPicker._getInst(this._colId);
+		inst._sampleSpan.css('background-color', inst._input.value);
+		alert(inst._input.value);
+	},
+	
+    /* Does this element have a particular class? */
+	_hasClass: function(element, className) {
+		var classes = element.attr('class');
+		return (classes && classes.indexOf(className) > -1);
+	},
+
+    /* Pop-up the time picker for a given input field.
+	   @param  control  element - the input field attached to the time picker or
+	                    string - the ID or other jQuery selector of the input field or
+	                    object - jQuery object for input field
+	   @return the manager object */
+	showFor: function(control) {
+		control = (control.jquery ? control[0] :
+			(typeof control == 'string' ? $(control)[0] : control));
+		var input = (control.nodeName && control.nodeName.toLowerCase() == 'input' ? control : this);
+		
+		if ($.colorPicker._lastInput == input) { return; }
+		if ($.colorPicker._colorpickerShowing) { return; }
+		
+		var inst = $.colorPicker._getInst(input._colId);
+		
+		$.colorPicker.hideColorPicker();
+		$.colorPicker._lastInput = input;
+		
+		if (!$.colorPicker._pos) { // position below input
+			$.colorPicker._pos = $.colorPicker._findPos(input);
+			$.colorPicker._pos[1] += input.offsetHeight; // add the height			
+		}
+		
+		var isFixed = false;
+		$(input).parents().each(function() {
+			isFixed |= $(this).css('position') == 'fixed';
+		});
+		
+		if (isFixed && $.browser.opera) { // correction for Opera when fixed and scrolled
+			$.colorPicker._pos[0] -= document.documentElement.scrollLeft;
+			$.colorPicker._pos[1] -= document.documentElement.scrollTop;
+		}
+	
+	    inst._colorPickerDiv.css('position', ($.blockUI ? 'static' : (isFixed ? 'fixed' : 'absolute'))).css('left', $.colorPicker._pos[0] + 'px').css('top', $.colorPicker._pos[1]+1 + 'px');
+	
+		$.colorPicker._pos = null;
+		$.colorPicker._showColorPicker(inst);
+
+		return this;
+	},
+
+    /* Find an object's position on the screen. */
+	_findPos: function(obj) {
+		while (obj && (obj.type == 'hidden' || obj.nodeType != 1)) {
+			obj = obj.nextSibling;
+		}
+		var curleft = curtop = 0;
+		if (obj && obj.offsetParent) {
+			curleft = obj.offsetLeft;
+			curtop = obj.offsetTop;
+			while (obj = obj.offsetParent) {
+				var origcurleft = curleft;
+				curleft += obj.offsetLeft;
+				if (curleft < 0) {
+					curleft = origcurleft;
+				}
+				curtop += obj.offsetTop;
+			}
+		}
+		return [curleft,curtop];
+	},
+	
+	/* Close time picker if clicked elsewhere. */
+	_checkExternalClick: function(event) {
+		if (!$.colorPicker._curInst)
+		{
+			return;
+		}
+		var target = $(event.target);		
+				
+		if ((target.parents("#colorPickerDiv").length == 0) && $.colorPicker._colorpickerShowing && !($.blockUI))
+		{
+		    if (target.text() != $.colorPicker._curInst._colorPickerDiv.text())
+		        $.colorPicker.hideColorPicker();
+		}
+	},
+
+    /* Hide the time picker from view.
+	   @param  speed  string - the speed at which to close the time picker
+	   @return void */
+	hideColorPicker: function(s) {
+		var inst = this._curInst;
+		if (!inst) {
+			return;
+		}		
+ 
+		if (this._colorpickerShowing)
+		{
+			this._colorpickerShowing = false;
+			this._lastInput = null;
+			
+			this._colorPickerDiv.css('position', 'absolute').css('left', '0px').css('top', '-1000px');
+			
+			if ($.blockUI)
+			{
+				$.unblockUI();
+				$('body').append(this._colorPickerDiv);
+			}
+        
+            this._curInst = null;        			
+		}
+		
+		if (inst._input[0].value != $.css(inst._sampleSpan,'background-color'))
+		{
+		    inst._sampleSpan.css('background-color',inst._input[0].value);
+		}
+	},
+
+	/* Attach the time picker to an input field. */
+	_connectColorPicker: function(target, inst) {
+		var input = $(target);
+		if (this._hasClass(input, this.markerClassName)) { return; }
+		
+		$(input).attr('autocomplete', 'OFF'); // Disable browser autocomplete		
+		inst._input = $(input);	
+		
+		// Create sample span
+		inst._sampleSpan = $('<span class="ColorPickerDivSample" style="background-color:' + inst._input[0].value + ';height:' + inst._input[0].offsetHeight + ';">&nbsp;</span>');
+		input.after(inst._sampleSpan);
+		
+		inst._sampleSpan.click(function() {
+		    input.focus();
+		});
+								
+		input.focus(this.showFor);
+		
+		input.addClass(this.markerClassName).keydown(this._doKeyDown);
+		input[0]._colId = inst._id;		
+	},
+	
+	
+	/* Construct and display the time picker. */
+	_showColorPicker: function(id) {
+		var inst = this._getInst(id);
+		this._updateColorPicker(inst);
+		
+        inst._colorPickerDiv.css('width', inst._startTime != null ? '10em' : '6em');
+		
+		inst._colorPickerDiv.show('fast');
+		if (inst._input[0].type != 'hidden')
+        {
+		    inst._input[0].focus();
+        }
+		
+		this._curInst = inst;
+		this._colorpickerShowing = true;
+	},
+
+	/* Generate the time picker content. */
+	_updateColorPicker: function(inst) {
+		inst._colorPickerDiv.empty().append(inst._generateColorPicker());
+		if (inst._input && inst._input[0].type != 'hidden')
+		{
+			inst._input[0].focus();
+			
+            $("td.color", inst._timePickerDiv).unbind().mouseover(function() {
+                inst._sampleSpan.css('background-color', $.css(this,'background-color'));
+            }).click(function() {
+                inst._setValue(this);
+            });
+        }
+    } 
+	
+});
+
+/* Individualised settings for time picker functionality applied to one or more related inputs.
+   Instances are managed and manipulated through the TimePicker manager. */
+function ColorPickerInstance()
+{
+	this._id = $.colorPicker._register(this);
+	this._input = null;
+	this._colorPickerDiv = $.colorPicker._colorPickerDiv;
+	this._sampleSpan = null;
+}
+
+$.extend(ColorPickerInstance.prototype, {
+	/* Get a setting value, defaulting if necessary. */
+	_get: function(name) {
+		return (this._settings[name] != null ? this._settings[name] : $.colorPicker._defaults[name]);
+	},
+	
+    _getValue: function () {
+        if (this._input && this._input[0].type != 'hidden' && this._input[0].value != "")
+		{
+			return this._input[0].value;
+        }
+        return null;
+    },
+	
+	_setValue: function (sel) {
+        // Update input field
+        if (this._input && this._input[0].type != 'hidden')
+		{
+		    this._input[0].value = $.attr(sel,'title');
+			$(this._input[0]).change();
+        }
+        
+        // Hide picker
+        $.colorPicker.hideColorPicker();
+    },
+   	
+	/* Generate the HTML for the current state of the time picker. */
+	_generateColorPicker: function() {
+        // Code to populate color picker window
+        var colors  = new Array("#000000","#000033","#000066","#000099","#0000CC","#0000FF","#330000","#330033","#330066","#330099","#3300CC",
+                                "#3300FF","#660000","#660033","#660066","#660099","#6600CC","#6600FF","#990000","#990033","#990066","#990099",
+                                "#9900CC","#9900FF","#CC0000","#CC0033","#CC0066","#CC0099","#CC00CC","#CC00FF","#FF0000","#FF0033","#FF0066",
+							    "#FF0099","#FF00CC","#FF00FF","#003300","#003333","#003366","#003399","#0033CC","#0033FF","#333300","#333333",
+							    "#333366","#333399","#3333CC","#3333FF","#663300","#663333","#663366","#663399","#6633CC","#6633FF","#993300",
+							    "#993333","#993366","#993399","#9933CC","#9933FF","#CC3300","#CC3333","#CC3366","#CC3399","#CC33CC","#CC33FF",
+							    "#FF3300","#FF3333","#FF3366","#FF3399","#FF33CC","#FF33FF","#006600","#006633","#006666","#006699","#0066CC",
+							    "#0066FF","#336600","#336633","#336666","#336699","#3366CC","#3366FF","#666600","#666633","#666666","#666699",
+							    "#6666CC","#6666FF","#996600","#996633","#996666","#996699","#9966CC","#9966FF","#CC6600","#CC6633","#CC6666",
+							    "#CC6699","#CC66CC","#CC66FF","#FF6600","#FF6633","#FF6666","#FF6699","#FF66CC","#FF66FF","#009900","#009933",
+							    "#009966","#009999","#0099CC","#0099FF","#339900","#339933","#339966","#339999","#3399CC","#3399FF","#669900",
+							    "#669933","#669966","#669999","#6699CC","#6699FF","#999900","#999933","#999966","#999999","#9999CC","#9999FF",
+							    "#CC9900","#CC9933","#CC9966","#CC9999","#CC99CC","#CC99FF","#FF9900","#FF9933","#FF9966","#FF9999","#FF99CC",
+							    "#FF99FF","#00CC00","#00CC33","#00CC66","#00CC99","#00CCCC","#00CCFF","#33CC00","#33CC33","#33CC66","#33CC99",
+							    "#33CCCC","#33CCFF","#66CC00","#66CC33","#66CC66","#66CC99","#66CCCC","#66CCFF","#99CC00","#99CC33","#99CC66",
+							    "#99CC99","#99CCCC","#99CCFF","#CCCC00","#CCCC33","#CCCC66","#CCCC99","#CCCCCC","#CCCCFF","#FFCC00","#FFCC33",
+							    "#FFCC66","#FFCC99","#FFCCCC","#FFCCFF","#00FF00","#00FF33","#00FF66","#00FF99","#00FFCC","#00FFFF","#33FF00",
+							    "#33FF33","#33FF66","#33FF99","#33FFCC","#33FFFF","#66FF00","#66FF33","#66FF66","#66FF99","#66FFCC","#66FFFF",
+							    "#99FF00","#99FF33","#99FF66","#99FF99","#99FFCC","#99FFFF","#CCFF00","#CCFF33","#CCFF66","#CCFF99","#CCFFCC",
+							    "#CCFFFF","#FFFF00","#FFFF33","#FFFF66","#FFFF99","#FFFFCC","#EEEEEE","#111111","#222222","#333333","#444444",
+							    "#555555","#666666","#777777","#888888","#999999","#A5A5A5","#AAAAAA","#BBBBBB","#C3C3C3","#CCCCCC","#D2D2D2",
+							    "#DDDDDD","#E1E1E1","#FFFFFF");
+							    
+        var total = colors.length;
+        var width = 18;
+	    var html = "<table border='1px' cellspacing='0' cellpadding='0'>";
+	    
+	    for (var i=0; i<total; i++)
+	    {
+		    if ((i % width) == 0) { html += "<tr>"; }
+		    
+		    html += '<td class="color" title="' + colors[i] + '" style="background-color:' + colors[i] + '"><label>&nbsp;&nbsp;&nbsp;</label></td>';
+		    
+		    if ( ((i+1)>=total) || (((i+1) % width) == 0))
+		    {
+		        html += "</tr>";
+            }
+		}
+		
+		html += '<tr><td title="" style="background-color:#999" class="color" colspan="' + width + '" align="center"><label>No Color</label></td></tr>'
+		
+		html += "</table>";
+    
+        return html
+	}
+	
+});
+
+
+/* Attach the time picker to a jQuery selection.
+   @param  settings  object - the new settings to use for this time picker instance (anonymous)
+   @return jQuery object - for chaining further calls */
+$.fn.attachColorPicker = function() {
+	return this.each(function() {
+		var nodeName = this.nodeName.toLowerCase();
+		if (nodeName == 'input')
+		{
+			var inst = new ColorPickerInstance();
+			$.colorPicker._connectColorPicker(this, inst);
+		} 		
+	});
+};
+
+$.fn.getValue = function() {
+	var inst = (this.length > 0 ? $.colorPicker._getInst(this[0]._colId) : null);
+	return (inst ? inst._getValue() : null);
+};
+
+$.fn.setValue = function(value) {
+	var inst = (this.length > 0 ? $.colorPicker._getInst(this[0]._colId) : null);
+	if (inst) inst._setValue(value);
+};
+
+/* Initialise the time picker. */
+$(document).ready(function() {
+	$.colorPicker = new colorPicker(); // singleton instance
+	$(document.body).append($.colorPicker._colorPickerDiv).mousedown($.colorPicker._checkExternalClick);
+});
+
+})(jQuery);

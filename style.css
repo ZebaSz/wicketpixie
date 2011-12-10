@@ -25,40 +25,29 @@ table, caption, tbody, tfoot, thead, tr, th, td {
 	font-family: inherit;
 	vertical-align: baseline;
 }
-
-/* remember to define focus styles! */
-
 :focus {
 	outline: 0;
 }
-
 body {
 	line-height: 1;
 	color: black;
 	background: white;
 }
-
 ol, ul {
 	list-style: none;
 }
-
-/* tables still need 'cellspacing="0"' in the markup */
-
 table {
 	border-collapse: separate;
 	border-spacing: 0;
 }
-
 caption, th, td {
 	text-align: left;
 	font-weight: normal;
 }
-
 blockquote:before, blockquote:after,
 q:before, q:after {
 	content: "";
 }
-
 blockquote, q {
 	quotes: none;
 }
@@ -66,6 +55,7 @@ blockquote, q {
 /* BODY */
 html {
 	overflow-y: scroll;
+	margin-top: 28px;
 }
 body {
 	font-size: 62.5%;
@@ -219,7 +209,7 @@ body {
 	clear: both;
 	float: left;
 	width: 100%;
-	padding: 50px 0 0;
+	padding: 22px 0 25px;
 }
 #header-inner {
 	width: 920px;

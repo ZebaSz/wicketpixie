@@ -21,7 +21,7 @@ REQUIREMENTS
 
 This theme was designed for (and requires) WordPress 3.0+ and PHP5. However,
 we recommend that you use the latest versions available. At the time of writing,
-the latest WordPress is 3.1.1, and the latest PHP is 5.3.5.
+the latest WordPress is 3.2.1, and the latest PHP is 5.3.8.
 
 INSTALLING
 
@@ -31,10 +31,9 @@ the widgets folder and it's contents (chmod -R 0777) and the app folder
 (chmod 0777). Remember, if your web server uses the same user that owns
 the WicketPixie files, there is no need to change permissions.
 
-The "extras" folder includes development files, such as source CSS, JS and
-more. It also includes backgrounds bundled in previous versions. To use them,
-please use the WordPress Theme admin page. Directly pploading the "extras"
-folder is not necessary nor useful.
+The "backgrounds" folder includes backgrounds bundled in previous versions.
+To use them, please use the WordPress Theme admin page. Directly uploading
+the "backgrounds" folder is not necessary nor useful.
 
 UPGRADING
 
