@@ -65,7 +65,7 @@ $adsense = new AdsenseAdmin; ?>
 	$metadesc = strip_tags($metadesc); ?>
 	<meta name="description" content="<?php echo $metadesc; ?>" />
 </head>
-<body>
+<body <?php body_class(); ?>>
 	<?php if(get_option('wicketpixie_enable_ajax_loader') == 'true') include_once('loader.php');
 	flush(); ?>
 <!-- google_ad_section_start(weight=ignore) -->
