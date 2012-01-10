@@ -573,7 +573,7 @@ body {
 	padding-bottom: 15px;
 	/* border-bottom: 1px solid #eee; */
 }
-.page {
+.content .page {
 	margin: 0 20px 1.4em;
 	font-size: 1.2em;
 }

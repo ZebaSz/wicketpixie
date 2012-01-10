@@ -8,11 +8,18 @@
 	</div>
 	<!-- /sidebar_top -->
 	<?php endif;
-	for ($i = 1; $i <= 6; $i++):
-		echo "<!-- sidebar$i --><div id='sidebar$i' class='widgets-container'>";
-		dynamic_sidebar($i+1);
-		echo "</div><!-- /sidebar$i -->";
-	endfor; ?>
+	for ($i = 1; $i <= 6; $i++): ?>
+		<!-- sidebar$i -->
+		<div id='sidebar<?php echo $i?>' class='widgets-container'>
+		<?php dynamic_sidebar($i+1);
+		if($i==5 && is_enabled_adsense()): ?>
+			<br />
+			<?php $adsense = new AdsenseAdmin;
+			$adsense->wp_adsense('blog_sidebar');
+		endif; ?>
+		</div>
+		<!-- /sidebar<?php echo $i ?> -->
+	<?php endfor; ?>
 </div>
 <?php else:
 	include_once('sidebar-home.php');
