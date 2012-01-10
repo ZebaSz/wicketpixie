@@ -1,10 +1,11 @@
 WICKETPIXIE CHANGELOG
 
-v1.4 - TBA (beta - April 18, 2011)
- * FEATURE: Custom 404 code
+v1.4 - TBA (RC - January 8, 2011)
  * CHANGE: Lots! Please read UPGRADING file!
  * CHANGE: Condensed ALL custom code options in one admin page
  * CHANGE: Dropped support for WordPress pre-3.0
+ * UPDATED: Documentation
+ * FEATURE: Custom 404 code
  * PERFORMANCE: Smaller, simpler code, occupies less space, potentially faster
  * FIXED: Some bugs along the way
  * PLUGIN: Some WiPi plugins were removed (more info in UPGRADING file)
