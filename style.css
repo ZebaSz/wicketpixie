@@ -469,8 +469,8 @@ body {
 /* CONTENT */
 #content {
 	float: left;
-	width: 540px;
-	padding-top: 20px;
+	width: 500px;
+	padding: 20px 20px 0;
 	-moz-border-radius-bottomleft: 10px;
 	border-bottom-left-radius: 10px;
 }
@@ -569,12 +569,12 @@ body {
 	font-style: italic;
 }
 .post {
-	margin: 0 20px 1.4em;
+	margin-bottom: 1.4em;
 	padding-bottom: 15px;
 	/* border-bottom: 1px solid #eee; */
 }
 .content .page {
-	margin: 0 20px 1.4em;
+	margin-bottom: 1.4em;
 	font-size: 1.2em;
 }
 .page h1 {
@@ -721,7 +721,6 @@ body {
 #content .post-meta-right {
 	float: right;
 	width: 300px;
-	margin-right: 20px;
 }
 #content .post-meta h6 {
 	margin-bottom: 5px;
@@ -763,7 +762,7 @@ body {
 #content #related-posts {
 	float: left;
 	width: 180px;
-	padding: 0 0 1em 20px;
+	padding-bottom: 1em;
 }
 #content #related-posts h3 {
 	margin-top: 0;
@@ -844,9 +843,6 @@ body {
 }
 
 /* COMMENTS */
-#comments {
-	margin: 0 20px;
-}
 #comments .commentlist {
 	margin: 0;
 }
@@ -917,9 +913,6 @@ body {
 	margin: 0;
 }
 
-#comment-form {
-	margin: 0 20px;
-}
 #comment-form p {
 	font-size: 1.2em;
 	float: left;
@@ -1463,7 +1456,7 @@ div.KonaBody {
 	margin-top: 15px;
 	font-size: 1.2em;
 }
-.highlight {
+.announce {
 	padding: 10px;
 	background-color: #ffffe0;
 	border: 1px solid #ccc;

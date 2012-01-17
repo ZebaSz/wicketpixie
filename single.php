@@ -10,7 +10,7 @@ $wp_auth_credit= get_option('wicketpixie_show_post_author'); ?>
 				<div class="post" style="border-bottom:0;">
 					<?php $glob = wp_customcode('global_announcement',true);
 					if($glob != false && $glob != ""): ?>
-					<div class="highlight">
+					<div class="announce">
 					<?php echo $glob; ?>
 					</div>
 					<?php endif; ?>

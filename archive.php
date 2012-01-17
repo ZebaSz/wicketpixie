@@ -4,7 +4,7 @@ $wp_auth_credit= get_option('wicketpixie_show_post_author'); ?>
 			<div id="content">
 					<?php $glob = wp_customcode('global_announcement',true);
 					if($glob != false && $glob != ""): ?>
-				<div class="highlight" style="margin-left: 20px;margin-right: 20px">
+				<div class="announce">
 				<?php echo $glob; ?>
 				</div>
 				<?php endif; ?>
