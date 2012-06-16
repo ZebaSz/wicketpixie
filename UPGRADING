@@ -21,3 +21,7 @@ WiPi plugins will be lost. Please write them down before upgrading, then install
 configure said plugins separately.
 To integrate AskApache 404 properly, add that plugin's function call using the new
 custom 404 code option (instead of editing 404.php).
+
+Upgrading to WicketPixie 1.5-a:
+The "Theme Options" page has been removed for Wordpress 3.4+ in favor of the Theme Customizer.
+While no extra steps are necessary for upgrade, it currently only supports 3.4. I'll get around backwards compatibility later.
