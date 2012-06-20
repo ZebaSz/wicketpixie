@@ -393,7 +393,7 @@ body {
 #recent-posts .widget h3 {
 	margin: 1.4em 0 0;
 }
-#sidebar #recent-posts p {
+#mid #sidebar #recent-posts p {
 	font-size: 1em;
 	line-height: 1.4em;
 }
@@ -474,43 +474,43 @@ body {
 	-moz-border-radius-bottomleft: 10px;
 	border-bottom-left-radius: 10px;
 }
-.content a:link, .content a:visited, .content a:active {
+#mid a:link, #mid a:visited, #mid a:active {
 	text-decoration: none;
 	border-bottom: 1px solid #ddd;
 }
-.content a:hover {
+#mid a:hover {
 	
 }
-.content h1 {
+#mid h1 {
 	margin-bottom: .65em;
 	font-size: 2em;
 	line-height: 1.2em;
 }
-.content h2 {
+#mid h2 {
 	margin: 2em 0 1em;
 	font-size: 1.5em;
 	line-height: 1.2em;
 }
-.content h3 {
+#mid h3 {
 	margin: 2em 0 1em;
 	padding-bottom: 5px;
 	font-size: 1.6em;
 	line-height: 1em;
 	border-bottom: 1px solid #ddd;
 }
-.content h4 {
+#mid h4 {
 	margin-bottom: .25em;
 	font-size: 1.5em;
 	line-height: 1em;
 }
-.content h5 {
+#mid h5 {
 	margin-bottom: 1em;
 	padding-bottom: 5px;
 	font-size: 1.4em;
 	line-height: 1em;
 	border-bottom: 1px solid #ddd;
 }
-.content h6 {
+#mid h6 {
 	margin-bottom: .25em;
 	color: #000;
 	font-size: 1.3em;
@@ -521,51 +521,51 @@ body {
 	padding-bottom: 5px;
 	font-size: 1.2em;
 }
-.content h1 a:link, .content h1 a:visited, .content h1 a:active, .content h2 a:link, .content h2 a:visited, .content h2 a:active, .content h3 a:link, .content h3 a:visited, .content h3 a:active, .content h4 a:link, .content h4 a:visited, .content h4 a:active, .content h6 a:link, .content h6 a:visited, .content h6 a:active {
+#mid h1 a:link, #mid h1 a:visited, #mid h1 a:active, #mid h2 a:link, #mid h2 a:visited, #mid h2 a:active, #mid h3 a:link, #mid h3 a:visited, #mid h3 a:active, #mid h4 a:link, #mid h4 a:visited, #mid h4 a:active, #mid h6 a:link, #mid h6 a:visited, #mid h6 a:active {
 	text-decoration: underline;
 	border-bottom: 0;
 }
-.content h1 a:hover, .content h2 a:hover, .content h3 a:hover, .content h4 a:hover, .content h5 a:hover, .content h6 a:hover {
+#mid h1 a:hover, #mid h2 a:hover, #mid h3 a:hover, #mid h4 a:hover, #mid h5 a:hover, #mid h6 a:hover {
 	
 }
-.content p {
+#mid p {
 	margin-bottom: 1.4em;
 	line-height: 1.7em;
 	color: #000;
 }
-.content ul {
+#mid ul {
 	margin: 0 0 1.4em 10px;
 	list-style-type: none;
 }
-.content ul li {
+#mid ul li {
 	padding-left: 16px;
 	list-style-type: none;
 	background: url("images/bullet.gif") no-repeat 0 7px;
 	margin-bottom: 15px;
 }
-.content ol {
+#mid ol {
 	margin: 0 0 1.4em 30px;
 	list-style-type: decimal;
 }
-.content ol li {
+#mid ol li {
 	list-style-type: decimal;
 	margin-bottom: 15px;
 }
-.content li {
+#mid li {
 	margin-bottom: .5em;
 	line-height: 1.7em;
 }
-.content blockquote {
+#mid blockquote {
 	margin: 0 0 1.4em 10px;
 	padding: 0 15px;
 	font-style: italic;
 	color: #000;
 	border-left: 5px solid #eee;
 }
-.content strong, .content b {
+#mid strong, #mid b {
 	font-weight: bold;
 }
-.content em, .content i {
+#mid em, #mid i {
 	font-style: italic;
 }
 .post {
@@ -573,7 +573,7 @@ body {
 	padding-bottom: 15px;
 	/* border-bottom: 1px solid #eee; */
 }
-.content .page {
+#mid .page {
 	margin-bottom: 1.4em;
 	font-size: 1.2em;
 }
@@ -1119,7 +1119,7 @@ body {
 }
 
 /* SIDEBAR */
-#sidebar {
+#mid #sidebar {
 	float: right;
 	width: 340px;
 	padding: 20px 19px 0;
@@ -1137,10 +1137,10 @@ body {
 .widgets-container {
 	overflow: hidden;
 }
-#sidebar:empty, .widgets-container:empty {
+#mid #sidebar:empty, .widgets-container:empty {
 	display: none
 }
-#sidebar1 {
+#mid #sidebar1 {
 	width: 100%;
 	margin-bottom: 28px;
 	padding-top: 20px;
@@ -1151,40 +1151,40 @@ body {
 	-moz-border-radius-topleft: 0;
 	border: 1px solid #E0E0E0;
 }
-#sidebar1 .widget {
+#mid #sidebar1 .widget {
 	padding: 0 20px 20px;
 }
-#sidebar1 .widget img {
+#mid #sidebar1 .widget img {
 	margin-bottom: 1.4em;
 }
 /* Fixed the Sidebar Profile images */
 #myprofiles li img {
 	margin-bottom: 0 !important;
 }
-#sidebar2, #sidebar5 {
+#mid #sidebar2, #mid #sidebar5 {
 	float: left;
 	width: 160px;
 }
-#sidebar3, #sidebar6 {
+#mid #sidebar3, #mid #sidebar6 {
 	float: right;
 	width: 160px;
 }
-#sidebar4, #sidebar5, #sidebar6 {
+#mid #sidebar4, #mid #sidebar5, #mid #sidebar6 {
 	padding-top: 5px;
 }
-#sidebar4 {
+#mid #sidebar4 {
 	clear: both;
 }
-#sidebar a:link, #sidebar a:visited, #sidebar a:active {
+#mid #sidebar a:link, #mid #sidebar a:visited, #mid #sidebar a:active {
 	font-weight: bold;
 	text-decoration: none;
 }
-#sidebar5, #sidebar6 {
+#mid #sidebar5, #mid #sidebar6 {
 	padding-top: 5px;
 }
-#sidebar a:hover {
+#mid #sidebar a:hover {
 }
-#sidebar h3 {
+#mid #sidebar h3 {
 	margin-top: 0;
 	font-size: 1.08em;
 	text-transform: uppercase;
@@ -1214,14 +1214,14 @@ span.adspot_adhead {
 a.adspot_adurl {
 	color: #000;
 }
-#sidebar .widget h3 img {
+#mid #sidebar .widget h3 img {
 	float: right;
 	display: inline;
 	width: 16px;
 	height: 16px;
 	margin: -3px 0 0 10px;
 }
-#sidebar h5 {
+#mid #sidebar h5 {
 	margin-bottom: 0;
 	padding-bottom: 0;
 	color: #000;
@@ -1230,21 +1230,21 @@ a.adspot_adurl {
 	line-height: 1.3em;
 	border-bottom: none;
 }
-#sidebar #recentcomments {
+#mid #sidebar #recentcomments {
 	margin-left: 0;
 }
-#sidebar li {
+#mid #sidebar li {
 	margin: 0 0 1.4em;
 	padding-left: 0;
 	background: none;
 }
-#sidebar img {
+#mid #sidebar img {
 	display: block;
 }
-#sidebar .widget_archive li, #sidebar .widget_categories li, #sidebar .widget_meta li {
+#mid #sidebar .widget_archive li, #mid #sidebar .widget_categories li, #mid #sidebar .widget_meta li {
 	margin-bottom: .25em;
 }
-#sidebar select {
+#mid #sidebar select {
 	font-size: 1.2em;
 	color: #333;
 	margin-bottom: 16px;
@@ -1255,13 +1255,13 @@ a.adspot_adurl {
 	border-bottom: 1px solid #eee;
 	border-left: 1px solid #ccc;
 }
-#sidebar #myprofiles li {
+#mid #sidebar #myprofiles li {
 	margin: 0 0 10px;
 	padding: 0;
 	background: none;
 	vertical-align: middle;
 }
-#sidebar #myprofiles li img {
+#mid #sidebar #myprofiles li img {
 	float: left;
 	margin-right: 5px;
 	width: 16px;
@@ -1317,7 +1317,7 @@ a.adspot_adurl {
 .widget {
 	padding-bottom: 2em;
 }
-#sidebar .widget_rss h3 img {
+#mid #sidebar .widget_rss h3 img {
 	width: 14px;
 	height: 14px;
 }

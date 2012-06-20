@@ -165,4 +165,4 @@ $adsense = new AdsenseAdmin; ?>
 		<!-- /nav -->
 		<!-- google_ad_section_end -->
 		<!-- mid -->
-		<div id="mid" class="content">
+		<div id="mid">
