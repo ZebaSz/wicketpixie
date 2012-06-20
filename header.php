@@ -109,14 +109,7 @@ $adsense = new AdsenseAdmin; ?>
 		<!-- header-inner -->
 		<div id="header-inner">
 			<div id="logo">
-				<?php if(get_option('wicketpixie_theme_header_size')) :
-					$fontsize = get_option('wicketpixie_theme_header_size');
-					echo '<span style="font-size:',$fontsize,'px;">'; ?>
-					<a href="<?php echo get_option('home'); ?>/" rel="nofollow"><?php bloginfo('name'); ?></a>
-					<?php echo "</span>";
-				else : ?>
-				<a href="<?php echo get_option('home'); ?>/" rel="nofollow"><?php bloginfo('name'); ?></a>
-				<?php endif; ?>
+				<a href="<?php echo get_home_url(); ?>/" rel="nofollow"><?php bloginfo('name'); ?></a>
 			</div>
 			<!-- google_ad_section_end -->
 			<?php if (function_exists('aktt_latest_tweet')) : ?>
