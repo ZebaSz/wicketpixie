@@ -80,7 +80,7 @@ function wicketpixie_customize_register($wp_customize) {
 // AJAX for live previews
 add_action('customize_preview_init', 'wicketpixie_customize_preview');
 function wicketpixie_customize_preview() {
-	wp_enqueue_script('wicketpixie-customizer', get_template_directory_uri().'/app/theme-customizer.js', array('customize-preview'), '20120617', true);
+	wp_enqueue_script('wicketpixie-customizer', get_template_directory_uri().'/app/theme-customizer.js', array('customize-preview'), false, true);
 }
 // Output settings
 add_action('wp_head', 'wicketpixie_theme_print_options');
