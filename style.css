@@ -662,9 +662,6 @@ body {
 	font-weight: bold;
 	border-bottom: 0;
 	padding-right: 22px;
-	padding-bottom: 10px;
-	margin-top: 1px;
-	z-index: 10;
 	background: url("images/post-comments-bubble.gif") no-repeat 100% 0;
 }
 #content .post-comments-count a:hover {
@@ -679,23 +676,11 @@ body {
 	padding: 0;
 	overflow: hidden;
 }
-#content .post-comments-add span {
+#content .post-comments-add a {
 	position: absolute;
-	width: 14px;
-	height: 14px;
-	background-color: #222;
-	background-image: -o-linear-gradient(top, #666, #222);
-	background-image: -webkit-linear-gradient(top, #666, #222);
-	background-image: -moz-linear-gradient(top, #666, #222);
-	background-image: -ms-linear-gradient(top, #666, #222);
-	border-radius: 8px;
-	-moz-border-radius: 8px;
-	text-align: center;
-	color: #dcdcdc;
-	font-size: 14px;
-	font-weight: bold;
-	line-height: 1.2em;
-	border: solid 1px #222;
+	width: 100%;
+	height: 100%;
+	background-image: url("images/post-comments-add.gif");
 }
 #content img {
 	display: block;
