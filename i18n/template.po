@@ -179,3 +179,43 @@ msgstr ""
 #, php-format
 msgid "Your search for %s returned no results."
 msgstr ""
+
+#: app/theme-options.php:16
+msgid "Body Font Family"
+msgstr ""
+
+#: app/theme-options.php:21
+msgid "Headings Font Family"
+msgstr ""
+
+#: app/theme-options.php:26
+msgid "Logo Font Size (in pixels)"
+msgstr ""
+
+#: app/theme-options.php:31
+msgid "Logo Text"
+msgstr ""
+
+#: app/theme-options.php:36
+msgid "Status/Description Text"
+msgstr ""
+
+#: app/theme-options.php:41
+msgid "Titles/Content Headings"
+msgstr ""
+
+#: app/theme-options.php:46
+msgid "Sidebar Headings"
+msgstr ""
+
+#: app/theme-options.php:51
+msgid "Content Links"
+msgstr ""
+
+#: app/theme-options.php:56
+msgid "Sidebar Links"
+msgstr ""
+
+#: app/theme-options.php:68
+msgid "Fonts"
+msgstr ""

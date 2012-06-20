@@ -1,4 +1,4 @@
-# WicketPixie
+﻿# WicketPixie
 # Copyright (C) 2006-2009 Eddie Ringle <eddie@eringle.net>
 # Copyright (C) 2011 ZebaSz <zebaszp@gmail.com>
 # This file is distributed under the same license as the WicketPixie package.
@@ -182,3 +182,43 @@ msgstr "Resultados de Búsqueda"
 #, php-format
 msgid "Your search for %s returned no results."
 msgstr "Su busqueda de %s no devolvío ningún resultado"
+
+#: app/theme-options.php:16
+msgid "Body Font Family"
+msgstr "Familia de Fuentes del Cuerpo"
+
+#: app/theme-options.php:21
+msgid "Headings Font Family"
+msgstr "Familia de Fuentes de Encabezados"
+
+#: app/theme-options.php:26
+msgid "Logo Font Size (in pixels)"
+msgstr "Tamaño de Fuente del Logotipo (en pixeles)"
+
+#: app/theme-options.php:31
+msgid "Logo Text"
+msgstr "Texto del Logo"
+
+#: app/theme-options.php:36
+msgid "Status/Description Text"
+msgstr "Texto del Estado/Descripción"
+
+#: app/theme-options.php:41
+msgid "Titles/Content Headings"
+msgstr "Encabezados del Contenido"
+
+#: app/theme-options.php:46
+msgid "Sidebar Headings"
+msgstr "Encabezados de la Barra Lateral"
+
+#: app/theme-options.php:51
+msgid "Content Links"
+msgstr "Enlaces del Contenido"
+
+#: app/theme-options.php:56
+msgid "Sidebar Links"
+msgstr "Enlaces de la Barra Lateral"
+
+#: app/theme-options.php:68
+msgid "Fonts"
+msgstr "Fuentes"
