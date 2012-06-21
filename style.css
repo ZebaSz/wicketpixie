@@ -304,8 +304,7 @@ body {
 	padding: 0;
 	font-size: 1.1em;
 	color: #666;
-	list-style-type: none;
-	background: none;
+	list-style: none;
 }
 #status a:hover {
 	text-decoration: none;
@@ -418,7 +417,7 @@ body {
 	margin: 0 0 5px;
 	padding: 0;
 	font-size: 1.1em;
-	background: none;
+	list-style: none;
 }
 #home-photos {
 	width: 100%;
@@ -454,7 +453,7 @@ body {
 	padding: 0;
 	font-size: 1.1em;
 	text-transform: lowercase;
-	background: none;
+	list-style: none;
 }
 #home-youtube, #home-mybloglog {
 	margin-bottom: 20px;
@@ -535,20 +534,18 @@ body {
 }
 #mid ul {
 	margin: 0 0 1.4em 10px;
-	list-style-type: none;
+	list-style: none;
 }
 #mid ul li {
-	padding-left: 16px;
-	list-style-type: none;
-	background: url("images/bullet.gif") no-repeat 0 7px;
-	margin-bottom: 15px;
+	list-style: url("images/bullet.gif");
+	margin: 0 0 15px 15px;
 }
 #mid ol {
 	margin: 0 0 1.4em 30px;
-	list-style-type: decimal;
+	list-style: decimal;
 }
 #mid ol li {
-	list-style-type: decimal;
+	list-style: decimal;
 	margin-bottom: 15px;
 }
 #mid li {
@@ -714,14 +711,13 @@ body {
 #content .post-meta ul {
 	margin: 0 0 1.4em;
 	padding: 0;
-	list-style-type: none;
+	list-style: none;
 }
 #content .post-meta ul li {
 	margin: 0 0 3px;
 	padding: 0;
-	list-style-type: none;
 	font-size: 1.1em;
-	background: none;
+	list-style: none;
 }
 #content .post-meta-tags {
 	float: left;
@@ -819,8 +815,7 @@ body {
 	border: 0;
 }
 #post-ad ul, #post-ad ul li, #post-ad li {
-	list-style-type: none;
-	background: none;
+	list-style: none;
 	font-weight: bold;
 	margin: 0;
 	padding: 0 0 10px;
@@ -834,7 +829,7 @@ body {
 #comments .comment {
 	margin-bottom: 1.4em;
 	padding-left: 0;
-	background: none;
+	list-style: none;
 }
 #comments .comment-body {
 	clear: both;
@@ -1073,7 +1068,7 @@ body {
 #content .faves-feed ul li {
 	margin-bottom: 10px;
 	padding: 0;
-	background: none;
+	list-style: none;
 	overflow: hidden;
 }
 #content .faves-feed form {
@@ -1221,7 +1216,7 @@ a.adspot_adurl {
 #mid #sidebar li {
 	margin: 0 0 1.4em;
 	padding-left: 0;
-	background: none;
+	list-style: none;
 }
 #mid #sidebar img {
 	display: block;
@@ -1243,7 +1238,7 @@ a.adspot_adurl {
 #mid #sidebar #myprofiles li {
 	margin: 0 0 10px;
 	padding: 0;
-	background: none;
+	list-style: none;
 	vertical-align: middle;
 }
 #mid #sidebar #myprofiles li img {
@@ -1411,7 +1406,7 @@ table, td, tr, th {
 	margin: 0;
 	padding: 7px 0;
 	line-height: 14px;
-	list-style-type: none;
+	list-style: none;
 	clear: both;
 	background-color: transparent;
 	background-image: none;
