@@ -33,6 +33,7 @@ $adsense = new AdsenseAdmin; ?>
 	flush();
 	include_once (TEMPLATEPATH . '/plugins/random-posts.php');
 	include_once (TEMPLATEPATH . '/plugins/search-excerpt.php');
+	include_once (ABSPATH . 'wp-admin/includes/plugin.php' );
 	clearstatcache();
 	if(!is_dir(ABSPATH.'wp-content/uploads/activity')) :
 		if(!is_dir(ABSPATH.'wp-content/uploads')) :

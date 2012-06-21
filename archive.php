@@ -32,7 +32,7 @@ $wp_auth_credit= get_option('wicketpixie_show_post_author'); ?>
 						<?php endif; ?>
 					</div>
 					<div class="clearer"></div>
-					<div class=KonaBody><?php the_excerpt(); ?></div>
+					<div class="KonaBody"><?php the_excerpt(); ?></div>
 				</div>
 				<?php if ($adsense_counter == 0) : ?>
 				<div align="center" style="margin: 15px 0 30px 0">
@@ -42,8 +42,8 @@ $wp_auth_credit= get_option('wicketpixie_show_post_author'); ?>
 				$adsense_counter++; ?>
 				<?php endwhile; ?>
 				<!-- Page Navigation -->
-				<?php if (get_option($optpre.'plug_pagenavi') == 'true'):?>
-				<div id="paginator" style='text-align: center'><?php if (function_exists('wp_pagenavi')) wp_pagenavi(); ?></div>
+				<?php if (is_plugin_active('wp-pagenavi/wp-pagenavi.php')):?>
+				<div id="paginator" style='text-align: center'><?php wp_pagenavi(); ?></div>
 				<?php else : ?>
 				<div class="navigation">
 					<div class="left"><?php next_posts_link(sprintf('<span>%s</span>', __('More', 'wicketpixie'))) ?></div>

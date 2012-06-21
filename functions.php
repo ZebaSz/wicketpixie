@@ -12,7 +12,7 @@
  */
 
 $optpre = 'wicketpixie_';
-include_once( get_template_directory() . '/widgets/sources.php' );
+include_once(get_template_directory().'/widgets/sources.php');
 define(SIMPLEPIEPATH,ABSPATH.'wp-includes/class-simplepie.php');
 
 // No spaces in this constant please (use hyphens)
@@ -45,14 +45,10 @@ endif;
 load_theme_textdomain('wicketpixie', get_template_directory() .'/i18n');
 
 // Nav menu
-if (function_exists('register_nav_menus')) :
-	register_nav_menus(array('primary' => 'Primary Menu'));
-endif;
+register_nav_menus(array('primary' => 'Primary Menu'));
 
 // Custom Background
-if (function_exists('add_custom_background')) :
-	add_custom_background();
-endif;
+add_theme_support('custom-background');
 
 // Comments walker
 function wicketpixie_comment($comment, $args, $depth) {
@@ -72,7 +68,7 @@ function wicketpixie_comment($comment, $args, $depth) {
 			<p><?php comment_reply_link(array_merge($args, array('depth' => $depth, 'max_depth' => $args['max_depth']))); edit_comment_link(__('Edit', 'wicketpixie'), ' - '); ?></p>
 			<div class="clearer" ></div>
 		</div>
-<?php }
+<?php };
 
 // Theme Options
 require(get_template_directory() .'/app/theme-options.php');
@@ -89,7 +85,6 @@ unset($a);
 require_once( get_template_directory() .'/app/wipi-plugins.php');
 $a = new WiPiPlugins();
 add_action('admin_menu',array($a,'add_page_to_menu'));
-add_plugins();
 unset($a);
 // Adsense Settings page
 require_once( get_template_directory() .'/app/adsenseads.php');
@@ -136,28 +131,26 @@ add_action('in_admin_footer', 'wicketpixie_add_admin_footer');
 require_once( get_template_directory() .'/app/update.php');
 
 /* Widgets */
-if(function_exists('register_widget')) :
-	// My Profiles
-	require_once(get_template_directory() .'/widgets/my-profiles.php');
-	add_action('widgets_init','MyProfilesInit');
-	// Social Badges
-	require_once(get_template_directory() .'/widgets/social-badges.php');
-	add_action('widgets_init','SocialBadgesInit');
-	// Ustream
-	require_once(get_template_directory() .'/widgets/ustream-widget.php');
-	add_action('widgets_init','UstreamWidgetInit');
-	// Social Me Feed Widgets
-	include_once(get_template_directory() .'/widgets/sources.php');
-	foreach( SourceAdmin::collect() as $widget ) :
-		if(SourceAdmin::feed_check($widget->title) == 1) :
-			$source_title = $widget->title;
-			$t_title = str_replace(' ','',$source_title);
-			$cleaned= strtolower( $source_title );
-			$cleaned= preg_replace( '/\W/', ' ', $cleaned );
-			$cleaned= str_replace( " ", "", $cleaned );
-			if(is_file(get_template_directory() .'/widgets/'.$cleaned.'.php')) :
-				add_action('widgets_init',"${t_title}Init");
-			endif;
+// My Profiles
+require_once(get_template_directory() .'/widgets/my-profiles.php');
+add_action('widgets_init','MyProfilesInit');
+// Social Badges
+require_once(get_template_directory() .'/widgets/social-badges.php');
+add_action('widgets_init','SocialBadgesInit');
+// Ustream
+require_once(get_template_directory() .'/widgets/ustream-widget.php');
+add_action('widgets_init','UstreamWidgetInit');
+// Social Me Feed Widgets
+include_once(get_template_directory() .'/widgets/sources.php');
+foreach( SourceAdmin::collect() as $widget ) :
+	if(SourceAdmin::feed_check($widget->title) == 1) :
+		$source_title = $widget->title;
+		$t_title = str_replace(' ','',$source_title);
+		$cleaned= strtolower( $source_title );
+		$cleaned= preg_replace( '/\W/', ' ', $cleaned );
+		$cleaned= str_replace( " ", "", $cleaned );
+		if(is_file(get_template_directory() .'/widgets/'.$cleaned.'.php')) :
+			add_action('widgets_init',"${t_title}Init");
 		endif;
-	endforeach;
-endif; ?>
+	endif;
+endforeach;

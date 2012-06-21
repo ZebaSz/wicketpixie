@@ -35,7 +35,7 @@ $wp_auth_credit= get_option('wicketpixie_show_post_author'); ?>
 						<div id="post-ad">
 							<?php if(is_enabled_adsense() == true) $adsense->wp_adsense('blog_post_side'); ?>
 							<div style="margin: 15px 0 0 5px">
-								<?php if (get_option('wicketpixie_plugin_related-posts') == 'true') :
+								<?php if (is_plugin_active('wordpress-23-related-posts-plugin/wp_related_posts.php')) :
 								wp_related_posts(5);
 								endif; ?>
 							</div>
@@ -56,7 +56,7 @@ $wp_auth_credit= get_option('wicketpixie_show_post_author'); ?>
 				<!-- google_ad_section_end -->
 				<!-- post-meta -->
 				<div class="post-meta">
-					<?php if(get_option('wicketpixie_plugin_related-posts') == 'true' && function_exists('wp_related_posts')) : ?>
+					<?php if(is_plugin_active('wordpress-23-related-posts-plugin/wp_related_posts.php')) : ?>
 					<!-- related-posts -->
 					<div id="related-posts">
 						<h3><?php _e('You might also be interested in...', 'wicketpixie'); ?></h3>

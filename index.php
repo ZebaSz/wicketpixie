@@ -38,8 +38,8 @@ $wp_auth_credit= get_option('wicketpixie_show_post_author'); ?>
 				<!-- google_ad_section_end -->
 				<?php endwhile; ?>
 				<!-- Page Navigation -->
-				<?php if (get_option('wicketpixie_plugin_pagenavi') == 'true') : ?>
-				<div id="paginator" style='text-align: center'><?php if (function_exists('wp_pagenavi')) wp_pagenavi(); ?></div>
+				<?php if (is_plugin_active('wp-pagenavi/wp-pagenavi.php')) : ?>
+				<div id="paginator" style='text-align: center'><?php wp_pagenavi(); ?></div>
 				<?php else : ?>
 				<div class="navigation">
 					<div class="left"><?php next_posts_link(sprintf('<span>%s</span>', __('More', 'wicketpixie'))) ?></div>
