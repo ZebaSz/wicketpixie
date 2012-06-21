@@ -23,12 +23,6 @@ define(SIMPLEPIEPATH,ABSPATH.'wp-includes/class-simplepie.php');
 */
 define('WIK_VERSION',"1.5-a");
 
-/* Debug settings */
-define(DEBUG,false);
-if (DEBUG == true) :
-	error_reporting(E_ALL);
-endif;
-
 /* Dynamic (Widget-enabled) Sidebar */
 if ( function_exists('register_sidebar') ) :
 	register_sidebar(array(

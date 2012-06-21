@@ -11,7 +11,6 @@
  * Licensed under the New BSD License.
  */
 require_once(TEMPLATEPATH .'/functions.php');
-$DEBUG = DEBUG;
 $plugins_desc = <<<HTML
 <p>Some WiPi plugins were removed. This is because updating them is tiresome (whilst WordPress can update automatically most of them), and the same functionality can be obtained without integration (they can be installed separately). The following plugins were removed:
 <ul>
@@ -82,18 +81,11 @@ $plugins = array(
 );
 function add_plugins() {
 	global $plugins;
-	global $DEBUG;
-	if ($DEBUG == true) :
-		error_reporting(E_WARNING | E_ERROR | E_PARSE);
-	endif;
 	foreach($plugins as $plugin) :
 		if(get_option($plugin['id']) == 'true' || $plugin['std'] == 'true') :
 			require_once $plugin['path'];
 		endif;
 	endforeach;
-	if ($DEBUG == true) {
-		error_reporting(E_ALL);
-	}
 }
 class WiPiPlugins extends AdminPage {
 	function __construct() {
