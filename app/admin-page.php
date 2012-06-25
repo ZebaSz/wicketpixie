@@ -10,7 +10,7 @@
  *
  * Licensed under the New BSD License.
  */
-require_once TEMPLATEPATH .'/functions.php';
+require_once get_template_directory() .'/functions.php';
 class AdminPage {
 	function __construct($name,$filename,$parent = null,$arrays = array()) {
 		global $optpre;

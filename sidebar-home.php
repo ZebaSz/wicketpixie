@@ -1,14 +1,14 @@
 <div id="sidebar">
 	<?php if(get_option('wicketpixie_home_social_buttons_enable') == 'true') : ?>
 		<!-- social-buttons -->
-		<?php require_once(TEMPLATEPATH .'/widgets/social-badges.php');
+		<?php require_once(get_template_directory() .'/widgets/social-badges.php');
 		SocialBadgesWidget::widget(array(),''); ?>
 		<!-- /social-buttons -->
 	<?php endif; ?>
 	<!-- ustream -->
 	<?php if (get_option('wicketpixie_home_ustream_enable') == 'true') : ?>
 	<div id="home-youtube">
-		<?php require_once(TEMPLATEPATH.'/widgets/ustream-widget.php');
+		<?php require_once(get_template_directory().'/widgets/ustream-widget.php');
 		UstreamWidget::widget(array('before_title'=>'<h3>','after_title'=>'</h3>'),array('title'=>get_option('wicketpixie_home_ustream_heading'),'channel'=>get_option('wicketpixie_ustream_channel'),'autoplay'=>get_option($optpre.'home_ustream_autoplay')), get_option('wicketpixie_home_ustream_height'), get_option('wicketpixie_home_ustream_width')); ?>
 	</div>
 	<?php endif; ?>

@@ -16,7 +16,7 @@
 * footer.php - included before the </body> tag
 * Please do not use a different file name for these two areas.
 **/
-define("CUSTOMPATH",TEMPLATEPATH ."/app/custom");
+define("CUSTOMPATH",get_template_directory()."/app/custom");
 /**
 * This is called in the admin page and every template that allows custom code.
 * It returns the custom code if any. If not, returns an HTML comment.

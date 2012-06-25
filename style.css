@@ -1,10 +1,14 @@
 /*
 Theme Name: WicketPixie Social Media Theme
-Theme URI: http://chris.pirillo.com/wicketpixie/
+Theme URI: http://zeblog.com.ar/wicketpixie/
+Author: Sebastián Szperling
+Author URI: http://zeblog.com.ar/
 Description: Originally designed, developed and funded by <a href="http://chris.pirillo.com/">Chris Pirillo</a>, <a href="http://mattbrett.com">Matt Brett</a>, <a href="http://eddieringle.com">Eddie Ringle</a> and <a href="http://dave-bates.net">Dave Bates</a>. Currently maintained by <a href="http://zeblog.com.ar/">Sebastián Szperling</a>.
 Version: 1.5-a
-Author: Sebastián Szperling
-Author URL: http://zeblog.com.ar/
+License: New BSD License
+License URI: http://www.opensource.org/licenses/BSD-3-Clause/
+Tags: two-columns, right-sidebar, fixed-width, custom-background, custom-colors, custom-menu, full-width-template, sticky-post, theme-options, translation-ready
+Text Domain: wicketpixie
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -   */
 /* RESET */
 html, body, div, span, applet, object, iframe,
@@ -696,6 +700,23 @@ body {
 	border: 0;
 	display: inline;
 	vertical-align: middle;
+}
+#content .wp-caption {
+	display: table;
+    background: #eee;
+    border: 1px solid #f0f0f0;
+    max-width: 96%; /* Image does not overflow the content area */
+    padding: 5px 3px;
+    text-align: center;
+}
+#content .wp-caption img {
+	display: block;
+	margin: 0 auto;
+	max-width: 98%;
+}
+#content .wp-caption .wp-caption-text, #content .gallery-caption {
+	color: #444;
+    text-align: center;
 }
 #content .post-meta {
 	padding-top: 30px;

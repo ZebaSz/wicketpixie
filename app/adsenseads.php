@@ -311,7 +311,7 @@ class AdsenseAdmin extends AdminPage
 							Search Results URL
 								</th>
 							<td style="padding-right:10px;">
-							<?php bloginfo('home'); ?><input type='text' name='wicketpixie_adsense_search_url' id='wicketpixie_adsense_search_url' value="/search/" disabled="disabled" />
+							<?php echo home_url(); ?><input type='text' name='wicketpixie_adsense_search_url' id='wicketpixie_adsense_search_url' value="/search/" disabled="disabled" />
 							</td>
 						</tr>
 					</table>

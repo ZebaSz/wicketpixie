@@ -115,7 +115,7 @@ class SourceUpdate {
 	**/
 	function display() {
 		// The location of the update cache file
-		$f = TEMPLATEPATH . '/app/cache/statusupdate.cache';
+		$f = get_template_directory() . '/app/cache/statusupdate.cache';
 		// Check to see if we're using a recent feed file
 		$result = $this->chkfile($f);
 		// If feed file is outdated, store a new one

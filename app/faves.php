@@ -187,7 +187,7 @@ class FavesAdmin extends AdminPage {
 						<?php foreach( FavesAdmin::collect() as $fave ) : ?>
 						<tr>
 							<td><?php echo $fave->title; ?></td>
-							<td style="text-align:center;"><a href="<?php echo $fave->feed_url; ?>" title="<?php echo $fave->feed_url; ?>"><img src="<?php bloginfo('template_directory'); ?>/images/icon-feed.gif" alt="View"/></a></td>
+							<td style="text-align:center;"><a href="<?php echo $fave->feed_url; ?>" title="<?php echo $fave->feed_url; ?>"><img src="<?php get_template_directory(); ?>/images/icon-feed.gif" alt="View"/></a></td>
 							<td style="text-align:center;">
 							<form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>?page=<?php echo $this->filename; ?>&amp;gather=true&amp;id=<?php echo $fave->id; ?>">
 							<?php wp_nonce_field('wicketpixie-settings'); ?>

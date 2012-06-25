@@ -21,18 +21,18 @@ $adsense = new AdsenseAdmin; ?>
 		wp_title('',true,''); ?> &raquo; <?php bloginfo('name'); ?>
 	<?php endif; ?></title>
 	<?php $time = time(); ?>
-	<link rel="stylesheet" href="<?php bloginfo('template_directory'); ?>/style.css" type="text/css" media="screen, projection" />
-	<link rel="stylesheet" href="<?php bloginfo('template_directory'); ?>/css/print.css?<?php echo $time; ?>" type="text/css" media="print" />
-	<!--[if lte IE 8]><link rel="stylesheet" href="<?php bloginfo('template_directory'); ?>/css/ie.css?<?php echo $time; ?>" type="text/css" media="screen, projection" /><![endif]-->
+	<link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/style.css" type="text/css" media="screen, projection" />
+	<link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/css/print.css?<?php echo $time; ?>" type="text/css" media="print" />
+	<!--[if lte IE 8]><link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/css/ie.css?<?php echo $time; ?>" type="text/css" media="screen, projection" /><![endif]-->
 	<link rel="alternate" type="application/rss+xml" title="<?php bloginfo('name'); ?> RSS Feed" href="<?php echo $blogfeed; ?>" />
 	<link rel="pingback" href="<?php bloginfo('pingback_url'); ?>" />
-	<link rel="shortcut icon" type="image/ico" href="<?php bloginfo('home'); ?>/favicon.ico" />
+	<link rel="shortcut icon" type="image/ico" href="<?php echo home_url(); ?>/favicon.ico" />
 	<?php if(get_option('wicketpixie_enable_ajax_loader') == 'true') : ?>
 	<?php endif;
 	ob_flush();
 	flush();
-	include_once (TEMPLATEPATH . '/plugins/random-posts.php');
-	include_once (TEMPLATEPATH . '/plugins/search-excerpt.php');
+	include_once (get_template_directory() . '/plugins/random-posts.php');
+	include_once (get_template_directory() . '/plugins/search-excerpt.php');
 	include_once (ABSPATH . 'wp-admin/includes/plugin.php' );
 	clearstatcache();
 	if(!is_dir(ABSPATH.'wp-content/uploads/activity')) :
@@ -41,15 +41,14 @@ $adsense = new AdsenseAdmin; ?>
 		endif;
 		mkdir(ABSPATH.'wp-content/uploads/activity',0777);
 	endif;
-	if(!is_dir(TEMPLATEPATH . '/app/cache')) :
-		mkdir(TEMPLATEPATH . '/app/cache',0777);
+	if(!is_dir(get_template_directory() . '/app/cache')) :
+		mkdir(get_template_directory() . '/app/cache',0777);
 	endif;
+	if (is_singular()) wp_enqueue_script('comment-reply');
 	wp_head();
-	echo "\n";
 	wp_customcode("header");
-	echo "\n";
-	$blogurl = get_bloginfo('url');
-	$currurl = $blogurl.$_SERVER['REQUEST_URI'];
+	$blogurl = home_url();
+	$currurl = $blogurl . $_SERVER['REQUEST_URI'];
 	$currurl = preg_quote($currurl,'/');
 	if(preg_match('/('.$currurl.'index.php)/','http://'.$_SERVER['SERVER_NAME'].$_SERVER['PHP_SELF']) || preg_match('/('.$currurl.'index.php)/','https://'.$_SERVER['SERVER_NAME'].$_SERVER['PHP_SELF'])) :
 		if(get_bloginfo('description') != '') :
@@ -85,18 +84,18 @@ $adsense = new AdsenseAdmin; ?>
 							<li><a href="http://www.bloglines.com/sub/<?php echo $blogfeed; ?>" class="feed" rel="nofollow">Bloglines</a></li>
 							<li><a href="http://fusion.google.com/add?feedurl=<?php echo $blogfeed; ?>" class="feed" rel="nofollow">Google Reader</a></li>
 							<li><a href="http://feeds.my.aol.com/add.jsp?url=<?php echo $blogfeed; ?>" class="feed" rel="nofollow">My AOL</a></li>
-							<li><a href="http://my.msn.com/addtomymsn.armx?id=rss&amp;ut=<?php echo $blogfeed; ?>&amp;ru=<?php echo get_settings('home'); ?>" class="feed" rel="nofollow">My MSN</a></li>
+							<li><a href="http://my.msn.com/addtomymsn.armx?id=rss&amp;ut=<?php echo $blogfeed; ?>&amp;ru=<?php echo home_url(); ?>" class="feed" rel="nofollow">My MSN</a></li>
 							<li><a href="http://add.my.yahoo.com/rss?url=<?php echo $blogfeed; ?>" class="feed" rel="nofollow">My Yahoo!</a></li>
 							<li><a href="http://www.newsgator.com/ngs/subscriber/subext.aspx?url=<?php echo $blogfeed; ?>" class="feed" rel="nofollow">NewsGator</a></li>
 							<li><a href="http://www.pageflakes.com/subscribe.aspx?url=<?php echo $blogfeed; ?>" class="feed" rel="nofollow">Pageflakes</a></li>
-							<li><a href="http://technorati.com/faves?add=<?php echo get_settings('home'); ?>" class="feed" rel="nofollow">Technorati</a></li>
+							<li><a href="http://technorati.com/faves?add=<?php echo home_url(); ?>" class="feed" rel="nofollow">Technorati</a></li>
 							<li><a href="http://www.live.com/?add=<?php echo $blogfeed; ?>" class="feed" rel="nofollow">Windows Live</a></li>
 						</ul>
 					</div>
 				</li>
 				<!-- /subscribe -->
 				<?php if (is_user_logged_in()) : ?>
-				<li id="topbar-admin"><a href="<?php bloginfo('wpurl'); ?>/wp-admin" rel="nofollow">Admin</a></li>
+				<li id="topbar-admin"><a href="<?php echo site_url(); ?>/wp-admin" rel="nofollow">Admin</a></li>
 				<?php endif; ?>
 			</ul>
 <?php get_search_form(); ?>

@@ -50,6 +50,9 @@ register_nav_menus(array('primary' => 'Primary Menu'));
 // Custom Background
 add_theme_support('custom-background');
 
+// Automatic Feed Links
+add_theme_support( 'automatic-feed-links' );
+
 // Comments walker
 function wicketpixie_comment($comment, $args, $depth) {
 	$GLOBALS['comment'] = $comment; ?>
@@ -72,6 +75,9 @@ function wicketpixie_comment($comment, $args, $depth) {
 
 // Theme Options
 require(get_template_directory() .'/app/theme-options.php');
+
+// Content Width
+if (!isset($content_width)) $content_width = 500;
 
 /* Admin Pages */
 // The parent AdminPage class

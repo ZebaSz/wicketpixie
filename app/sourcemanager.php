@@ -115,7 +115,7 @@ class SourceAdmin extends AdminPage {
 			$d->close();
 		endif;
 		// Clean the WiPi cache
-		$cache = TEMPLATEPATH . '/app/cache/';
+		$cache = get_template_directory() . '/app/cache/';
 		if(is_dir($cache)) :
 			$d = dir($cache);
 			while($entry = $d->read()) :
@@ -429,8 +429,8 @@ class SourceAdmin extends AdminPage {
 		*/
 		class ${t_title}FeedWidget extends WP_Widget {
 			function ${t_title}FeedWidget() {
-				\$widget_ops = array('classname' => 'widget_${cleaned}_feed','description' => Lists feed items from the ${title} feed added in the Social Me Manager.');
-				\$this->WP_Widget('${cleaned}feed','${title} Feed'),\$widget_ops,null);
+				\$widget_ops = array('classname' => 'widget_${cleaned}_feed','description' => 'Lists feed items from the ${title} feed added in the Social Me Manager.');
+				\$this->WP_Widget('${cleaned}feed','${title} Feed',\$widget_ops,null);
 			}
 			function widget(\$args,\$instance) {
 				extract(\$args);
@@ -456,7 +456,7 @@ class SourceAdmin extends AdminPage {
 			}
 		}
 		?>";
-		$path= TEMPLATEPATH . "/widgets/" . $cleaned . ".php";
+		$path= get_template_directory() . "/widgets/" . $cleaned . ".php";
 		file_put_contents( $path, $data );
 		error_log( 'Creating '.$title.' widget.' );
 	}
@@ -476,7 +476,7 @@ class SourceAdmin extends AdminPage {
 				$cleaned= str_replace( " ", "", $cleaned );
 				$data .= "
 				function ${t_title}Init() {
-					include_once( TEMPLATEPATH . '/widgets/$cleaned.php');
+					include_once( get_template_directory() . '/widgets/$cleaned.php');
 					register_widget('${t_title}FeedWidget');
 				}";
 				add_option( $cleaned . '-num', 5 );	
@@ -484,7 +484,7 @@ class SourceAdmin extends AdminPage {
 			endif;
 		endforeach;
 		$data .= ' ?>';
-		file_put_contents( TEMPLATEPATH . '/widgets/sources.php', $data );
+		file_put_contents( get_template_directory() . '/widgets/sources.php', $data );
 	}
 	/**
 	* The admin page for our sources/activity system.
@@ -574,7 +574,7 @@ class SourceAdmin extends AdminPage {
 							<td style="width:16px;"><img src="<?php echo $source->favicon; ?>" alt="Favicon" style="width: 16px; height: 16;" /></td>
 							<td><a href="<?php echo $source->profile_url; ?>"><?php echo $source->title; ?></a></td>
 							<?php if ($isfeed == 1) : ?>
-							<td style="text-align:center;"><a href="<?php echo $source->feed_url; ?>"><img src="<?php bloginfo('template_directory'); ?>/images/icon-feed.gif" alt="View"/></a></td>
+							<td style="text-align:center;"><a href="<?php echo $source->feed_url; ?>"><img src="<?php get_template_directory(); ?>/images/icon-feed.gif" alt="View"/></a></td>
 							<?php elseif ($isfeed == 0) : ?>
 							<td style="text-align:center;">N/A</td>
 							<?php else : ?>

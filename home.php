@@ -1,4 +1,6 @@
-<?php get_header();
+<?php if (!get_option('wicketpixie_theme_home')) get_template_part('index');
+else {
+get_header();
 $wp_auth_credit= get_option('wicketpixie_show_post_author'); ?>
 			<!-- content -->
 			<div id="content">
@@ -21,9 +23,9 @@ $wp_auth_credit= get_option('wicketpixie_show_post_author'); ?>
 					</div>
 					<div class="post-author">
 						<?php if( $wp_auth_credit == 'true' ) :
-						echo get_avatar( get_the_author_email(), $size = '36', $default = 'images/avatar.jpg' ); ?>
+						echo get_avatar( get_the_author_meta('email'), $size = '36', $default = 'images/avatar.jpg' ); ?>
 						<p><strong><?php the_date() ?></strong><br/>
-							<?php printf(__('by %s', 'wicketpixie'), sprintf('<a href="%1$s" title="%2$s">%3$s</a>', get_author_posts_url($authordata->ID, $authordata->user_nicename), esc_attr(sprintf(__('Posts by %s'), get_the_author())), get_the_author())); ?></p>
+							<?php printf(__('by %s', 'wicketpixie'), sprintf('<a href="%1$s" title="%2$s">%3$s</a>', get_author_posts_url($authordata->ID, $authordata->user_nicename), esc_attr(sprintf(__('Posts by %s','wicketpixie'), get_the_author())), get_the_author())); ?></p>
 						<?php else : ?>
 						<p><strong><?php the_date() ?></strong><br/>
 							<?php printf(__('at %s', 'wicketpixie'), get_the_time()); ?></p>
@@ -145,4 +147,5 @@ $wp_auth_credit= get_option('wicketpixie_show_post_author'); ?>
 			<!-- sidebar -->
 			<?php get_sidebar('home'); ?>
 			<!-- /sidebar -->
-<?php get_footer(); ?>
+<?php get_footer();
+} ?>
