@@ -7,7 +7,7 @@
 				<?php $adsense_counter = 0;
 				while (have_posts()) : the_post(); ?>
 				<!-- post -->
-				<div class="post">
+				<div id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 					<h2 style="margin-bottom:0;"><a href="<?php the_permalink() ?>" rel="bookmark" title="<?php printf(esc_attr__('Permalink to %s', 'wicketpixie'), the_title_attribute('echo=0')); ?>"><?php the_title(); ?></a></h2>
 					<div class="post-author">
 						<p><strong><?php the_time(get_option('date_format')); ?></strong> <?php printf(__('at %s', 'wicketpixie'), get_the_time()); ?></p>

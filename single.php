@@ -52,6 +52,7 @@ $wp_auth_credit= get_option('wicketpixie_show_post_author'); ?>
 					</span>
 					<?php endif;
 					the_content(); ?>
+					<?php wp_link_pages(array('before' => '<div class="page-link"><span>' . __( 'Pages:', 'wicketpixie' ) . '</span>', 'after' => '</div>' ) ); ?>
 					</div>
 					<?php wp_customcode("afterposts"); ?>
 				</div>

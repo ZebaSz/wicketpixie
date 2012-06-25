@@ -473,7 +473,7 @@ body {
 #content {
 	float: left;
 	width: 500px;
-	padding: 20px 20px 0;
+	padding: 20px;
 	-moz-border-radius-bottomleft: 10px;
 	border-bottom-left-radius: 10px;
 }
@@ -572,7 +572,7 @@ body {
 .post {
 	margin-bottom: 1.4em;
 	padding-bottom: 15px;
-	/* border-bottom: 1px solid #eee; */
+	border-bottom: 1px solid #eee;
 }
 #mid .page {
 	margin-bottom: 1.4em;

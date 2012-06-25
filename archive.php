@@ -15,7 +15,7 @@ $wp_auth_credit= get_option('wicketpixie_show_post_author'); ?>
 				$adsense_counter = 0;
 				while (have_posts()) : the_post(); ?>
 				<!-- post -->
-				<div class="post">
+				<div id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 					<h2><a href="<?php the_permalink() ?>" rel="bookmark" title="<?php the_title_attribute(); ?>"><?php the_title(); ?></a></h2>
 					<div class="post-comments">
 						<div class="post-comments-count"><a href="<?php the_permalink(); ?>#comments" title="<?php printf(__('View all %d Comments', 'wicketpixie'), get_comments_number()); ?>"><?php comments_number('0', '1', '%'); ?></a></div>
