@@ -21,17 +21,9 @@ define("CUSTOMPATH",get_template_directory()."/app/custom");
 * This is called in the admin page and every template that allows custom code.
 * It returns the custom code if any. If not, returns an HTML comment.
 **/
-function wp_customcode($file,$raw = false) {
-	if(file_exists(CUSTOMPATH) && file_exists(CUSTOMPATH ."/$file.php")) :
-		if(!$raw) :
-			include(CUSTOMPATH ."/$file.php");
-		else :
-			return file_get_contents(CUSTOMPATH ."/$file.php");
-		endif;
-	else :
-		echo "<!-- No custom code found, add code on the WicketPixie Custom Code admin page. -->";
-		return false;
-	endif;
+function wp_customcode($file) {
+	if(file_exists(CUSTOMPATH) && file_exists(CUSTOMPATH ."/$file.php")) include(CUSTOMPATH ."/$file.php");
+	else echo "<!-- No custom code found, add code on the WicketPixie Custom Code admin page. -->";
 }
 class CustomCodeAdmin extends AdminPage {
 	function __construct() {
