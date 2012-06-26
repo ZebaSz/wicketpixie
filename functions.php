@@ -13,7 +13,7 @@
 
 $optpre = 'wicketpixie_';
 include_once(get_template_directory().'/widgets/sources.php');
-define(SIMPLEPIEPATH,ABSPATH.'wp-includes/class-simplepie.php');
+define('SIMPLEPIEPATH',ABSPATH.WPINC.'/class-simplepie.php');
 
 // No spaces in this constant please (use hyphens)
 /*
