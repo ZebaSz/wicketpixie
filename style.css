@@ -1463,6 +1463,9 @@ div.KonaBody {
 	margin-bottom: 15px;
 	font-weight: bold;
 }
+.announce:empty {
+	display: none;
+}
 /* Skiddily Doo */
 .TweetWrapper, #TweetWrapper {
 	clear: left;

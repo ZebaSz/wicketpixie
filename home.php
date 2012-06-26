@@ -1,5 +1,5 @@
-<?php if (!get_option('wicketpixie_theme_home')) get_template_part('index');
-else {
+<?php if (!get_option('wicketpixie_theme_home')) :	get_template_part('index');
+else :
 get_header();
 $wp_auth_credit= get_option('wicketpixie_show_post_author'); ?>
 			<!-- content -->
@@ -10,12 +10,7 @@ $wp_auth_credit= get_option('wicketpixie_show_post_author'); ?>
 				while (have_posts()) : the_post(); ?>
 				<!-- post -->
 				<div id="post-<?php the_ID(); ?>" <?php post_class(); ?> style="border-bottom:0;">
-					<?php $glob = wp_customcode('global_announcement',true);
-					if($glob != false && $glob != ""): ?>
-					<div class="announce">
-					<?php echo $glob; ?>
-					</div>
-					<?php endif; ?>
+					<div class="announce"><?php wp_customcode('global_announcement'); ?></div>
 					<h1><a href="<?php the_permalink() ?>" rel="bookmark" title="<?php printf(esc_attr__('Permanent Link to %s', 'wicketpixie'), the_title_attribute('echo=0')); ?>" style="text-decoration:none;"><?php the_title(); ?></a></h1>
 					<div class="post-comments">
 						<div class="post-comments-count"><a href="<?php the_permalink(); ?>#comments" title="<?php printf(__('View all %d Comments', 'wicketpixie'), get_comments_number()); ?>"><?php comments_number('0', '1', '%'); ?></a></div>
@@ -148,4 +143,4 @@ $wp_auth_credit= get_option('wicketpixie_show_post_author'); ?>
 			<?php get_sidebar('home'); ?>
 			<!-- /sidebar -->
 <?php get_footer();
-} ?>
+endif; ?>

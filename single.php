@@ -8,12 +8,7 @@ $wp_auth_credit= get_option('wicketpixie_show_post_author'); ?>
 				$postid =  $post->ID; ?>
 				<!-- post -->
 				<div class="post" style="border-bottom:0;">
-					<?php $glob = wp_customcode('global_announcement',true);
-					if($glob != false && $glob != ""): ?>
-					<div class="announce">
-					<?php echo $glob; ?>
-					</div>
-					<?php endif; ?>
+					<div class="announce"><?php wp_customcode('global_announcement'); ?></div>
 					<h1><a href="<?php the_permalink() ?>" rel="bookmark" title="<?php printf(__('Permanent Link to %s', 'wicketpixie'), the_title_attribute('echo=0')); ?>" style="text-decoration:none;"><?php the_title(); ?></a></h1>
 					<div class="post-comments">
 						<div class="post-comments-count"><a href="<?php the_permalink(); ?>#comments" title="<?php printf(__('View all %d Comments', 'wicketpixie'), get_comments_number()); ?>"><?php comments_number('0', '1', '%'); ?></a></div>

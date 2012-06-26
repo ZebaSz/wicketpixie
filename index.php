@@ -3,13 +3,8 @@ $wp_auth_credit= get_option('wicketpixie_show_post_author'); ?>
 			<!-- content -->
 			<div id="content">
 				<!-- google_ad_section_start -->
-				<?php $glob = wp_customcode('global_announcement',true);
-				if($glob != false && $glob != ""): ?>
-				<div class="announce">
-					<?php echo $glob; ?>
-				</div>
-				<?php endif;
-				if (have_posts()) :
+				<div class="announce"><?php wp_customcode('global_announcement'); ?></div>
+				<?php if (have_posts()) :
 				while (have_posts()) : the_post(); ?>
 				<!-- post -->
 				<div id="post-<?php the_ID(); ?>" <?php post_class(); ?>>

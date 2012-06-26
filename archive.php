@@ -2,12 +2,7 @@
 $wp_auth_credit= get_option('wicketpixie_show_post_author'); ?>
 			<!-- content -->
 			<div id="content">
-					<?php $glob = wp_customcode('global_announcement',true);
-					if($glob != false && $glob != ""): ?>
-				<div class="announce">
-				<?php echo $glob; ?>
-				</div>
-				<?php endif; ?>
+				<div class="announce"><?php wp_customcode('global_announcement'); ?></div>
 				<div class="page">
 					<h1 style="border-bottom:1px solid #ddd; padding-bottom:5px;"><?php wp_title('',true,''); ?></h1>
 				</div>
