@@ -1,10 +1,7 @@
 <?php
-// Blog feed URL
-if(get_option('wicketpixie_blog_feed_url') != false) :
-	$blogfeed = get_option('wicketpixie_blog_feed_url');
-else :
-	$blogfeed = get_bloginfo_rss('rss2_url');
-endif;
+if(get_option('wicketpixie_blog_feed_url') != false) $blogfeed = get_option('wicketpixie_blog_feed_url');
+else $blogfeed = get_bloginfo_rss('rss2_url');
+$time = time();
 $status= new SourceUpdate;
 global $optpre;
 global $adsense;
@@ -15,16 +12,14 @@ $adsense = new AdsenseAdmin; ?>
 <head profile="http://gmpg.org/xfn/11">
 	<meta http-equiv="Content-Type" content="<?php bloginfo('html_type'); ?>; charset=<?php bloginfo('charset'); ?>" />
 	<!-- Debug: <?php echo $optpre; ?> -->
-	<title><?php if (is_home()) :
-	bloginfo('name');
-	else: 
-		wp_title('',true,''); ?> &raquo; <?php bloginfo('name'); ?>
-	<?php endif; ?></title>
-	<?php $time = time(); ?>
+	<title>
+	<?php if (is_home()) bloginfo('name');
+	else wp_title('',true,''); ?> &raquo; <?php bloginfo('name'); ?>
+	</title>
 	<link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/style.css?<?php echo $time; ?>" type="text/css" media="screen, projection" />
 	<link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/css/print.css?<?php echo $time; ?>" type="text/css" media="print" />
 	<!--[if lte IE 8]><link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/css/ie.css?<?php echo $time; ?>" type="text/css" media="screen, projection" /><![endif]-->
-	<link rel="alternate" type="application/rss+xml" title="<?php bloginfo('name'); ?> RSS Feed" href="<?php echo $blogfeed; ?>" />
+	<?php if(get_option('wicketpixie_blog_feed_url')) echo '<link rel="alternate" type="application/rss+xml" title="'.bloginfo('name').'RSS Feed" href="'.$blogfeed.'" />'; ?>
 	<link rel="pingback" href="<?php bloginfo('pingback_url'); ?>" />
 	<link rel="shortcut icon" type="image/ico" href="<?php echo home_url(); ?>/favicon.ico" />
 	<?php if(get_option('wicketpixie_enable_ajax_loader') == 'true') : ?>
@@ -36,19 +31,14 @@ $adsense = new AdsenseAdmin; ?>
 	include_once (ABSPATH . 'wp-admin/includes/plugin.php' );
 	clearstatcache();
 	if(!is_dir(ABSPATH.'wp-content/uploads/activity')) :
-		if(!is_dir(ABSPATH.'wp-content/uploads')) :
-			mkdir(ABSPATH.'wp-content/uploads',0777);
-		endif;
+		if(!is_dir(ABSPATH.'wp-content/uploads')) mkdir(ABSPATH.'wp-content/uploads',0777);
 		mkdir(ABSPATH.'wp-content/uploads/activity',0777);
 	endif;
-	if(!is_dir(get_template_directory() . '/app/cache')) :
-		mkdir(get_template_directory() . '/app/cache',0777);
-	endif;
+	if(!is_dir(get_template_directory() . '/app/cache')) mkdir(get_template_directory() . '/app/cache',0777);
 	if (is_singular()) wp_enqueue_script('comment-reply');
 	wp_head();
 	wp_customcode("header");
-	$blogurl = home_url();
-	$currurl = $blogurl . $_SERVER['REQUEST_URI'];
+	$currurl = home_url().$_SERVER['REQUEST_URI'];
 	$currurl = preg_quote($currurl,'/');
 	if(preg_match('/('.$currurl.'index.php)/','http://'.$_SERVER['SERVER_NAME'].$_SERVER['PHP_SELF']) || preg_match('/('.$currurl.'index.php)/','https://'.$_SERVER['SERVER_NAME'].$_SERVER['PHP_SELF'])) :
 		if(get_bloginfo('description') != '') :
@@ -69,7 +59,7 @@ $adsense = new AdsenseAdmin; ?>
 	<?php if(get_option('wicketpixie_enable_ajax_loader') == 'true') include_once('loader.php');
 	flush(); ?>
 <!-- google_ad_section_start(weight=ignore) -->
-	<?php if (!function_exists('is_admin_bar_showing') || !is_admin_bar_showing()) : ?>
+	<?php if (!is_admin_bar_showing()) : ?>
 	<!-- topbar -->
 	<div id="topbar">
 		<!-- topbar-inner -->
@@ -95,10 +85,10 @@ $adsense = new AdsenseAdmin; ?>
 				</li>
 				<!-- /subscribe -->
 				<?php if (is_user_logged_in()) : ?>
-				<li id="topbar-admin"><a href="<?php echo site_url(); ?>/wp-admin" rel="nofollow">Admin</a></li>
+				<li id="topbar-admin"><a href="<?php echo network_admin_url(); ?>" rel="nofollow">Admin</a></li>
 				<?php endif; ?>
 			</ul>
-<?php get_search_form(); ?>
+			<?php get_search_form(); ?>
 		</div>
 		<!-- /topbar-inner -->
 	</div>
@@ -109,7 +99,7 @@ $adsense = new AdsenseAdmin; ?>
 		<!-- header-inner -->
 		<div id="header-inner">
 			<div id="logo">
-				<a href="<?php echo get_home_url(); ?>/" rel="nofollow"><?php bloginfo('name'); ?></a>
+				<a href="<?php home_url(); ?>" rel="nofollow"><?php bloginfo('name'); ?></a>
 			</div>
 			<!-- google_ad_section_end -->
 			<?php if (function_exists('aktt_latest_tweet')) : ?>
@@ -145,7 +135,7 @@ $adsense = new AdsenseAdmin; ?>
 			<?php endif; ?>
 			<!-- google_ad_section_start(weight=ignore) -->
 			<!-- leaderboard -->
-			<?php if(is_enabled_adsense() == true) : ?>
+			<?php if(is_enabled_adsense()) : ?>
 				<!-- Enable Adsense on the WicketPixie Adsense Ads admin page. -->
 				<div id="leaderboard">
 				<?php $adsense->wp_adsense("blog_header"); ?>
