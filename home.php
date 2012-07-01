@@ -95,40 +95,20 @@ $wp_auth_credit= get_option('wicketpixie_show_post_author'); ?>
 				<?php endwhile;
 				endif;
 				if(get_option('wicketpixie_home_video_enable') == 'true') : ?>
+				<!-- home-video -->
 				<div id="home-categories">
-					<?php if(get_option('wicketpixie_home_show_video_heading') == 'true') :
-						echo "<h2>".__('My Videos', 'wicketpixie')."</h2>";
-					endif;
-					if(get_option('wicketpixie_home_video_code') != false && get_option('wicketpixie_home_video_code') != '') :
-								echo stripslashes(get_option('wicketpixie_home_video_code'));
-					else : ?>
-					<!-- Add video object code in the WicketPixie Home Editor -->
-					<!-- Here's Chris Pirillo's YouTube object as an example: -->
-					<!--[if !IE]> -->
-					  <object type="application/x-shockwave-flash" data="http://www.youtube.com/cp/vjVQa1PpcFOi2GvexXT8XYrvBOsPoeQUt32UxT-AJgI=" width="500" height="285">
-					<!-- <![endif]-->
-					<!--[if IE]>
-					  <object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,0,0" width="500" height="285">
-						<param name="movie" value="http://www.youtube.com/cp/vjVQa1PpcFOi2GvexXT8XYrvBOsPoeQUt32UxT-AJgI=" />
-					<!--><!-- http://Validifier.com -->
-					  </object>
-					<!-- <![endif]-->
-					<?php endif; ?>
+					<?php if(get_option('wicketpixie_home_show_video_heading') == 'true') echo "<h2>".__('My Videos', 'wicketpixie')."</h2>";
+					if(get_option('wicketpixie_home_video_code') != false && get_option('wicketpixie_home_video_code') != '') echo stripslashes(get_option('wicketpixie_home_video_code'));
+					else echo '<!-- Add video object code in the WicketPixie Home Editor -->'; ?>
 				</div>
+				<!-- /home-video -->
 				<?php endif;
 				if(get_option('wicketpixie_home_flickr_enable') == 'true') : ?>
 				<!-- home-photos -->
 				<div id="home-photos">
-					<?php if(get_option('wicketpixie_flickr_id') != false && get_option('wicketpixie_flickr_id') != 'false') :
-						$flickrid = get_option('wicketpixie_flickr_id');
-					else :
-						$flickrid = '49503157467@N01';
-					endif;
-					if(get_option('wicketpixie_home_flickr_number') != false) :
-						$num = get_option('wicketpixie_home_flickr_number');
-					else :
-						$num = '5';
-					endif;
+					<?php if(get_option('wicketpixie_flickr_id') != false && get_option('wicketpixie_flickr_id') != 'false') $flickrid = get_option('wicketpixie_flickr_id');
+					if(get_option('wicketpixie_home_flickr_number') != false) $num = get_option('wicketpixie_home_flickr_number');
+					else $num = '5';
 					if(get_option('wicketpixie_home_show_photo_heading') == 'true') :
 						echo "<h2>".__('Recent Photos', 'wicketpixie')."</h2>";
 					endif; ?>
