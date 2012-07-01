@@ -1,9 +1,9 @@
 #admin-options {
 	float: left;
-	width: 660px;
+	width: 80%;
 }
 #admin-affiliates {
 	float: right;
-	width: 300px;
+	width: 20%;
 	margin: 20px 0;
 }

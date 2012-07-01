@@ -80,6 +80,11 @@ require(get_template_directory() .'/app/theme-options.php');
 if (!isset($content_width)) $content_width = 500;
 
 /* Admin Pages */
+// Admin page style
+function admin_style() {
+    echo "<link rel='stylesheet' type='text/css' href='".get_template_directory_uri()."/css/admin.css' />";
+}
+add_action('admin_head', 'admin_style');
 // The parent AdminPage class
 require_once( get_template_directory() .'/app/admin-page.php');
 // WicketPixie Admin page
