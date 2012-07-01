@@ -65,7 +65,7 @@ function wp_customcode($file) {
 }
 class CustomCodeAdmin extends AdminPage {
 	function __construct() {
-		parent::__construct('Custom Code','customcode.php','wicketpixie-admin.php',null);
+		parent::__construct(__('Custom Code','wicketpixie'),'customcode.php','wicketpixie-admin.php',null);
 	}
 	function page_output() {
 		$this->customcode_admin();
