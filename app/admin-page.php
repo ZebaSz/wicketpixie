@@ -12,7 +12,7 @@
  */
 require_once get_template_directory() .'/functions.php';
 class AdminPage {
-	function __construct($name,$filename,$parent = null,$arrays = array()) {
+	function __construct($name,$filename,$parent = null,$arrays = array(),$help_content = array()) {
 		global $optpre;
 		$this->page_title = "WicketPixie $name";
 		$this->page_name = $name;
@@ -20,6 +20,7 @@ class AdminPage {
 		$this->filename = $filename;
 		$this->parent = $parent;
 		$this->arrays = $arrays;
+		$this->help_content = $help_content;
 		$this->optpre = $optpre;
 	}
 	function __destruct() {
@@ -45,18 +46,12 @@ class AdminPage {
 			if((isset($array['name']) && $array['name'] == $_POST['group']) || (!isset($array['name']) && $_POST['group'] == '')) :
 				foreach($array as $value) :
 					if(is_array($value)) :
-						switch($value['type']) :
-							case 'checkbox':
-								if(isset($_POST[$value['id']])) :
-									update_option($value['id'],'true');
-								else :
-									update_option($value['id'],'false');
-								endif;
-								break;
-							default:
+						if($value['type'] == 'checkbox') :
+							if(isset($_POST[$value['id']])) update_option($value['id'],'true');
+							else update_option($value['id'],'false');
+						else :
 								$this->default_save_types($value);
-								break;
-						endswitch;
+						endif;
 					endif;
 				endforeach;
 			endif;
@@ -67,9 +62,22 @@ class AdminPage {
 	function add_page_to_menu() {
 		$this->request_check();
 		if($this->parent == null) :
-			add_menu_page($this->page_title,$this->page_name,'edit_themes',$this->filename,array($this,'page_output'),get_template_directory_uri() .'/images/wicketsmall.png');
+			$this->pagehook = add_menu_page($this->page_title,$this->page_name,'edit_themes',$this->filename,array($this,'page_output'),get_template_directory_uri() .'/images/wicketsmall.png');
 		else :
-			add_submenu_page($this->parent,$this->page_title,$this->page_name,'edit_themes',$this->filename,array($this,'page_output'));
+			$this->pagehook = add_submenu_page($this->parent,$this->page_title,$this->page_name,'edit_themes',$this->filename,array($this,'page_output'));
+		endif;
+		add_action("load-{$this->pagehook}", array($this,'add_help_tabs'));
+	}
+	function add_help_tabs() {
+		if (empty($this->help_content)) return;
+		$screen = get_current_screen();
+		if ($screen->id == $this->pagehook) :
+			foreach ($this->help_content as $help_tab)
+				$screen->add_help_tab(array(
+					'title' => $help_tab['title'],
+					'id' => $help_tab['id'],
+					'content' => $help_tab['content'])
+				);
 		endif;
 	}
 	function page_output() {
@@ -89,9 +97,9 @@ class AdminPage {
 				<h2><?php echo $this->page_name; ?></h2>
 				<?php echo $this->page_description; ?>
 				<?php foreach($this->arrays as $array) : ?>
-				<?php if (isset($array['name']) && $array['name'] != '') echo '<h3>',$array["name"],'</h3>'; ?>
-				<?php if (isset($array['desc']) && $array['desc'] != '') echo $array['desc']; ?>
-				<form method="post" enctype="multipart/form-data" style="padding:20px 0 40px;" action="<?php echo $_SERVER['PHP_SELF']; ?>?page=<?php echo $this->filename; ?>">
+				<?php if (!empty($array['name'])) echo '<h3>',$array["name"],'</h3>'; ?>
+				<?php if (!empty($array['desc'])) echo $array['desc']; ?>
+				<form method="post" enctype="multipart/form-data" action="<?php echo $_SERVER['PHP_SELF']; ?>?page=<?php echo $this->filename; ?>">
 					<?php wp_nonce_field('wicketpixie-settings'); ?>
 					<table class="form-table">
 						<?php foreach( $array as $value ) :
@@ -101,11 +109,8 @@ class AdminPage {
 								<acronym title="<?php echo $value['description']; ?>"><?php echo $value['name']; ?></acronym>
 								</th>
 							<td style="padding-right:10px;">
-								<?php if (get_option($value['id'])) :
-									$optdata = get_option($value['id']);
-								else :
-									$optdata = (isset($value['std'])) ? $value['std'] : '';
-								endif;
+								<?php if (get_option($value['id'])) $optdata = get_option($value['id']);
+								else $optdata = (isset($value['std'])) ? $value['std'] : '';
 								if($value['type'] == 'select') : ?>
 								<select name="<?php echo $value['id']; ?>" id="<?php echo $value['id']; ?>">
 									<?php foreach($value['options'] as $option) : ?>
