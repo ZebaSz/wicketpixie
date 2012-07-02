@@ -1,5 +1,4 @@
-<?php get_header();
-$wp_auth_credit= get_option('wicketpixie_show_post_author'); ?>
+<?php get_header(); ?>
 			<!-- content -->
 			<div id="content">
 				<!-- google_ad_section_start -->
@@ -14,10 +13,10 @@ $wp_auth_credit= get_option('wicketpixie_show_post_author'); ?>
 						<div class="post-comments-add"><a href="<?php the_permalink(); ?>#respond" title="<?php _e('Add a Comment', 'wicketpixie'); ?>"></a></div>
 					</div>
 					<div class="post-author">
-						<?php if( $wp_auth_credit == 'true' ) :
-						echo get_avatar( get_the_author_meta('email'), $size = '36', $default = 'images/avatar.jpg' ); ?>
+						<?php if(get_option('wicketpixie_show_post_author') == 'true') :
+						echo get_avatar(get_the_author_meta('email'), '36'); ?>
 						<p><strong><?php the_time(get_option('date_format')); ?></strong><br/>
-							<?php printf(__('by %s', 'wicketpixie'), sprintf('<a href="%1$s" title="%2$s">%3$s</a>', get_author_posts_url($authordata->ID, $authordata->user_nicename), esc_attr(sprintf(__('Posts by %s','wicketpixie'), get_the_author())), get_the_author())); edit_post_link(__('Edit', 'wicketpixie'), ' - ', ''); ?></p>
+							<?php printf(__('by %s', 'wicketpixie'), sprintf('<a href="%1$s" title="%2$s">%3$s</a>', get_author_posts_url(get_the_author_meta('ID')), esc_attr(sprintf(__('Posts by %s','wicketpixie'), get_the_author())), get_the_author())); edit_post_link(__('Edit', 'wicketpixie'), ' - ', ''); ?></p>
 						<?php else : ?>
 						<p><strong><?php the_time(get_option('date_format')); ?></strong><br/>
 							<?php printf(__('at %s', 'wicketpixie'), get_the_time()); edit_post_link(__('Edit', 'wicketpixie'), ' - ', ''); ?></p>
