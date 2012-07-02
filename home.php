@@ -1,4 +1,4 @@
-<?php if (!get_option('wicketpixie_theme_home_enable')) :	get_template_part('index');
+<?php if (get_option('wicketpixie_theme_home_enable') == 'false') :	get_template_part('index');
 else :
 get_header();
 $wp_auth_credit= get_option('wicketpixie_show_post_author'); ?>
