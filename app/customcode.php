@@ -16,7 +16,7 @@
 * footer.php - included before the </body> tag
 * Please do not use a different file name for these two areas.
 **/
-define("CUSTOMPATH",get_template_directory()."/app/custom");
+define("CUSTOMPATH",get_template_directory()."/custom/");
 /**
  * Custom code functions array
 **/
@@ -60,7 +60,7 @@ $custom_codes = array(
 **/
 
 function wp_customcode($file) {
-	if(file_exists(CUSTOMPATH) && file_exists(CUSTOMPATH ."/$file.php")) include(CUSTOMPATH ."/$file.php");
+	if(file_exists(CUSTOMPATH ."$file.php")) include(CUSTOMPATH ."$file.php");
 	else echo "<!-- No custom code found, add code on the WicketPixie Custom Code admin page. -->";
 }
 class CustomCodeAdmin extends AdminPage {
@@ -74,22 +74,27 @@ class CustomCodeAdmin extends AdminPage {
 		parent::__destruct();
 	}
 	/**
-	* The admin page where the user enters the custom header code.
-	*/
-	function customcode_admin() {
-		if ($_GET['page'] == basename(__FILE__) && isset($_POST['action']) && isset($_POST['file'])) :
-			$custom_file = CUSTOMPATH.'/'.$_POST['file'].'.php';
+	 * The function in charge of file creation and deletion
+	 **/
+	function customcode_process() {
+		// Check if the page has something to process
+		if (isset($_POST['action'])) :
+			// Define file location, then check what to do with it
+			$custom_file = CUSTOMPATH.$_POST['file'].'.php';
 			if ($_POST['action'] == 'add') :
-				// Check and make sure the folder exists and is writable
+				// Make sure the folder exists and is writable
 				if(!file_exists(CUSTOMPATH)) mkdir(CUSTOMPATH,0777);
 				// Write the submitted code to the file
 				$uploaded = 'wicketpixie-custom-'.$_POST['file'];
 				if(move_uploaded_file($_FILES[$uploaded]['tmp_name'], $custom_file)) : ?>
 				<div id="message" class="updated fade"><p><strong><?php _e('Custom Code saved', 'wicketpixie'); ?></strong></p></div>
-				<?php else : ?>
+				<?php else :
+				// We oopsed, let the user know
+				?>
 				<div id="message" class="error fade"><p><strong><?php _e('There has been an error with your upload', 'wicketpixie'); ?></strong></p></div>
 				<?php endif;
 			elseif ($_POST['action'] == 'clear') :
+				// Check whether the file we are trying to delete is there
 				if(file_exists($custom_file)) :
 				unlink($custom_file); ?>
 				<div id="message" class="updated fade"><p><strong><?php _e('Custom Code cleared', 'wicketpixie'); ?></strong></p></div>
@@ -97,32 +102,39 @@ class CustomCodeAdmin extends AdminPage {
 				<div id="message" class="error fade"><p><strong><?php _e('The file does not exist', 'wicketpixie'); ?></strong></p></div>
 				<?php endif;
 			endif;
-		endif; ?>
-			<div class="wrap">
-				<div id="admin-options">
-					<h2><?php _e('Custom Code','wicketpixie'); ?></h2>
-					<p><?php _e('Here, you can upload php files containing any valid code (HTML, PHP, JavaScript) which will be included in the site template. If you want to delete any file, use the "Clear" buttons.','wicketpixie'); ?></p>
-					<?php global $custom_codes;
-					foreach ($custom_codes as $custom_code): ?>
-					<div style="clear: both">
-						<h3><?php echo $custom_code['title']; ?></h3>
-						<p><?php echo $custom_code['desc']; ?></p>
-						<form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>?page=customcode.php&amp;add=true" enctype="multipart/form-data">
-						<?php wp_nonce_field('wicketpixie-settings'); ?>
-							<input type="file" name="wicketpixie-custom-<?php echo $custom_code['file'];  ?>" style="float: left" />
-							<input type="submit" name="save" value="<?php _e('Save','wicketpixie'); ?>" class="button-primary" style="float: left" /> 
-							<input type="hidden" name="action" value="add" />
-							<input type="hidden" name="file" value="<?php echo $custom_code['file']; ?>" />
-						</form>
-						<form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>?page=customcode.php&amp;clear=true" enctype="multipart/form-data">
-						<?php wp_nonce_field('wicketpixie-settings'); ?>
-							<input type="submit" name="clear" value="<?php _e('Clear','wicketpixie'); ?>" class="button-secondary" />
-							<input type="hidden" name="action" value="clear" />
-							<input type="hidden" name="file" value="<?php echo $custom_code['file']; ?>" />
-						</form>
-					</div>
-				<?php endforeach; ?>
+		endif;
+	}
+	/**
+	 * The admin page where the user enters the custom header code.
+	 **/
+	function customcode_admin() {
+		// Process requests if any
+		$this->customcode_process(); ?>
+		<div class="wrap">
+			<div id="admin-options">
+				<h2><?php _e('Custom Code','wicketpixie'); ?></h2>
+				<p><?php _e('Here, you can upload PHP files containing any valid code (HTML, PHP, JavaScript) which will be included in the site template. Files can be edited later through the Wordpress Theme Editor. If you want to delete any file, use the "Clear" buttons.','wicketpixie'); ?></p>
+				<?php global $custom_codes;
+				foreach ($custom_codes as $custom_code): ?>
+				<div style="clear: both">
+					<h3><?php echo $custom_code['title']; ?></h3>
+					<p><?php echo $custom_code['desc']; ?></p>
+					<form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>?page=customcode.php&amp;add=true" enctype="multipart/form-data">
+					<?php wp_nonce_field('wicketpixie-settings'); ?>
+						<input type="file" name="wicketpixie-custom-<?php echo $custom_code['file'];  ?>" style="float: left" />
+						<input type="submit" name="save" value="<?php _e('Save','wicketpixie'); ?>" class="button-primary" style="float: left" /> 
+						<input type="hidden" name="action" value="add" />
+						<input type="hidden" name="file" value="<?php echo $custom_code['file']; ?>" />
+					</form>
+					<form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>?page=customcode.php&amp;clear=true" enctype="multipart/form-data">
+					<?php wp_nonce_field('wicketpixie-settings'); ?>
+						<input type="submit" name="clear" value="<?php _e('Clear','wicketpixie'); ?>" class="button-secondary" />
+						<input type="hidden" name="action" value="clear" />
+						<input type="hidden" name="file" value="<?php echo $custom_code['file']; ?>" />
+					</form>
 				</div>
-			<?php include_once('advert.php'); ?>
-	<?php }
+			<?php endforeach; ?>
+			</div>
+		<?php include_once('advert.php');
+	}
 } ?>
