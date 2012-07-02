@@ -92,11 +92,6 @@ require_once( get_template_directory() .'/app/wicketpixie-admin.php');
 $a = new WiPiAdmin();
 add_action('admin_menu',array($a,'add_page_to_menu'));
 unset($a);
-// WiPi Plugins page
-require_once( get_template_directory() .'/app/wipi-plugins.php');
-$a = new WiPiPlugins();
-add_action('admin_menu',array($a,'add_page_to_menu'));
-unset($a);
 // Adsense Settings page
 require_once( get_template_directory() .'/app/adsenseads.php');
 $a = new AdsenseAdmin();
