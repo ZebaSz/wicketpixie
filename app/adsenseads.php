@@ -200,7 +200,7 @@ class AdsenseAdmin extends AdminPage
 		if ( isset( $_REQUEST['add'] ) ) : ?>
 		<div id="message" class="updated fade"><p><strong>Ad code added.</strong></p></div>
 		<?php endif; ?>
-			<div class="wrap">
+			<div class="wrap wicketpixie">
 				<div id="admin-options">
 					<h2>AdSense Settings</h2>
 					<p>Here you can add in your AdSense information and ad code so it can be displayed
@@ -252,6 +252,7 @@ class AdsenseAdmin extends AdminPage
 							<td style="padding-right:10px;">
 							<?php $c = (get_option('wicketpixie_adsense_search_enabled') == 'true') ? 'checked="checked"' : ''; ?>
 							<input type='checkbox' name='wicketpixie_adsense_search_enabled' id='wicketpixie_adsense_search_enabled' <?php echo $c; ?> />
+							<label for='wicketpixie_adsense_search_enabled'>&nbsp;</label>
 							</td>
 						</tr>
 						<tr valign="top">

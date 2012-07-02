@@ -33,7 +33,8 @@ class AdminPage {
 		endif;
 	}
 	function extra_types_html($value,$checkdata) { ?>
-		<input name="<?php echo $value['id']; ?>" id="<?php echo $value['id']; ?>" type="<?php echo $value['type']; ?>" value="<?php echo $checkdata; ?>" <?php if(($value['type'] == 'checkbox' || $value['type'] == 'radio') && $checkdata == 'true') { echo 'checked="checked"'; } ?> /> <?php
+		<input name="<?php echo $value['id']; ?>" id="<?php echo $value['id']; ?>" type="<?php echo $value['type']; ?>" value="<?php echo $checkdata; ?>" <?php if(($value['type'] == 'checkbox' || $value['type'] == 'radio') && $checkdata == 'true') { echo 'checked="checked"'; } ?> />
+		<?php if($value['type'] == 'checkbox') : ?><label for="<?php echo $value['id']; ?>">&nbsp;</label><?php endif;
 	}
 	function after_form() {
 	}
@@ -83,7 +84,7 @@ class AdminPage {
 		endif;
 	}
 	function page_display() { ?>
-		<div class="wrap">
+		<div class="wrap wicketpixie">
 			<div id="admin-options">
 				<h2><?php echo $this->page_name; ?></h2>
 				<?php echo $this->page_description; ?>
