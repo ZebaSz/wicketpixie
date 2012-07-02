@@ -13,8 +13,11 @@ $adsense = new AdsenseAdmin; ?>
 	<meta http-equiv="Content-Type" content="<?php bloginfo('html_type'); ?>; charset=<?php bloginfo('charset'); ?>" />
 	<!-- Debug: <?php echo $optpre; ?> -->
 	<title>
-	<?php if (is_home()) bloginfo('name');
-	else wp_title('',true,''); ?> &raquo; <?php bloginfo('name'); ?>
+	<?php if (is_home() || is_front_page()) :
+		bloginfo('name');
+	else :
+		wp_title('',true,''); ?> &raquo; <?php bloginfo('name');
+	endif; ?>
 	</title>
 	<link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/style.css?<?php echo $time; ?>" type="text/css" media="screen, projection" />
 	<link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/css/print.css?<?php echo $time; ?>" type="text/css" media="print" />
