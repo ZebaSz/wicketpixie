@@ -803,7 +803,10 @@ body {
 #content .navigation .right {
 	float: right;
 }
-#content .navigation span  {
+#content .navigation a {
+	border: none;
+}
+#content .navigation a span {
 	position: absolute;
 	height: 15px;
 	width: 72px;
@@ -821,9 +824,6 @@ body {
 	font-size: 12px;
 	text-transform: uppercase;
 	text-align: center;
-}
-#content .navigation .left, #content .navigation .right a {
-	text-decoration: none;
 }
 #post-ad {
 	float: right;
@@ -982,6 +982,7 @@ body {
 
 /* ACTIVITY */
 #activity {
+	display: table;
 	margin-bottom: 20px;
 	font-size: 1.2em;
 	line-height: 1.4em;
