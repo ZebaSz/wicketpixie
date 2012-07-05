@@ -1,69 +1,65 @@
 <?php
 /**
- * WicketPixie v1.4
+ * WicketPixie v1.5
  * (c) 2006-2009 Eddie Ringle,
  *               Chris J. Davis,
  *               Dave Bates
  * Provided by Chris Pirillo
  *
- * (c) 2011 Sebastian Szperling
+ * (c) 2011-2012 Sebastian Szperling
  *
  * Licensed under the New BSD License.
  */
-class SourceUpdate {
-	/**
-	* Checks to see if any source is used for our Updates
-	**/
-	function activated() {
-		global $wpdb;
-		$table= $wpdb->prefix . 'wik_sources';
-		$check= $wpdb->get_results( "SELECT updates FROM $table" );
-		return $check;
+class SourceUpdate extends SourceAdmin {
+	function __construct() {
+		parent::__construct();
+	}
+	function __destruct() {
+		parent::__destruct();
 	}
 	/**
-	* Selects the source whose feed will be used for updates
-	**/
-	function select() {
+	 * Checks to see if any source is used for our Updates
+	 **/
+	function check() {
 		global $wpdb;
-		$table= $wpdb->prefix . 'wik_sources';
-		$newest= $wpdb->get_results( "SELECT * FROM $table WHERE updates = 1 LIMIT 1" );
-		return $newest;
+		if (parent::check())
+			return $wpdb->get_results("SELECT updates FROM {$this->table}");
+		return false;
 	}
 	/**
-	* Fetches the latest entry from the source's feed
+	* Selects the source whose feed will be used for updates,
+	* then fetches the latest entry from the source's feed
 	**/
 	function fetchfeed() {
 		require_once(SIMPLEPIEPATH);
-		$feed = $this->select();
-		if(preg_match('/twitter\.com/',$feed[0]->feed_url) == true) :
-			$istwitter = 1;
-		endif;
+		global $wpdb;
+		$feed = $wpdb->get_results("SELECT * FROM {$this->table} WHERE updates = 1 LIMIT 1");
+		if (preg_match('/twitter\.com/',$feed[0]->feed_url))
+			$istwitter = true;
 		$feed_path = $feed[0]->feed_url;
 		$feed = new SimplePie((string)$feed_path, ABSPATH . (string)'wp-content/uploads/activity');
-		SourceAdmin::clean_dir();
+		$this->clean_dir();
 		$feed->handle_content_type();
-		if($feed->data) :
+		if ($feed->data) :
 			foreach($feed->get_items() as $entry) :
-				$update[]['title']= $entry->get_title();
-				$update[]['link']= $entry->get_permalink();
-				$update[]['date']= strtotime( substr( $entry->get_date(), 0, 25 ) );
+				$update[]['title'] = $entry->get_title();
+				$update[]['link'] = $entry->get_permalink();
+				$update[]['date'] = strtotime(substr($entry->get_date(),0,25));
 			endforeach;
 			$return = array_slice($update,0,5);
 			// This auto-hyperlinks URLs
 			$return[0]['title'] = preg_replace('((?:\S)+://\S+[[:alnum:]]/?)', '<a href="\0">\0</a>', $return[0]['title']);
 			/**
-			* If Twitter is the source, then we hyperlink any '@username's
-			* to that user's Twitter address.
-			**/
-			if( $istwitter == 1 ) :
+			 * If Twitter is the source, then we hyperlink any '@username's
+			 * to that user's Twitter address.
+			 **/
+			if ($istwitter)
 				$return[0]['title'] = preg_replace('/(@)([A-Za-z0-9_-]+)/', '<a href="http://twitter.com/\2">\0</a>', $return[0]['title']);
-			endif;
 			// We want dates in local time, as specified by user
-			$time_offset = get_option('gmt_offset') * 3600;
-			$local_time = $return[2]['date'] + $time_offset;
-			return substr($return[0]['title'], 0, 1000) . ' &mdash; <a href="' . $return[1]['link'] . '" title="">' . date( get_option('time_format'), $local_time ) . '</a>';
+			$local_time = $return[2]['date'] + get_option('gmt_offset') * 3600;
+			return substr($return[0]['title'], 0, 1000)." &mdash; <a href=\"{$return[1]['link']}\">".date(get_option('time_format'), $local_time).'</a>';
 		else :
-			return "Thanks for exploring my world! Can you believe this avatar is talking to you?";
+			return 'Thanks for exploring my world! Can you believe this avatar is talking to you?';
 		endif;
 	}
 	/**
@@ -72,29 +68,18 @@ class SourceUpdate {
 	function chkfile($f) {
 		clearstatcache();
 		// Check to see if the feed file exists
-		$isfile = is_file($f);
-		if($isfile == false) :
-			return false;
-		elseif ($isfile == true) :
-			// Fetch the files last modification time
-			$lastupdated = filemtime($f);
-			// Now get the current time
-			$currenttime = time();
-			// Aaannnddd... compare!
-			$diff = $currenttime - $lastupdated;
-			// If it's been more than 45 seconds, refetch the feed
-			if($diff >= 45) :
-				return false;
-			else :
+		if (is_file($f)) :
+			// If it's newer than 45 seconds, we're OK
+			$diff = time() - filemtime($f);
+			if($diff < 45)
 				return true;
-			endif;
-		else :
-			return false;
 		endif;
+		// If it's older or non-existent, fetch it
+		return false;
 	}
 	/**
-	* Calls fetchfeed() to create a new update cache file
-	**/
+	 * Calls fetchfeed() to create a new update cache file
+	 **/
 	function cacheit($f) {
 		// Use SimplePie to fetch the latest feed
 		$latest = $this->fetchfeed();
@@ -104,27 +89,15 @@ class SourceUpdate {
 		touch($f);
 	}
 	/**
-	* Self-explanatory
-	**/
-	function getfeedfile($f) {
-		// Simple, open the file and return the contents
-		return file_get_contents($f);
-	}
-	/**
-	* Displays the feed entry.
-	**/
+	 * Displays the feed entry.
+	 **/
 	function display() {
 		// The location of the update cache file
-		$f = get_template_directory() . '/app/cache/statusupdate.cache';
-		// Check to see if we're using a recent feed file
-		$result = $this->chkfile($f);
-		// If feed file is outdated, store a new one
-		if($result == false) :
+		$f = get_template_directory().'/app/cache/statusupdate.cache';
+		// Check if feed file is recent, else store a new one
+		if (!$this->chkfile($f))
 			$this->cacheit($f);
-		endif;
-		// Now prepare to display the latest item
-		$out = $this->getfeedfile($f);
 		// Time to let people know what's up!
-		return $out;
+		return file_get_contents($f);
 	}
 } ?>

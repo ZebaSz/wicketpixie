@@ -87,6 +87,8 @@ function wicketpixie_admin_style() {
 add_action('admin_enqueue_scripts', 'wicketpixie_admin_style');
 // The parent AdminPage class
 require_once( get_template_directory() .'/app/admin-page.php');
+// The DBAdmin class
+require_once( get_template_directory() .'/app/db-admin.php');
 // WicketPixie Admin page
 require_once( get_template_directory() .'/app/wicketpixie-admin.php');
 $a = new WiPiAdmin();
@@ -148,15 +150,3 @@ require_once(get_template_directory() .'/widgets/ustream-widget.php');
 add_action('widgets_init','UstreamWidgetInit');
 // Social Me Feed Widgets
 include_once(get_template_directory() .'/widgets/sources.php');
-foreach( SourceAdmin::collect() as $widget ) :
-	if(SourceAdmin::feed_check($widget->title) == 1) :
-		$source_title = $widget->title;
-		$t_title = str_replace(' ','',$source_title);
-		$cleaned= strtolower( $source_title );
-		$cleaned= preg_replace( '/\W/', ' ', $cleaned );
-		$cleaned= str_replace( " ", "", $cleaned );
-		if(is_file(get_template_directory() .'/widgets/'.$cleaned.'.php')) :
-			add_action('widgets_init',"${t_title}Init");
-		endif;
-	endif;
-endforeach;

@@ -6,7 +6,7 @@
  *               Dave Bates
  * Provided by Chris Pirillo
  *
- * (c) 2011 Sebastian Szperling
+ * (c) 2011-2012 Sebastian Szperling
  *
  * Licensed under the New BSD License.
  */

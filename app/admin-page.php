@@ -1,15 +1,15 @@
 <?php
 /**
- * WicketPixie v1.4
+ * WicketPixie v1.5
  * (c) 2006-2009 Eddie Ringle,
  *               Chris J. Davis,
  *               Dave Bates
  * Provided by Chris Pirillo
  *
- * (c) 2011 Sebastian Szperling
+ * (c) 2011-2012 Sebastian Szperling
  *
  * Licensed under the New BSD License.
- */
+ **/
 require_once get_template_directory() .'/functions.php';
 class AdminPage {
 	function __construct($name,$filename,$parent = null,$arrays = array(),$help_content = array()) {
@@ -24,8 +24,10 @@ class AdminPage {
 		$this->optpre = $optpre;
 	}
 	function __destruct() {
-		// This specific array has the potential to consume a bunch of memory,
-		// so we unset it when we are done.
+		/**
+		 * This specific array has the potential to consume a bunch of memory,
+		 * so we unset it when we are done.
+		 **/
 		unset($this->arrays);
 	}
 	function default_save_types($value) {
@@ -47,10 +49,13 @@ class AdminPage {
 				foreach($array as $value) :
 					if(is_array($value)) :
 						if($value['type'] == 'checkbox') :
-							if(isset($_POST[$value['id']])) update_option($value['id'],'true');
-							else update_option($value['id'],'false');
+							if(isset($_POST[$value['id']])) :
+								update_option($value['id'],'true');
+							else :
+								update_option($value['id'],'false');
+							endif;
 						else :
-								$this->default_save_types($value);
+							$this->default_save_types($value);
 						endif;
 					endif;
 				endforeach;
@@ -62,9 +67,9 @@ class AdminPage {
 	function add_page_to_menu() {
 		$this->request_check();
 		if($this->parent == null) :
-			$this->pagehook = add_menu_page($this->page_title,$this->page_name,'edit_themes',$this->filename,array($this,'page_output'),get_template_directory_uri() .'/images/wicketsmall.png');
+			$this->pagehook = add_menu_page($this->page_title,$this->page_name,'edit_themes',$this->filename,array($this,'page_display'),get_template_directory_uri() .'/images/wicketsmall.png');
 		else :
-			$this->pagehook = add_submenu_page($this->parent,$this->page_title,$this->page_name,'edit_themes',$this->filename,array($this,'page_output'));
+			$this->pagehook = add_submenu_page($this->parent,$this->page_title,$this->page_name,'edit_themes',$this->filename,array($this,'page_display'));
 		endif;
 		add_action("load-{$this->pagehook}", array($this,'add_help_tabs'));
 	}
@@ -80,9 +85,6 @@ class AdminPage {
 				);
 		endif;
 	}
-	function page_output() {
-		$this->page_display();
-	}
 	function request_check() {
 		if (isset($_GET['page']) && isset($_POST['action'])) :
 			if($_GET['page'] == $this->filename && $_POST['action'] == 'save') :
@@ -96,7 +98,7 @@ class AdminPage {
 			<div id="admin-options">
 				<h2><?php echo $this->page_name; ?></h2>
 				<?php echo $this->page_description; ?>
-				<?php foreach($this->arrays as $array) : ?>
+				<?php foreach ($this->arrays as $array) : ?>
 				<?php if (!empty($array['name'])) echo '<h3>',$array["name"],'</h3>'; ?>
 				<?php if (!empty($array['desc'])) echo $array['desc']; ?>
 				<form method="post" enctype="multipart/form-data" action="<?php echo $_SERVER['PHP_SELF']; ?>?page=<?php echo $this->filename; ?>">
@@ -109,11 +111,10 @@ class AdminPage {
 								<acronym title="<?php echo $value['description']; ?>"><?php echo $value['name']; ?></acronym>
 								</th>
 							<td style="padding-right:10px;">
-								<?php if (get_option($value['id'])) $optdata = get_option($value['id']);
-								else $optdata = (isset($value['std'])) ? $value['std'] : '';
-								if($value['type'] == 'select') : ?>
+								<?php $optdata = (get_option($value['id'])) ? get_option($value['id']) : (isset($value['std'])) ? $value['std'] : '';
+								if ($value['type'] == 'select') : ?>
 								<select name="<?php echo $value['id']; ?>" id="<?php echo $value['id']; ?>">
-									<?php foreach($value['options'] as $option) : ?>
+									<?php foreach ($value['options'] as $option) : ?>
 									<option value="<?php echo $option; ?>" <?php if($optdata == $option) echo 'selected="selected"'; ?>><?php echo $option; ?></option>
 									<?php endforeach; ?>
 								</select>

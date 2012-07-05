@@ -1,22 +1,25 @@
 <?php
 /**
- * WicketPixie v1.4
+ * WicketPixie v1.5
  * (c) 2006-2009 Eddie Ringle,
  *               Chris J. Davis,
  *               Dave Bates
  * Provided by Chris Pirillo
  *
- * (c) 2011 Sebastian Szperling
+ * (c) 2011-2021 Sebastian Szperling
  *
  * Licensed under the New BSD License.
  */
-class AdsenseAdmin extends AdminPage
-{
+$help_content = array(
+	array(
+		'title' => 'AdSense Help',
+		'id' => 'wicketpixie-adsense-help',
+		'content' => '<p>'.__('In order to add ad slots, you must log in to Google AdSense and create an ad slot. You can check the available WicketPixie ad slots to select the appropriate mesures. Then, copy the corresponding javascript code, select the ad slot and paste the code into the ad code area. And that\'s it! Enjoy your new monetized blog!','wicketpixie').'</p><p>'.__('You can also enable AdSense for Search. In order to do that, you must first create an AdSense for Search slot in Google AdSense. From the code provided by AdSense, you must extract the PubID (you will find it as the value of the input tag named \'cx\'). Then, you must create a new WordPress page using the AdSense for Search template, enter the page URL in the settings box, and save. Make sure you have \'pretty permalinks\' enabled, or else this won\t work.','wicketpixie').'</p>'
+	)
+);
+class AdsenseAdmin extends DBAdmin {
 	function __construct() {
-		parent::__construct('AdSense Settings','adsenseads.php','wicketpixie-admin.php',null);
-	}
-	function page_output() {
-		$this->AdsenseMenu();
+		parent::__construct('AdSense Settings','adsenseads.php','wicketpixie-admin.php',null,$GLOBALS['help_content'],'wik_adsense');
 	}
 	function __destruct() {
 		parent::__destruct();
@@ -27,289 +30,124 @@ class AdsenseAdmin extends AdminPage
 	*/
 	function install() {
 		global $wpdb;
-		require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
-		$table= $wpdb->prefix . 'wik_adsense';
-		$wipi_adsense_db_version = '1.2.1';
-		$q= '';
-		if( $wpdb->get_var( "show tables like '$table'" ) != $table ) :
-			$q= "CREATE TABLE " . $table . "( 
-				id int NOT NULL AUTO_INCREMENT,
-				ad_code VARCHAR(512) NOT NULL,
-				placement VARCHAR(255) NOT NULL,
-				sortorder smallint(9) NOT NULL,
-				UNIQUE KEY id (id)
-			);";
-		endif;
-		if( $q != '' ) :
-			dbDelta( $q );
+		require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
+		$wipi_adsense_db_version = '1.5';
+		if ($wpdb->get_var("show tables like '{$this->table}'" ) != $this->table) :
+			dbDelta("CREATE TABLE {$this->table} (id int NOT NULL AUTO_INCREMENT, ad_code VARCHAR(512) NOT NULL, placement VARCHAR(255) NOT NULL, sortorder smallint(9) NOT NULL, UNIQUE KEY id (id))");
 		endif;
 		if ($wipi_adsense_db_version != get_option('wicketpixie_adsense_db_version')) :
-			$wpdb->query("ALTER TABLE $table CHANGE ad_id ad_code varchar(255);");
-			$wpdb->query("ALTER TABLE $table MODIFY ad_code VARCHAR(512);");
+			$wpdb->query("ALTER TABLE {$this->table} CHANGE ad_id ad_code varchar(255);");
+			$wpdb->query("ALTER TABLE {$this->table} MODIFY ad_code VARCHAR(512);");
 			update_option('wicketpixie_adsense_db_version',$wipi_adsense_db_version);
 		endif;
 	}
-	function check() {
-		global $wpdb;
-		$table= $wpdb->prefix . 'wik_adsense';
-		if( $wpdb->get_var( "show tables like '$table'" ) == $table ) :
-			return TRUE;
-		else :
-			return FALSE;
-		endif;
-	}
-	function count() {
-		global $wpdb;
-		$table= $wpdb->prefix . 'wik_adsense';
-		$total= $wpdb->get_results( "SELECT ID as count FROM $table" );
-		if (isset($total[0])) :
-			return $total[0]->count;
-		else :
-			return 0;
-		endif;
-	}
 	// Adds an ad slot to the database
-	function add( $_REQUEST ) {
+	function add($_REQUEST) {
 		global $wpdb;
-		$args= $_REQUEST;
-		$table= $wpdb->prefix . 'wik_adsense';
-		if($args['ad_code'] == "Ad Code") $args['ad_code'] = "";
-		if( !$wpdb->get_var( "SELECT id FROM $table WHERE ad_code = '" . $args['ad_code'] . "'" ) ) :
-			$id= $wpdb->get_var( "SELECT sortorder FROM $table ORDER BY sortorder DESC LIMIT 1" );
-			$new_id= ( $id + 1 );
-			$i= "INSERT INTO " . $table . " (id,ad_code,placement,sortorder) VALUES('', '" 
-				. $args['ad_code'] . "','"
-				. $args['placement'] . "',"
-				. $new_id . ")";
-			$query= $wpdb->query( $i );
+		$args = $_REQUEST;
+		if ($args['ad_code'] == 'Ad Code') $args['ad_code'] = '';
+		if (!$wpdb->get_var("SELECT id FROM {$this->table} WHERE ad_code = '{$args['ad_code']}'")) :
+			$id = $wpdb->get_var("SELECT sortorder FROM {$this->table} ORDER BY sortorder DESC LIMIT 1");
+			$id++;
+			$wpdb->query("INSERT INTO {$this->table} (id,ad_code,placement,sortorder) VALUES('', '{$args['ad_code']}', '{$args['placement']}', $id)");
 		endif;
 	}
 	// Turns WicketPixie's AdSense features on and off
 	function toggle() {
-		if(get_option('wicketpixie_enable_adsense')) :
-			if(get_option('wicketpixie_enable_adsense') == 'true') :
-				update_option('wicketpixie_enable_adsense','false');
-			elseif(get_option('wicketpixie_enable_adsense') == 'false') :
-				update_option('wicketpixie_enable_adsense','true');
-			endif;
+		if (get_option('wicketpixie_enable_adsense') == 'true') :
+			update_option('wicketpixie_enable_adsense','false');
 		else :
-			add_option('wicketpixie_enable_adsense','true');
+			update_option('wicketpixie_enable_adsense','true');
 		endif;
 		wp_redirect($_SERVER['PHP_SELF'] .'?page='.$this->filename.'&toggled=true');
-	}
-	function collect() {
-		global $wpdb;
-		$table= $wpdb->prefix . 'wik_adsense';
-		$sources= $wpdb->get_results( "SELECT * FROM $table" );
-		if( is_array( $sources ) ) :
-			return $sources;
-		else :
-			return array();
-		endif;
-	}
-	function gather( $id ) {
-		global $wpdb;
-		$table= $wpdb->prefix . 'wik_adsense';
-		$gather= $wpdb->get_results( "SELECT * FROM $table WHERE id= $id" );
-		return $gather;
-	}
-	function burninate( $id ) {
-		global $wpdb;
-		$table= $wpdb->prefix . 'wik_adsense';
-		$d= $wpdb->query( "DELETE FROM $table WHERE id = $id" );
-		$trogdor= $wpdb->query( $d );
 	}
 	/**
 	* Method to grab all of our lifestream data from the DB.
 	* <code>
-	* foreach( $sources->show_streams() as $stream ) {
+	* foreach ($sources->show_streams() as $stream) {
 	* 	// do something clever
 	* }
 	* </code>
 	*/
 	function positions() {
 		global $wpdb;
-		$table= $wpdb->prefix . 'wik_adsense';
-		$numbers= $wpdb->get_results( "SELECT sortorder FROM $table ORDER BY sortorder ASC" );
-		return $numbers;
-	}
-	 function sort( $_REQUEST ) {
-		global $wpdb;
-		$args= $_REQUEST;
-		$table= $wpdb->prefix . 'wik_adsense';
-		$orig_sort= $wpdb->get_results( "SELECT sortorder FROM $table WHERE id= " . $args['id'] );
-		$old_value= $orig_sort[0]->sortorder;
-		if( $orig_sort ) :
-			$bump_up= $wpdb->query( "UPDATE $table SET sortorder= sortorder + 1 WHERE sortorder > " . $args['newsort'] );
-			$update= $wpdb->query( "UPDATE $table SET sortorder= ". ( $args['newsort'] + 1 ) . " WHERE id= " . $args['id'] );
-			$bump_down= $wpdb->query( "UPDATE $table SET sortorder= sortorder -1 WHERE sortorder > " . $old_value );
-		endif;
+		return $wpdb->get_results( "SELECT sortorder FROM {$this->table} ORDER BY sortorder ASC" );
 	}
 	function adsearch() {
-		$o1 = 'wicketpixie_adsense_search_enabled';
-		$o2 = 'wicketpixie_adsense_search_pubid';
-		if(isset($_POST[$o1])) :
-			update_option($o1,'true');
+		if (isset($_POST['wicketpixie_adsense_search_enabled'])) :
+			update_option('wicketpixie_adsense_search_enabled','true');
 		else :
-			update_option($o1,'false');
+			update_option('wicketpixie_adsense_search_enabled','false');
 		endif;
-		update_option($o2,$_POST[$o2]);
+		update_option('wicketpixie_adsense_search_pubid',$_POST['wicketpixie_adsense_search_pubid']);
 		wp_redirect($_SERVER['PHP_SELF'] .'?page='.$this->filename.'&saved=true');
 	}
 	function wp_adsense($placement) {
 		global $wpdb;
-		$table = $wpdb->prefix . 'wik_adsense';
-		$ad_code = $wpdb->get_var("SELECT ad_code FROM $table WHERE placement= '$placement' LIMIT 1");
-		if ($ad_code != "") :
-			echo $ad_code;
-		else :
-			echo '<!-- No ad code found for this type, set one up on the WicketPixie AdSense Settings page. -->';
-		endif;
+		$ad_code = $wpdb->get_var("SELECT ad_code FROM {$this->table} WHERE placement= '$placement' LIMIT 1");
+		echo (empty($ad_code)) ? '<!-- No ad code found for this type, set one up on the WicketPixie AdSense Settings page. -->' : $ad_code;
 	}
 	function request_check() {
-		$adsense = new AdsenseAdmin;
-		if (isset($_GET['page']) && $_GET['page'] == basename(__FILE__)) :
-			if (isset($_POST['action'])) :
-				switch ($_POST['action']) :
-				case 'add':
-					$adsense->add( $_REQUEST );
-					break;
-				case 'toggle':
-					$adsense->toggle();
-					break;
-				case 'delete':
-					$adsense->burninate( $_REQUEST['id'] );
-					break;
-				case 'install':
-					$adsense->install();
-					break;
-				case 'adsearch':
-					$adsense->adsearch();
-					break;
-				default:
-					break;
-				endswitch;
-			endif;
+		if (isset($_GET['page']) && $_GET['page'] == basename(__FILE__) && isset($_POST['action'])) :
+			if ($_POST['action'] == 'add') $this->add( $_REQUEST );
+			if ($_POST['action'] == 'toggle') $this->toggle();
+			if ($_POST['action'] == 'delete') $this->burninate($_REQUEST['id']);
+			if ($_POST['action'] == 'install') $this->install();
+			if ($_POST['action'] == 'adsearch') $this->adsearch();
 		endif;
 	}
 	/**
 	* The admin menu for our AdSense system
 	*/
-	function adsenseMenu() {
-		$adsense = new AdsenseAdmin;
-		if ( isset( $_REQUEST['add'] ) ) : ?>
+	function page_display() {
+		if (isset($_REQUEST['add'])) : ?>
 		<div id="message" class="updated fade"><p><strong>Ad code added.</strong></p></div>
 		<?php endif; ?>
 			<div class="wrap wicketpixie">
 				<div id="admin-options">
 					<h2>AdSense Settings</h2>
-					<p>Here you can add in your AdSense information and ad code so it can be displayed
-					on your blog. Need more help? <a href="#explain" title="Click for more info" id="explaintext">It's only a click away</a>.</p>
-					<div id="explain">
-						<h3>For those that need help, here's a rundown:</h3>
-							<ol>
-								<li>Create an ad slot after logging into Google AdSense.</li>
-								<li>On this page, enter the ad code given to you in the correct field.</li>
-								<li>Enjoy your monetized blog.</li>
-							</ol>
-					</div>
 					<form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>?page=adsenseads.php&toggle=true" class="form-table">
 					<?php wp_nonce_field('wicketpixie-settings'); ?>
-					<h3>Toggle AdSense Ads</h3>
-					<p>One click button to disable the showing of AdSense ads.</p>
-					<?php if(get_option('wicketpixie_enable_adsense')) :
-						if(get_option('wicketpixie_enable_adsense') == "true") :
-							$val = "off";
-						else :
-							$val = "on";
-						endif;
-					else :
-						$val = "on";
-					endif; ?>
-					<p class="submit">
-					<input type="submit" name="toggle" value="Turn <?php echo $val; ?> AdSense Ads" />
-					<input type="hidden" name="action" value="toggle" />
-					</p>
+						<h3>Toggle AdSense Ads</h3>
+						<p class="submit">
+						<input type="submit" name="toggle" value="Turn <?php echo (is_enabled_adsense()) ? 'off' : 'on'; ?> AdSense Ads" />
+						<input type="hidden" name="action" value="toggle" />
+						</p>
 					</form>
-					<form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>?page=adsenseads.php&adsearch=true" class="form-table">
-					<?php wp_nonce_field('wicketpixie-settings'); ?>
-					<h3>AdSense for Search</h3>
-					<p>
-						Here you can enable and configure AdSense for Search to replace the WordPress Search in your blog. This can be a bit confusing, so here are some tips:
-						<ul style="list-style-type:disc;margin-left:2em;">
-							<li>Before you can enter anything here, you must create an AdSense for Search slot in <a href="http://adsense.google.com">Google AdSense</a>.</li>
-							<li>You must have Permalinks enabled. (See why in next tip)</li>
-							<li>You must also create a new page named 'Search' using the AdSense for Search template.</li>
-							<li>The PubID is the special ID in the code generated by Google AdSense (the value of the input tag named 'cx').<br/>
-								&nbsp;&nbsp;&nbsp;&nbsp;Example: partner-pub-012345678912345:ab123-12ab</li>
-						</ul>
-					</p>
-					<table class="form-table">
-						<tr valign="top">
-							<th scope="row" style="font-size:12px;text-align:left;padding-right:10px;">
-							Enable AdSense for Search
-								</th>
-							<td style="padding-right:10px;">
-							<?php $c = (get_option('wicketpixie_adsense_search_enabled') == 'true') ? 'checked="checked"' : ''; ?>
-							<input type='checkbox' name='wicketpixie_adsense_search_enabled' id='wicketpixie_adsense_search_enabled' <?php echo $c; ?> />
-							<label for='wicketpixie_adsense_search_enabled'>&nbsp;</label>
-							</td>
-						</tr>
-						<tr valign="top">
-							<th scope="row" style="font-size:12px;text-align:left;padding-right:10px;">
-							PubID
-								</th>
-							<td style="padding-right:10px;">
-							<input type='text' name='wicketpixie_adsense_search_pubid' id='wicketpixie_adsense_search_pubid' value="<?php echo get_option('wicketpixie_adsense_search_pubid'); ?>" />
-							</td>
-						</tr>
-						<tr valign="top">
-							<th scope="row" style="font-size:12px;text-align:left;padding-right:10px;">
-							Search Results URL
-								</th>
-							<td style="padding-right:10px;">
-							<?php echo home_url(); ?><input type='text' name='wicketpixie_adsense_search_url' id='wicketpixie_adsense_search_url' value="/search/" disabled="disabled" />
-							</td>
-						</tr>
-					</table>
-					<p class="submit">
-						<input name="adsearch" type="submit" value="Save AdSense for Search Settings" />
-						<input type="hidden" name="action" value="adsearch" />
-					</p>
-					</form>
-					<?php if( $adsense->check() == true && $adsense->count() != '' ) : ?>
+					<?php if ($this->check()) :
+					if ($this->count() != '') : ?>
 					<table class="form-table" style="margin-bottom:30px;">
 						<tr>
 							<th>Ad Code</th>
 							<th style="text-align:center;">Placement</th>
 							<th style="text-align:center;" colspan="1">Actions</th>
 						</tr>
-						<?php foreach( $adsense->collect() as $adslot ) : ?>
+						<?php foreach ($this->collect() as $adslot) : ?>
 						<tr>
 							<td><?php echo htmlentities($adslot->ad_code); ?></td>
 							<td style="text-align:center;">
-								<?php if($adslot->placement == 'blog_header') :
-									echo "Blog Header (728x90)";
-								elseif($adslot->placement == 'blog_post_side') :
-									echo "Right of Blog Post (120x240)";
-								elseif($adslot->placement == 'blog_post_bottom') :
-									echo "Underneath Home Post (300x250)";
-								elseif($adslot->placement == 'blog_sidebar') :
-									echo "Bottom-left of Sidebar (120x600)";
-								elseif($adslot->placement == 'blog_home_post_front') :
-									echo "Home Post, Before Content (300x250)";
-									elseif($adslot->placement == 'blog_post_front') :
-									echo "Single Post, Before Content (300x250)";
+								<?php if ($adslot->placement == 'blog_header') :
+									echo 'Blog Header (728x90)';
+								elseif ($adslot->placement == 'blog_post_side') :
+									echo 'Right of Blog Post (120x240)';
+								elseif ($adslot->placement == 'blog_post_bottom') :
+									echo 'Underneath Home Post (300x250)';
+								elseif ($adslot->placement == 'blog_sidebar') :
+									echo 'Bottom-left of Sidebar (120x600)';
+								elseif ($adslot->placement == 'blog_home_post_front') :
+									echo 'Home Post, Before Content (300x250)';
+								elseif ($adslot->placement == 'blog_post_front') :
+									echo 'Single Post, Before Content (300x250)';
 								else :
 									echo $adslot-placement;
 								endif; ?>
 							</td>
 							<td style="text-align:center;">
-							<form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>?page=adsenseads.php&amp;delete=true&amp;id=<?php echo $adslot->id; ?>">
-							<?php wp_nonce_field('wicketpixie-settings'); ?>
-								<input type="submit" name="action" value="Delete" />
-								<input type="hidden" name="action" value="delete" />
-							</form>
+								<form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>?page=adsenseads.php&amp;delete=true&amp;id=<?php echo $adslot->id; ?>">
+								<?php wp_nonce_field('wicketpixie-settings'); ?>
+									<input type="submit" name="action" value="Delete" />
+									<input type="hidden" name="action" value="delete" />
+								</form>
 							</td>
 						</tr>
 						<?php endforeach; ?>
@@ -317,48 +155,75 @@ class AdsenseAdmin extends AdminPage
 					<?php else : ?>
 					<p>You haven't added any ad slots, add them here.</p>
 					<?php endif; ?>
-					<?php if($adsense->check() == true) : ?>
-						<form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>?page=adsenseads.php&amp;add=true" class="form-table">
-						<?php wp_nonce_field('wicketpixie-settings'); ?>
-							<h2>Add an Ad Slot</h2>
-							<p>Remember, copy your ad code from the AdSense site after creating your ad slot. Also remember, only one ad per placement. ;-)</p>
-							<p><textarea name="ad_code" id="ad_code" onfocus="if(this.innerHTML=='Ad Code') this.innerHTML = ''">Ad Code</textarea></p>
-							<p><select name="placement" id="title">
+					<form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>?page=adsenseads.php&amp;add=true" class="form-table">
+					<?php wp_nonce_field('wicketpixie-settings'); ?>
+						<h3>Add an Ad Slot</h3>
+						<p><textarea name="ad_code" id="ad_code" onfocus="if(this.innerHTML=='Ad Code') this.innerHTML = ''">Ad Code</textarea></p>
+						<p><select name="placement" id="title">
 							<option value="blog_header">Blog header (728x90)</option>
 							<option value="blog_post_side">Right of Blog Post (120x240)</option>
 							<option value="blog_post_bottom">Underneath Home Post (300x250)</option>
 							<option value="blog_sidebar">Bottom-left of Sidebar (120x600)</option>
 							<option value="blog_home_post_front">Home Post, Before Content (300x250)</option>
 							<option value="blog_post_front">Single Post, Before Content (300x250)</option>
-							</select></p>
-							<p class="submit">
-								<input name="save" type="submit" value="Add Ad Slot" /> 
-								<input type="hidden" name="action" value="add" />
-							</p>
-						</form>
-						<?php else : ?>
-						<h2>Install AdSense table</h2>
-						<p>You need to install the AdSense table before adding ad slots.</p>
-						<form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>?page=adsenseads.php&amp;install=true">
-							<p class="submit">
-								<input name="save" type="submit" value="Install AdSense table"/>
-								<input type="hidden" name="action" value="install"/>
-							</p>
-						</form>
-						<?php endif; ?>
-				</div>
-				<?php include_once('advert.php');
+						</select></p>
+						<p class="submit">
+							<input name="save" type="submit" value="Add Ad Slot" /> 
+							<input type="hidden" name="action" value="add" />
+						</p>
+					</form>
+				<?php else : ?>
+				<h3>Install AdSense table</h3>
+				<p>You need to install the AdSense table before adding ad slots.</p>
+				<form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>?page=adsenseads.php&amp;install=true">
+					<p class="submit">
+						<input name="save" type="submit" value="Install AdSense table"/>
+						<input type="hidden" name="action" value="install"/>
+					</p>
+				</form>
+				<?php endif; ?>
+				<form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>?page=adsenseads.php&adsearch=true" class="form-table">
+				<?php wp_nonce_field('wicketpixie-settings'); ?>
+					<h3>AdSense for Search</h3>
+					<table class="form-table">
+						<tr valign="top">
+							<th scope="row" style="font-size:12px;text-align:left;padding-right:10px;">
+							Enable AdSense for Search
+							</th>
+							<td style="padding-right:10px;">
+								<input type='checkbox' name='wicketpixie_adsense_search_enabled' id='wicketpixie_adsense_search_enabled' <?php if (get_option('wicketpixie_adsense_search_enabled') == 'true') echo 'checked="ckecked"'; ?> />
+								<label for='wicketpixie_adsense_search_enabled'>&nbsp;</label>
+							</td>
+						</tr>
+						<tr valign="top">
+							<th scope="row" style="font-size:12px;text-align:left;padding-right:10px;">
+							PubID
+							</th>
+							<td style="padding-right:10px;">
+								<input type='text' name='wicketpixie_adsense_search_pubid' id='wicketpixie_adsense_search_pubid' value="<?php echo get_option('wicketpixie_adsense_search_pubid'); ?>" />
+							</td>
+						</tr>
+						<tr valign="top">
+							<th scope="row" style="font-size:12px;text-align:left;padding-right:10px;">
+							Search Results URL
+							</th>
+							<td style="padding-right:10px;">
+								<?php echo home_url(); ?><input type='text' name='wicketpixie_adsense_search_url' id='wicketpixie_adsense_search_url' value="/search/" disabled="disabled" />
+							</td>
+						</tr>
+					</table>
+					<p class="submit">
+						<input name="adsearch" type="submit" value="Save AdSense for Search Settings" />
+						<input type="hidden" name="action" value="adsearch" />
+					</p>
+				</form>
+			</div>
+			<?php include_once('advert.php');
 	}
 }
 // This checks to see if WicketPixie's AdSense features are enabled
 function is_enabled_adsense() {
-	if(get_option('wicketpixie_enable_adsense')) :
-		if(get_option('wicketpixie_enable_adsense') == 'true') :
-			return true;
-		elseif(get_option('wicketpixie_enable_adsense') == 'false') :
-			return false;
-		endif;
-	else :
-		return false;
-	endif;
+	if(get_option('wicketpixie_enable_adsense') == 'true')
+		return true;
+	return false;
 } ?>
