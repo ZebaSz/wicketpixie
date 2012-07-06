@@ -59,7 +59,6 @@ class AdsenseAdmin extends DBAdmin {
 		else :
 			update_option('wicketpixie_enable_adsense','true');
 		endif;
-		wp_redirect($_SERVER['PHP_SELF'] .'?page='.$this->filename.'&toggled=true');
 	}
 	/**
 	* Method to grab all of our lifestream data from the DB.
@@ -106,7 +105,7 @@ class AdsenseAdmin extends DBAdmin {
 			<div class="wrap wicketpixie">
 				<div id="admin-options">
 					<h2>AdSense Settings</h2>
-					<form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>?page=adsenseads.php&toggle=true" class="form-table">
+					<form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>?page=adsenseads.php&toggled=true" class="form-table">
 					<?php wp_nonce_field('wicketpixie-settings'); ?>
 						<h3>Toggle AdSense Ads</h3>
 						<p class="submit">
