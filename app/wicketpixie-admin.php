@@ -23,7 +23,7 @@ $site_settings = array(
 		'id' => 'wicketpixie_enable_ajax_loader',
 		'std' => 'false',
 		'type' => 'checkbox'),
-		array(
+	array(
 		'name' => 'Show author on posts',
 		'description' => 'Whether or not to show who wrote a particular post.',
 		'id' => 'wicketpixie_show_post_author',
@@ -84,8 +84,7 @@ $help_content = array(
 	array(
 		'title' => 'WiPi Plugins',
 		'id' => 'wipi-plugins-help',
-		'content' => '<p>WiPi plugins have been removed. This is because, while the plugins are good, updating them is tiresome (whilst WordPress can automatically update most of them). You can either download them and install them manually, or install the via the built-in Plugin Manager.</p><p>The following plugins offer the same functionality without integration:</p><ul><li><a href="http://wordpress.org/extend/plugins/all-in-one-seo-pack/">All In One SEO Pack</a></li><li><a href="http://wordpress.org/extend/plugins/askapache-google-404/">AskApache Google 404</a> (you can use <a href="admin.php?page=customcode.php">custom 404 code</a> to regain integration)</li><li><a href="http://wordpress.org/extend/plugins/chitika-premium/">Chitika</a></li><li>FAlbum (not in Plugin Directory, available <a href="http://www.randombyte.net/blog/projects/falbum/">here</a>)</li><li><a href="http://wordpress.org/extend/plugins/statpress-reloaded/">StatPress Reloaded</a></li><li>Automatically Hyperlink URLs, NoFollow Navigation and Obfuscate Email (the same functionality is available in many plugins)</li></ul><p>The following plugins have their functionality integrated, but are no longer distributed with WicketPixie:</p><ul><li><a href="http://wordpress.org/extend/plugins/kontera-contentlink">Kontera ContentLinks</a></li><li><a href="http://wordpress.org/extend/plugins/wp-pagenavi/">PageNavi</a></li><li><a href="http://wordpress.org/extend/plugins/wordpress-23-related-posts-plugin/installation/">Related Posts</a></li></ul>'
-	)
+		'content' => '<p>WiPi plugins have been removed. This is because, while the plugins are good, updating them is tiresome (whilst WordPress can automatically update most of them). You can either download them and install them manually, or install the via the built-in Plugin Manager.</p><p>The following plugins offer the same functionality without integration:</p><ul><li><a href="http://wordpress.org/extend/plugins/all-in-one-seo-pack/">All In One SEO Pack</a></li><li><a href="http://wordpress.org/extend/plugins/askapache-google-404/">AskApache Google 404</a> (you can use <a href="admin.php?page=customcode.php">custom 404 code</a> to regain integration)</li><li><a href="http://wordpress.org/extend/plugins/chitika-premium/">Chitika</a></li><li>FAlbum (not in Plugin Directory, available <a href="http://www.randombyte.net/blog/projects/falbum/">here</a>)</li><li><a href="http://wordpress.org/extend/plugins/statpress-reloaded/">StatPress Reloaded</a></li><li>Automatically Hyperlink URLs, NoFollow Navigation and Obfuscate Email (the same functionality is available in many plugins)</li></ul><p>The following plugins have their functionality integrated, but are no longer distributed with WicketPixie:</p><ul><li><a href="http://wordpress.org/extend/plugins/kontera-contentlink">Kontera ContentLinks</a></li><li><a href="http://wordpress.org/extend/plugins/wp-pagenavi/">PageNavi</a></li><li><a href="http://wordpress.org/extend/plugins/wordpress-23-related-posts-plugin/installation/">Related Posts</a></li></ul>')
 );
 class WiPiAdmin extends AdminPage {
 	function __construct() {

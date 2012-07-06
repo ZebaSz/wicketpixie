@@ -2,7 +2,7 @@
 /**
  * Template Name: Activity Stream
  * Template for the Activity Stream page
-**/
+ **/
 get_header();
 $adsense = new AdsenseAdmin;
 $sources = new SourceAdmin;
