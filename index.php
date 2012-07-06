@@ -24,7 +24,7 @@
 					</div>
 					<div class="clearer"></div>
 					<div class="KonaBody">
-					<?php the_content(__('Continue reading', 'wicketpixie').'&raquo;'); ?>
+					<?php the_content(sprintf(esc_attr__('Continue reading %s', 'wicketpixie'), '&raquo;')); ?>
 					</div>
 					<?php wp_customcode("afterposts"); ?>
 				</div>
