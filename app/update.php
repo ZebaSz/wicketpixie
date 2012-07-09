@@ -34,8 +34,6 @@ class SourceUpdate extends SourceAdmin {
 		require_once(SIMPLEPIEPATH);
 		global $wpdb;
 		$feed = $wpdb->get_results("SELECT * FROM {$this->table} WHERE updates = 1 LIMIT 1");
-		if (preg_match('/twitter\.com/',$feed[0]->feed_url))
-			$istwitter = true;
 		$feed_path = $feed[0]->feed_url;
 		$feed = new SimplePie((string)$feed_path, ABSPATH . (string)'wp-content/uploads/activity');
 		$this->clean_dir();
@@ -53,14 +51,13 @@ class SourceUpdate extends SourceAdmin {
 			 * If Twitter is the source, then we hyperlink any '@username's
 			 * to that user's Twitter address.
 			 **/
-			if ($istwitter)
+			if (preg_match('/twitter\.com/',$feed_path))
 				$return[0]['title'] = preg_replace('/(@)([A-Za-z0-9_-]+)/', '<a href="http://twitter.com/\2">\0</a>', $return[0]['title']);
 			// We want dates in local time, as specified by user
 			$local_time = $return[2]['date'] + get_option('gmt_offset') * 3600;
 			return substr($return[0]['title'], 0, 1000)." &mdash; <a href=\"{$return[1]['link']}\">".date(get_option('time_format'), $local_time).'</a>';
-		else :
-			return 'Thanks for exploring my world! Can you believe this avatar is talking to you?';
 		endif;
+		return 'Thanks for exploring my world! Can you believe this avatar is talking to you?';
 	}
 	/**
 	* Checks the update cache
@@ -71,7 +68,7 @@ class SourceUpdate extends SourceAdmin {
 		if (is_file($f)) :
 			// If it's newer than 45 seconds, we're OK
 			$diff = time() - filemtime($f);
-			if($diff < 45)
+			if ($diff < 45)
 				return true;
 		endif;
 		// If it's older or non-existent, fetch it

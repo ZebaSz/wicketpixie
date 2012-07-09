@@ -60,7 +60,7 @@ class SourceAdmin extends DBAdmin {
 	 **/
 	function clean_dir() {
 		clearstatcache();
-		$dirs = array(ABSPATH.'wp-content/uploads/activity/',get_template_directory().'/app/cache/');
+		$dirs = array(ABSPATH.'/wp-content/uploads/activity/',get_template_directory().'/app/cache/');
 		foreach ($dirs as $dir) :
 			if(is_dir($dir)) :
 				$d = dir($dir);
@@ -100,8 +100,8 @@ class SourceAdmin extends DBAdmin {
 		global $wpdb;
 		$archives = $this->get_streams();
 		foreach ($archives as $archive) 
-			if (!$wpdb->get_var("SELECT id FROM {$this->table} WHERE link = '{$archive['link']}' AND date = {$archive['date']}"))
-				$wpdb->query("INSERT INTO {$this->table} (id,name,content,date,link,enabled) VALUES('', '".addslashes($archive['name'])."', '".addslashes($archive['title'])."', '{$archive['date']}', '{$archive['link']}', 1)");
+			if (!$wpdb->get_var("SELECT id FROM {$this->life} WHERE link = '{$archive['link']}' AND date = {$archive['date']}"))
+				$wpdb->query("INSERT INTO {$this->life} (id,name,content,date,link,enabled) VALUES('', '".addslashes($archive['name'])."', '".addslashes($archive['title'])."', '{$archive['date']}', '{$archive['link']}', 1)");
 	}
 	/**
 	 * Method to grab all of our lifestream data from the DB.
@@ -146,7 +146,7 @@ class SourceAdmin extends DBAdmin {
 		$profurl = ($args['profile'] == 'Profile URL')? '' : $args['profile'];
 		$favicon_url = explode('/', $profurl);
 		$favicon_url = (!empty($favicon_url)) ? $favicon_url[2] : '';
-		$favicon_url = (strstr('www.',$favicon_url)) ? $favicon_url : 'www.'.$favicon_url;
+		$favicon_url = (strstr('www.',$favicon_url) || empty($favicon_url)) ? $favicon_url : 'www.'.$favicon_url;
 		if ($args['title'] != 'Social Me Title (required)') :
 			if (!$wpdb->get_var("SELECT id FROM {$this->table} WHERE feed_url = '{$args['url']}'")) :
 				$wpdb->query("INSERT INTO {$this->table} (id,title,profile_url,feed_url,type,lifestream,updates,favicon) VALUES('', '{$args['title']}', '$profurl', '$dbfeedurl', {$args['type']}, $stream, $update, 'http://www.google.com/s2/favicons?domain=$favicon_url')");
@@ -170,7 +170,7 @@ class SourceAdmin extends DBAdmin {
 		$profurl = ($args['profile'] == 'Profile URL')? '' : $args['profile'];
 		$favicon_url = explode('/', $profurl);
 		$favicon_url = (!empty($favicon_url)) ? $favicon_url[2] : '';
-		$favicon_url = (strstr('www.',$favicon_url)) ? $favicon_url : 'www.'.$favicon_url;
+		$favicon_url = (strstr('www.',$favicon_url) || empty($favicon_url)) ? $favicon_url : 'www.'.$favicon_url;
 		$wpdb->query("UPDATE {$this->table} SET title = '{$args['title']}', profile_url = '$profurl', feed_url = '{$feedurl}', type = {$args['type']}, lifestream = $stream, updates = $update, favicon = $favicon_url WHERE id = {$args['id']}");
 		$this->toggle($args['id'], $stream);
 		$this->create_widget();
