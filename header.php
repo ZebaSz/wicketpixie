@@ -1,5 +1,5 @@
 <?php
-$blogfeed = (get_option('wicketpixie_blog_feed_url')) ? get_option('wicketpixie_blog_feed_url') : get_bloginfo_rss('rss2_url');
+$blogfeed = get_option('wicketpixie_blog_feed_url');
 $time = time();
 $status= new SourceUpdate;
 $adsense = new AdsenseAdmin; ?>
@@ -17,7 +17,8 @@ $adsense = new AdsenseAdmin; ?>
 	<link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/style.css?<?php echo $time; ?>" type="text/css" media="screen, projection" />
 	<link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/css/print.css?<?php echo $time; ?>" type="text/css" media="print" />
 	<!--[if lte IE 8]><link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/css/ie.css?<?php echo $time; ?>" type="text/css" media="screen, projection" /><![endif]-->
-	<?php if(get_option('wicketpixie_blog_feed_url')) echo '<link rel="alternate" type="application/rss+xml" title="'.bloginfo('name').'RSS Feed" href="'.$blogfeed.'" />'; ?>
+	<?php if ($blogfeed)
+		echo '<link rel="alternate" type="application/rss+xml" title="'.get_bloginfo('name').'RSS Feed" href="'.$blogfeed.'" />'; ?>
 	<link rel="pingback" href="<?php bloginfo('pingback_url'); ?>" />
 	<link rel="shortcut icon" type="image/ico" href="<?php echo home_url(); ?>/favicon.ico" />
 	<?php ob_flush();
@@ -26,12 +27,15 @@ $adsense = new AdsenseAdmin; ?>
 	include_once (get_template_directory() . '/plugins/search-excerpt.php');
 	include_once (ABSPATH . 'wp-admin/includes/plugin.php' );
 	clearstatcache();
-	if(!is_dir(ABSPATH.'wp-content/uploads/activity')) :
-		if(!is_dir(ABSPATH.'wp-content/uploads')) mkdir(ABSPATH.'wp-content/uploads',0777);
+	if (!is_dir(ABSPATH.'wp-content/uploads/activity')) :
+		if (!is_dir(ABSPATH.'wp-content/uploads'))
+			mkdir(ABSPATH.'wp-content/uploads',0777);
 		mkdir(ABSPATH.'wp-content/uploads/activity',0777);
 	endif;
-	if(!is_dir(get_template_directory() . '/app/cache')) mkdir(get_template_directory() . '/app/cache',0777);
-	if (is_singular()) wp_enqueue_script('comment-reply');
+	if (!is_dir(get_template_directory() . '/app/cache'))
+		mkdir(get_template_directory() . '/app/cache',0777);
+	if (is_singular())
+		wp_enqueue_script('comment-reply');
 	wp_head();
 	wp_customcode("header");
 	$currurl = home_url().$_SERVER['REQUEST_URI'];
