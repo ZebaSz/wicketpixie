@@ -41,6 +41,12 @@ if ( function_exists('register_sidebar') ) :
 	));
 endif;
 
+// Enqueue theme scripts
+function wicketpixie_scripts() {
+	wp_enqueue_script('wp-global',get_template_directory_uri() . '/js/wp-global.js',array('jquery'));
+}
+add_action('wp_enqueue_scripts', 'wicketpixie_scripts');
+
 // i18n support
 load_theme_textdomain('wicketpixie', get_template_directory() .'/i18n');
 
@@ -77,7 +83,7 @@ function wicketpixie_comment($comment, $args, $depth) {
 require(get_template_directory() .'/app/theme-options.php');
 
 // Content Width
-if (!isset($content_width)) $content_width = 500;
+$content_width = 500;
 
 /* Admin Pages */
 // Admin page style
