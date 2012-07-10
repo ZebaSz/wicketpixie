@@ -8,6 +8,7 @@ page. The rest should work just as it did before.
 
 Upgrading to WicketPixie 1.4+:
 
+This version requires WordPress 3.0 or newer.
 In this version, some BIG changes were made which WILL break some of your configuration.
 Please read this carefully. If you're in doubt, just make sure to write down all of your
 data, then proceed.
@@ -23,5 +24,14 @@ To integrate AskApache 404 properly, add that plugin's function call using the n
 custom 404 code option (instead of editing 404.php).
 
 Upgrading to WicketPixie 1.5-a:
+This version requires WordPress 3.4 or newer.
+Some big changes have also been made in this version which require some configuration.
 The "Theme Options" page has been removed for Wordpress 3.4+ in favor of the Theme Customizer.
-While no extra steps are necessary for upgrade, it currently only supports 3.4. I'll get around backwards compatibility later.
+Previously stored theme options, however, should still work.
+The custom code admin page no longer offers editors. Files to be included must be uploaded.
+Uploaded files can be edited through the WordPress Theme Editor. Also, there is a new
+custom file folder, so old files will not be detected, and must be re-uploaded.
+There is now only one feed widget, which allows you to select the source, instead of
+one widget per source.
+WiPi plugins have been fully deprecated. This is because some of them were old, and it proved
+tiresome to update them. More information is available in the WicketPixie Admin help tab.

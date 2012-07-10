@@ -1,8 +1,19 @@
 WICKETPIXIE CHANGELOG
 
-v1.5 - TBA (alpha - June 16, 2012)
- * ADDED: 3.4 Theme Customizer support
- * WARNING: ALPHA IS CURRENTLY AVAILABLE ONLY FOR 3.4! 
+v1.5 - TBA (alpha - July 10, 2012)
+ * CHANGE: Dropped support for WordPress pre-3.4
+ * CHANGE: HTML5 instead of XHTML
+ * CHANGE: Improved Theme Guideline compliance
+ * CHANGE: Custom code page used for uploads only, files can be
+ edited through WordPress Theme Editor
+ * CHANGE: Rewritten database features, smaller code
+ * UPDATED: Documentation
+ * FEATURE: 3.3 Help tabs
+ * FEATURE: 3.4 Theme Customizer support with live previews
+ * FEATURE: Single FeedWidget, with options for source, custom title and
+ item count
+ * FIXED: A lot of bugs and PHP notices
+ * REMOVED: All WiPi plugins
 
 v1.4 RC - January 10, 2012
  * CHANGE: Lots! Please read UPGRADING file!

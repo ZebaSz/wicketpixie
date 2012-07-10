@@ -27,9 +27,9 @@ INSTALLING
 
 Just place the wicketpixie folder in your /wp-content/themes/ directory and
 then activate the theme. Then make sure the httpd user has write access to
-the widgets folder and it's contents (chmod -R 0777) and the app folder
-(chmod 0777). Remember, if your web server uses the same user that owns
-the WicketPixie files, there is no need to change permissions.
+the WicketPixie folder and it's contents (chmod -R 0777). Remember, if your
+web server uses the same user that owns the WicketPixie files, there is
+no need to change permissions.
 
 The "backgrounds" folder includes backgrounds bundled in previous versions.
 To use them, please use the WordPress Theme admin page. Directly uploading

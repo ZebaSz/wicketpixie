@@ -1,12 +1,12 @@
 <?php
 /**
- * WicketPixie v1.4
+ * WicketPixie v1.5
  * (c) 2006-2009 Eddie Ringle,
  *               Chris J. Davis,
  *               Dave Bates
  * Provided by Chris Pirillo
  *
- * (c) 2011 Sebastian Szperling
+ * (c) 2011-2012 Sebastian Szperling
  *
  * Licensed under the New BSD License.
  */
@@ -55,7 +55,7 @@ register_nav_menus(array('primary' => 'Primary Menu'));
 add_theme_support('custom-background');
 
 // Automatic Feed Links
-add_theme_support( 'automatic-feed-links' );
+add_theme_support('automatic-feed-links');
 
 // Comments walker
 function wicketpixie_comment($comment, $args, $depth) {
