@@ -12,7 +12,7 @@
  **/
 class FavesAdmin extends DBAdmin {
 	function __construct() {
-		parent::__construct('Faves Manager','faves.php','wicketpixie-admin.php',null,array(),array(),'wik_faves');
+		parent::__construct('Faves Manager','faves.php','wicketpixie-admin.php',null,array(),'wik_faves');
 	}
 	function __destruct() {
 		parent::__destruct();
@@ -45,7 +45,7 @@ class FavesAdmin extends DBAdmin {
 		if ($args['title'] != 'Fave Title' && $args['url'] != 'Fave Feed URL') :
 			if ($wpdb->get_var("SELECT id FROM {$this->table} WHERE feed_url = '{$args['url']}'") == null) :
 				$id = $wpdb->get_var("SELECT sortorder FROM {$this->table} ORDER BY sortorder DESC LIMIT 1") + 1;
-				$wpdb->query("INSERT INTO {$this->table} (id,title,feed_url,sortorder) VALUES('', '{$args['title']}', '{$args['url']}', $id");
+				$wpdb->query("INSERT INTO {$this->table} (id,title,feed_url,sortorder) VALUES('', '{$args['title']}', '{$args['url']}', $id)");
 			else :
 				echo($wpdb->get_var("SELECT id FROM {$this->table} WHERE feed_url = '{$args['url']}'"));
 			endif;
@@ -121,7 +121,7 @@ class FavesAdmin extends DBAdmin {
 					<?php foreach ($this->collect() as $fave) : ?>
 					<tr>
 						<td><?php echo $fave->title; ?></td>
-						<td style="text-align:center;"><a href="<?php echo $fave->feed_url; ?>" title="<?php echo $fave->feed_url; ?>"><img src="<?php get_template_directory(); ?>/images/icon-feed.gif" alt="View"/></a></td>
+						<td style="text-align:center;"><a href="<?php echo $fave->feed_url; ?>" title="<?php echo $fave->feed_url; ?>"><img src="<?php echo get_template_directory_uri(); ?>/images/icon-feed.gif" alt="View"/></a></td>
 						<td style="text-align:center;">
 							<form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>?page=<?php echo $this->filename; ?>&amp;gather=true&amp;id=<?php echo $fave->id; ?>">
 						<?php wp_nonce_field('wicketpixie-settings'); ?>
