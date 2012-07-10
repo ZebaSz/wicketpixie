@@ -88,4 +88,15 @@ class DBAdmin extends AdminPage {
 			$wpdb->query("UPDATE {$this->table} SET sortorder = sortorder -1 WHERE sortorder > $old_value");
 		endif;
 	}
+	/**
+	 * Get the source's favicon based on the provided URL
+	 * Uses Google S2 Favicon Converter
+	 **/
+	function get_favicon($url) {
+		$favicon_url = explode('/', $url);
+		$favicon_url = (!empty($favicon_url)) ? $favicon_url[2] : '';
+		// check for 'www.', some websites like Twitter need it
+		$favicon_url = (strstr('www.',$favicon_url) || empty($favicon_url)) ? $favicon_url : 'www.'.$favicon_url;
+		return "http://www.google.com/s2/favicons?domain=$favicon_url";
+	}
 }
