@@ -18,9 +18,9 @@
 					</div>
 				</div>
 				<!-- /post -->
-				<?php if ($adsense_counter == 0 && is_enabled_adsense() == true) : ?>
-				<div align="center" style="margin: 15px 0 30px 0">
-					<?php $adsense->wp_adsense('blog_post_bottom'); ?>
+				<?php if ($adsense_counter == 0 && is_enabled_adsense()) : ?>
+				<div style="text-align: center; margin: 15px 0 30px 0">
+					<?php wp_adsense('blog_post_bottom'); ?>
 				</div>
 				<?php else :
 						$adsense_counter++;

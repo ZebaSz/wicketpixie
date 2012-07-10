@@ -14,8 +14,7 @@
 		<?php dynamic_sidebar($i+1);
 		if($i==5 && is_enabled_adsense()): ?>
 			<br />
-			<?php $adsense = new AdsenseAdmin;
-			$adsense->wp_adsense('blog_sidebar');
+			<?php wp_adsense('blog_sidebar');
 		endif; ?>
 		</div>
 		<!-- /sidebar<?php echo $i ?> -->

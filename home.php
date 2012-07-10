@@ -30,7 +30,8 @@ get_header(); ?>
 					<?php if (get_option('wicketpixie_home_enable_aside') == 'true') : ?>
 					<!-- post-ad -->
 						<div id="post-ad">
-							<?php if (is_enabled_adsense()) $adsense->wp_adsense('blog_post_side'); ?>
+							<?php if (is_enabled_adsense())
+								wp_adsense('blog_post_side'); ?>
 							<div style="margin: 15px 0 0 5px">
 								<?php if (is_plugin_active('wordpress-23-related-posts-plugin/wp_related_posts.php')) :
 								wp_related_posts(5);
@@ -42,7 +43,7 @@ get_header(); ?>
 					<div class="KonaBody">
 					<?php if (is_enabled_adsense()) : ?>
 					<span style="float:left;display:block;clear:none;margin-right:10px;">
-					<?php $adsense->wp_adsense('blog_home_post_front'); ?>
+					<?php wp_adsense('blog_home_post_front'); ?>
 					</span>
 					<?php endif;
 					the_content(__('Continue reading %d', 'wicketpixie').'&raquo;'); ?>
@@ -77,11 +78,8 @@ get_header(); ?>
 						<!-- /post-meta-categories -->
 						<!-- post-bigbox -->
 						<div class="post-bigbox">
-						<?php if (is_enabled_adsense()) :
-							$adsense->wp_adsense('blog_post_bottom');
-						else: ?>
-							<!-- Enable Adsense on the WicketPixie Adsense admin page. -->
-						<?php endif; ?>
+						<?php if (is_enabled_adsense())
+							wp_adsense('blog_post_bottom'); ?>
 						</div>
 						<!-- /post-bigbox -->
 					</div>

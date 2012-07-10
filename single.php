@@ -42,11 +42,11 @@
 					<div class="KonaBody">
 					<?php if(is_enabled_adsense()) : ?>
 					<span style="float:left;display:block;clear:none;margin-right:10px;">
-					<?php $adsense->wp_adsense('blog_post_front'); ?>
+					<?php wp_adsense('blog_post_front'); ?>
 					</span>
 					<?php endif;
-					the_content(); ?>
-					<?php wp_link_pages(array('before' => '<div class="page-link"><span>' . __( 'Pages:', 'wicketpixie' ) . '</span>', 'after' => '</div>' ) ); ?>
+					the_content();
+					wp_link_pages(array('before' => '<div class="page-link"><span>' . __( 'Pages:', 'wicketpixie' ) . '</span>', 'after' => '</div>' ) ); ?>
 					</div>
 					<?php wp_customcode('afterposts'); ?>
 				</div>

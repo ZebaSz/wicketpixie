@@ -81,10 +81,12 @@ class AdsenseAdmin extends DBAdmin {
 		update_option('wicketpixie_adsense_search_pubid',$_POST['wicketpixie_adsense_search_pubid']);
 		wp_redirect($_SERVER['PHP_SELF'] .'?page='.$this->filename.'&saved=true');
 	}
-	function wp_adsense($placement) {
+	function ad_display($placement) {
 		global $wpdb;
-		$ad_code = $wpdb->get_var("SELECT ad_code FROM {$this->table} WHERE placement= '$placement' LIMIT 1");
-		echo (empty($ad_code)) ? '<!-- No ad code found for this type, set one up on the WicketPixie AdSense Settings page. -->' : $ad_code;
+		if ($this->check()):
+			$ad_code = $wpdb->get_var("SELECT ad_code FROM {$this->table} WHERE placement= '$placement' LIMIT 1");
+			return (empty($ad_code)) ? '<!-- No ad code found for this type, set one up on the WicketPixie AdSense Settings page. -->' : $ad_code;
+		endif;
 	}
 	function request_check() {
 		if (isset($_GET['page']) && $_GET['page'] == basename(__FILE__) && isset($_POST['action'])) :
@@ -225,4 +227,8 @@ function is_enabled_adsense() {
 	if(get_option('wicketpixie_enable_adsense') == 'true')
 		return true;
 	return false;
+}
+function wp_adsense($placement) {
+	$adsense = new AdsenseAdmin;
+	echo $adsense->ad_display($placement);
 } ?>
