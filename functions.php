@@ -154,5 +154,6 @@ add_action('widgets_init','SocialBadgesInit');
 // Ustream
 require_once(get_template_directory() .'/widgets/ustream-widget.php');
 add_action('widgets_init','UstreamWidgetInit');
-// Social Me Feed Widgets
-include_once(get_template_directory() .'/widgets/sources.php');
+// Social Me Feed Widget
+include_once(get_template_directory() .'/widgets/feed-widget.php');
+add_action('widgets_init','FeedWidgetInit'); ?>

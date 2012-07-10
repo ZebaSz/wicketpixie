@@ -12,9 +12,9 @@
  */
 $help_content = array(
 	array(
-		'title' => 'Social Me Help',
+		'title' => __('Social Me Help', 'wicketpixie'),
 		'id' => 'wicketpixie-socialme-help',
-		'content' => '<p>If you\'d like to let your visitors know where else they may find you throughout the Web, you can do it easily through your "Social Me" page. This is an exclusive feature of the WicketPixie theme for WordPress. If you have accounts on other blogs, social networks, forums, Web sites, etc, add them here. For example, you might add your Twitter, YouTube, and Flickr accounts here - making sure you use the corresponding RSS (or Atom) feeds for your profile, so that WicketPixie can display your latest content from them on your Social Me page.</p><p>You can also include the list of these accounts in your sidebar by adding the WicketPixie Social Me widget.</p>')
+		'content' => '<p>'.__('If you\'d like to let your visitors know where else they may find you throughout the Web, you can do it easily through your "Social Me" page. This is an exclusive feature of the WicketPixie theme for WordPress. If you have accounts on other blogs, social networks, forums, Web sites, etc, add them here. For example, you might add your Twitter, YouTube, and Flickr accounts here - making sure you use the corresponding RSS (or Atom) feeds for your profile, so that WicketPixie can display your latest content from them on your Social Me page.', 'wicketpixie').'</p><p>'.__('You can also include the list of these accounts in your sidebar by adding the WicketPixie FeedWidget and choosing a feed.', 'wicketpixie').'</p>')
 );
 class SourceAdmin extends DBAdmin {
 	/**
@@ -150,7 +150,6 @@ class SourceAdmin extends DBAdmin {
 		if ($args['title'] != 'Social Me Title (required)') :
 			if (!$wpdb->get_var("SELECT id FROM {$this->table} WHERE feed_url = '{$args['url']}'")) :
 				$wpdb->query("INSERT INTO {$this->table} (id,title,profile_url,feed_url,type,lifestream,updates,favicon) VALUES('', '{$args['title']}', '$profurl', '$dbfeedurl', {$args['type']}, $stream, $update, 'http://www.google.com/s2/favicons?domain=$favicon_url')");
-				$this->create_widget();
 				return array('updated','Social Me Account saved.');
 			else :
 				return array('error','There already exists a Social Me with the specified feed.');
@@ -171,9 +170,8 @@ class SourceAdmin extends DBAdmin {
 		$favicon_url = explode('/', $profurl);
 		$favicon_url = (!empty($favicon_url)) ? $favicon_url[2] : '';
 		$favicon_url = (strstr('www.',$favicon_url) || empty($favicon_url)) ? $favicon_url : 'www.'.$favicon_url;
-		$wpdb->query("UPDATE {$this->table} SET title = '{$args['title']}', profile_url = '$profurl', feed_url = '{$feedurl}', type = {$args['type']}, lifestream = $stream, updates = $update, favicon = $favicon_url WHERE id = {$args['id']}");
+		$wpdb->query("UPDATE {$this->table} SET title = '{$args['title']}', profile_url = '$profurl', feed_url = '{$feedurl}', type = {$args['type']}, lifestream = $stream, updates = $update, favicon = 'http://www.google.com/s2/favicons?domain=$favicon_url' WHERE id = {$args['id']}");
 		$this->toggle($args['id'], $stream);
-		$this->create_widget();
 	}
 	function toggle($id, $direction) {
 		global $wpdb;
@@ -186,7 +184,6 @@ class SourceAdmin extends DBAdmin {
 	function burninate($id) {
 		parent::burninate($id);
 		$this->toggle($id, 0);
-		$this->create_widget();
 	}
 	/**
 	 * We call hulk_smash when the tables make Hulk angry.
@@ -223,77 +220,14 @@ class SourceAdmin extends DBAdmin {
 			if ($feed->data) :
 				foreach ($feed->get_items() as $entry) :
 					$date = strtotime(substr($entry->get_date(), 0, 25));
-					$widget_contents[$date]['name']= (string) $stream->title;
-					$widget_contents[$date]['title']= $entry->get_title();
-					$widget_contents[$date]['link']= $entry->get_permalink();
-					$widget_contents[$date]['date']= $date;
+					$widget_contents[$date]['title'] = $entry->get_title();
+					$widget_contents[$date]['link'] = $entry->get_permalink();
+					$widget_contents[$date]['date'] = $date;
 					if ($enclosure = $entry->get_enclosure(0))
 						$widget_contents[$date]['enclosure'] = $enclosure->get_link();
 				endforeach;
 			endif;
 		return $widget_contents;
-	}
-	function create_file($title,$cleaned,$favicon_url,$feed_url) {
-	$data =
-	"<?php
-	/**
-	 * ${cleaned}FeedWidget Class
-	 **/
-	class ${cleaned}FeedWidget extends WP_Widget {
-		function ${cleaned}FeedWidget() {
-			\$widget_ops = array('classname' => 'widget_${cleaned}_feed','description' => 'Lists feed items from the $title feed added in the Social Me Manager.');
-			\$this->WP_Widget('${cleaned}feed','$title Feed',\$widget_ops,null);
-		}
-		function widget(\$args,\$instance) {
-			extract(\$args);
-			echo \$before_widget;
-			echo \$before_title, '<img src=\"http://www.google.com/s2/favicons?domain=$favicon_url\" alt=\"','${title}','\" />','${title}', \$after_title;
-			\$items = SourceAdmin::get_feed('$feed_url'); ?>
-				<ul>
-				<?php
-				\$total = 5;
-				foreach(\$items as \$item) :
-					if(\$i != \$total) :
-						echo '<li><a href=\"',\$item['link'],'\" title=\"',\$item['title'],'\">',\$item['title'],'</a></li>';
-						\$i++;
-					endif;
-				endforeach; ?>
-				</ul>
-			<?php echo \$after_widget;
-		}
-		function update(\$new_instance,\$old_instance) {
-			return \$old_instance;
-		}
-		function form(\$instance) {
-		}
-	}
-	?>";
-	file_put_contents(get_template_directory()."/widgets/$cleaned.php", $data);
-	error_log("Creating $title widget.");
-	}
-	/**
-	 * Creates and registers widgets which you can put in your sidebar.
-	 * The widgets displays the 5 most recent entries in the source's feed.
-	 **/
-	function create_widget() {
-		$data = "<?php";
-		foreach ($this->collect() as $widget) :
-			if ($this->feed_check($widget->title) == 1) :
-				$cleaned = preg_replace('/\W/','',strtolower($widget->title));
-				$data .= "
-				function ${cleaned}Init() {
-					include_once(get_template_directory() . '/widgets/$cleaned.php');
-					register_widget('${cleaned}FeedWidget');
-				}
-				add_action('widgets_init','${cleaned}Init');";
-				add_option($cleaned.'-num', 5);
-				$favicon_url = explode('/', $widget->profile_url);
-				$favicon_url = (!empty($widget->profile_url)) ? $favicon_url[2] : '';
-				$this->create_file($widget->title,$cleaned,explode('/',$widget->profile_url),$widget->feed_url);
-			endif;
-		endforeach;
-		$data .= " ?>";
-		file_put_contents(get_template_directory() . '/widgets/sources.php', $data);
 	}
 	/**
 	 * The admin page for our sources/activity system.
@@ -311,9 +245,6 @@ class SourceAdmin extends DBAdmin {
 			<?php elseif ($_POST['action'] ==  'delete') :
 				$this->burninate($_REQUEST['id']); ?>
 				<div id="message" class="updated fade"><p><strong>Social Me Account removed.</strong></p></div>
-			<?php elseif ($_POST['action'] == 'regen_widgets'):
-				$this->create_widget(); ?>
-				<div id="message" class="updated fade"><p><strong>Social Me Widgets regenerated.</strong></p></div>
 			<?php elseif ($_POST['action'] == 'hulk_smash'):
 				$this->hulk_smash(); ?>
 				<div id="message" class="updated fade"><p><strong>Social Me database cleared.</strong></p></div>
@@ -353,13 +284,16 @@ class SourceAdmin extends DBAdmin {
 					<tr>
 						<td style="width:16px;"><img src="<?php echo $source->favicon; ?>" alt="Favicon" style="width: 16px; height: 16;" /></td>
 						<td><a href="<?php echo $source->profile_url; ?>"><?php echo $source->title; ?></a></td>
-						<?php if ($isfeed == 1) : ?>
-						<td style="text-align:center;"><a href="<?php echo $source->feed_url; ?>"><img src="<?php get_template_directory(); ?>/images/icon-feed.gif" alt="View"/></a></td>
-						<?php elseif ($isfeed == 0) : ?>
-						<td style="text-align:center;">N/A</td>
-						<?php else : ?>
-						<td style="text-align:center;">?</td>
-						<?php endif; ?>
+						
+						<td style="text-align:center;">
+							<?php if ($isfeed == 1) : ?>
+							<a href="<?php echo $source->feed_url; ?>"><img src="<?php echo get_template_directory_uri(); ?>/images/icon-feed.gif" alt="View"/></a></td>
+							<?php elseif ($isfeed == 0) :
+								echo 'N/A';
+							else :
+								echo '?';
+							endif; ?>
+						</td>
 						<td style="text-align:center;"><?php echo $this->type_name( $source->type ); ?></td>
 						<td style="text-align:center;"><?php echo ($source->lifestream == 0) ? 'No' : 'Yes'; ?></td>
 						<td>
@@ -437,14 +371,6 @@ class SourceAdmin extends DBAdmin {
 					</p>
 				</form>
 				<?php endif; ?>
-				<h3>Widget Regenerator</h3>
-				<p>If you are upgrading from an earlier version, you might need to click this button if you already have Social Mes added. You can also press this button if widgets seem to be broken.</p>
-				<form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>?page=sourcemanager.php&amp;regen_widgets=true">
-					<p class="submit">
-						<input type="submit" name="submit" value="Regenerate Widgets" />
-						<input type="hidden" name="action" value="regen_widgets" />
-					</p>
-				</form>
 				<form name="hulk_smash" id="hulk_smash" method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>?page=sourcemanager.php&amp;hulk_smash=true">
 				<?php wp_nonce_field('wicketpixie-settings'); ?>
 					<h2>Delete the Social Mes Table</h2>
