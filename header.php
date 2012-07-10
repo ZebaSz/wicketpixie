@@ -16,8 +16,11 @@ $status= new SourceUpdate; ?>
 	<link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/style.css?<?php echo $time; ?>" type="text/css" media="screen, projection" />
 	<link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/css/print.css?<?php echo $time; ?>" type="text/css" media="print" />
 	<!--[if lte IE 8]><link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/css/ie.css?<?php echo $time; ?>" type="text/css" media="screen, projection" /><![endif]-->
-	<?php if ($blogfeed)
-		echo '<link rel="alternate" type="application/rss+xml" title="'.get_bloginfo('name').'RSS Feed" href="'.$blogfeed.'" />'; ?>
+	<?php if ($blogfeed) :
+		echo '<link rel="alternate" type="application/rss+xml" title="'.get_bloginfo('name').'RSS Feed" href="'.$blogfeed.'" />';
+	else:
+		$blogfeed = get_bloginfo('rss2-url');
+	endif; ?>
 	<link rel="pingback" href="<?php bloginfo('pingback_url'); ?>" />
 	<link rel="shortcut icon" type="image/ico" href="<?php echo home_url(); ?>/favicon.ico" />
 	<?php ob_flush();
