@@ -1,10 +1,14 @@
-<?php // Do not delete these lines
-if ('comments.php' == basename($_SERVER['SCRIPT_FILENAME'])) die ('Please do not load this page directly. Thanks!');
-// Password protection check
-if (post_password_required()) return; ?>
-<!-- You can start editing here. -->
 <!-- comments -->
 <div id="comments">
+<?php 
+// Password protection check
+if (post_password_required()) : ?>
+	<p class="nopassword"><?php _e('This post is password protected. Enter the password to view any comments.','wicketpixie'); ?></p>
+</div>
+<!-- /comments -->
+<?php return;
+endif; ?>
+<?php if (have_comments()) : ?>
 	<h2><?php comments_number();?></h2>
 	<ul class="commentlist"><?php wp_list_comments('callback=wicketpixie_comment');?></ul>
 	<?php if (get_option('page_comments') && get_comment_pages_count() > 1) : ?>
@@ -13,13 +17,11 @@ if (post_password_required()) return; ?>
 		<div class="left"><?php previous_comments_link(sprintf("<span>%s</span>",__('More', 'wicketpixie'))); ?></div>
 		<div class="right"><?php next_comments_link(sprintf("<span>%s</span>",__('Newer', 'wicketpixie'))); ?></div>
 	</div>
-	<?php endif; // If there are comment pages to navigate through ?>
-	<?php if (!comments_open()) : ?>
+	<?php endif;
+elseif (!comments_open() && !is_page() && post_type_supports(get_post_type(), 'comments')) : ?>
 	<h3 class="nocomments"><?php _e('Comments are closed', 'wicketpixie'); ?></h3>
-	<?php endif; // If comments are closed ?>
+<?php endif; // If comments are closed ?>
+	<?php comment_form(); ?>
 </div>
 <div class="clearer" ></div>
 <!-- /comments -->
-<div id="comment-form">
-	<?php comment_form(); ?>
-</div>
