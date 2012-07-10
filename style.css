@@ -74,12 +74,9 @@ body {
 	text-align: left;
 	background: #000;
 	border-top: 1px solid #555;
-	-moz-border-radius: 10px;
 	border-radius: 10px;
-	-moz-border-radius-topleft: 0;
 	border-top-left-radius: 0;
 	box-shadow: 0 0 6px 3px rgba(0, 0, 0, 0.3);
-	-moz-box-shadow: 0 0 6px 3px rgba(0, 0, 0, 0.3);
 }
 
 /* TOPBAR */
@@ -97,7 +94,6 @@ body {
 	background-image: -moz-linear-gradient(top, #393939, #000);
 	background-image: -ms-linear-gradient(top,#393939,#000);
 	box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.3);
-	-moz-box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.3);
 }
 #topbar-inner {
 	width: 920px;
@@ -140,7 +136,6 @@ body {
 	z-index: 999;
 	margin: 2px 0 0 -9px;
 	box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.3);
-	-moz-box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.3);
 }
 #subscribe ul li {
 	float: left;
@@ -190,7 +185,6 @@ body {
 }
 #search input.search-submit {
 	height: 21px;
-	-moz-border-radius:11px;
 	border-radius: 11px;
 	color: #fff;
 	background-color: #222;
@@ -271,8 +265,6 @@ body {
 	background-color: rgba(0, 0, 0, 0.25);
 	border-radius: 6px;
 	border-top-left-radius: 0;
-	-moz-border-radius: 6px;
-	-moz-border-radius-topleft: 0;
 }
 #status p {
 	float: right;
@@ -286,7 +278,6 @@ body {
 	overflow: hidden;
 	font-weight: bold;
 	border-radius: 10px;
-	-moz-border-radius: 10px;
 }
 #status-box {
 	float:right;
@@ -320,7 +311,6 @@ body {
 	float: left;
 	width: 100%;
 	background-color: #000;
-	-moz-border-radius-topright: 10px;
 	border-top-right-radius: 10px;
 	background-image: -o-linear-gradient(top, #393939, #000 28px);
 	background-image: -webkit-linear-gradient(top, #393939, #000 28px);
@@ -383,9 +373,7 @@ body {
 	margin: 0 10px;
 	width: 920px;
 	background: #fff;
-	-moz-border-radius: 10px;
 	border-radius: 10px;
-	-moz-border-radius-topleft: 0;
 	border-top-left-radius: 0;
 }
 
@@ -474,7 +462,6 @@ body {
 	float: left;
 	width: 500px;
 	padding: 20px;
-	-moz-border-radius-bottomleft: 10px;
 	border-bottom-left-radius: 10px;
 }
 #mid a:link, #mid a:visited, #mid a:active {
@@ -611,8 +598,6 @@ body {
 	background-color: rgba(0, 0, 0, 0.15);
 	border-radius: 6px;
 	border-top-left-radius: 0;
-	-moz-border-radius: 6px;
-	-moz-border-radius-topleft: 0;
 }
 #content .post-meta .post-author p {
 	color: #666;
@@ -642,7 +627,6 @@ body {
 	float: left;
 	margin-right: 40px;
 	background-color: #ccc;
-	-moz-border-radius: 20px;
 	border-radius: 20px;
 	padding: 2px 0;
 	font-size: 1.2em;
@@ -655,7 +639,6 @@ body {
 	margin: 0 3px;
 	background-color: #f6f6f6;
 	padding: 6px 10px 1px;
-	-moz-border-radius: 20px;
 	border-radius: 20px;
 }
 #content .post-comments-count a:link, #content .post-comments-count a:active, #content .post-comments-count a:visited {
@@ -810,7 +793,6 @@ body {
 	position: absolute;
 	height: 15px;
 	width: 72px;
-	-moz-border-radius: 16px;
 	border-radius: 16px;
 	color: #fff;
 	background-color: #222;
@@ -846,7 +828,7 @@ body {
 #comments .commentlist {
 	margin: 0;
 }
-#comments .comment {
+#comments .commentlist > li {
 	margin-bottom: 1.4em;
 	padding-left: 0;
 	list-style: none;
@@ -856,7 +838,7 @@ body {
 	border-bottom: 1px solid #eee;
 	margin-bottom: 1.4em;
 }
-#comments .comment .parent {
+#comments .commentlist>li .parent {
 	border-bottom: 1px solid #eee;
 }
 #comments .children {
@@ -869,22 +851,22 @@ body {
 	text-align: right;
 	margin-bottom: 1.4em;
 }
-#comments .comment .avatar {
+#comments .commentlist>li .avatar {
 	float: right;
 	margin: 0 0 10px 10px;
 	border: solid 3px #ccc;
 }
-#content .comment h3 {
+#content .commentlist>li h3 {
 	border-bottom: 0;
 	margin: 0;
 	font-size: 14px;
 	color: #666;
 }
-#content .comment h3 a:link, #content .comment h3 a:active, #content .comment h3 a:visited {
+#content .commentlist>li h3 a:link, #content .commentlist>li h3 a:active, #content .commentlist>li h3 a:visited {
 	text-decoration: none;
 	border-bottom: 1px solid #ddd;
 }
-#comments .comment p {
+#comments .commentlist>li p {
 	font-size: 1.2em;
 	margin: 0 0 10px 135px;
 }
@@ -901,28 +883,28 @@ body {
 	border-bottom: 1px solid #EEE;
 	padding-bottom: 5px;
 }
-#comments h2, #content #comment-form h2 {
+#comments h2 {
 	color: #333;
 	font-size: 2em;
 	margin-top: 1.4em;
 }
-#comments h3.nocomments {
+#comments .nocomments {
 	border: none;
 }
 #comments .cpage {
 	margin: 0;
 }
 
-#comment-form p {
+#respond p {
 	font-size: 1.2em;
 	float: left;
 	width: 100%;
 	margin-bottom: 10px;
 }
-#comment-form small {
+#respond small {
 	font-size: .5em;
 }
-#comment-form label {
+#respond label {
 	float: left;
 	width: 120px;
 	padding-top: 6px;
@@ -930,7 +912,7 @@ body {
 	color: #666;
 	text-align: right;
 }
-#comment-form input, #comment-form textarea {
+#respond input, #respond textarea {
 	float: right;
 	width: 355px;
 	font-size: 12px;
@@ -941,15 +923,15 @@ body {
 	border-bottom: 1px solid #eee;
 	border-left: 1px solid #ccc;
 }
-#comment-form input:focus, #comment-form textarea:focus {
+#respond input:focus, #respond textarea:focus {
 	color: #333;
 	background: #fff;
 	border: 1px solid #666;
 }
-#comment-form #comment-message {
+#respond #comment-message {
 	width: 355px;
 }
-#comment-form #comment-button {
+#respond #comment-button {
 	float: none;
 	width: 83px;
 	margin-left: 130px;
@@ -957,13 +939,12 @@ body {
 	background: transparent;
 	border: 0;
 }
-#comment-form .form-allowed-tags {
+#respond .form-allowed-tags {
 	display: none;
 }
-#comment-form #submit {
+#respond #submit {
 	height: 27px;
 	width: auto;
-	-moz-border-radius: 16px;
 	border-radius:16px;
 	color: #fff;
 	border: solid 1px #222;
@@ -1125,9 +1106,7 @@ body {
 	width: 340px;
 	padding: 20px 19px 0;
 	background-color: #F6F6F6;
-	-moz-border-radius-bottomright: 10px;
 	border-bottom-right-radius: 10px;
-	-moz-border-radius-topright: 10px;
 	border-top-right-radius: 10px;
 	border-left: 1px solid #E0E0E0;
 	border-bottom: 1px solid #E0E0E0;
@@ -1148,8 +1127,6 @@ body {
 	background-color: #fff;
 	border-radius: 10px;
 	border-top-left-radius: 0;
-	-moz-border-radius: 10px;
-	-moz-border-radius-topleft: 0;
 	border: 1px solid #E0E0E0;
 }
 #mid #sidebar1 .widget {
@@ -1277,9 +1254,7 @@ a.adspot_adurl {
 	text-align: left;
 	color: #666;
 	background-color: #000;
-	-moz-border-radius-bottomright: 10px;
 	border-bottom-right-radius: 10px;
-	-moz-border-radius-bottomleft: 10px;
 	border-bottom-left-radius: 10px;
 }
 #footer-credits, #footer-meta {
