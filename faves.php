@@ -3,11 +3,9 @@
  * Template Name: Faves
 **/
 get_header();
-if ( is_user_logged_in() ) :
-	if ( 'sort' == $_REQUEST['action'] ) :
-		FavesAdmin::sort( $_REQUEST );
-	endif;
-endif; ?>
+$faves = new FavesAdmin;
+if (is_user_logged_in() && isset($_REQUEST['action']) && $_REQUEST['action'] == 'sort')
+	$faves->sort($_REQUEST); ?>
 			<!-- content -->
 			<div id="content">
 				<?php if (have_posts()) :
@@ -19,23 +17,23 @@ endif; ?>
 					<!-- faves -->
 					<div id="faves">
 						<!-- faves-feed -->
-						<?php $i= 0; foreach( FavesAdmin::show_faves() as $fave ) :
-						$class= ( $i++ & 1 ) ? ' odd' : '';
-						require_once (SIMPLEPIEPATH);
-						$feed_path= $fave->feed_url;
-						$feed= new SimplePie( (string) $feed_path, ABSPATH . (string) 'wp-content/uploads/activity' );
-						$feed->handle_content_type();
-						if( $feed->data ) : ?>
+						<?php $i= 0;
+						require_once (CLASSFEEDPATH);
+						if ($faves->check()) :
+						foreach ($faves->show_faves() as $fave) :
+						$class = ($i++ & 1) ? ' odd' : '';
+						$feed_path = $fave->feed_url;
+						$feed = fetch_feed($feed_path);
+						if (!is_wp_error($feed)) : ?>
 						<div class="faves-feed<?php echo $class; ?>">
-							<?php $domain = explode($fave->feed_url,'/');
-							$domain = $domain[2]; ?>
-							<h3><img src="http://www.google.com/s2/favicons?domain=<?php echo $domain; ?>" alt="<?php echo $fave->title; ?>" /><?php echo $fave->title; ?></h3>
-							<?php if ( is_user_logged_in() ) : ?>
+							<?php $favicon_url = $faves->get_favicon($fave->feed_url); ?>
+							<h3><img src="<?php echo $favicon_url; ?>" alt="<?php echo $fave->title; ?>" /><?php echo $fave->title; ?></h3>
+							<?php if (is_user_logged_in()) : ?>
 							<form name"re-order-<?php echo $fave->id; ?>" method="post" action="<?php the_permalink(); ?>?sort=true&amp;id=<?php echo $fave->id; ?>">
 							<input type="hidden" name="action" value="sort">
 							<input type="hidden" name="id" value="<?php echo $fave->id; ?>">
 							<strong>Current Place: <?php echo $fave->sortorder; ?></strong> | New Place <select name="newsort" id="newsort-<?php echo $fave->id; ?>">
-								<?php foreach( FavesAdmin::positions() as $place ) : ?>
+								<?php foreach ($faves->positions() as $place) : ?>
 									<option value="<?php echo $place->sortorder; ?>"><?php echo $place->sortorder; ?></option>
 								<?php endforeach; ?>
 							</select>
@@ -43,15 +41,18 @@ endif; ?>
 							</form>
 							<?php endif; ?>
 							<ul>
-							<?php $c= 0;
-							$total= 5;
-							foreach( $feed->get_items() as $entry ) :
-								if( $c!= $total ) : ?>
+							<?php $c = 0;
+							$total = 5;
+							foreach ($feed->get_items() as $entry) :
+								if ($c != $total) : ?>
 								<li><a href="<?php echo $entry->get_permalink(); ?>" rel="nofollow"><?php echo $entry->get_title(); $c++; ?></a></li>
-							<?php endif; endforeach; ?>
+								<?php endif;
+							endforeach; ?>
 							</ul>
 						</div>
-						<?php endif; endforeach; ?>
+						<?php endif;
+						endforeach;
+						endif; ?>
 						<!-- /faves-feed -->
 					</div>
 					<!-- /faves -->

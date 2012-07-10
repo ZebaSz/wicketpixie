@@ -26,33 +26,11 @@ $status= new SourceUpdate; ?>
 	include_once (get_template_directory() . '/plugins/search-excerpt.php');
 	include_once (ABSPATH . 'wp-admin/includes/plugin.php' );
 	clearstatcache();
-	if (!is_dir(ABSPATH.'wp-content/uploads/activity')) :
-		if (!is_dir(ABSPATH.'wp-content/uploads'))
-			mkdir(ABSPATH.'wp-content/uploads',0777);
-		mkdir(ABSPATH.'wp-content/uploads/activity',0777);
-	endif;
-	if (!is_dir(get_template_directory() . '/app/cache'))
-		mkdir(get_template_directory() . '/app/cache',0777);
 	if (is_singular())
 		wp_enqueue_script('comment-reply');
 	wp_head();
-	wp_customcode("header");
-	$currurl = home_url().$_SERVER['REQUEST_URI'];
-	$currurl = preg_quote($currurl,'/');
-	if(preg_match('/('.$currurl.'index.php)/','http://'.$_SERVER['SERVER_NAME'].$_SERVER['PHP_SELF']) || preg_match('/('.$currurl.'index.php)/','https://'.$_SERVER['SERVER_NAME'].$_SERVER['PHP_SELF'])) :
-		if(get_bloginfo('description') != '') :
-			$metadesc = get_bloginfo('description'); // We're at the home page
-		else :
-			$supdate = new SourceUpdate;
-			$metadesc = $supdate->display(0);
-		endif;
-	else :
-		// We must be in a page or a post
-		$postdata = get_post($postid,ARRAY_A);
-		$metadesc = substr($postdata['post_content'],0,134) . ' [...]';
-	endif;
-	$metadesc = strip_tags($metadesc); ?>
-	<meta name="description" content="<?php echo $metadesc; ?>" />
+	wp_customcode('header'); ?>
+	<meta name="description" content="<?php bloginfo('description'); ?>" />
 </head>
 <body <?php body_class(); ?>>
 	<?php if(get_option('wicketpixie_enable_ajax_loader') == 'true') include_once('loader.php');
@@ -119,7 +97,7 @@ $status= new SourceUpdate; ?>
 				<?php echo get_avatar('1','36'); ?>
 				<div id="status-box">
 					<span id="status-arrow"></span>
-					<p><?php echo $status->display(); ?></p>
+					<p><?php echo $status->fetchfeed(); ?></p>
 				</div>
 			</div>
 			<!-- /status -->

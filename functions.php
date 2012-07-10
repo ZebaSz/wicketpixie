@@ -13,7 +13,7 @@
 
 $optpre = 'wicketpixie_';
 include_once(get_template_directory().'/widgets/sources.php');
-define('SIMPLEPIEPATH',ABSPATH.WPINC.'/class-simplepie.php');
+define('CLASSFEEDPATH',ABSPATH.WPINC.'/class-feed.php');
 
 // No spaces in this constant please (use hyphens)
 /*
@@ -24,22 +24,20 @@ define('SIMPLEPIEPATH',ABSPATH.WPINC.'/class-simplepie.php');
 define('WIK_VERSION',"1.5-a");
 
 /* Dynamic (Widget-enabled) Sidebar */
-if ( function_exists('register_sidebar') ) :
-	register_sidebar(array(
-		'name'=>__('Sidebar top'),
-		'id'=>'sidebar_top',
-		'before_widget' => '<div id="%1$s" class="widget %2$s">',
-		'after_widget' => '</div>',
-		'before_title' => '<h3>',
-		'after_title' => '</h3>',
-	));
-	register_sidebars(6, array(
-		'before_widget' => '<div id="%1$s" class="widget %2$s">',
-		'after_widget' => '</div>',
-		'before_title' => '<h3>',
-		'after_title' => '</h3>',
-	));
-endif;
+register_sidebar(array(
+	'name'=>__('Sidebar top'),
+	'id'=>'sidebar_top',
+	'before_widget' => '<div id="%1$s" class="widget %2$s">',
+	'after_widget' => '</div>',
+	'before_title' => '<h3>',
+	'after_title' => '</h3>',
+));
+register_sidebars(6, array(
+	'before_widget' => '<div id="%1$s" class="widget %2$s">',
+	'after_widget' => '</div>',
+	'before_title' => '<h3>',
+	'after_title' => '</h3>',
+));
 
 // Enqueue theme scripts
 function wicketpixie_scripts() {
@@ -143,6 +141,12 @@ add_action('in_admin_footer', 'wicketpixie_add_admin_footer');
 
 /* Status updates */
 require_once( get_template_directory() .'/app/update.php');
+// Set cache duration to 45 seconds rather than 12 hours
+function cache_duration() {
+	return 45;
+}
+add_filter('wp_feed_cache_transient_lifetime','cache_duration');
+
 
 /* Widgets */
 // My Profiles

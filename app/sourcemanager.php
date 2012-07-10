@@ -54,37 +54,16 @@ class SourceAdmin extends DBAdmin {
 		if ($wicketpixie_sources_db_version != get_option('wicketpixie_sources_db_version'))
 			update_option('wicketpixie_sources_db_version',$wicketpixie_sources_db_version);
 	}
-	/**
-	 * Called when we think the caches are getting messy
-	 * Cleans Activity Stream and WiPi feed cache
-	 **/
-	function clean_dir() {
-		clearstatcache();
-		$dirs = array(ABSPATH.'/wp-content/uploads/activity/',get_template_directory().'/app/cache/');
-		foreach ($dirs as $dir) :
-			if(is_dir($dir)) :
-				$d = dir($dir);
-				while ($entry = $d->read()) :
-					if ($entry != "." && $entry != "..")
-						unlink($dir.$entry);
-				endwhile;
-				$d->close();
-			endif;
-		endforeach;
-	}
 	function get_streams() {
 		global $wpdb;
-		require_once(SIMPLEPIEPATH);
-		$this->clean_dir();
+		require_once(CLASSFEEDPATH);
 		$streams = $wpdb->get_results("SELECT title,feed_url FROM {$this->table} WHERE lifestream = 1");
 		foreach ($streams as $stream) :
-			$feed = new SimplePie((string) $stream->feed_url, ABSPATH . (string) 'wp-content/uploads/activity');
-			$feed->set_cache_duration(10);
-			$feed->handle_content_type();
-			if ($feed->data) :
-				foreach($feed->get_items() as $entry) :
+			$feed = fetch_feed($stream->feed_url);
+			if (!is_wp_error($feed)) :
+				foreach ($feed->get_items() as $entry) :
 					$date = strtotime(substr($entry->get_date(), 0, 25));
-					$stream_contents[$date]['name'] = (string) $stream->title;
+					$stream_contents[$date]['name'] = $stream->title;
 					$stream_contents[$date]['title'] = $entry->get_title();
 					$stream_contents[$date]['link'] = $entry->get_permalink();
 					$stream_contents[$date]['date'] = $date;
@@ -144,12 +123,10 @@ class SourceAdmin extends DBAdmin {
 		$update = (!empty($args['updates'])) ? 1 : 0;
 		$dbfeedurl = ($args['url'] == 'Profile Feed URL') ? '' : $args['url'];
 		$profurl = ($args['profile'] == 'Profile URL')? '' : $args['profile'];
-		$favicon_url = explode('/', $profurl);
-		$favicon_url = (!empty($favicon_url)) ? $favicon_url[2] : '';
-		$favicon_url = (strstr('www.',$favicon_url) || empty($favicon_url)) ? $favicon_url : 'www.'.$favicon_url;
+		$favicon_url = $this->get_favicon($profurl);
 		if ($args['title'] != 'Social Me Title (required)') :
 			if (!$wpdb->get_var("SELECT id FROM {$this->table} WHERE feed_url = '{$args['url']}'")) :
-				$wpdb->query("INSERT INTO {$this->table} (id,title,profile_url,feed_url,type,lifestream,updates,favicon) VALUES('', '{$args['title']}', '$profurl', '$dbfeedurl', {$args['type']}, $stream, $update, 'http://www.google.com/s2/favicons?domain=$favicon_url')");
+				$wpdb->query("INSERT INTO {$this->table} (id,title,profile_url,feed_url,type,lifestream,updates,favicon) VALUES('', '{$args['title']}', '$profurl', '$dbfeedurl', {$args['type']}, $stream, $update, '$favicon_url')");
 				return array('updated','Social Me Account saved.');
 			else :
 				return array('error','There already exists a Social Me with the specified feed.');
@@ -167,10 +144,8 @@ class SourceAdmin extends DBAdmin {
 		$update = (!empty($args['updates'])) ? 1 : 0;
 		$feedurl = ($args['url'] == 'Profile Feed URL') ? '' : $args['url'];
 		$profurl = ($args['profile'] == 'Profile URL')? '' : $args['profile'];
-		$favicon_url = explode('/', $profurl);
-		$favicon_url = (!empty($favicon_url)) ? $favicon_url[2] : '';
-		$favicon_url = (strstr('www.',$favicon_url) || empty($favicon_url)) ? $favicon_url : 'www.'.$favicon_url;
-		$wpdb->query("UPDATE {$this->table} SET title = '{$args['title']}', profile_url = '$profurl', feed_url = '{$feedurl}', type = {$args['type']}, lifestream = $stream, updates = $update, favicon = 'http://www.google.com/s2/favicons?domain=$favicon_url' WHERE id = {$args['id']}");
+		$favicon_url = $this->get_favicon($profurl);
+		$wpdb->query("UPDATE {$this->table} SET title = '{$args['title']}', profile_url = '$profurl', feed_url = '{$feedurl}', type = {$args['type']}, lifestream = $stream, updates = $update, favicon = '$favicon_url' WHERE id = {$args['id']}");
 		$this->toggle($args['id'], $stream);
 	}
 	function toggle($id, $direction) {
@@ -213,20 +188,18 @@ class SourceAdmin extends DBAdmin {
 		return $name[0]->name;
 	}
 	function get_feed($url) {
-		require_once (SIMPLEPIEPATH);
-		$feed = new SimplePie((string) $url, ABSPATH . (string) 'wp-content/uploads/activity');
-		$this->clean_dir();
-		$feed->handle_content_type();
-			if ($feed->data) :
-				foreach ($feed->get_items() as $entry) :
-					$date = strtotime(substr($entry->get_date(), 0, 25));
-					$widget_contents[$date]['title'] = $entry->get_title();
-					$widget_contents[$date]['link'] = $entry->get_permalink();
-					$widget_contents[$date]['date'] = $date;
-					if ($enclosure = $entry->get_enclosure(0))
-						$widget_contents[$date]['enclosure'] = $enclosure->get_link();
-				endforeach;
-			endif;
+		require_once (CLASSFEEDPATH);
+		$feed = fetch_feed($url);
+		if (!is_wp_error($feed)) :
+			foreach ($feed->get_items() as $entry) :
+				$date = strtotime(substr($entry->get_date(), 0, 25));
+				$widget_contents[$date]['title'] = $entry->get_title();
+				$widget_contents[$date]['link'] = $entry->get_permalink();
+				$widget_contents[$date]['date'] = $date;
+				if ($enclosure = $entry->get_enclosure(0))
+					$widget_contents[$date]['enclosure'] = $enclosure->get_link();
+			endforeach;
+		endif;
 		return $widget_contents;
 	}
 	/**
