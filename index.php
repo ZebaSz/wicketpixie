@@ -24,7 +24,8 @@
 					</div>
 					<div class="clearer"></div>
 					<div class="KonaBody">
-					<?php the_content(sprintf(esc_attr__('Continue reading %s', 'wicketpixie'), '&raquo;')); ?>
+					<?php the_content(sprintf(esc_attr__('Continue reading %s', 'wicketpixie'), '&raquo;'));
+					wp_link_pages(array('before' => '<div class="page-link"><span>' . __( 'Pages:', 'wicketpixie' ) . '</span>', 'after' => '</div>' ) ); ?>
 					</div>
 					<?php wp_customcode("afterposts"); ?>
 				</div>

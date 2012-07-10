@@ -26,11 +26,14 @@
 						<?php endif; ?>
 					</div>
 					<div class="clearer"></div>
-					<div class="KonaBody"><?php the_excerpt(); ?></div>
+					<div class="KonaBody">
+						<?php the_excerpt();
+						wp_link_pages(array('before' => '<div class="page-link"><span>' . __( 'Pages:', 'wicketpixie' ) . '</span>', 'after' => '</div>' ) ); ?>
+					</div>
 				</div>
 				<?php if ($adsense_counter == 0) : ?>
-				<div align="center" style="margin: 15px 0 30px 0">
-					<?php $adsense->wp_adsense('blog_post_bottom'); ?>
+				<div style="text-align: center; margin: 15px 0 30px 0">
+					<?php wp_adsense('blog_post_bottom'); ?>
 				</div>
 				<?php endif;
 				$adsense_counter++; ?>
