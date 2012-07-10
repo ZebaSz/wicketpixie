@@ -1,12 +1,11 @@
 <?php
 $blogfeed = get_option('wicketpixie_blog_feed_url');
 $time = time();
-$status= new SourceUpdate;
-$adsense = new AdsenseAdmin; ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" <?php language_attributes(); ?>>
-<head profile="http://gmpg.org/xfn/11">
-	<meta http-equiv="Content-Type" content="<?php bloginfo('html_type'); ?>; charset=<?php bloginfo('charset'); ?>" />
+$status= new SourceUpdate; ?>
+<!DOCTYPE html>
+<html <?php language_attributes(); ?>>
+<head>
+	<meta charset="<?php bloginfo('charset'); ?>" />
 	<title>
 	<?php if (is_home() || is_front_page()) :
 		bloginfo('name');
@@ -136,9 +135,8 @@ $adsense = new AdsenseAdmin; ?>
 			<!-- google_ad_section_start(weight=ignore) -->
 			<!-- leaderboard -->
 			<?php if (is_enabled_adsense()) : ?>
-				<!-- Enable Adsense on the WicketPixie Adsense Ads admin page. -->
 				<div id="leaderboard">
-				<?php $adsense->wp_adsense('blog_header'); ?>
+				<?php wp_adsense('blog_header'); ?>
 				</div>
 			<?php endif; ?>
 			<!-- /leaderboard -->
