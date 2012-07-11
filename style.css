@@ -89,6 +89,7 @@ body {
 	padding: 5px 0 5px;
 	background-color: #000;
 	z-index: 999;
+	background-image: linear-gradient(top, #393939, #000);
 	background-image: -o-linear-gradient(top, #393939, #000);
 	background-image: -webkit-linear-gradient(top, #393939, #000);
 	background-image: -moz-linear-gradient(top, #393939, #000);
@@ -130,7 +131,7 @@ body {
 	position: fixed;
 	width: 220px;
 	padding: 10px 19px;
-	font: .95em Arial, Helvetica, Geneva, sans-serif;
+	font-size: .95em;
 	text-align: left;
 	background-color: #000;
 	z-index: 999;
@@ -172,23 +173,26 @@ body {
 #search #s {
 	float: left;
 	width: 134px;
-	margin: 1px 5px 0 0;
+	margin: 0 5px 0 0;
 	padding: 2px 3px;
 	font-size: 1.1em;
 	color: #666;
 	background-color: #fff;
+	background-image: linear-gradient(top, #bbb, #fff 15px);
 	background-image: -o-linear-gradient(top, #bbb, #fff 15px);
 	background-image: -webkit-linear-gradient(top, #bbb, #fff 15px);
 	background-image: -moz-linear-gradient(top, #bbb, #fff 15px);
 	background-image: -ms-linear-gradient(top,#bbb,#fff 15px);
 	border-width: 1px;
 }
-#search input.search-submit {
-	height: 21px;
+#search .search-submit {
+	height: 22px;
 	border-radius: 11px;
 	color: #fff;
+	font-family: Arial, Helvetica, Geneva, sans-serif;
 	background-color: #222;
 	border: solid 1px #222;
+	background-image: linear-gradient(top, #666, #222 10px);
 	background-image: -o-linear-gradient(top, #666, #222 10px);
 	background-image: -webkit-linear-gradient(top, #666, #222 10px);
 	background-image: -moz-linear-gradient(top, #666, #222 10px);
@@ -307,11 +311,13 @@ body {
 
 /* NAV */
 #nav {
+	font-family: Arial, Helvetica, Geneva, sans-serif;
 	clear: both;
 	float: left;
 	width: 100%;
 	background-color: #000;
 	border-top-right-radius: 10px;
+	background-image: linear-gradient(top, #393939, #000 28px);
 	background-image: -o-linear-gradient(top, #393939, #000 28px);
 	background-image: -webkit-linear-gradient(top, #393939, #000 28px);
 	background-image: -moz-linear-gradient(top, #393939, #000 28px);
@@ -327,7 +333,7 @@ body {
 #nav li a:link, #nav li a:visited, #nav li a:active {
 	display: block;
 	padding: 13px 13px 13px 15px;
-	font: 1.3em Arial, Helvetica, Geneva, sans-serif;
+	font-size: 1.3em;
 	color: #ccc;
 	text-decoration: none;
 	text-transform: uppercase;
@@ -337,6 +343,7 @@ body {
 	color: #fff;
 	text-decoration: none;
 	background-color: #111;
+	background-image: linear-gradient(top, #4c4c4c, #111 28px);
 	background-image: -o-linear-gradient(top, #4c4c4c, #111 28px);
 	background-image: -webkit-linear-gradient(top, #4c4c4c, #111 28px);
 	background-image: -moz-linear-gradient(top, #4c4c4c, #111 28px);
@@ -361,7 +368,7 @@ body {
 #nav li ul li a:link, #nav li ul li a:visited, #nav li ul li a:active {
 	padding: 7px 15px;
 	width: 145px;
-	font: 1.2em Arial, Helvetica, Geneva, sans-serif;
+	font-size: 1.2em;
 	color: #999;
 	text-transform: none;
 	border-top: none;
@@ -561,6 +568,8 @@ body {
 	padding-bottom: 15px;
 	border-bottom: 1px solid #eee;
 }
+.sticky {
+}
 #mid .page {
 	margin-bottom: 1.4em;
 	font-size: 1.2em;
@@ -686,11 +695,11 @@ body {
 }
 #content .wp-caption {
 	display: table;
-    background: #eee;
-    border: 1px solid #f0f0f0;
-    max-width: 96%; /* Image does not overflow the content area */
-    padding: 5px 3px;
-    text-align: center;
+	background: #eee;
+	border: 1px solid #f0f0f0;
+	max-width: 96%; /* Image does not overflow the content area */
+	padding: 5px 3px;
+	text-align: center;
 }
 #content .wp-caption img {
 	display: block;
@@ -699,7 +708,7 @@ body {
 }
 #content .wp-caption .wp-caption-text, #content .gallery-caption {
 	color: #444;
-    text-align: center;
+	text-align: center;
 }
 #content .post-meta {
 	padding-top: 30px;
@@ -791,12 +800,14 @@ body {
 }
 #content .navigation a span {
 	position: absolute;
-	height: 15px;
+	line-height: 15px;
 	width: 72px;
 	border-radius: 16px;
 	color: #fff;
+	font-family: Arial, Helvetica, Geneva, sans-serif;
 	background-color: #222;
 	border: solid 1px #222;
+	background-image: linear-gradient(top, #666, #222 7px);
 	background-image: -o-linear-gradient(top, #666, #222 7px);
 	background-image: -webkit-linear-gradient(top, #666, #222 7px);
 	background-image: -moz-linear-gradient(top, #666, #222 7px);
@@ -828,17 +839,14 @@ body {
 #comments .commentlist {
 	margin: 0;
 }
-#comments .commentlist > li {
-	margin-bottom: 1.4em;
-	padding-left: 0;
+#comments .commentlist > li, #comments .children > li {
+	margin: 0;
+	padding: 0;
 	list-style: none;
 }
 #comments .comment-body {
+	padding: 1.4em 0 0;
 	clear: both;
-	border-bottom: 1px solid #eee;
-	margin-bottom: 1.4em;
-}
-#comments .commentlist>li .parent {
 	border-bottom: 1px solid #eee;
 }
 #comments .children {
@@ -851,24 +859,31 @@ body {
 	text-align: right;
 	margin-bottom: 1.4em;
 }
-#comments .commentlist>li .avatar {
+#comments .bypostauthor {
+	background: #eee;
+}
+#comments .comment .avatar {
 	float: right;
 	margin: 0 0 10px 10px;
 	border: solid 3px #ccc;
 }
-#content .commentlist>li h3 {
+#comments .comment-body h3 {
 	border-bottom: 0;
 	margin: 0;
 	font-size: 14px;
 	color: #666;
 }
-#content .commentlist>li h3 a:link, #content .commentlist>li h3 a:active, #content .commentlist>li h3 a:visited {
+#content .comment-body h3 a:link, #content .comment-body h3 a:active, #content .comment-body h3 a:visited {
 	text-decoration: none;
 	border-bottom: 1px solid #ddd;
 }
-#comments .commentlist>li p {
+#comments .comment-body p, #comments .comment-body blockquote {
 	font-size: 1.2em;
 	margin: 0 0 10px 135px;
+}
+#comments .comment-body blockquote * {
+	font-size: 1em;
+	margin: 0;
 }
 #comments .comment-meta a:link, #content .comment-meta a:active, #content .comment-meta a:visited {
 	color: #666;
@@ -880,21 +895,18 @@ body {
 	border-bottom: 0;
 }
 #comments h2 {
+	color: #333;
 	border-bottom: 1px solid #EEE;
 	padding-bottom: 5px;
-}
-#comments h2 {
-	color: #333;
 	font-size: 2em;
-	margin-top: 1.4em;
+	margin: 1.4em 0 0.4em;
 }
 #comments .nocomments {
 	border: none;
 }
 #comments .cpage {
-	margin: 0;
+	margin: 1.4em 0 0;
 }
-
 #respond p {
 	font-size: 1.2em;
 	float: left;
@@ -907,10 +919,12 @@ body {
 #respond label {
 	float: left;
 	width: 120px;
-	padding-top: 6px;
 	font-weight: normal;
 	color: #666;
 	text-align: right;
+}
+#respond label + .required {
+	color: #666;
 }
 #respond input, #respond textarea {
 	float: right;
@@ -947,8 +961,10 @@ body {
 	width: auto;
 	border-radius:16px;
 	color: #fff;
+	font-family: Arial, Helvetica, Geneva, sans-serif;
 	border: solid 1px #222;
 	background-color: #222;
+	background-image: linear-gradient(top, #666, #222 13px);
 	background-image: -o-linear-gradient(top, #666, #222 13px);
 	background-image: -webkit-linear-gradient(top, #666, #222 13px);
 	background-image: -moz-linear-gradient(top, #666, #222 13px);

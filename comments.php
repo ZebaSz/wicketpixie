@@ -21,6 +21,7 @@ endif; ?>
 elseif (!comments_open() && !is_page() && post_type_supports(get_post_type(), 'comments')) : ?>
 	<h3 class="nocomments"><?php _e('Comments are closed', 'wicketpixie'); ?></h3>
 <?php endif; // If comments are closed ?>
+	<div class="clearer" ></div>
 	<?php comment_form(); ?>
 </div>
 <div class="clearer" ></div>
