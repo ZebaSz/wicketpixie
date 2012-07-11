@@ -11,12 +11,12 @@
 	});
 	wp.customize('wicketpixie_theme_body_font',function(value) {
 		value.bind(function(to) {
-			$('#logo').css('font-family', to);
+			$('body').not('#logo, h1, h2, h3, h4, h5, h6, #nav, .search-submit, #navigation').css('font-family', to);
 		});
 	});
 	wp.customize('wicketpixie_theme_headings_font',function(value) {
 		value.bind(function(to) {
-			$('#logo, #mid h1, #mid h2, #mid h3, #mid h4, #mid h5, #mid h6, #mid #sidebar h1, #mid #sidebar h2, #mid #sidebar h3, #mid #sidebar h4, #mid #sidebar h5, #mid #sidebar h6').css('font-family', to);
+			$('#logo, h1, h2, h3, h4, h5, h6').css('font-family', to);
 		});
 	});
 	wp.customize('wicketpixie_theme_header_size',function(value) {

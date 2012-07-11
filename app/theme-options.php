@@ -91,9 +91,9 @@ function wicketpixie_get_option($option) {
 add_action('wp_head', 'wicketpixie_theme_print_options');
 function wicketpixie_theme_print_options() { ?>
 	<style type='text/css'>
-		body, #comment-form input, #comment-form textarea, #content .comment h5, #mid #sidebar h5 {font-family: <?php echo wicketpixie_get_option('body_font'); ?>;}
+		body {font-family: <?php echo wicketpixie_get_option('body_font'); ?>;}
 		#logo {font-size: <?php echo wicketpixie_get_option('header_size'); ?>px;}
-		#logo, #mid h1, #mid h2, #mid h3, #mid h4, #mid h5, #mid h6, #mid #sidebar h1, #mid #sidebar h2, #mid #sidebar h3, #mid #sidebar h4, #mid #sidebar h5, #mid #sidebar h6 {font-family: <?php echo wicketpixie_get_option('headings_font'); ?>;}
+		#logo, h1, h2, h3, h4, h5, h6 {font-family: <?php echo wicketpixie_get_option('headings_font'); ?>;}
 		#logo, #logo a:link, #logo a:visited, #logo a:active {color: <?php echo wicketpixie_get_option('logo_color'); ?>;}
 		#logo a:hover {color: #fff;}
 		#description, #status p, #status a:link, #status a:active, #status a:visited {color: <?php echo wicketpixie_get_option('description_color'); ?>;}
