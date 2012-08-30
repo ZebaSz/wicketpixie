@@ -13,9 +13,8 @@ $status= new SourceUpdate; ?>
 		wp_title('',true,''); ?> &raquo; <?php bloginfo('name');
 	endif; ?>
 	</title>
-	<link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/style.css?<?php echo $time; ?>" type="text/css" media="screen, projection" />
-	<link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/css/print.css?<?php echo $time; ?>" type="text/css" media="print" />
-	<!--[if lte IE 8]><link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/css/ie.css?<?php echo $time; ?>" type="text/css" media="screen, projection" /><![endif]-->
+	<link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/style.css" type="text/css" />
+	<!--[if lte IE 8]><link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/css/ie.css" type="text/css" media="screen, projection" /><![endif]-->
 	<?php if ($blogfeed) :
 		echo '<link rel="alternate" type="application/rss+xml" title="'.get_bloginfo('name').'RSS Feed" href="'.$blogfeed.'" />';
 	else:
