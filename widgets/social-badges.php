@@ -4,7 +4,7 @@
  */
 class SocialBadgesWidget extends WP_Widget {
 	function SocialBadgesWidget() {
-		$widget_ops = array('classname' => 'widget_social_badges','description' => 'Displays badges with links to four different social sites as defined in WicketPixie Admin.');
+		$widget_ops = array('classname' => 'widget_social_badges','description' => __('Displays badges with links to different social sites as defined in WicketPixie Admin.','wicketpixie'));
 		$this->WP_Widget('socialbadges','Social Badges',$widget_ops,null);
 	}
 	function widget($args,$instance) {
@@ -13,32 +13,13 @@ class SocialBadgesWidget extends WP_Widget {
 		$podcastfeed = get_option('wicketpixie_podcast_feed_url');
 		$twitter = get_option('wicketpixie_twitter_id');
 		$youtube = get_option('wicketpixie_youtube_id');
-		$facebook = get_option('wicketpixie_facebook_id');
-		$wcount = 0;
-		$witem = array();
-		if($blogfeed != false && $blogfeed != "") :
-			$witem[$wcount] = "<a href='$blogfeed'><img src='".get_template_directory_uri()."/images/button-feed.png' style='float:left;padding:10px 10px 20px 14px;border:0px;' height='60' width='60' alt='Subscribe'/></a>\n";
-			$wcount++;
-		endif;
-		if($podcastfeed != false && $podcastfeed != "") :
-			$witem[$wcount] = "<a href='$podcastfeed'><img src='".get_template_directory_uri()."/images/button-podcast-feed.png' style='float:left;padding:10px 10px 20px 14px;border:0px;' height='60' width='60' alt='Podcast'/></a>\n";
-			$wcount++;
-		endif;
-		if($twitter != false && $twitter != "") :
-			$witem[$wcount] = "<a href='http://twitter.com/$twitter'><img src='".get_template_directory_uri()."/images/button-twitter.png' style='float:left;padding:10px 10px 20px 14px;border:0px;' height='60' width='60' alt='Twitter'/></a>\n";
-			$wcount++;
-		endif;
-		if($youtube != false && $youtube != "") :
-			$witem[$wcount] = "<a href='http://youtube.com/$youtube'><img src='".get_template_directory_uri()."/images/button-youtube.png' style='float:left;padding:10px 10px 20px 14px;border:0px;' height='60' width='60' alt='YouTube'/></a>\n";
-			$wcount++;
-		endif;
-		if($facebook != false && $facebook != "") :
-			$witem[$wcount] = "<a href='http://facebook.com/$facebook'><img src='".get_template_directory_uri()."/images/button-facebook.png' style='float:left;padding:10px 10px 20px 14px;border:0px;' height='60' width='60' alt='Facebook'/></a>\n";
-			$wcount++;
-		endif;
-		$wwidget = ($wcount * 0.25) * 340;
-		echo '<div style="margin:0px auto 0px auto;width:',$wwidget,'px">';
-		foreach($witem as $item) echo $item; ?>
+		$facebook = get_option('wicketpixie_facebook_id'); ?>
+		<div class="social-badges">
+		<?php if(!empty($blogfeed)) echo "<a href='$blogfeed' class='button-feed'>&nbsp</a>";
+		if(!empty($podcastfeed)) echo "<a href='$podcastfeed' class='button-podcast-feed'>&nbsp</a>";
+		if(!empty($twitter)) echo "<a href='http://twitter.com/$twitter' class='button-twitter'>&nbsp</a>";
+		if(!empty($youtube)) echo "<a href='http://youtube.com/$youtube' class='button-youtube'>&nbsp</a>";
+		if(!empty($facebook)) echo "<a href='http://facebook.com/$facebook' class='button-facebook'>&nbsp</a>"; ?>
 		</div>
 		<div style="clear:both"></div>
 	<?php }
